@@ -1,4 +1,4 @@
-function NavBar() {
+function NavBar () {
     return (
         <div className="bg-Primary04 w-full h-[60px] px-[79px] py-[10px]
         flex justify-center items-center fixed top-0 left-0">
