@@ -1,10 +1,13 @@
+import NavBar from './components/utils/NavBar'
+
 function App() {
 
   return (
-    <div className='background'>
-      {/* test */}
-      <h1 className={`text-color03 text-blue-500 font-bold`}>Hello World 555</h1>
+    <div className='BackGround'>
+      <NavBar />
 
+      {/* test */}
+      {/* <h1 className={`text-Accent text-9xl font-bold`}>Hello World 555</h1> */}
     </div>
   )
 }

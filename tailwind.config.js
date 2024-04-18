@@ -22,6 +22,9 @@ export default {
           'Unpass': '#FA695E',
           'Empty': '#7E7E7E',
         },
+        fontFamily: {
+          'main': ['IBM Plex Sans Thai', 'sans-serif'],
+        }
       },
     },
     plugins: [],

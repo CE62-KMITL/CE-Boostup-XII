@@ -1,10 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@100;200;300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer components {
-  .background {
+  *{
+    @apply font-main;
+    font-weight: 500;
+  }
+
+  .BackGround {
     background: linear-gradient(180deg, #0B384B 29%, #10516C 62%, #097275 100%);
+    width: 100vw;
     height: 100vh;
   }
 }
