@@ -14,7 +14,7 @@
     background: linear-gradient(180deg, #0B384B 29%, #10516C 62%, #097275 100%);
     width: 100vw;
     height: 100vh;
-    position: fixed;
+    /* position: fixed; */
   }
 
   .AbsoluteCentre{
@@ -22,5 +22,55 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+  }
+
+  .center-above-holder{
+    width: 226px;
+    height: 53px;
+    display: flex;
+    position: absolute;
+    top: 10px;
+    left: 128px;
+  }
+
+  .curved-corner-bottomleft,
+  .curved-corner-bottomright,
+  .curved-corner-topleft,
+  .curved-corner-topright {
+    width: 113px;
+    height: 53px;
+    overflow: hidden;
+    position: relative;
+  }
+  .curved-corner-bottomleft:before,
+  .curved-corner-bottomright:before,
+  .curved-corner-topleft:before,
+  .curved-corner-topright:before {
+    content: "";
+    display: block;
+    width: 220%;
+    height: 220%;
+    position: absolute;
+    border-radius: 100%;
+  }
+  .curved-corner-bottomleft:before {
+    bottom: 0;
+    left: 0;
+    box-shadow: -50px 50px 0 0 #F8F9FA;
+  }
+  .curved-corner-bottomright:before {
+    bottom: 0;
+    right: 0;
+    box-shadow: 50px 50px 0 0 #F8F9FA;
+  }
+  .curved-corner-topleft:before {
+    top: 0;
+    left: 0;
+    box-shadow: -50px -50px 0 0 #F8F9FA;
+  }
+  .curved-corner-topright:before {
+    top: 0;
+    right: 0;
+    box-shadow: 50px -50px 0 0 #F8F9FA;
   }
 }

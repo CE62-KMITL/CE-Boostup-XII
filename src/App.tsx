@@ -6,10 +6,10 @@ function App() {
 
   return (
     <div className='BackGround'>
-      <NavBar />
-
+      {/* <NavBar /> */}
       <LoginCard />
-      <Footer />
+      {/* <LoginCard /> */}
+      {/* <Footer /> */}
     </div>
   )
 }
