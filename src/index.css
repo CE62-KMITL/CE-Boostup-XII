@@ -25,13 +25,12 @@
   }
 
   .center-above-holder{
-    width: 236px;
-    height: 57px;
+    width: 226px;
+    height: 65px;
     display: flex;
     position: absolute;
-    top: 7px;
-    left: 123px;
-    right: 123px;
+    top: 5px;
+    left: 128px;
     align-items: center;
     /* border: 1px solid #0080ff; */
   }
@@ -40,8 +39,8 @@
   .curved-corner-bottomright,
   .curved-corner-topleft,
   .curved-corner-topright {
-    width: 118px;
-    height: 64px;
+    width: 113px;
+    height: 65px;
     overflow: hidden;
     position: relative;
   }
