@@ -8,8 +8,8 @@ function App() {
   return (
     <div className='BackGround'>
       {/* <NavBar /> */}
-      {/* <LoginCard /> */}
-      <ForgotPasswordPopUp />
+      <LoginCard />
+      {/* <ForgotPasswordPopUp /> */}
       {/* <Footer /> */}
     </div>
   )
