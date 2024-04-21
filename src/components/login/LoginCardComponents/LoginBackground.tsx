@@ -10,7 +10,7 @@ function LoginBackground() {
         rounded-tl-[15px] rounded-tr-[20px] 
         rounded-bl-[0px] rounded-br-[20px]"></div>
         <div className="bg-stone01 w-full h-[460px]
-        absolute left-0 bottom-0 
+        absolute left-0 -bottom-1 
         rounded-[20px]"></div>
         <div className="center-above-holder">
             <div className="curved-corner-bottomleft"></div>
