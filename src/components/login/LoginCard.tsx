@@ -6,7 +6,7 @@ function LoginCard() {
     
     return (
         <div className="w-[482px] h-[704px]
-        AbsoluteCentre relative">
+        centre-absolute relative">
             <div className="absolute top-0 left-[50%] translate-x-[-50%] z-10">
                 <LogoIcon />
             </div>

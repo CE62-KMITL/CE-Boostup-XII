@@ -6,10 +6,10 @@ import ForgotPasswordPopUp from './components/login/ForgotPasswordPopUp'
 function App() {
 
   return (
-    <div className='BackGround'>
+    <div className='gradient-background'>
       {/* <NavBar /> */}
-      <LoginCard />
-      {/* <ForgotPasswordPopUp /> */}
+      {/* <LoginCard /> */}
+      <ForgotPasswordPopUp />
       {/* <Footer /> */}
     </div>
   )

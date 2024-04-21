@@ -13,14 +13,14 @@
     box-sizing: border-box;
   }
 
-  .BackGround {
+  .gradient-background{
     background: linear-gradient(180deg, #0B384B 29%, #10516C 62%, #097275 100%);
     width: 100vw;
     height: 100vh;
     position: fixed;
   }
 
-  .AbsoluteCentre{
+  .centre-absolute{
     position: absolute;
     top: 50%;
     left: 50%;
