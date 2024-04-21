@@ -6,20 +6,22 @@ function LoginForm() {
                 เข้าสู่ระบบ    
             </div>
             <div>
-                <div className="w-full h-[88px] relative
-                border-[1px]">
+                <div className="w-full h-[88px] relative">
                     <div className="input-container w-full absolute bottom-0">
                         <input type="text" name="input-field" id="input-field"
-                        className="input-placer" placeholder=" "/>
-                        <label htmlFor="input-field" className="movable-placholder">อีเมล</label>
+                        className="text-stone04 text-[16px] w-full px-[16px] py-[8px] 
+                        border-stone03 border-[1px] rounded-[8px]" placeholder=" "/>
+                        <label htmlFor="input-field" className="text-stone04 text-[18px] font-[700]
+                        absolute bottom-[8px] left-[16px]">อีเมล</label>
                     </div>
                 </div>
-                <div className="w-full h-[88px] relative
-                border-[1px]">
+                <div className="w-full h-[88px] relative">
                     <div className="input-container w-full absolute bottom-0">
                         <input type="password" name="input-field" id="input-field"
-                        className="input-placer" placeholder=" "/>
-                        <label htmlFor="input-field" className="movable-placholder">รหัสผ่าน</label>
+                        className="text-stone04 text-[16px] w-full px-[16px] py-[8px] 
+                        border-stone03 border-[1px] rounded-[8px]" placeholder=" "/>
+                        <label htmlFor="input-field" className="text-stone04 text-[18px] font-[700]
+                        absolute bottom-[8px] left-[16px]">รหัสผ่าน</label>
                     </div>
                 </div>
                 <div className="relative my-[16px]">
