@@ -77,7 +77,7 @@
   }
   .input-container input:focus + label,
   .input-container input:not(:placeholder-shown) + label{
-    bottom: 48px;
+    bottom: 50px;
     font-size: 16px;
   }
 }
