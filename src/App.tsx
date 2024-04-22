@@ -5,6 +5,7 @@ import ForgotPasswordPopUp from './components/login/ForgotPasswordPopUp'
 import CreateAccountPopUp from './components/login/CreateAccountPopUp'
 import RecognizedPopUp from './components/login/RecognizedPopUp'
 import ResetPasswordPopUp from './components/login/ResetPasswordPopUp'
+import RegisterCard from './components/register/RegisterCard'
 
 function App() {
 
@@ -15,8 +16,9 @@ function App() {
       {/* <ForgotPasswordPopUp /> */}
       {/* <CreateAccountPopUp /> */}
       {/* <RecognizedPopUp /> */}
-      <ResetPasswordPopUp />
+      {/* <ResetPasswordPopUp /> */}
       {/* <Footer /> */}
+      <RegisterCard />
     </div>
   )
 }
