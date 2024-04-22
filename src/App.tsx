@@ -12,13 +12,13 @@ function App() {
   return (
     <div className='gradient-background'>
       {/* <NavBar /> */}
-      {/* <LoginCard /> */}
+      <LoginCard />
       {/* <ForgotPasswordPopUp /> */}
       {/* <CreateAccountPopUp /> */}
       {/* <RecognizedPopUp /> */}
       {/* <ResetPasswordPopUp /> */}
       {/* <Footer /> */}
-      <RegisterCard />
+      {/* <RegisterCard /> */}
     </div>
   )
 }

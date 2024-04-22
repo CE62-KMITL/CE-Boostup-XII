@@ -40,7 +40,7 @@ function LoginForm() {
                     </div>
                     <div className="absolute right-0">
                         <a href="" 
-                        className="text-stone04 text-[16px]">ลืมหรัสผ่าน</a>
+                        className="text-stone04 text-[16px]">ลืมรหัสผ่าน?</a>
                     </div>
                 </div>
             </div>
