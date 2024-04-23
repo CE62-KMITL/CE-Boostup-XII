@@ -37,8 +37,7 @@ function ResetPasswordPopUp(){
                         w-full h-[46px] rounded-[8px] flex justify-center items-center">ดำเนินการต่อ</button>
                         <div className="w-full h-[34px]
                         flex justify-center items-end">
-                            <a href=""
-                            className="text-stone04 text-[16px]">กลับเข้าสู่ระบบ</a>
+                            <a href="" className="text-stone04 text-[16px]">กลับเข้าสู่ระบบ</a>
                         </div>
                     </div>
                 </div>
