@@ -6,10 +6,10 @@ import OptionBar from "../components/solve/OptionBar";
 import Problem from "../components/solve/Problem";
 
 function SolveProblemPage() {
-    
     return (
-        <div className="flex justify-center items-center bg-[#ffffff22] w-[calc(100vw-160px)] h-[calc(100vh-64px)] my-8 mx-20">
-            Main Center Content
+        <div className="flex justify-center items-center 
+        bg-[#ffffff33] w-full h-full mx-16">
+            Main Center Components
         </div>
     );
 }
