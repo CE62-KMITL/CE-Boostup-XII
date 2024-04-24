@@ -1,11 +1,11 @@
 function LoginForm() {
     return (
         <form action=""  className="flex flex-col items-center place-content-between w-full h-full bg-[#ffffff30]">
-            <div className="flex flex-col items-center w-full h-[60%] mt-[18%]">
+            <div className="flex flex-col items-center w-full h-[55%] mt-[20%]">
                 <div className="text-stone05 text-[40px] text-center font-[700] leading-[4rem] bg-stone01 w-full">
                     เข้าสู่ระบบ
                 </div>
-                <div className="relative w-[90%] h-[64%]">
+                <div className="relative w-[90%] h-[50%]">
                     <div className="input-container w-full absolute bottom-0">
                     <input type="text" name="input-field" id="input-field"
                     className="w-full px-[16px] py-[8px] border-stone03 border-[1px] rounded-[8px] 
@@ -14,7 +14,7 @@ function LoginForm() {
                     text-stone04 text-[18px] font-[700]">อีเมล</label>
                     </div>
                 </div>
-                <div className="relative w-[90%] h-[64%]">
+                <div className="relative w-[90%] h-[50%]">
                     <div className="input-container w-full absolute bottom-0">
                     <input type="password" name="input-field" id="input-field"
                     className="w-full px-[16px] py-[8px] border-stone03 border-[1px] rounded-[6px] 
@@ -23,7 +23,7 @@ function LoginForm() {
                     text-stone04 text-[18px] font-[700]">รหัสผ่าน</label>
                     </div>
                 </div>
-                <div className="flex flex-col justify-end items-center w-[90%] h-[36%]">
+                <div className="flex flex-col justify-end items-center w-[90%] h-[30%]">
                     <div className="flex items-center place-content-between w-[95%] h-[50%]">
                         <div className="flex items-center h-full">
                             <input type="checkbox" className="scale-[0.75]"/>
