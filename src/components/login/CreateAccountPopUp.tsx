@@ -8,7 +8,7 @@ function CreateAccountPopUp() {
                 <div className="w-full h-[20%] text-stone05 text-[40px] font-[700] text-center">
                     สร้างแอคเคาท์ใหม่
                 </div>
-                <div className="relative w-full h-[36%]">
+                <div className="relative w-[95%] h-[36%]">
                     <div className="input-container w-full absolute bottom-0">
                     <input type="text" name="input-field" id="input-field"
                     className="w-full px-[16px] py-[8px] border-stone03 border-[1px] rounded-[8px] 
