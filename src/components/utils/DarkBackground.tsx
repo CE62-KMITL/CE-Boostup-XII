@@ -1,7 +1,6 @@
 function DarkBackground() {
   return (
-    <div className="centre-absolute bg-stone05 opacity-50 w-screen h-screen z-0">
-    </div>
+    <div className=" flex flex-col justify-center items-center absolute w-screen h-screen bg-stone05 opacity-50"></div>
   );
 }
 
