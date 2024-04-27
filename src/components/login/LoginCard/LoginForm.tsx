@@ -1,6 +1,6 @@
 function LoginForm() {
     return (
-        <form action=""  className="flex flex-col items-center place-content-between w-full h-full">
+        <form action="" className="flex flex-col items-center place-content-between w-full h-full">
             <div className="flex flex-col items-center w-full h-[55%] mt-[20%]">
                 <div className="text-stone05 text-[40px] text-center font-[700] leading-[4rem] bg-stone01 w-full">
                     เข้าสู่ระบบ

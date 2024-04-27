@@ -2,16 +2,18 @@ import NavBar from './components/utils/NavBar'
 
 import SolveProblemPage from './pages/SolveProblemPage'
 import LoginPage from './pages/LoginPage'
+import RegisterPage from './pages/RegisterPage'
 
 import CreateAccountPopUp from './components/login/CreateAccountPopUp'
 
 function App() {
   return (
     <div>
-      <LoginPage/>
+      {/* <LoginPage/> */}
+      <RegisterPage/>
       {/* <SolveProblemPage/> */}
 
-      <CreateAccountPopUp/>
+      {/* <CreateAccountPopUp/> */}
     </div>
   )
 }
