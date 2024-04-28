@@ -5,6 +5,9 @@ import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
 
 import CreateAccountPopUp from './components/login/CreateAccountPopUp'
+import ForgotPasswordPopUp from './components/login/ForgotPasswordPopUp'
+import RecognizedPopUp from './components/login/RecognizedPopUp'
+import ResetPasswordPopUp from './components/login/ResetPasswordPopUp'
 
 function App() {
   return (
@@ -14,6 +17,9 @@ function App() {
       {/* <SolveProblemPage/> */}
 
       {/* <CreateAccountPopUp/> */}
+      {/* <ForgotPasswordPopUp/> */}
+      {/* <RecognizedPopUp/> */}
+      {/* <ResetPasswordPopUp/> */}
     </div>
   )
 }
