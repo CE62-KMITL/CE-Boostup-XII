@@ -14,10 +14,10 @@ function App() {
   return (
     <div>
       {/* <NavBar/> */}
-      <Footer/>
+      {/* <Footer/> */}
 
       {/* <LoginPage/> */}
-      {/* <RegisterPage/> */}
+      <RegisterPage/>
       {/* <SolveProblemPage/> */}
 
       {/* <CreateAccountPopUp/> */}

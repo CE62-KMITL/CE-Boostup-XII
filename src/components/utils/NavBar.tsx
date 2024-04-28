@@ -1,7 +1,7 @@
 function NavBar() {
     return (
-        <div className="flex justify-center items-center fixed top-0 w-full h-[8%] min-h-[60px] max-h-[90px] bg-primary04"> 
-            <div className="flex place-content-between w-[90%] h-[60%] min-h-[40px] max-h-[60px]">
+        <div className="flex justify-center items-center fixed top-0 z-20 w-full h-[6%] min-h-[50px] max-h-[60px] bg-primary04"> 
+            <div className="flex place-content-between w-[90%] h-[60%] min-h-[35px] max-h-[45px]">
                 <div className="flex items-center">
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmYZNrSIj5yMGJbBNG7WaU1R4CviC8hSbU9Q&s" 
                     className=" h-full rounded-full" alt="" />
