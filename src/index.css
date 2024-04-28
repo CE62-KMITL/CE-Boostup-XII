@@ -6,7 +6,7 @@
 
 @layer components {
   *{
-    @apply font-main font-medium m-0 p-0 box-border;
+    @apply font-main text-[16px] font-medium m-0 p-0 box-border;
   }
 
   .default-background{
