@@ -6,10 +6,11 @@
 
 @layer components {
   *{
-    @apply font-main font-medium m-0 p-0 box-border;
+    @apply font-main text-[16px] font-medium m-0 p-0 box-border;
   }
 
   .default-background{
+    @apply fixed top-0 left-0 right-0 bottom-0;
     background: linear-gradient(180deg, #0B384B 29%, #10516C 62%, #097275 100%);
   }
 
