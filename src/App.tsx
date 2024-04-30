@@ -6,9 +6,9 @@ import LearnPage from './pages/LearnPage'
 function App() {
   return (
     <>
-      {/* <LoginPage/> */}
+      <LoginPage/>
       {/* <SolveProblemPage/> */}
-      <LearnPage/>
+      {/* <LearnPage/> */}
     </>
   )
 }
