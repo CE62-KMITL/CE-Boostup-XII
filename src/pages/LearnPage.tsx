@@ -1,6 +1,10 @@
+import TitleText from "../components/learn/TitleText";
+
 function LearnPage() {
-    return(
-        <div className="bg-emerald-500 w-52 h-52 rounded-full">Hello World</div>
+    return (
+        <div className="flex default-background w-screen h-screen">
+            <TitleText/>
+        </div>
     );
 }
 

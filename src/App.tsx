@@ -4,6 +4,7 @@ import Footer from './components/utils/Footer'
 import SolveProblemPage from './pages/SolveProblemPage'
 import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
+import LearnPage from './pages/LearnPage'
 
 import CreateAccountPopUp from './components/login/CreateAccountPopUp'
 import ForgotPasswordPopUp from './components/login/ForgotPasswordPopUp'
@@ -13,11 +14,12 @@ import ResetPasswordPopUp from './components/login/ResetPasswordPopUp'
 function App() {
   return (
     <div>
-      {/* <NavBar/> */}
+      <NavBar/>
       {/* <Footer/> */}
 
       {/* <LoginPage/> */}
-      <RegisterPage/>
+      {/* <RegisterPage/> */}
+      <LearnPage/>
       {/* <SolveProblemPage/> */}
 
       {/* <CreateAccountPopUp/> */}
