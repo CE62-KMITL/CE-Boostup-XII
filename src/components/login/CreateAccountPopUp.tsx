@@ -12,10 +12,10 @@ function CreateAccountPopUp() {
                     </div>
                     <div className="relative w-[95%] h-[20%] min-h-[90px] max-h-[100px]">
                         <div className="input-container w-full absolute bottom-0">
-                            <input type="text" name="input-field" id="input-field"
+                            <input type="text" name="" id=""
                             className="w-full px-[16px] py-[8px] border-stone03 border-[1px] rounded-[8px] 
                             text-stone04 text-[16px]" placeholder=" "/>
-                            <label htmlFor="input-field" className="absolute left-[16px] bottom-[6px] 
+                            <label htmlFor="" className="absolute left-[16px] bottom-[6px] 
                             text-stone04 text-[18px] font-[700]">อีเมล</label>
                         </div>
                     </div>

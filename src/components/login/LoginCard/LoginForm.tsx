@@ -7,19 +7,19 @@ function LoginForm() {
                 </div>
                 <div className="relative w-[90%] h-[50%]">
                     <div className="input-container w-full absolute bottom-0">
-                        <input type="text" name="input-field" id="input-field"
+                        <input type="text" name="" id=""
                         className="w-full px-[16px] py-[8px] border-stone03 border-[1px] rounded-[8px] 
                         text-stone04 text-[16px]" placeholder=" "/>
-                        <label htmlFor="input-field" className="absolute left-[16px] bottom-[6px] 
+                        <label htmlFor="" className="absolute left-[16px] bottom-[6px] 
                         text-stone04 text-[18px] font-[700]">อีเมล</label>
                     </div>
                 </div>
                 <div className="relative w-[90%] h-[50%]">
                     <div className="input-container w-full absolute bottom-0">
-                    <input type="password" name="input-field" id="input-field"
+                    <input type="password" name="" id=""
                     className="w-full px-[16px] py-[8px] border-stone03 border-[1px] rounded-[6px] 
                     text-stone04 text-[16px]" placeholder=" "/>
-                    <label htmlFor="input-field" className="absolute left-[16px] bottom-[6px] 
+                    <label htmlFor="" className="absolute left-[16px] bottom-[6px] 
                     text-stone04 text-[18px] font-[700]">รหัสผ่าน</label>
                     </div>
                 </div>
