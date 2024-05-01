@@ -33,14 +33,14 @@ function HomePage() {
     return (
         <div className="flex justify-center items-center default-background w-screen h-screen">
             <NavBar/>
-            <div className="border-2 border-red-500 w-[90%] min-w-[1320px] max-w-[1640px] h-[80%] min-h-[600px] max-h-[1080px]">
-                <div className="border-2 border-blue-500 flex flex-col justify-end w-full h-[40%] min-h-[250px] max-h-[300px]">
+            <div className="w-[90%] min-w-[1320px] max-w-[1640px] h-[80%] min-h-[600px] max-h-[1080px] overflow-hidden">
+                <div className="flex flex-col justify-end w-full h-[40%] min-h-[250px] max-h-[300px]">
                     <TitleText username="น้องต้นกล้า"/>
                     <SearchBar/>
                     <ProblemBar/>
                 </div>
-                {/* Now, I'm trying to hide a fucking scroll bar */}
-                <div className="border-2 border-lime-500 w-full h-[60%] overflow-y-auto">
+                
+                <div className="w-full h-[60%] overflow-y-auto hide-scrollbar">
                     {problems.map(problem => (
                         <ProblemsTable 
                             key={problem.number} 

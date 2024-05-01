@@ -26,15 +26,18 @@
   .curved-corner-bottomright {
     @apply w-[24.5%] h-[14%] relative overflow-hidden;
   }
+
   .curved-corner-bottomleft:before,
   .curved-corner-bottomright:before {
     @apply block w-[200%] h-[200%] absolute rounded-[50%];
     content: "";
   }
+
   .curved-corner-bottomleft:before {
     @apply left-0 bottom-0;
     box-shadow: -50px 50px 0 0 #f8f9fa;
   }
+
   .curved-corner-bottomright:before {
     @apply right-0 bottom-0;
     box-shadow: 50px 50px 0 0 #f8f9fa;
@@ -44,13 +47,16 @@
     box-sizing: border-box;
     transition: border-color 0.2s, background-color 0.2s;
   }
+
   .input-container input:focus {
     @apply border-stone04 bg-cream outline-none;
   }
+
   .input-container label {
     pointer-events: none;
     transition: bottom 0.2s, font-size 0.2s;
   }
+
   .input-container input:focus + label,
   .input-container input:not(:placeholder-shown) + label {
     animation-name: label-animation;
@@ -58,6 +64,7 @@
     animation-timing-function: ease-in-out;
     animation-fill-mode: forwards;
   }
+
   @keyframes label-animation {
     25% {
       font-size: 18px;
@@ -94,6 +101,7 @@
     transition: background 300ms;
     cursor: pointer;
   }
+
   [type="checkbox"]::before {
     content: "";
     color: transparent;
@@ -106,18 +114,22 @@
     background-size: contain;
     box-shadow: inset 0 0 0 1px #ccd3d8;
   }
+
   [type="checkbox"]:checked {
     background-color: currentcolor;
   }
+
   [type="checkbox"]:checked::before {
     box-shadow: none;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E %3Cpath d='M15.88 8.29L10 14.17l-1.88-1.88a.996.996 0 1 0-1.41 1.41l2.59 2.59c.39.39 1.02.39 1.41 0L17.3 9.7a.996.996 0 0 0 0-1.41c-.39-.39-1.03-.39-1.42 0z' fill='%23fff'/%3E %3C/svg%3E");
   }
+
   [type="checkbox"]:disabled {
     background-color: #ccd3d8;
     opacity: 0.84;
     cursor: not-allowed;
   }
+
   [type="checkbox"]::-ms-check {
     content: "";
     color: transparent;
@@ -130,45 +142,19 @@
     background-size: contain;
     box-shadow: inset 0 0 0 1px #ccd3d8;
   }
+
   [type="checkbox"]:checked::-ms-check {
     box-shadow: none;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E %3Cpath d='M15.88 8.29L10 14.17l-1.88-1.88a.996.996 0 1 0-1.41 1.41l2.59 2.59c.39.39 1.02.39 1.41 0L17.3 9.7a.996.996 0 0 0 0-1.41c-.39-.39-1.03-.39-1.42 0z' fill='%23fff'/%3E %3C/svg%3E");
   }
 
-  .selector::after {
-    content: "\25BC";
-    position: absolute;
-    right: 0;
-    width: 20%;
-    height: 100%;
-    background: #f4e9cd;
-    border-radius: 0.375rem;
-    padding: 5% 0;
-    text-align: center;
-    cursor: pointer;
-    pointer-events: none;
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
   }
 
-  .scroll-wrapper {
-    /* Set a fixed height for the scrollable box */
-    height: 200px; /* Adjust as needed */
-    /* Hide both horizontal and vertical scroll bars */
-    overflow: hidden;
-    /* Add padding and margin */
-    padding: 10px;
-    margin: 10px;
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 
-  .content {
-    /* Ensure content can be scrolled */
-    overflow-y: auto;
-    /* Add padding to ensure content doesn't touch the edges */
-    padding-right: 20px; /* Adjust as needed */
-  }
-
-  /* Optional: Hide the scrollbar for WebKit (Chrome, Safari, etc.) */
-  .content::-webkit-scrollbar {
-    width: 0;
-    background: transparent; /* Optional: Hide scrollbar track */
-  }
 }

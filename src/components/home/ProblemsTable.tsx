@@ -9,13 +9,15 @@ function ProblemsTable({ number, title, lesson, level, attempters, score, status
 }) {
     return (
         <div className="grid grid-cols-[repeat(16,minmax(0,1fr))] gap-[0.8rem] w-full h-[6%] min-h-[40px] max-h-[45px] mb-[1rem] rounded-md bg-stone01">
-            <div className="flex justify-start items-center col-span-1 px-[0.6rem]">
+            <div className="flex justify-start items-center col-span-1 p-[0.6rem]">
                 {number}
             </div>
-            <div className="flex justify-start items-start col-span-4 px-[0.6rem] leading-[2.4rem] overflow-y-auto">
+            <div className="flex justify-start items-start col-span-4 px-[0.6rem] py-[0.4rem]
+            leading-[1.8rem] overflow-y-scroll hide-scrollbar text-[18px] font-[700]">
                 {title}
             </div>
-            <div className="flex justify-start items-start col-span-3 px-[0.6rem] leading-[2.4rem] overflow-y-auto">
+            <div className="flex justify-start items-start col-span-3 px-[0.6rem] py-[0.4rem]
+            leading-[1.8rem] overflow-y-scroll hide-scrollbar">
                 {lesson}
             </div>
             <div className="flex justify-start items-center col-span-3 px-[0.6rem]">
@@ -30,10 +32,10 @@ function ProblemsTable({ number, title, lesson, level, attempters, score, status
                     </svg>
                 ))}
             </div>
-            <div className="flex justify-start items-center col-span-2 px-[0.6rem]">
+            <div className="flex justify-start items-center col-span-2 p-[0.6rem]">
                 {score}
             </div>
-            <div className="flex justify-start items-center col-span-2 px-[0.6rem]">
+            <div className="flex justify-start items-center col-span-2 p-[0.6rem]">
                 {attempters}
             </div>
             <div className={`flex justify-end items-center col-span-1 px-[0.6rem] ${status === 'pass' ? 'text-pass' : status === 'unpass' ? 'text-unpass' : 'text-empty'}`}>
