@@ -18,27 +18,27 @@
     @apply absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2;
   }
 
-  .curved-boxes-holder {
-    @apply flex absolute top-[6px] left-[128px] w-[226px] h-[65px] text-center;
+  .holding-space {
+    @apply flex absolute -translate-x-1/2 top-[0.6rem] left-1/2 w-[50%] h-[12%] min-h-[25px];
   }
 
-  .curved-corner-bottomleft,
-  .curved-corner-bottomright {
-    @apply w-[24.5%] h-[14%] relative overflow-hidden;
+  .curve-bl,
+  .curve-br {
+    @apply relative overflow-hidden w-[50%] h-full;
   }
 
-  .curved-corner-bottomleft:before,
-  .curved-corner-bottomright:before {
-    @apply block w-[200%] h-[200%] absolute rounded-[50%];
+  .curve-bl:before,
+  .curve-br:before {
+    @apply block w-[200%] h-[300%] absolute rounded-[50%];
     content: "";
   }
 
-  .curved-corner-bottomleft:before {
+  .curve-bl:before {
     @apply left-0 bottom-0;
     box-shadow: -50px 50px 0 0 #f8f9fa;
   }
 
-  .curved-corner-bottomright:before {
+  .curve-br:before {
     @apply right-0 bottom-0;
     box-shadow: 50px 50px 0 0 #f8f9fa;
   }
@@ -68,19 +68,23 @@
   @keyframes label-animation {
     25% {
       font-size: 18px;
+      font-weight: 700;
       bottom: 8px;
     }
     50% {
       font-size: 18px;
+      font-weight: 700;
       bottom: 50px;
     }
     75% {
       font-size: 16px;
+      font-weight: 700;
       left: 16px;
       bottom: 50px;
     }
     100% {
       font-size: 16px;
+      font-weight: 700;
       left: 0px;
       bottom: 50px;
     }
@@ -156,5 +160,4 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
-
 }

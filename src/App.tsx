@@ -17,10 +17,10 @@ function App() {
       {/* <NavBar/> */}
       {/* <Footer/> */}
 
-      {/* <LoginPage/> */}
+      <LoginPage/>
       {/* <RegisterPage/> */}
       {/* <SolveProblemPage/> */}
-      <HomePage/>
+      {/* <HomePage/> */}
 
       {/* <CreateAccountPopUp/> */}
       {/* <ForgotPasswordPopUp/> */}
