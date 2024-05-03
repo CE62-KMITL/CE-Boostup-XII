@@ -18,8 +18,6 @@ function LoginBackground() {
           <div className="curve-bl"></div>
           <div className="curve-br"></div>
         </div>
-        {/* <div className="curved-corner-bottomleft absolute -translate-x-full top-0 left-1/2"></div>
-        <div className="curved-corner-bottomright absolute top-[1.0rem] left-1/2"></div> */}
       </div>
     </div>
   );
