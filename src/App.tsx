@@ -22,7 +22,7 @@ function App() {
       {/* <SolveProblemPage/> */}
       {/* <HomePage/> */}
 
-      {/* <CreateAccountPopUp/> */}
+      <CreateAccountPopUp/>
       {/* <ForgotPasswordPopUp/> */}
       {/* <RecognizedPopUp/> */}
       {/* <ResetPasswordPopUp/> */}
