@@ -4,9 +4,8 @@ function ResetPasswordPopUp(){
     return (
         <div className="flex justify-center items-center fixed top-0 w-screen h-screen z-10">
             <DarkBackground />
-            <div className="flex flex-col items-center place-content-between absolute
+            <form action="" className="flex flex-col items-center place-content-between absolute
             w-[50%] min-w-[450px] max-w-[500px] h-[50%] min-h-[460px] max-h-[470px] rounded-[30px] p-[36px_24px] bg-stone01">
-                
                 <div className="border-none border-red-500 flex flex-col items-center w-full h-auto">
                     <div className="text-stone05 text-[40px] font-[700] leading-[4rem]">
                         รีเซ็ตรหัสผ่าน
@@ -41,8 +40,8 @@ function ResetPasswordPopUp(){
                     </button>
                     <a href="" className="text-stone04 text-[16px] leading-[0.5rem]">กลับเข้าสู่ระบบ</a>
                 </div>
-
-            </div>
+            </form>
+            
         </div>
     );
 }
