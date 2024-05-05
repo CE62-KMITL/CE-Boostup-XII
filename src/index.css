@@ -74,19 +74,19 @@
     50% {
       font-size: 18px;
       font-weight: 700;
-      bottom: 50px;
+      bottom: 56px;
     }
     75% {
       font-size: 16px;
       font-weight: 700;
       left: 16px;
-      bottom: 50px;
+      bottom: 56px;
     }
     100% {
       font-size: 16px;
       font-weight: 700;
       left: 0px;
-      bottom: 50px;
+      bottom: 56px;
     }
   }
 

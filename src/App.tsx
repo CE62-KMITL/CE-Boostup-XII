@@ -17,12 +17,12 @@ function App() {
       {/* <NavBar/> */}
       {/* <Footer/> */}
 
-      <LoginPage/>
-      {/* <RegisterPage/> */}
+      {/* <LoginPage/> */}
+      <RegisterPage/>
       {/* <SolveProblemPage/> */}
       {/* <HomePage/> */}
 
-      <CreateAccountPopUp/>
+      {/* <CreateAccountPopUp/> */}
       {/* <ForgotPasswordPopUp/> */}
       {/* <RecognizedPopUp/> */}
       {/* <ResetPasswordPopUp/> */}
