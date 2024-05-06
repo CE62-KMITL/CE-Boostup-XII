@@ -1,6 +1,6 @@
 function TitleText({ username }: { username: string }) {
     return (
-        <div className="mb-[2rem]">
+        <div className="mb-[2.4rem]">
             <h2 className="text-stone01 text-[40px] font-[700]">
                 วันนี้{username} 
                 <p className="text-accent text-[40px] font-[700] inline">
