@@ -5,12 +5,24 @@ import SolveComponent from "../components/learn/LessonCardComponents/SolveCompon
 
 function LearnPage() {
     return (
-        <div className="default-background w-screen h-screen">
-            <TitleText/>
-            <SearchBar/>
-            <LessonGroup/>
-            <SolveComponent/>
+        <div className="hide-scrollbar">
+            <div className="z-0">
+                <div className="default-background"></div>
+            </div>
+            <div className="container w-1582 h-auto mx-auto overflow-y-auto z-30">
+                <div className="absolute">
+                    <TitleText />
+                    <SearchBar />
+                    <LessonGroup />
+                    <LessonGroup />
+                    <LessonGroup />
+                    <SolveComponent />
+                </div>
+            </div>
+
         </div>
+
+
     );
 }
 
