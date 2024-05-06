@@ -1,14 +1,15 @@
-function ProblemsTable({ number, title, lesson, level, attempters, score, status }: { 
+function ProblemsTable({ number, title, lesson, level, attempters, score, status, isLast }: { 
     number: string, 
     title: string, 
     lesson: string, 
     level: number,
     attempters: number, 
     score: number, 
-    status: string 
+    status: string,
+    isLast: boolean,
 }) {
     return (
-        <div className="grid grid-cols-[repeat(16,minmax(0,1fr))] w-full h-[45px] mb-[1rem] rounded-md bg-stone01">
+        <div className={`grid grid-cols-[repeat(16,minmax(0,1fr))] w-full h-[45px] mb-[1rem] rounded-md bg-stone01 ${isLast ? 'mb-[0rem]' : ''}`}>
             <div className="flex justify-start items-center col-span-1 p-[0rem_0.6rem]">
                 {number}
             </div>

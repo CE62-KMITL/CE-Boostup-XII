@@ -38,7 +38,7 @@ function HomePage() {
                 
                 <div className="w-full xl:h-[calc(100vh-150px-256.4px)] 2xl:h-[calc(100vh-180px-256.4px)] 
                 overflow-y-auto hide-scrollbar">
-                    {problems.map(problem => (
+                    {problems.map((problem, index) => (
                         <ProblemsTable
                             key={problem.number} 
                             number={problem.number.toString()}
@@ -48,6 +48,7 @@ function HomePage() {
                             attempters={problem.attempters}
                             score={parseFloat(problem.score)}
                             status={problem.status} 
+                            isLast={index === problems.length - 1}
                         />
                     ))}
                 </div>
