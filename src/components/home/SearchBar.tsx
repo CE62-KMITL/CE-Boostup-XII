@@ -43,7 +43,7 @@ function SearchBar() {
                 
                 {/* <div className="relative xl:w-[155px] 2xl:w-[160px] h-full"> */}
                 <div className="relative w-[30%] h-full">
-                    <select className="bar-selector absolute w-full h-full rounded-md px-[0.5rem] pt-[0.2rem] focus:outline-none" name="lesson" id="lesson">
+                    <select className="absolute w-full h-full rounded-md px-[0.5rem] pt-[0.2rem] focus:outline-none" name="lesson" id="lesson">
                         <option value="lesson01">Lesson01</option>
                         <option value="lesson02">Lesson02</option>
                         <option value="lesson03">Lesson03</option>
@@ -51,7 +51,7 @@ function SearchBar() {
                         <option value="lesson05">Lesson05</option>
                     </select>
                     <div className="flex justify-center items-center absolute right-0 xl:w-[45px] 2xl:w-[50px] h-full rounded-md bg-cream cursor-pointer pointer-events-none">
-                        <svg className="arrow w-[14px] h-[8px]" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg className="w-[14px] h-[8px]" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M1 1L7 7L13 1" stroke="#212429" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </div>

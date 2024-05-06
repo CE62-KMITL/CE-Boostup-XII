@@ -41,10 +41,6 @@
     font-weight: 700;
   }
 
-  .bar-selector:active + .arrow {
-    background-color: aqua;
-  }
-
   .holding-space {
     display: flex;
     position: absolute;
