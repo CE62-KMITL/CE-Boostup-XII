@@ -1,6 +1,3 @@
-import NavBar from './components/utils/NavBar'
-import Footer from './components/utils/Footer'
-
 import SolveProblemPage from './pages/SolveProblemPage'
 import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
@@ -14,9 +11,6 @@ import ResetPasswordPopUp from './components/login/ResetPasswordPopUp'
 function App() {
   return (
     <div>
-      {/* <NavBar/> */}
-      {/* <Footer/> */}
-
       <HomePage/>
       {/* <LoginPage/> */}
       {/* <RegisterPage/> */}

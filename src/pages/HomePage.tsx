@@ -1,4 +1,5 @@
 import NavBar from "../components/utils/NavBar";
+import Footer from "../components/utils/Footer";
 
 import TitleText from "../components/home/TitleText";
 import SearchBar from "../components/home/SearchBar";
@@ -25,7 +26,8 @@ function HomePage() {
     return (
         <div className="flex justify-center items-center default-background">
             <NavBar/>
-            <div className="border-2 border-red-500 xl:w-[1240px] 2xl:w-[1360px] 
+            {/* <Footer/> */}
+            <div className="xl:w-[1240px] 2xl:w-[1360px] 
             xl:h-[calc(100vh-150px)] 2xl:h-[calc(100vh-180px)] overflow-hidden">
                 
                 <div className="flex flex-col w-full h-auto">
