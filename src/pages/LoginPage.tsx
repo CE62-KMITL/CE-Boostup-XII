@@ -4,7 +4,7 @@ import LoginForm from "../components/login/LoginCard/LoginForm";
 
 function LoginPage() {
     return (
-        <div className="flex justify-center items-center default-background w-screen h-screen">
+        <div className="flex justify-center items-center default-background">
             <div className="flex flex-col items-center place-content-between relative
             w-full h-full min-w-[400px] max-w-[480px] min-h-[600px] max-h-[700px]">
                 <LogoIcon/>
