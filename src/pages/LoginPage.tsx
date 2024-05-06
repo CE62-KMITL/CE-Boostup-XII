@@ -5,16 +5,14 @@ import LoginForm from "../components/login/LoginCard/LoginForm";
 function LoginPage() {
     return (
         <div className="flex justify-center items-center default-background w-screen h-screen">
-            <div className="relative w-full h-full min-w-[400px] max-w-[480px] min-h-[600px] max-h-[700px]">
+            <div className="flex flex-col items-center place-content-between relative
+            w-full h-full min-w-[400px] max-w-[480px] min-h-[600px] max-h-[700px]">
                 <LogoIcon/>
-                <div className="absolute bottom-0 w-full h-[530px]">
+                <div className="absolute -translate-x-1/2 bottom-0 left-1/2 
+                w-full h-full max-h-[525px]">
                     <div className="relative w-full h-full">
-                        <div className="absolute w-full h-full">
-                            <LoginBackground/>
-                        </div>
-                        <div className="absolute w-full h-full">
-                            <LoginForm/>
-                        </div>
+                        <LoginBackground/>
+                        <LoginForm/>
                     </div>
                 </div>
             </div>

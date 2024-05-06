@@ -5,28 +5,26 @@ function CreateAccountPopUp() {
         <div className="flex justify-center items-center fixed top-0 w-screen h-screen z-10">
             <DarkBackground />
             <div className="flex flex-col items-center place-content-between absolute
-            w-[50%] min-w-[480px] max-w-[510px] h-[36%] min-h-[300px] max-h-[320px] rounded-[2rem] p-[2rem] bg-stone01">
-                <div className="flex flex-col items-center place-content-between w-full h-[50%]">
-                    <div className="w-full text-stone05 text-[40px] font-[700] text-center leading-[3rem]">
-                        สร้างแอคเคาท์ใหม่
-                    </div>
-                    <div className="relative w-[95%] h-[20%] min-h-[90px] max-h-[100px]">
-                        <div className="input-container w-full absolute bottom-0">
-                            <input type="text" name="" id=""
-                            className="w-full px-[16px] py-[8px] border-stone03 border-[1px] rounded-[8px] 
-                            text-stone04 text-[16px]" placeholder=" "/>
-                            <label htmlFor="" className="absolute left-[16px] bottom-[6px] 
-                            text-stone04 text-[18px] font-[700]">อีเมล</label>
-                        </div>
+            w-[50%] min-w-[450px] max-w-[500px] h-[50%] min-h-[300px] max-h-[325px] rounded-[30px] p-[36px_24px] bg-stone01">
+                <div className="w-full text-stone05 text-[40px] font-[700] text-center leading-[4rem]">
+                    สร้างแอคเคาท์ใหม่
+                </div>
+                <div className="relative w-full h-[40%] max-h-[50px]">
+                    <div className="input-container w-full absolute bottom-0">
+                        <input type="text" name="" id=""
+                        className="w-full h-[48px] px-[16px] py-[8px] border-stone03 border-[1px] rounded-[8px] 
+                        text-stone04 text-[16px]" placeholder=" "/>
+                        <label htmlFor="" className="absolute left-[16px] bottom-[10px] 
+                        text-stone04 text-[18px] font-[700]">อีเมล</label>
                     </div>
                 </div>
-                <div className="flex flex-col place-content-between w-[36%] h-[20%] min-h-[80px] max-h-[90px]">
-                    <button className="flex justify-center items-center w-full h-[55%] rounded-lg 
+                <div className="flex flex-col place-content-between w-[35%] h-[20%] min-h-[80px] max-h-[90px]">
+                    <button className="flex justify-center items-center w-full h-[50%] min-h-[45px] max-h-[50px] rounded-lg 
                     shadow-md bg-accent text-stone01 text-[18px] font-[700]">
                         ดำเนินการต่อ
                     </button>
                     <div className="flex justify-center items-end w-full h-[45%]">
-                        <a href="" className="text-stone04 text-[16px]">กลับเข้าสู่ระบบ</a>
+                        <a href="" className="text-stone04">กลับเข้าสู่ระบบ</a>
                     </div>
                 </div>
             </div>
