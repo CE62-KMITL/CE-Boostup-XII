@@ -105,18 +105,6 @@
     animation-fill-mode: forwards;
   }
 
-  .eye-icon-background {
-    @apply bg-white border-[1px] border-stone03;
-    border-left-width: 0px;
-    transition: 0.2s;
-  }
-
-  .password-box > .input-container > input:focus + .eye-icon-background,
-  .password-box > .input-container > input:not(:placeholder-shown) + .eye-icon-background {
-      background-color: #0b21c8; /* Change this to your desired background color */
-      border-color: #eb1414cb; /* Change this to your desired border color */
-  }
-
   @keyframes label-animation {
     25% {
       font-size: 18px;
