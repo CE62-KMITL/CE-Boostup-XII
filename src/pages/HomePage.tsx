@@ -5,6 +5,7 @@ import TitleText from "../components/home/TitleText";
 import SearchBar from "../components/home/SearchBar";
 import ProblemBar from "../components/home/ProblemBar";
 import ProblemsTable from "../components/home/ProblemsTable";
+import Background from "../components/utils/Background";
 
 function HomePage() {
     // Sample data for demonstration
@@ -24,40 +25,43 @@ function HomePage() {
     ];
 
     return (
-        <div className="flex justify-center m-auto default-background overflow-y-auto">
-            <NavBar/>
+        <>
+            <Background/>
+            <div className="flex justify-center m-auto overflow-y-auto">
+                <NavBar />
 
-            {/* <Footer/> */}
-            <div className="border-2 border-red-500 xl:w-[1240px] 2xl:w-[1360px] h-fit xl:my-[75px] 2xl:my-[90px] overflow-hidden">
-            {/* xl:h-[calc(100vh-150px)] 2xl:h-[calc(100vh-180px)] */}
+                {/* <Footer/> */}
+                <div className="border-2 border-red-500 xl:w-[1240px] 2xl:w-[1360px] h-fit xl:my-[75px] 2xl:my-[90px] overflow-hidden">
+                {/* xl:h-[calc(100vh-150px)] 2xl:h-[calc(100vh-180px)] */}
 
-                <div className="flex flex-col w-full h-auto">
+                    <div className="flex flex-col w-full h-auto">
+                        
+                        <TitleText username="พี่อิทาจิ"/>
+                        <SearchBar/>
+                        <ProblemBar/>
+                    </div>
                     
-                    <TitleText username="พี่อิทาจิ"/>
-                    <SearchBar/>
-                    <ProblemBar/>
+                    <div className="w-full flex flex-col space-y-[16px]
+                    overflow-y-auto hide-scrollbar">
+                    {/* xl:h-[calc(100vh-150px-248.4px)] 2xl:h-[calc(100vh-180px-248.4px)] */}
+                        {problems.map((problem, index) => (
+                            <ProblemsTable
+                                key={problem.number} 
+                                number={problem.number.toString()}
+                                title={problem.title} 
+                                lesson={problem.lesson} 
+                                level={problem.level}
+                                attempters={problem.attempters}
+                                score={parseFloat(problem.score)}
+                                status={problem.status} 
+                                isLast={index === problems.length - 1}
+                            />
+                        ))}
+                    </div>
+                    
                 </div>
-                
-                <div className="w-full flex flex-col space-y-[16px]
-                overflow-y-auto hide-scrollbar">
-                {/* xl:h-[calc(100vh-150px-248.4px)] 2xl:h-[calc(100vh-180px-248.4px)] */}
-                    {problems.map((problem, index) => (
-                        <ProblemsTable
-                            key={problem.number} 
-                            number={problem.number.toString()}
-                            title={problem.title} 
-                            lesson={problem.lesson} 
-                            level={problem.level}
-                            attempters={problem.attempters}
-                            score={parseFloat(problem.score)}
-                            status={problem.status} 
-                            isLast={index === problems.length - 1}
-                        />
-                    ))}
-                </div>
-                
             </div>
-        </div>
+        </>
     );
 }
 
