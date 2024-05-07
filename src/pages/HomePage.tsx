@@ -5,6 +5,7 @@ import TitleText from "../components/home/TitleText";
 import SearchBar from "../components/home/SearchBar";
 import ProblemBar from "../components/home/ProblemBar";
 import ProblemsTable from "../components/home/ProblemsTable";
+import SolveComponent from "../components/learn/LessonCardComponents/SolveComponent";
 
 function HomePage() {
     // Sample data for demonstration
@@ -52,7 +53,9 @@ function HomePage() {
                         />
                     ))}
                 </div>
-                
+                <div>
+                    <SolveComponent/>
+                </div>
             </div>
         </div>
     );

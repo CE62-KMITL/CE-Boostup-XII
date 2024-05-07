@@ -15,6 +15,7 @@ function App() {
       {/* <LoginPage/> */}
       {/* <RegisterPage/> */}
       <LearnPage/>
+      {/* <HomePage/> */}
       {/* <RegisterPage/> */}
       {/* <SolveProblemPage/> */}
 
