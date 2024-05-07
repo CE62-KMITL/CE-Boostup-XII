@@ -1,13 +1,13 @@
-import OptionButton from "./utils/OptionButton";
+import Button from "../utils/Button";
 
 function OptionBar() {
     return (
         <div className="flex row justify-between w-[52vw]">
-            <OptionButton mode={1} text="1" />
+            <Button mode={1} text="1" />
             <div className="row flex">
-                <OptionButton mode={1} text="2" />
-                <OptionButton mode={1} text="3" />
-                <OptionButton mode={2} text="4" />
+                <Button mode={1} text="2" />
+                <Button mode={1} text="3" />
+                <Button mode={2} text="4" />
             </div>
         </div>
     );
