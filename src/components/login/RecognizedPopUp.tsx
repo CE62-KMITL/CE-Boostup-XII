@@ -9,7 +9,7 @@ function RecognizedPopUp() {
                 <div className="w-full text-stone05 text-[40px] font-[700] text-center leading-[3.2rem]">
                     ส่งลิงก์ไปในอีเมลเรียบร้อย
                 </div>
-                <p>หากไม่พบ ตรวจสอบได้ในสแปม</p>
+                <p className="text-stone04">หากไม่พบ ตรวจสอบได้ในสแปม</p>
                 <button className="flex justify-center items-center w-[50%] min-w-[160px] max-w-[170px] h-[30%] min-h-[45px] max-h-[50px]
                 rounded-lg shadow-md bg-accent text-stone01 text-[18px] font-[700]">
                      รับทราบ
