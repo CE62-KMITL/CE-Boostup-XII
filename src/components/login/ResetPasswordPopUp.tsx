@@ -16,7 +16,7 @@ function ResetPasswordPopUp(){
                 <div className="border-none border-red-500 relative w-full h-[40%] max-h-[50px]">
                     <div className="input-container w-full absolute bottom-0">
                         <input type="password" name="" id=""
-                        className="w-full h-[48px] px-[16px] py-[8px] border-stone03 border-[1px] rounded-[8px] 
+                        className="w-full h-[48px] px-[16px] py-[8px] border-stone03 border-[1px] rounded-[10px] 
                         text-stone04 text-[16px]" placeholder=" "/>
                         <label htmlFor="" className="absolute left-[16px] bottom-[10px] 
                         text-stone04 text-[18px] font-[700]">สร้างรหัสผ่านใหม่</label>
@@ -26,7 +26,7 @@ function ResetPasswordPopUp(){
                 <div className="border-none border-red-500 relative w-full h-[40%] max-h-[50px]">
                     <div className="input-container w-full absolute bottom-0">
                         <input type="password" name="" id=""
-                        className="w-full h-[48px] px-[16px] py-[8px] border-stone03 border-[1px] rounded-[8px] 
+                        className="w-full h-[48px] px-[16px] py-[8px] border-stone03 border-[1px] rounded-[10px] 
                         text-stone04 text-[16px]" placeholder=" "/>
                         <label htmlFor="" className="absolute left-[16px] bottom-[10px] 
                         text-stone04 text-[18px] font-[700]">ยืนยันรหัสผ่าน</label>

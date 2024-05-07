@@ -11,8 +11,8 @@ import ResetPasswordPopUp from './components/login/ResetPasswordPopUp'
 function App() {
   return (
     <div>
-      <HomePage/>
-      {/* <LoginPage/> */}
+      {/* <HomePage/> */}
+      <LoginPage/>
       {/* <RegisterPage/> */}
       {/* <SolveProblemPage/> */}
 
