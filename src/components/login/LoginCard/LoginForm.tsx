@@ -44,14 +44,20 @@ function LoginForm() {
                     <div className="relative w-full h-[40%] max-h-[90px]">
                         <div className="password-box input-container w-full absolute bottom-0">
                             <input type={passwordAppearance ? "text" : "password"} name="" id=""
-                            className="w-full h-[48px] px-[16px] py-[8px] border-stone03 border-[1px] rounded-[10px] 
+                            className="password-input w-full h-[48px] px-[16px] py-[8px] border-stone03 border-[1px] rounded-[10px] 
                             text-stone04 text-[16px]" placeholder=" "/>
                             <label htmlFor="" className="absolute left-[16px] bottom-[10px] 
                             text-stone04 text-[18px] font-[700]">รหัสผ่าน</label>
-                            <div className="eye-icon-background flex justify-center items-center absolute bottom-0 right-0 w-[48px] h-[48px] rounded-r-[10px]"
+                            <div className="absolute bottom-0 right-0 w-[60px] h-[48px] border-[1px] border-transparent rounded-r-[10px]">
+                                <div className="flex justify-center items-center w-full h-full"
+                                onClick={handlePasswordAppearance}>
+                                    {eyeIcon()}
+                                </div>
+                            </div>
+                            {/* <div className="flex justify-center items-center absolute bottom-0 right-0 w-[54px] h-[48px] border-[1px] border-transparent rounded-r-[10px]"
                             onClick={handlePasswordAppearance}>
                                 {eyeIcon()}
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                     <div className="flex items-center place-content-between w-[96%]">
@@ -74,20 +80,6 @@ function LoginForm() {
             </form> 
         </div>
     );
-
-    <style>
-        .eye-icon-background {
-            background-color: #0b21c8; /* Change this to your desired background color */
-            border-color: #eb1414cb; /* Change this to your desired border color */
-            transition: 0.2s;
-        }
-
-        .password-box > .input-container input:focus + .eye-icon-background,
-        .password-box > .input-container input:not(:placeholder-shown) + .eye-icon-background {
-            background-color: #0b21c8; /* Change this to your desired background color */
-            border-color: #eb1414cb; /* Change this to your desired border color */
-        }
-    </style>
 }
 
 export default LoginForm
