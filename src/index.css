@@ -10,7 +10,7 @@
   }
 
   .default-background {
-    @apply fixed top-0 left-0 right-0 bottom-0;
+    @apply w-screen h-screen;
     background: linear-gradient(180deg, #0b384b 29%, #10516c 62%, #097275 100%);
   }
 

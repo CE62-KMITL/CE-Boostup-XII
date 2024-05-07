@@ -1,17 +1,16 @@
-import Explain from "../components/solve/ProblemComponents/Explain";
-import Playground from "../components/solve/ProblemComponents/Playground";
 import Editor from "../components/solve/Editor";
-import EditorFooter from "../components/solve/EditorFooter";
-import OptionBar from "../components/solve/OptionBar";
 import Problem from "../components/solve/Problem";
 
 function SolveProblemPage() {
-    return (
-        <div className="flex justify-center items-center 
-        bg-[#ffffff33] w-full h-full mx-16">
-            Main Center Components
+  return (
+    <div className="flex w-screen h-screen justify-center items-center default-background">
+        <div className="flex justify-between bg-stone01 bg-opacity-20 
+        w-[calc(100vw-64px)] h-[calc(100vh-32px)]">
+            <Editor/>
+            <Problem/>
         </div>
-    );
+    </div>
+  );
 }
 
 export default SolveProblemPage;

@@ -18,8 +18,8 @@ function App() {
       {/* <Footer/> */}
 
       {/* <LoginPage/> */}
-      <RegisterPage/>
-      {/* <SolveProblemPage/> */}
+      {/* <RegisterPage/> */}
+      <SolveProblemPage/>
       {/* <HomePage/> */}
 
       {/* <CreateAccountPopUp/> */}
