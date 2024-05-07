@@ -24,20 +24,23 @@ function HomePage() {
     ];
 
     return (
-        <div className="flex justify-center items-center default-background">
+        <div className="flex justify-center m-auto default-background overflow-y-auto">
             <NavBar/>
+
             {/* <Footer/> */}
-            <div className="xl:w-[1240px] 2xl:w-[1360px] 
-            xl:h-[calc(100vh-150px)] 2xl:h-[calc(100vh-180px)] overflow-hidden">
-                
+            <div className="border-2 border-red-500 xl:w-[1240px] 2xl:w-[1360px] h-fit xl:my-[75px] 2xl:my-[90px] overflow-hidden">
+            {/* xl:h-[calc(100vh-150px)] 2xl:h-[calc(100vh-180px)] */}
+
                 <div className="flex flex-col w-full h-auto">
+                    
                     <TitleText username="พี่อิทาจิ"/>
                     <SearchBar/>
                     <ProblemBar/>
                 </div>
                 
-                <div className="w-full xl:h-[calc(100vh-150px-248.4px)] 2xl:h-[calc(100vh-180px-248.4px)] 
+                <div className="w-full flex flex-col space-y-[16px]
                 overflow-y-auto hide-scrollbar">
+                {/* xl:h-[calc(100vh-150px-248.4px)] 2xl:h-[calc(100vh-180px-248.4px)] */}
                     {problems.map((problem, index) => (
                         <ProblemsTable
                             key={problem.number} 

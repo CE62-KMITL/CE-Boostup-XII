@@ -1,6 +1,6 @@
 function NavBar() {
     return (
-        <div className="flex justify-center items-center fixed top-0 z-10 
+        <div className="flex justify-center items-center fixed top-0 left-0 -z-50
         w-full xl:h-[50px] 2xl:h-[60px] bg-primary04"> 
             <div className="flex place-content-between
             xl:w-[1240px] 2xl:w-[1360px] h-auto">
