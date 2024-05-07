@@ -71,12 +71,15 @@
   }
 
   .curve-bl:before {
-    @apply left-0 bottom-0;
+    
+    bottom: 0px;
+    left: 0px;
     box-shadow: -50px 50px 0 0 #f8f9fa;
   }
 
   .curve-br:before {
-    @apply right-0 bottom-0;
+    bottom: 0px;
+    right: 0px;
     box-shadow: 50px 50px 0 0 #f8f9fa;
   }
 
@@ -86,7 +89,8 @@
   }
 
   .input-container input:focus {
-    @apply border-stone04 bg-cream outline-none;
+    @apply border-stone04 bg-cream;
+    outline: none;
   }
 
   .input-container label {
