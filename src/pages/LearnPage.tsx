@@ -7,6 +7,7 @@ import SolveComponent from "../components/learn/LessonCardComponents/SolveCompon
 import thumbnail_1 from "../assets/test1-learn-thumbnail.png"
 import thumbnail_2 from "../assets/test2-learn-thumbnail.png"
 import default_thumbnail from "../assets/default-learn-thumbnail.png"
+import Background from "../components/utils/Background";
 
 function LearnPage() {
 
@@ -26,11 +27,9 @@ function LearnPage() {
 
     return (
         <div>
-            <div className="z-0 ">
-                <div className="default-background"></div>
-            </div>
             <div>
                 <NavBar />
+                <Background/>
             </div>
             <div className="flex justify-center z-30 ">
                 <div className="absolute">
