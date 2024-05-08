@@ -19,7 +19,7 @@ function App() {
       {/* <CreateAccountPopUp/> */}
       {/* <ForgotPasswordPopUp/> */}
       {/* <RecognizedPopUp/> */}
-      <ResetPasswordPopUp/>
+      {/* <ResetPasswordPopUp/> */}
     </div>
   )
 }

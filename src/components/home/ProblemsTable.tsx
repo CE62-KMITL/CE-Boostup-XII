@@ -8,7 +8,8 @@ function ProblemsTable({ number, title, lesson, level, attempters, score, status
     status: string,
 }) {
     return (
-        <div className="grid grid-cols-[repeat(16,minmax(0,1fr))] w-full h-[45px] rounded-md bg-stone01">
+        <div className="grid grid-cols-[repeat(16,minmax(0,1fr))] w-full h-[45px] rounded-md bg-stone01 
+        cursor-pointer transition-all duration-300 ease-in-out hover:bg-cream">
             <div className="flex justify-start items-center col-span-1 p-[0rem_0.6rem]">
                 {number}
             </div>

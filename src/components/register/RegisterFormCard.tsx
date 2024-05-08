@@ -1,15 +1,59 @@
 import { useState } from "react";
 
 function RegisterFormCard() {
+    const [usernameAlert, setUsernameAlert] = useState(false)
+    const [initPasswordAlert, setInitPasswordAlert] = useState(false)
+    const [confirmPasswordAlert, setConfirmPasswordAlert] = useState(false)
+    
+    const handleUsernameAlert = (event) => {
+        const usernameInput = event.target.value
+        if (usernameInput.length > 10) {
+            setUsernameAlert(true)
+        } else {
+            setUsernameAlert(false)
+        }
+    };
+
+    const handleInitPasswordAlert = (event) => {
+        const passwordInput = event.target.value
+
+        const uppercaseRegex = /[A-Z]/;
+        const lowercaseRegex = /[a-z]/;
+        const numberRegex = /[0-9]/;
+        const specialCharRegex = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/;
+
+        const hasUppercase = uppercaseRegex.test(passwordInput);
+        const hasLowercase = lowercaseRegex.test(passwordInput);
+        const hasNumber = numberRegex.test(passwordInput);
+        const hasSpecialChar = specialCharRegex.test(passwordInput);
+
+        if (passwordInput.length < 8 || !hasUppercase || !hasLowercase || !hasNumber || !hasSpecialChar) {
+            setInitPasswordAlert(true);
+        } else {
+            setInitPasswordAlert(false);
+        }
+    };
+
+    const handleConfirmPasswordAlert = (event) => {
+        const confirmPasswordInput = event.target.value;
+        const initPasswordInput = document.querySelector('.init-password').value;
+
+        if (confirmPasswordInput !== initPasswordInput) {
+            setConfirmPasswordAlert(true);
+        } else {
+            setConfirmPasswordAlert(false);
+        }
+    };
+    
     const [initPasswordAppearance, setInitPasswordAppearance] = useState(false)
     const [confirmPasswordAppearance, setConfirmNewPasswordAppearance] = useState(false)
 
     const handleInitPasswordAppearance = () => {
         setInitPasswordAppearance(!initPasswordAppearance)
-    }
+    };
     const handleConfirmPasswordAppearance = () => {
         setConfirmNewPasswordAppearance(!confirmPasswordAppearance)
-    }
+    };
 
     const OpenEyeIcon = () => (
         <div className="flex justify-center items-center relative w-full h-full">
@@ -36,7 +80,7 @@ function RegisterFormCard() {
         } else {
             return <ClosedEyeIcon />;
         }
-    }
+    };
 
     const confirmEyeIcon = () => {
         if (confirmPasswordAppearance) {
@@ -44,7 +88,7 @@ function RegisterFormCard() {
         } else {
             return <ClosedEyeIcon />;
         }
-    }
+    };
 
     return (
         <div className="w-full h-full rounded-[30px] lg:p-[20px] xl:p-[30px] 2xl:p-[36px] bg-stone01">
@@ -54,10 +98,11 @@ function RegisterFormCard() {
                 </div>
                 <div className="flex flex-col xl:w-[372px] 2xl:w-[480px] xl:h-[400px] 2xl:h-[500px]">
                     <div className="relative w-full h-[40%] xl:max-h-[80px] 2xl:max-h-[90px]">
-                        <div className="input-container w-full absolute bottom-0">
+                        <div className={`${usernameAlert ? 'error-input-container' : 'input-container'} w-full absolute bottom-0`}>
                             <input type="text" name="" id=""
-                            className="w-full h-[48px] px-[16px] py-[8px] border-stone03 border-[1px] rounded-[8px] 
-                            text-stone04 text-[18px]" placeholder=" "/>
+                            onChange={handleUsernameAlert}
+                            className={`w-full h-[48px] px-[16px] py-[8px] rounded-[8px] text-stone04 text-[18px] 
+                            ${usernameAlert ? 'border-2 border-red-500 bg-red-300' : 'border-[1px] border-stone03 bg-stone01'}`} placeholder=" "/>
                             <label htmlFor="" className="absolute left-[16px] bottom-[6px] 
                             text-stone04 text-[24px] font-[700]">ชื่อผู้ใช้</label>
                         </div>
@@ -66,10 +111,11 @@ function RegisterFormCard() {
                         <li>ควรไม่เกิน 10 ตัวอักษร</li>
                     </ol>
                     <div className="relative w-full h-[40%] xl:max-h-[80px] 2xl:max-h-[90px]">
-                        <div className="input-container w-full absolute bottom-0">
+                        <div className={`${initPasswordAlert ? 'error-input-container' : 'input-container'} w-full absolute bottom-0`}>
                             <input type={initPasswordAppearance ? "text" : "password"} name="" id=""
-                            className="w-full h-[48px] px-[16px] py-[8px] border-stone03 border-[1px] rounded-[8px] 
-                            text-stone04 text-[18px]" placeholder=" "/>
+                            onChange={handleInitPasswordAlert}
+                            className={`init-password w-full h-[48px] px-[16px] py-[8px] rounded-[8px] text-stone04 text-[18px] 
+                            ${initPasswordAlert ? 'border-2 border-red-500 bg-red-300' : 'border-[1px] border-stone03 bg-stone01'}`} placeholder=" "/>
                             <label htmlFor="" className="absolute left-[16px] bottom-[6px] 
                             text-stone04 text-[24px] font-[700]">รหัสผ่าน</label>
                             <div className="absolute bottom-0 right-0 w-[60px] h-[48px] border-[1px] border-transparent rounded-r-[10px]">
@@ -85,10 +131,11 @@ function RegisterFormCard() {
                         <li>ประกอบด้วยตัวพิมพ์ใหญ่, ตัวพิมพ์เล็ก, ตัวเลข และอักษรพิเศษ</li>
                     </ol>
                     <div className="relative w-full h-[40%] xl:max-h-[80px] 2xl:max-h-[90px]">
-                        <div className="input-container w-full absolute bottom-0">
+                        <div className={`${confirmPasswordAlert ? 'error-input-container' : 'input-container'} w-full absolute bottom-0`}>
                             <input type={confirmPasswordAppearance ? "text" : "password"} name="" id=""
-                            className="w-full h-[48px] px-[16px] py-[8px] border-stone03 border-[1px] rounded-[8px] 
-                            text-stone04 text-[16px]" placeholder=" "/>
+                            onChange={handleConfirmPasswordAlert}
+                            className={`w-full h-[48px] px-[16px] py-[8px] rounded-[8px] text-stone04 text-[18px] 
+                            ${initPasswordAlert ? 'border-2 border-red-500 bg-red-300' : 'border-[1px] border-stone03 bg-stone01'}`} placeholder=" "/>
                             <label htmlFor="" className="absolute left-[16px] bottom-[10px] 
                             text-stone04 text-[18px] font-[700]">ยืนยันรหัสผ่าน</label>
                             <div className="absolute bottom-0 right-0 w-[60px] h-[48px] border-[1px] border-transparent rounded-r-[10px]">

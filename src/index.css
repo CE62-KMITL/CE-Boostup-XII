@@ -66,7 +66,12 @@
   }
 
   .input-container input:focus {
-    @apply border-stone04 bg-cream;
+    @apply border-[1px] border-stone04 bg-cream;
+    outline: none;
+  }
+
+  .error-input-container input:focus{
+    @apply border-2 border-red-500 bg-red-300;
     outline: none;
   }
 
@@ -76,28 +81,21 @@
   }
 
   .input-container input:focus + label,
-  .input-container input:not(:placeholder-shown) + label {
-    animation-name: label-animation;
-    animation-duration: 0.8s;
-    animation-timing-function: ease-in-out;
-    animation-fill-mode: forwards;
+  .input-container input:not(:placeholder-shown) + label,
+  .error-input-container input:focus + label,
+  .error-input-container input:not(:placeholder-shown) + label {
+      animation-name: label-animation;
+      animation-duration: 0.8s;
+      animation-timing-function: ease-in-out;
+      animation-fill-mode: forwards;
   }
-
-  .eye-icon-background {
-    @apply bg-white border-[1px] border-stone03;
-    border-left: 0px;
-  }
-
-  .password-box .password-input:focus + .eye-icon-background,
-  .password-box .password-input:not(:placeholder-shown) + .eye-icon-background {
-    background-color: #0080ff;
-  }
+  
 
   @keyframes label-animation {
     25% {
       font-size: 20px;
       font-weight: 700;
-      bottom:4px;
+      bottom: 4px;
     }
     50% {
       font-size: 20px;
