@@ -21,6 +21,7 @@ export default {
           'stone05': '#212429',
           'accent': '#E2AD39',
           'cream': '#F4E9CD',
+          'cream-hover': '#E4C68D',
           'pass': '#25BC16',
           'unpass': '#FA695E',
           'empty': '#7E7E7E',
