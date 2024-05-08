@@ -3,6 +3,7 @@ import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
 import LearnPage from './pages/LearnPage'
 import HomePage from './pages/HomePage'
+import ProfilePage from './pages/ProfilePage'
 
 import CreateAccountPopUp from './components/login/CreateAccountPopUp'
 import ForgotPasswordPopUp from './components/login/ForgotPasswordPopUp'
@@ -14,7 +15,8 @@ function App() {
     <div>
       {/* <LoginPage/> */}
       {/* <RegisterPage/> */}
-      <LearnPage/>
+      {/* <LearnPage/> */}
+      <ProfilePage/>
       {/* <HomePage/> */}
       {/* <RegisterPage/> */}
       {/* <SolveProblemPage/> */}
