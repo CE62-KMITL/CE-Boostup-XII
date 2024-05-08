@@ -11,15 +11,15 @@ import ResetPasswordPopUp from './components/login/ResetPasswordPopUp'
 function App() {
   return (
     <div>
-      <HomePage/>
+      {/* <HomePage/> */}
       {/* <LoginPage/> */}
-      {/* <RegisterPage/> */}
+      <RegisterPage/>
       {/* <SolveProblemPage/> */}
 
       {/* <CreateAccountPopUp/> */}
       {/* <ForgotPasswordPopUp/> */}
       {/* <RecognizedPopUp/> */}
-      {/* <ResetPasswordPopUp/> */}
+      <ResetPasswordPopUp/>
     </div>
   )
 }

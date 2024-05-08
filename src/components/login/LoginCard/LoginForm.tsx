@@ -72,8 +72,8 @@ function LoginForm() {
                     </div>
                 </div>
                 <div className="flex flex-col items-center place-content-between w-[40%] h-[22.5%] min-h-[80px] max-h-[90px]">
-                    <button className="flex justify-center items-center w-full h-[50%] min-h-[45px] max-h-[50px] rounded-lg 
-                    shadow-md bg-accent text-stone01 text-[18px] font-[700]">
+                    <button className="flex justify-center items-center w-full h-[50%] min-h-[45px] max-h-[50px] 
+                    rounded-lg shadow-md bg-accent text-stone01 text-[18px] font-[700]">
                         ตกลง
                     </button>
                     <a href="" className="text-stone04">ยังไม่มีแอคเคาท์?</a>
