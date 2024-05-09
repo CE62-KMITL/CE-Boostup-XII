@@ -48,7 +48,9 @@ function Button({ type, mode, text, img, link, validate}) {
             );
         }else{
             return (
-                <button onClick={navigateLink} className={`${validate ? 'bg-accent text-stone01 hover:bg-accent2 transition ease-in-out duration-200 shadow-md cursor-pointer' : 'bg-stone03  pointer-events-none text-stone01 hover:cursor-default'} w-36 h-10 rounded-lg flex items-center justify-center mr-4`}>
+                <button onClick={navigateLink} className={`${validate ? 
+                    'bg-accent text-stone01 hover:bg-accent2 transition ease-in-out duration-200 shadow-md cursor-pointer' : 
+                    'bg-[#D7C398]  pointer-events-none text-stone01 hover:cursor-default'} w-36 h-10 rounded-lg flex items-center justify-center mr-4`}>
                     {text}
                 </button>
             );
