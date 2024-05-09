@@ -6,40 +6,59 @@
 
 @layer components {
   * {
-    @apply font-main text-stone05 text-[16px] font-medium m-0 p-0 box-border;
+    @apply font-main text-stone05;
+    font-size: 16px;
+    font-weight: medium;
+    box-sizing: border-box;
   }
 
+  .gradient-background {
   .default-background {
     @apply w-screen h-screen;
     background: linear-gradient(180deg, #0b384b 29%, #10516c 62%, #097275 100%);
   }
 
-  .middle-absolute {
-    @apply absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2;
+  .navbar-button:hover {
+    transform: translateY(4px);
+    transition: ease-in 0.2s;
   }
 
   .holding-space {
-    @apply flex absolute -translate-x-1/2 top-[0.6rem] left-1/2 w-[50%] h-[12%] min-h-[25px];
+    display: flex;
+    position: absolute;
+    top: 0.6rem;
+    width: 50%;
+    height: 12%;
+    min-height: 25px;
   }
 
   .curve-bl,
   .curve-br {
-    @apply relative overflow-hidden w-[50%] h-full;
+    position: relative;
+    overflow: hidden;
+    width: 50%;
+    height: 100%;
   }
 
   .curve-bl:before,
   .curve-br:before {
-    @apply block w-[200%] h-[300%] absolute rounded-[50%];
+    display: block;
+    position: absolute;
+    width: 200%;
+    height: 300%;
+    border-radius: 50%;
     content: "";
   }
 
   .curve-bl:before {
-    @apply left-0 bottom-0;
+    bottom: 0px;
+    left: 0px;
     box-shadow: -50px 50px 0 0 #f8f9fa;
   }
 
   .curve-br:before {
-    @apply right-0 bottom-0;
+    bottom: 0px;
+    right: 0px;
     box-shadow: 50px 50px 0 0 #f8f9fa;
   }
 
@@ -49,7 +68,13 @@
   }
 
   .input-container input:focus {
-    @apply border-stone04 bg-cream outline-none;
+    @apply border-[1px] border-stone04 bg-cream;
+    outline: none;
+  }
+
+  .error-input-container input:focus{
+    @apply border-2 border-red-500 bg-red-300;
+    outline: none;
   }
 
   .input-container label {
@@ -58,36 +83,48 @@
   }
 
   .input-container input:focus + label,
-  .input-container input:not(:placeholder-shown) + label {
-    animation-name: label-animation;
-    animation-duration: 0.8s;
-    animation-timing-function: ease-in-out;
-    animation-fill-mode: forwards;
+  .input-container input:not(:placeholder-shown) + label,
+  .error-input-container input:focus + label,
+  .error-input-container input:not(:placeholder-shown) + label {
+      animation-name: label-animation;
+      animation-duration: 0.8s;
+      animation-timing-function: ease-in-out;
+      animation-fill-mode: forwards;
   }
+  
 
   @keyframes label-animation {
     25% {
-      font-size: 18px;
+      font-size: 20px;
       font-weight: 700;
-      bottom: 8px;
+      bottom: 4px;
     }
     50% {
-      font-size: 18px;
+      font-size: 20px;
       font-weight: 700;
       bottom: 56px;
     }
     75% {
-      font-size: 16px;
+      font-size: 18px;
       font-weight: 700;
       left: 16px;
       bottom: 56px;
     }
     100% {
-      font-size: 16px;
+      font-size: 18px;
       font-weight: 700;
       left: 0px;
       bottom: 56px;
     }
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 
   [type="checkbox"] {
@@ -152,12 +189,8 @@
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E %3Cpath d='M15.88 8.29L10 14.17l-1.88-1.88a.996.996 0 1 0-1.41 1.41l2.59 2.59c.39.39 1.02.39 1.41 0L17.3 9.7a.996.996 0 0 0 0-1.41c-.39-.39-1.03-.39-1.42 0z' fill='%23fff'/%3E %3C/svg%3E");
   }
 
-  .hide-scrollbar::-webkit-scrollbar {
+  input[type="password"]::-ms-reveal,
+  input[type="password"]::-ms-clear {
     display: none;
-  }
-
-  .hide-scrollbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
   }
 }

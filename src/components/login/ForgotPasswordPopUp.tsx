@@ -5,17 +5,17 @@ function ForgotPasswordPopUp() {
         <div className="flex justify-center items-center fixed top-0 w-screen h-screen z-10">
             <DarkBackground />
             <div className="flex flex-col items-center place-content-between absolute
-            w-[50%] min-w-[450px] max-w-[500px] h-[50%] min-h-[300px] max-h-[325px] rounded-[30px] p-[36px_24px] bg-stone01">
-                <div className="w-full text-stone05 text-[40px] font-[700] text-center leading-[4rem]">
+            w-[50%] min-w-[450px] max-w-[500px] h-[50%] min-h-[300px] max-h-[325px] rounded-[30px] p-[36px] bg-stone01">
+                <div className="w-full text-[40px] font-[700] text-center leading-[4rem]">
                     ลืมรหัสผ่าน?
                 </div>
                 <div className="relative w-full h-[40%] max-h-[50px]">
                     <div className="input-container w-full absolute bottom-0">
                         <input type="text" name="" id=""
-                        className="w-full h-[48px] px-[16px] py-[8px] border-stone03 border-[1px] rounded-[8px] 
-                        text-stone04 text-[16px]" placeholder=" "/>
-                        <label htmlFor="" className="absolute left-[16px] bottom-[10px] 
-                        text-stone04 text-[18px] font-[700]">อีเมล</label>
+                        className="w-full h-[48px] px-[16px] py-[8px] border-stone03 border-[1px] rounded-[10px] 
+                        text-stone04 text-[18px]" placeholder=" "/>
+                        <label htmlFor="" className="absolute left-[16px] bottom-[6px] 
+                        text-stone04 text-[24px] font-[700]">อีเมล</label>
                     </div>
                 </div>
                 <div className="flex flex-col place-content-between w-[35%] h-[20%] min-h-[80px] max-h-[90px]">

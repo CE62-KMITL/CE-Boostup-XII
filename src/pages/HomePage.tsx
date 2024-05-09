@@ -4,6 +4,7 @@ import TitleText from "../components/home/TitleText";
 import SearchBar from "../components/home/SearchBar";
 import ProblemBar from "../components/home/ProblemBar";
 import ProblemsTable from "../components/home/ProblemsTable";
+import Background from "../components/utils/Background";
 
 function HomePage() {
     // Sample data for demonstration
@@ -20,43 +21,40 @@ function HomePage() {
         { number: 10, title: "Problem 10", lesson: "Lesson 10", level: 4, attempters: 7, score: "75", status: "pass" },
         { number: 11, title: "Problem 11", lesson: "Lesson 11", level: 3, attempters: 5, score: "95", status: "empty" },
         { number: 12, title: "Problem 12", lesson: "Lesson 12", level: 1, attempters: 2, score: "105", status: "unpass" },
-        { number: 13, title: "Problem 13", lesson: "Lesson 13", level: 5, attempters: 8, score: "85", status: "pass" },
-        { number: 14, title: "Problem 14", lesson: "Lesson 14", level: 2, attempters: 4, score: "115", status: "empty" },
-        { number: 15, title: "Problem 15", lesson: "Lesson 15", level: 4, attempters: 6, score: "75", status: "unpass" },
-        { number: 16, title: "Problem 16", lesson: "Lesson 16", level: 3, attempters: 9, score: "95", status: "pass" },
-        { number: 17, title: "Problem 17", lesson: "Lesson 17", level: 1, attempters: 3, score: "105", status: "empty" },
-        { number: 18, title: "Problem 18", lesson: "Lesson 18", level: 5, attempters: 7, score: "85", status: "unpass" },
-        { number: 19, title: "Problem 19", lesson: "Lesson 19", level: 2, attempters: 5, score: "115", status: "pass" },
-        { number: 20, title: "Problem 20", lesson: "Lesson 20", level: 4, attempters: 4, score: "75", status: "empty" }
+        { number: 13, title: "Problem 13", lesson: "Lesson 13", level: 2, attempters: 6, score: "85", status: "pass" },
+        { number: 14, title: "Problem 14", lesson: "Lesson 14", level: 4, attempters: 4, score: "95", status: "empty" },
+        { number: 15, title: "Problem 15", lesson: "Lesson 15", level: 3, attempters: 3, score: "105", status: "unpass" },
+        { number: 16, title: "Problem 16", lesson: "Lesson 16", level: 1, attempters: 7, score: "75", status: "pass" },
     ];
 
     return (
-        <div className="flex justify-center items-center default-background w-screen h-screen">
-            <NavBar/>
-            <div className="w-[90%] min-w-[1320px] max-w-[1640px] h-[80%] min-h-[600px] max-h-[1080px] overflow-hidden">
-                <div className="flex flex-col justify-end w-full h-[40%] min-h-[250px] max-h-[300px]">
-                    <TitleText username="น้องต้นกล้า"/>
-                    <SearchBar/>
-                    <ProblemBar/>
+        <>
+            <Background/>
+            <div className="flex justify-center overflow-y-auto">
+                <NavBar />
+                <div className="xl:w-[1240px] 2xl:w-[1360px] h-fit xl:my-[75px] 2xl:my-[90px]">
+                    <div className="flex flex-col w-full h-fit">
+                        <TitleText username="น้องลาบูบู๊"/>
+                        <SearchBar/>
+                        <ProblemBar/>
+                    </div>
+                    <div className="flex flex-col w-full space-y-[16px]">
+                        {problems.map((problem) => (
+                            <ProblemsTable
+                                key={problem.number} 
+                                number={problem.number.toString()}
+                                title={problem.title} 
+                                lesson={problem.lesson} 
+                                level={problem.level}
+                                attempters={problem.attempters}
+                                score={parseFloat(problem.score)}
+                                status={problem.status} 
+                            />
+                        ))}
+                    </div>
                 </div>
-                
-                <div className="w-full h-[60%] overflow-y-auto hide-scrollbar">
-                    {problems.map(problem => (
-                        <ProblemsTable 
-                            key={problem.number} 
-                            number={problem.number.toString()}
-                            title={problem.title} 
-                            lesson={problem.lesson} 
-                            level={problem.level}
-                            attempters={problem.attempters}
-                            score={parseFloat(problem.score)}
-                            status={problem.status} 
-                        />
-                    ))}
-                </div>
-                
             </div>
-        </div>
+        </>
     );
 }
 
