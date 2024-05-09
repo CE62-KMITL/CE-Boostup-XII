@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Button from "../utils/Button";
 
 function RegisterFormCard() {
     const [usernameAlert, setUsernameAlert] = useState(false)
@@ -147,13 +148,14 @@ function RegisterFormCard() {
                         </div>
                     </div>
                 </div>
-                <div className="flex flex-col items-center place-content-between w-[40%] min-w-[170px] max-w-[180px] h-[12%] min-h-[75px] max-h-[85px]">
-                    <button className="flex justify-center items-center w-full h-[50%] min-h-[45px] max-h-[50px] rounded-lg 
+                <Button type={2} mode={0} text="ตกลง" img="" link ="https://google.com/"/>
+                <a href="" className="text-stone04 leading-[1.2rem]">มีแอคเคาท์แล้ว?</a>
+                {/* <div className="flex flex-col items-center place-content-between w-[40%] min-w-[170px] max-w-[180px] h-[12%] min-h-[75px] max-h-[85px]">
+                    <button className="flex justify-center items-center w-full min-h-[42px] max-h-[50px] rounded-lg 
                     shadow-md bg-accent text-stone01 text-[18px] font-[700]">
                         ตกลง
                     </button>
-                    <a href="" className="text-stone04 leading-[1.2rem]">มีแอคเคาท์แล้ว?</a>
-                </div>
+                </div> */}
             </form>
         </div>
     );
