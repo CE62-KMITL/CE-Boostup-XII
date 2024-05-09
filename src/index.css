@@ -12,6 +12,7 @@
     box-sizing: border-box;
   }
 
+
   .gradient-background {
     background: linear-gradient(180deg, #0b384b 29%, #10516c 62%, #097275 100%);
   }
@@ -70,7 +71,12 @@
     outline: none;
   }
 
-  .error-input-container input:focus{
+  .warning-input-container input:focus {
+    @apply border-2 border-amber-500;
+    outline: none;
+  }
+
+  .error-input-container input:focus {
     @apply border-2 border-red-500 bg-red-300;
     outline: none;
   }
@@ -82,14 +88,15 @@
 
   .input-container input:focus + label,
   .input-container input:not(:placeholder-shown) + label,
+  .warning-input-container input:focus + label,
+  .warning-input-container input:not(:placeholder-shown) + label,
   .error-input-container input:focus + label,
   .error-input-container input:not(:placeholder-shown) + label {
-      animation-name: label-animation;
-      animation-duration: 0.8s;
-      animation-timing-function: ease-in-out;
-      animation-fill-mode: forwards;
+    animation-name: label-animation;
+    animation-duration: 0.8s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
   }
-  
 
   @keyframes label-animation {
     25% {
