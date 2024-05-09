@@ -10,7 +10,7 @@ import CreateAccountPopUp from './components/login/CreateAccountPopUp'
 import ForgotPasswordPopUp from './components/login/ForgotPasswordPopUp'
 import RecognizedPopUp from './components/login/RecognizedPopUp'
 import ResetPasswordPopUp from './components/login/ResetPasswordPopUp'
-
+import ButtonTemplate from './pages/ButtonTemplate'
 function App() {
   return (
     <div>
@@ -19,7 +19,8 @@ function App() {
 
       {/* <LoginPage/> */}
       {/* <RegisterPage/> */}
-      <SolveProblemPage/>
+      {/* <SolveProblemPage/> */}
+      <ButtonTemplate/>
       {/* <HomePage/> */}
 
       {/* <CreateAccountPopUp/> */}
