@@ -13,9 +13,9 @@ function App() {
     <div>
       {/* <HomePage/> */}
       {/* <LoginPage/> */}
-      {/* <RegisterPage/> */}
+      <RegisterPage/>
       {/* <SolveProblemPage/> */}
-      <ButtonTemplate/>
+      {/* <ButtonTemplate/> */}
       {/* <HomePage/> */}
 
       {/* <CreateAccountPopUp/> */}

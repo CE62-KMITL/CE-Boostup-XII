@@ -67,17 +67,12 @@
   }
 
   .input-container input:focus {
-    @apply border-[1px] border-stone04 bg-cream;
-    outline: none;
-  }
-
-  .warning-input-container input:focus {
-    @apply border-2 border-amber-500;
+    @apply border-2 border-stone04 bg-cream;
     outline: none;
   }
 
   .error-input-container input:focus {
-    @apply border-2 border-red-500 bg-red-300;
+    @apply border-2 border-red-500;
     outline: none;
   }
 
@@ -122,6 +117,22 @@
       bottom: 56px;
     }
   }
+
+  /* .red-border-eye-icon{
+    @apply fill-[#FF0000] hover:fill-red-400
+  }
+
+  .red-dot-eye-icon{
+    @apply fill-[#FF0000] hover:fill-red-400
+  } */
+
+  /* .gray-border-eye-icon{
+    @apply fill-[#495057] hover:fill-black
+  }
+
+  .gray-dot-eye-icon{
+    @apply fill-[#495057] hover:fill-black
+  } */
 
   .hide-scrollbar::-webkit-scrollbar {
     display: none;

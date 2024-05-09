@@ -1,4 +1,4 @@
-function Button({ type, mode, text, img, link}) {
+function Button({ type, mode, text, img, link, validate}) {
     const navigateLink = () => {
         window.location.href = link;
     };
@@ -48,7 +48,7 @@ function Button({ type, mode, text, img, link}) {
             );
         }else{
             return (
-                <button onClick={navigateLink} className="w-36 h-10 bg-accent rounded-lg flex items-center justify-center mr-4 hover:bg-accent2 transition ease-in-out duration-200 shadow-md text-stone01 ">
+                <button onClick={navigateLink} className={`${validate ? 'bg-accent text-stone01 hover:bg-accent2 transition ease-in-out duration-200 shadow-md cursor-pointer' : 'bg-stone03  pointer-events-none text-stone01 hover:cursor-default'} w-36 h-10 rounded-lg flex items-center justify-center mr-4`}>
                     {text}
                 </button>
             );
