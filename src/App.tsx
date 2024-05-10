@@ -16,9 +16,9 @@ function App() {
       {/* <LoginPage/> */}
       {/* <RegisterPage/> */}
       {/* <LearnPage/> */}
-      <ProfilePage/>
+      {/* <ProfilePage/> */}
       {/* <HomePage/> */}
-      {/* <RegisterPage/> */}
+      <RegisterPage/>
       {/* <SolveProblemPage/> */}
       {/* <ButtonTemplate/> */}
       {/* <HomePage/> */}

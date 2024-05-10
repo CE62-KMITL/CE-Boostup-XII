@@ -209,7 +209,7 @@ function RegisterFormCard() {
               ? "error-input-container" :
               "input-container"} 
             w-full absolute bottom-0`}>
-              <input type="text" name="" id=""
+              <input type="email" name="" id=""
                 onChange={handleUsernameFunctionGroup}
                 onBlur={handleUsernameFunctionGroup}
                 className={`identify-username w-full h-[48px] px-[16px] py-[8px] border-[1px] rounded-[8px] bg-stone01 text-stone04 text-[18px] 
