@@ -1,7 +1,9 @@
 import SolveProblemPage from './pages/SolveProblemPage'
 import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
+import LearnPage from './pages/LearnPage'
 import HomePage from './pages/HomePage'
+import ProfilePage from './pages/ProfilePage'
 
 import CreateAccountPopUp from './components/login/CreateAccountPopUp'
 import ForgotPasswordPopUp from './components/login/ForgotPasswordPopUp'
@@ -11,11 +13,14 @@ import ButtonTemplate from './pages/ButtonTemplate'
 function App() {
   return (
     <div>
-      {/* <HomePage/> */}
       {/* <LoginPage/> */}
       {/* <RegisterPage/> */}
+      {/* <LearnPage/> */}
+      <ProfilePage/>
+      {/* <HomePage/> */}
+      {/* <RegisterPage/> */}
       {/* <SolveProblemPage/> */}
-      <ButtonTemplate/>
+      {/* <ButtonTemplate/> */}
       {/* <HomePage/> */}
 
       {/* <CreateAccountPopUp/> */}

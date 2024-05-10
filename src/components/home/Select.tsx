@@ -7,14 +7,14 @@ function SearchBar() {
     };
     const onBLurStatusSelect = () => {
         setStatusRotation(false);
-    }
+    };
     const [lessonRotation, setLessonRotation] = useState(false);
     const handleLessonSelectClick = () => {
         setLessonRotation(!lessonRotation);
     };
     const onBLurLessonSelect = () => {
         setLessonRotation(false);
-    }
+    };
     
     return (
         <div className="flex space-x-4 w-full h-[45px] mb-[1.6rem]">
