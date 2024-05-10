@@ -7,7 +7,7 @@ function SolveComponent() {
                     <div className="text-[24px] text-accent font-bold">เริ่มต้นทำโจทย์เลย</div>
                 </div>
                 <div className="mt-2">
-                    <button className="bg-cream hover:bg-cream-hover w-[291px] h-[49px] rounded-[10px] font-bold m-[34px] drop-shadow">
+                    <button className="bg-cream hover:bg-cream2 w-[291px] h-[49px] rounded-[10px] font-bold m-[34px] drop-shadow">
                         <div className="text-[18px] text-stone05 font-bold">ไปทำโจทย์เลย</div>
                     </button>
                 </div>
