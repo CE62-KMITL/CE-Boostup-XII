@@ -143,6 +143,15 @@
     scrollbar-width: none;
   }
 
+  .lesson-text-description {
+    overflow-wrap: break-word;
+    word-break: break-all;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-height: 140px;
+}
+
+
   [type="checkbox"] {
     width: 2rem;
     height: 2rem;
