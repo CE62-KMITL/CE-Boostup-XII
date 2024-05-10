@@ -12,7 +12,6 @@
     box-sizing: border-box;
   }
 
-
   .gradient-background {
     background: linear-gradient(180deg, #0b384b 29%, #10516c 62%, #097275 100%);
   }
@@ -82,13 +81,19 @@
   }
 
   .input-container input:focus + label,
-  .input-container input:not(:placeholder-shown) + label,
   .warning-input-container input:focus + label,
-  .warning-input-container input:not(:placeholder-shown) + label,
-  .error-input-container input:focus + label,
-  .error-input-container input:not(:placeholder-shown) + label {
+  .error-input-container input:focus + label {
     animation-name: label-animation;
-    animation-duration: 0.8s;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+  }
+
+  .warning-input-container input:not(:focus) + label,
+  .input-container input:not(:focus) + label,
+  .error-input-container input:not(:focus) + label {
+    animation-name: reverse-label-animation;
+    animation-duration: 0.5s;
     animation-timing-function: ease-in-out;
     animation-fill-mode: forwards;
   }
@@ -115,6 +120,36 @@
       font-weight: 700;
       left: 0px;
       bottom: 56px;
+    }
+  }
+  @keyframes reverse-label-animation {
+    0% {
+      font-size: 18px;
+      font-weight: 700;
+      left: 0px;
+      bottom: 56px;
+    }
+    25% {
+      font-size: 18px;
+      font-weight: 700;
+      left: 0px;
+      bottom: 56px;
+    }
+    50% {
+      font-size: 18px;
+      font-weight: 700;
+      left: 16px;
+      bottom: 56px;
+    }
+    75% {
+      font-size: 20px;
+      font-weight: 700;
+      bottom: 56px;
+    }
+    100% {
+      font-size: 20px;
+      font-weight: 700;
+      bottom: 4px;
     }
   }
 
@@ -149,8 +184,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     max-height: 140px;
-}
-
+  }
 
   [type="checkbox"] {
     width: 2rem;
