@@ -32,7 +32,7 @@ function HomePage() {
             <Background/>
             <div className="flex justify-center overflow-y-auto">
                 <NavBar />
-                <div className="xl:w-[1240px] 2xl:w-[1360px] h-fit xl:my-[75px] 2xl:my-[90px]">
+                <div className="xl:w-[1240px] 2xl:w-[1360px] h-fit xl:mt-[98px] 2xl:mt-[108px]x">
                     <div className="flex flex-col w-full h-fit">
                         <TitleText username="น้องลาบูบู๊"/>
                         <SearchBar/>

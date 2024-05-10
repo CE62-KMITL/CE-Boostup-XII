@@ -68,7 +68,7 @@ function SearchBar() {
     return (
         <div className="flex space-x-4 w-full h-[40px] mb-[1.6rem]">
             <div className="relative w-[calc(100%-630px)] h-full flex" >
-                <input type="text" className="search-box h-full w-full rounded-lg px-[16px] text-stone04 focus:outline-none"
+                <input type="text" className="search-box h-full w-full rounded-lg pl-4 pr-32 text-stone04 focus:outline-none"
                 placeholder="พิมพ์ชื่อโจทย์ หรือเลขข้อ" />
                 <Button type={1} mode={4} validate={true} text="ตกลง" img="" link ="https://google.com/"/>
             </div>
