@@ -1,12 +1,14 @@
 function Footer() {
     return (
-        <div className="bg-stone04 w-full h-[60px] px-[79px] py-[10px]
-        flex justify-center items-center fixed bottom-0 left-0">
-            <div className="w-full h-full relative">
-                <div className="w-[240px] h-full flex items-center absolute left-0">
-                    <div className="absolute left-0">
-                        <p className="text-stone01">Tailwind CSS By Proxiermax</p>
-                    </div>
+        <div className="flex justify-center items-center fixed bottom-0 z-10 
+        w-full xl:h-[50px] 2xl:h-[60px] bg-stone04"> 
+            <div className="flex place-content-between
+            xl:w-[1240px] 2xl:w-[1360px] h-auto">
+                <div className="flex items-center">
+                    <h2 className="text-stone01 text-[16px]">CE Boostup XII</h2>
+                </div>
+                <div className="flex items-center">
+                    <h2 className="text-stone01 text-[16px]">By Web-Dev Team</h2>
                 </div>
             </div>
         </div>
