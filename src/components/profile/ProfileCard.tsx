@@ -12,12 +12,12 @@ function ProfileCard({ profile_picture, username, email, house }: {
     return (
         <div>
             <div className="flex flex-col mt-[96px] w-[1353px] h-[833px] bg-stone01 rounded-b-[10px]">
-                {/* <div>
+                <div>
                     <img className="w-[1353px] h-[325px]" src="https://picsum.photos/1353/325" alt="ProfileBackground" />
-                </div> */}
-                {/* <div>
+                </div>
+                <div>
                     <ProfilePicture profile_picture={profile_picture} />
-                </div> */}
+                </div>
                 <UserInfo
                     username={username}
                     email={email}
