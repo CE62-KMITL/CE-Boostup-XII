@@ -16,6 +16,8 @@ const lessonList = [
     ["lesson04", "Lesson04"],
     ["lesson05", "Lesson05"]
 ]
+
+
 function SearchBar() {
     const [statusRotation, setStatusRotation] = useState(false);
     const handleStatusSelectClick = () => {
@@ -66,9 +68,9 @@ function SearchBar() {
     return (
         <div className="flex space-x-4 w-full h-[40px] mb-[1.6rem]">
             <div className="relative w-[calc(100%-630px)] h-full flex" >
-                <input type="text" className="h-full w-full rounded-lg px-[16px] text-stone04 focus:outline-none" />
+                <input type="text" className="search-box h-full w-full rounded-lg px-[16px] text-stone04 focus:outline-none"
+                placeholder="พิมพ์ชื่อโจทย์ หรือเลขข้อ" />
                 <Button type={1} mode={4} validate={true} text="ตกลง" img="" link ="https://google.com/"/>
-                {/* <button className="absolute right-0 w-[120px] h-full rounded-[8px] bg-cream" >ค้นหา</button> */}
             </div>
             <Dropdown type="1" data={isComplete}></Dropdown>
             <Dropdown type="2" data={lessonList}></Dropdown>
@@ -80,11 +82,7 @@ function SearchBar() {
                     </div>
                 </div>
             </div>
-            <Button type={1} mode={0} validate={true} text="ตกลง" img="" link ="https://google.com/"/>
-{/* 
-            <button className="flex justify-center items-center min-w-[147px] h-full rounded-[8px] bg-cream">
-                สุ่มโจทย์เลย
-            </button> */}
+            <Button type={1} mode={0} validate={true} text="สุ่มโจทย์" img="" link ="https://google.com/"/>
         </div>
     );
 }

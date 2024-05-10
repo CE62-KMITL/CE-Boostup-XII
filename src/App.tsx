@@ -17,11 +17,11 @@ function App() {
       {/* <RegisterPage/> */}
       {/* <LearnPage/> */}
       {/* <ProfilePage/> */}
-      <HomePage/>
+      {/* <HomePage/> */}
       {/* <RegisterPage/> */}
       {/* <SolveProblemPage/> */}
       {/* <ButtonTemplate/> */}
-      {/* <HomePage/> */}
+      <HomePage/>
 
       {/* <CreateAccountPopUp/> */}
       {/* <ForgotPasswordPopUp/> */}
