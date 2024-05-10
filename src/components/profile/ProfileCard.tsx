@@ -1,7 +1,7 @@
 import ProfileBackground from "../../assets/profile-background.png";
 import LogOutButton from "./LogoutButton";
 import ProfilePicture from "./ProfilePicture";
-import UserInfo from "./๊UserInfo";
+import UserInfo from "./UserInfo";
 
 function ProfileCard({ profile_picture, username, email, house }: {
     profile_picture: string,

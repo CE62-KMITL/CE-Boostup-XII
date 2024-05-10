@@ -18,10 +18,10 @@ function App() {
       {/* <LearnPage/> */}
       {/* <ProfilePage/> */}
       {/* <HomePage/> */}
-      <RegisterPage/>
+      {/* <RegisterPage/> */}
       {/* <SolveProblemPage/> */}
       {/* <ButtonTemplate/> */}
-      {/* <HomePage/> */}
+      <HomePage/>
 
       {/* <CreateAccountPopUp/> */}
       {/* <ForgotPasswordPopUp/> */}
