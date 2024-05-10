@@ -1,17 +1,15 @@
-import Explain from "../components/solve/ProblemComponents/Explain";
-import Playground from "../components/solve/ProblemComponents/Playground";
-import Editor from "../components/solve/Editor";
-import EditorFooter from "../components/solve/EditorFooter";
-import OptionBar from "../components/solve/OptionBar";
-import Problem from "../components/solve/Problem";
+import React from 'react';
+
+import Button from "../components/utils/Button";
+import BackIcon from "../assets/back.svg";
+import SubmitIcon from "../assets/submit.svg";
 
 function SolveProblemPage() {
-    return (
-        <div className="flex justify-center items-center 
-        bg-[#ffffff33] w-full h-full mx-16">
-            Main Center Components
-        </div>
-    );
+  return (
+    <div>
+        
+    </div>
+  );
 }
 
 export default SolveProblemPage;

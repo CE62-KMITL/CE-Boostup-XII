@@ -30,16 +30,16 @@ function HomePage() {
     return (
         <>
             <Background/>
-            <div className="flex justify-center m-auto overflow-y-auto">
+            <div className="flex justify-center overflow-y-auto">
                 <NavBar />
-                <div className="xl:w-[1240px] 2xl:w-[1360px] h-fit xl:my-[75px] 2xl:my-[90px] overflow-hidden">
-                    <div className="flex flex-col w-full h-auto">
-                        <TitleText username="พี่อิทาจิ"/>
+                <div className="xl:w-[1240px] 2xl:w-[1360px] h-fit xl:my-[75px] 2xl:my-[90px]">
+                    <div className="flex flex-col w-full h-fit">
+                        <TitleText username="น้องลาบูบู๊"/>
                         <SearchBar/>
                         <ProblemBar/>
                     </div>
-                    <div className="w-full flex flex-col space-y-[16px] overflow-y-auto hide-scrollbar">
-                        {problems.map((problem, index) => (
+                    <div className="flex flex-col w-full space-y-[16px]">
+                        {problems.map((problem) => (
                             <ProblemsTable
                                 key={problem.number} 
                                 number={problem.number.toString()}
@@ -49,7 +49,6 @@ function HomePage() {
                                 attempters={problem.attempters}
                                 score={parseFloat(problem.score)}
                                 status={problem.status} 
-                                isLast={index === problems.length - 1}
                             />
                         ))}
                     </div>

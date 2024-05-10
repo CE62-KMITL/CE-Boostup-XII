@@ -1,6 +1,7 @@
 function Problem() {
     return (
-        <div className="overflow-y-scroll">
+        <div className="bg-stone03 h-full w-[42vw] ml-6">
+
         </div>
     );
 }
