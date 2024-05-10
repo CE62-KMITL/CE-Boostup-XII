@@ -322,8 +322,7 @@ function RegisterFormCard() {
           type={2}
           mode={0}
           text="ตกลง"
-          img=""
-          link="https://google.com/"
+          ClickFunc={() => window.location.href = "/"}
           validate={checkedSumbitButton}
         />
         <a href="" className="text-stone04 leading-[1.2rem]">

@@ -10,24 +10,15 @@ import ForgotPasswordPopUp from './components/login/ForgotPasswordPopUp'
 import RecognizedPopUp from './components/login/RecognizedPopUp'
 import ResetPasswordPopUp from './components/login/ResetPasswordPopUp'
 import ButtonTemplate from './pages/ButtonTemplate'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+
 function App() {
   return (
-    <div>
-      {/* <LoginPage/> */}
-      {/* <RegisterPage/> */}
-      {/* <LearnPage/> */}
-      {/* <ProfilePage/> */}
-      {/* <HomePage/> */}
-      {/* <RegisterPage/> */}
-      {/* <SolveProblemPage/> */}
-      {/* <ButtonTemplate/> */}
-      <HomePage/>
-
-      {/* <CreateAccountPopUp/> */}
-      {/* <ForgotPasswordPopUp/> */}
-      {/* <RecognizedPopUp/> */}
-      {/* <ResetPasswordPopUp/> */}
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LoginPage />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 

@@ -74,7 +74,7 @@ function LoginForm() {
                 </div>
                 <div className="flex flex-col items-center place-content-between w-[40%] h-[22.5%] min-h-[80px] max-h-[90px]">
 
-                <Button type={2} mode={0} validate={true} text="ตกลง" img="" link ="https://google.com/"/>
+                <Button type={2} mode={0} validate={true} text="ตกลง" img="" ClickFunc={() => console.log("test")}/>
                     {/* <button className="flex justify-center items-center w-full h-[50%] min-h-[45px] max-h-[50px] 
                     rounded-lg shadow-md bg-accent text-stone01 text-[18px] font-[700]">
                         ตกลง
