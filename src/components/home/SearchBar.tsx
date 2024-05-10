@@ -1,5 +1,7 @@
 import { useState } from "react";
+import Dropdown from "../utils/Dropdown";
 
+const 
 function SearchBar() {
     const [statusRotation, setStatusRotation] = useState(false);
     const handleStatusSelectClick = () => {

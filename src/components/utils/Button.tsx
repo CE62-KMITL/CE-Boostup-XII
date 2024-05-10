@@ -1,4 +1,4 @@
-function Button({ type, mode, text, img, link}) {
+function Button({ type, mode, text, img, link, valid}) {
     const navigateLink = () => {
         window.location.href = link;
     };
@@ -40,7 +40,7 @@ function Button({ type, mode, text, img, link}) {
             );
         } else if (mode === 2) {
             return (
-                <button onClick={navigateLink} className="w-36 h-10 bg-accent rounded-lg flex items-center justify-center mr-4 hover:bg-accent2 transition ease-in-out duration-200 shadow-md text-stone01">
+                <button onClick={navigateLink} className={`${valid ? "bg-" : "pointer-events-none bg-gray"} w-36 h-10 bg-accent rounded-lg flex items-center justify-center mr-4 hover:bg-accent2 transition ease-in-out duration-200 shadow-md text-stone01`}>
                     {text}
                     <span className="w-2"></span>
                     <img src={img} alt="" />
@@ -48,7 +48,7 @@ function Button({ type, mode, text, img, link}) {
             );
         }else{
             return (
-                <button onClick={navigateLink} className="w-36 h-10 bg-accent rounded-lg flex items-center justify-center mr-4 hover:bg-accent2 transition ease-in-out duration-200 shadow-md text-stone01 ">
+                <button onClick={navigateLink} className={`${valid ? "pointer-events-none" : ""} w-36 h-10 bg-accent rounded-lg flex items-center justify-center mr-4 hover:bg-accent2 transition ease-in-out duration-200 shadow-md text-stone01`}>
                     {text}
                 </button>
             );
