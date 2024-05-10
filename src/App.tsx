@@ -12,8 +12,8 @@ function App() {
   return (
     <div>
       {/* <HomePage/> */}
-      {/* <LoginPage/> */}
-      <RegisterPage/>
+      <LoginPage/>
+      {/* <RegisterPage/> */}
       {/* <SolveProblemPage/> */}
       {/* <ButtonTemplate/> */}
       {/* <HomePage/> */}
