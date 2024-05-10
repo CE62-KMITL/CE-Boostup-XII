@@ -50,10 +50,8 @@ function SearchBar() {
     return (
         <div className="flex space-x-4 w-full h-[45px] mb-[1.6rem]">
             <div className="relative w-full h-full">
-                <input type="text" className="absolute w-full h-full rounded-[8px] px-[16px] text-stone04 focus:outline-none" />
-                <div className="w-full h-full flex items-center absolute left-[16px] text-stone04 pointer-events-none">
-                    พิมพ์ชื่อโจทย์ หรือเลขข้อ
-                </div>
+                <input type="text" className="search-box absolute w-full h-full rounded-[8px] px-[16px] text-stone04 focus:outline-none" 
+                placeholder="พิมพ์ชื่อโจทย์ หรือเลขข้อ"/>
                 <button className="absolute right-0 w-[120px] h-full rounded-[8px] bg-cream" >ค้นหา</button>
             </div>
             <div className="relative min-w-[120px] h-full">
