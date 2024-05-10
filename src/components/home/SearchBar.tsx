@@ -1,7 +1,21 @@
 import { useState } from "react";
 import Dropdown from "../utils/Dropdown";
+import Button from "../utils/Button";
 
-const 
+const isComplete = [
+    ["", "สถานะ"],
+    ["pass", "ผ่าน"],
+    ["unpass", "ไม่ผ่าน"],
+    ["empty", "ทำเลย"]
+]
+const lessonList = [
+    ["", "บทเรียน"],
+    ["lesson01", "Lesson01"],
+    ["lesson02", "Lesson02"],
+    ["lesson03", "Lesson03"],
+    ["lesson04", "Lesson04"],
+    ["lesson05", "Lesson05"]
+]
 function SearchBar() {
     const [statusRotation, setStatusRotation] = useState(false);
     const handleStatusSelectClick = () => {
@@ -50,47 +64,15 @@ function SearchBar() {
     };
     
     return (
-        <div className="flex space-x-4 w-full h-[45px] mb-[1.6rem]">
-            <div className="relative w-full h-full">
-                <input type="text" className="absolute w-full h-full rounded-[8px] px-[16px] text-stone04 focus:outline-none" />
-                <div className="w-full h-full flex items-center absolute left-[16px] text-stone04 pointer-events-none">
-                    พิมพ์ชื่อโจทย์ หรือเลขข้อ
-                </div>
-                <button className="absolute right-0 w-[120px] h-full rounded-[8px] bg-cream" >ค้นหา</button>
+        <div className="flex space-x-4 w-full h-[40px] mb-[1.6rem]">
+            <div className="relative w-[calc(100%-630px)] h-full flex" >
+                <input type="text" className="h-full w-full rounded-lg px-[16px] text-stone04 focus:outline-none" />
+                <Button type={1} mode={4} validate={true} text="ตกลง" img="" link ="https://google.com/"/>
+                {/* <button className="absolute right-0 w-[120px] h-full rounded-[8px] bg-cream" >ค้นหา</button> */}
             </div>
-            <div className="relative min-w-[120px] h-full">
-                <select className="absolute w-full h-full rounded-[8px] px-[16px] focus:outline-none" name="lesson" id="lesson"
-                    onClick={handleStatusSelectClick}
-                    onBlur={onBLurStatusSelect}
-                >
-                    <option value="pass">ผ่าน</option>
-                    <option value="unpass">ไม่ผ่าน</option>
-                    <option value="empty">ทำเลย</option>
-                </select>
-                <div className="flex justify-center items-center absolute right-0 w-[40px] h-full rounded-[8px] bg-cream cursor-pointer pointer-events-none">
-                    <svg className={`w-[14px] h-[8px] transition-all duration-200 ${statusRotation ? 'rotate-180' : ''}`} viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M1 1L7 7L13 1" stroke="#212429" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </div>
-            </div>
-            <div className="relative min-w-[156px] h-full">
-                <select className="absolute w-full h-full rounded-[8px] px-[16px] focus:outline-none" name="lesson" id="lesson"
-                    onClick={handleLessonSelectClick}
-                    onBlur={onBLurLessonSelect}
-                >
-                    <option value="lesson01">Lesson01</option>
-                    <option value="lesson02">Lesson02</option>
-                    <option value="lesson03">Lesson03</option>
-                    <option value="lesson04">Lesson04</option>
-                    <option value="lesson05">Lesson05</option>
-                </select>
-                <div className="flex justify-center items-center absolute right-0 w-[40px] h-full rounded-[8px] bg-cream cursor-pointer pointer-events-none">
-                    <svg className={`w-[14px] h-[8px] transition-all duration-200 ${lessonRotation ? 'rotate-180' : ''}`} viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M1 1L7 7L13 1" stroke="#212429" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </div>
-            </div>
-            <div className="flex items-center min-w-[224px] h-full rounded-[8px] px-[16px] bg-stone01">
+            <Dropdown type="1" data={isComplete}></Dropdown>
+            <Dropdown type="2" data={lessonList}></Dropdown>
+            <div className="flex items-center w-[224px] h-full rounded-[8px] px-[16px] bg-stone01">
                 <div className="flex items-center place-content-between w-full">
                     <p>ความยาก</p>
                     <div className="flex items-center space-x-[4px]">
@@ -98,9 +80,11 @@ function SearchBar() {
                     </div>
                 </div>
             </div>
+            <Button type={1} mode={0} validate={true} text="ตกลง" img="" link ="https://google.com/"/>
+{/* 
             <button className="flex justify-center items-center min-w-[147px] h-full rounded-[8px] bg-cream">
                 สุ่มโจทย์เลย
-            </button>
+            </button> */}
         </div>
     );
 }
