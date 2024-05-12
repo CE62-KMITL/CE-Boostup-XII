@@ -7,7 +7,7 @@ type InputProps = {
     required?: boolean;
     inputClass: string;
     labelClass: string;
-    func: (value: string) => void;
+    func: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export default function Input({ label, inputClass, labelClass, func, ...props }: InputProps) {
@@ -18,7 +18,6 @@ export default function Input({ label, inputClass, labelClass, func, ...props }:
         const current = inputRef.current as HTMLInputElement;
         const parent = labelRef.current as HTMLLabelElement;
         if (current && parent) {
-            console.log(current.validity.valid)
             if (current.value.length > 0)
                 parent.style.animationName = "label-animation";
             else if (current.value.length === 0)
@@ -31,8 +30,8 @@ export default function Input({ label, inputClass, labelClass, func, ...props }:
 
     return (
         <>
+            <input {...props} autoComplete="new-password" className={inputClass} ref={inputRef} onChange={(e) => { handleValid(inputRef, labelRef); func(e) }} />
             <label className={labelClass} ref={labelRef}>{label}</label>
-            <input {...props} autoComplete="new-password" className={inputClass} ref={inputRef} onChange={(e) => {handleValid(inputRef, labelRef); func(e.target.value)}} />
         </>
     );
 }

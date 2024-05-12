@@ -211,7 +211,7 @@ function RegisterFormCard() {
                   : "border-stone03"
                 }`} label="ชื่อผู้ใช้" type="text" placeholder=" " labelClass={`absolute left-[16px] bottom-[6px] text-[24px] font-[700]
                   ${usernameAlert01 ? "text-red-500" : ""
-                  }`} func={(v) => { setUsernameInput(v); handleUsernameFunctionGroup() }} />
+                  }`} func={(e) => { setUsernameInput(e.target.value); handleUsernameFunctionGroup() }} />
             </div>
           </div>
           <ol className="list list-disc list-inside xl:p-[12px_8px] 2xl:p-[16px_8px] leading-[1.2rem]">
@@ -227,7 +227,7 @@ function RegisterFormCard() {
                   : "border-stone03"
                 }`} label="รหัสผ่าน" type={initPasswordAppearance ? "text" : "password"} placeholder=" " labelClass={`absolute left-[16px] bottom-[6px] text-[24px] font-[700]
                   ${initPasswordAlert01 || initPasswordAlert02 ? "text-red-500" : ""
-                  }`} func={(v) => { setPasswordInput(v); handleInitPasswordFunctionGroup() }} />
+                  }`} func={(e) => { setPasswordInput(e.target.value); handleInitPasswordFunctionGroup() }} />
               <div className="absolute bottom-0 right-0 w-[60px] h-[48px] border-[1px] border-transparent rounded-r-[10px]">
                 <div
                   className="flex justify-center items-center w-full h-full"
@@ -259,7 +259,7 @@ function RegisterFormCard() {
                   : "border-stone03"
                 }`} label="ยืนยันรหัสผ่าน" type={confirmPasswordAppearance ? "text" : "password"} placeholder=" " labelClass={`absolute left-[16px] bottom-[6px] text-[24px] font-[700]
                   ${confirmPasswordAlert ? "text-red-500" : ""
-                  }`} func={(v) => { setConfirmPasswordInput(v); handleConfirmPasswordFunctionGroup() }} />
+                  }`} func={(e) => { setConfirmPasswordInput(e.target.value); handleConfirmPasswordFunctionGroup() }} />
               <div className="absolute bottom-0 right-0 w-[60px] h-[48px] border-[1px] border-transparent rounded-r-[10px]">
                 <div
                   className="flex justify-center items-center w-full h-full"

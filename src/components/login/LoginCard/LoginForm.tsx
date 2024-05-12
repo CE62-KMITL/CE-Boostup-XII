@@ -1,14 +1,12 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import Button from "../../utils/Button";
+import Input from "../../utils/Input";
 
 function LoginForm() {
     const [passwordAppearance, setPasswordAppearance] = useState(false)
-    const passwordRef = useRef<HTMLInputElement>(null)
-    const emailRef = useRef<HTMLInputElement>(null)
-
-    const handlePasswordAppearance = () => {
-        setPasswordAppearance(!passwordAppearance)
-    }
+    const [email, setEmail] = useState<string>("")
+    const [password, setPassword] = useState<string>("")
+    const [savePassword, setSavePassword] = useState<boolean>(false)
 
     const eyeIcon = () => {
         if (passwordAppearance) {
@@ -42,23 +40,15 @@ function LoginForm() {
                     </div>
                     <div className="relative w-full h-full max-h-[90px]">
                         <div className="input-container w-full absolute bottom-0">
-                            <input type="email" name="" id=""
-                                className="w-full h-[48px] px-[16px] py-[8px] border-stone03 border-[1px] rounded-[10px] 
-                            text-stone04 text-[18px]" placeholder=" " />
-                            <label htmlFor="" className="absolute left-[16px] bottom-[6px] 
-                            text-stone04 text-[24px] font-[700]">อีเมล</label>
+                            <Input label="อีเมล" type="email" placeholder=" " required={true} inputClass="w-full h-[48px] px-[16px] py-[8px] border-stone03 border-[1px] rounded-[10px] text-stone04 text-[18px]" labelClass="absolute left-[16px] bottom-[6px] text-stone04 text-[24px] font-[700]" func={(e) => setEmail(e.target.value)} />
                         </div>
                     </div>
                     <div className="relative w-full h-full max-h-[90px]">
                         <div className="input-container w-full absolute bottom-0">
-                            <input type={passwordAppearance ? "text" : "password"} name="" id=""
-                                className="w-full h-[48px] px-[16px] py-[8px] border-stone03 border-[1px] rounded-[10px] 
-                            text-stone04 text-[18px]" placeholder=" " autoComplete="new-password" />
-                            <label htmlFor="" className="absolute left-[16px] bottom-[6px] 
-                            text-stone04 text-[24px] font-[700]">รหัสผ่าน</label>
+                            <Input label="รหัสผ่าน" type={passwordAppearance ? "text" : "password"} placeholder=" " required={true} inputClass="w-full h-[48px] px-[16px] py-[8px] border-stone03 border-[1px] rounded-[10px] text-stone04 text-[18px]" labelClass="absolute left-[16px] bottom-[6px] text-stone04 text-[24px] font-[700]" func={(e) => setPassword(e.target.value)} />
                             <div className="absolute bottom-0 right-0 w-[60px] h-[48px] border-[1px] border-transparent rounded-r-[10px]">
                                 <div className="flex justify-center items-center w-full h-full"
-                                    onClick={handlePasswordAppearance}>
+                                    onClick={() => setPasswordAppearance(!passwordAppearance)}>
                                     {eyeIcon()}
                                 </div>
                             </div>
@@ -66,8 +56,7 @@ function LoginForm() {
                     </div>
                     <div className="flex items-center place-content-between w-[96%]">
                         <div className="flex items-center place-content-between h-full">
-                            <input type="checkbox" className="scale-[0.66]" placeholder="_" />
-                            <label htmlFor="" className="text-stone04 text-[16px]">จดจำรหัสผ่าน?</label>
+                            <Input label="จดจำรหัสผ่าน?" type="checkbox" placeholder="_" required={false} inputClass="scale-[0.66]" labelClass="text-stone04 text-[16px]" func={(e) => setSavePassword(e.target.checked)} />
                         </div>
                         <div>
                             <a href="" className="text-stone04 text-[16px]">ลืมรหัสผ่าน?</a>
