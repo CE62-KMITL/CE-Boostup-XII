@@ -1,4 +1,5 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import EyeIcon from "./EyeIcon";
 
 type InputProps = {
     label: string;
@@ -10,9 +11,10 @@ type InputProps = {
     func: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export default function Input({ label, inputClass, labelClass, func, ...props }: InputProps) {
+export default function Input({ label, type, inputClass, labelClass, func, ...props }: InputProps) {
     const inputRef = useRef<HTMLInputElement>(null);
     const labelRef = useRef<HTMLLabelElement>(null);
+    const [eyeIcon, setEyeIcon] = useState<boolean>(false);
 
     function handleValid(inputRef: React.RefObject<HTMLInputElement>, labelRef: React.RefObject<HTMLLabelElement>) {
         const current = inputRef.current as HTMLInputElement;
@@ -22,7 +24,7 @@ export default function Input({ label, inputClass, labelClass, func, ...props }:
                 parent.style.animationName = "label-animation";
             else if (current.value.length === 0)
                 parent.style.animationName = "reverse-label-animation";
-            parent.style.animationDuration = "0.3s";
+            parent.style.animationDuration = "0.2s";
             parent.style.animationTimingFunction = "ease-in-out";
             parent.style.animationFillMode = "forwards";
         }
@@ -30,8 +32,9 @@ export default function Input({ label, inputClass, labelClass, func, ...props }:
 
     return (
         <>
-            <input {...props} autoComplete="new-password" className={inputClass} ref={inputRef} onChange={(e) => { handleValid(inputRef, labelRef); func(e) }} />
+            <input {...props} type={type === "password" ? eyeIcon ? "text" : "password" : type} placeholder={props.placeholder} autoComplete="new-password" className={inputClass} ref={inputRef} onChange={(e) => { handleValid(inputRef, labelRef); func(e) }} />
             <label className={labelClass} ref={labelRef}>{label}</label>
+            {type === "password" && <EyeIcon setPasswordAppearance={setEyeIcon} passwordAppearance={eyeIcon} />}
         </>
     );
 }

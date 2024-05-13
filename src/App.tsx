@@ -7,6 +7,7 @@ import RegisterPage from './pages/RegisterPage'
 import LearnPage from './pages/LearnPage'
 import HomePage from './pages/HomePage'
 import ProfilePage from './pages/ProfilePage'
+import ResetPasswordPage from './pages/ResetPasswordPage'
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
+        <Route path="/reset-password" element={<ResetPasswordPage />} />
         <Route element={<InitLayout />}>
           <Route path="/home" element={<HomePage />} />
           <Route path="/learn" element={<LearnPage />} />
