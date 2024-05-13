@@ -1,14 +1,15 @@
-import React from 'react';
-
-import Button from "../components/utils/Button";
-import BackIcon from "../assets/back.svg";
-import SubmitIcon from "../assets/submit.svg";
+import Background from "../components/utils/Background";
+import Editor from "../components/solve/Editor";
 
 function SolveProblemPage() {
   return (
-    <div>
-        
-    </div>
+    <>
+        <Background/>
+        <div className="flex items-center h-screen px-[80px]">
+          <Editor/>
+
+        </div>
+    </>
   );
 }
 

@@ -1,6 +1,11 @@
 import { useState } from "react";
 
-function Dropdown({ type, data }) {
+type DropdownProps = {
+    type: any;
+    data: any[];
+};
+
+function Dropdown({ type, data }: DropdownProps) {
     const [statusRotation, setStatusRotation] = useState(false);
         const handleStatusSelectClick = () => {
             setStatusRotation(!statusRotation);

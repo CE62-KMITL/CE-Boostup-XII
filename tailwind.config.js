@@ -26,6 +26,7 @@ export default {
           'pass': '#25BC16',
           'unpass': '#FA695E',
           'empty': '#7E7E7E',
+          'jenna': '#F4E9CD',
         },
       },
     },

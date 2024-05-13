@@ -16,10 +16,10 @@ function App() {
         <Route path="/" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/reset-password" element={<ResetPasswordPage />} />
+        <Route path="/solve" element={<SolveProblemPage />} />
         <Route element={<InitLayout />}>
           <Route path="/home" element={<HomePage />} />
           <Route path="/learn" element={<LearnPage />} />
-          <Route path="/solve" element={<SolveProblemPage />} />
           <Route path="/profile" element={<ProfilePage />} />
         </Route>
       </Routes>
