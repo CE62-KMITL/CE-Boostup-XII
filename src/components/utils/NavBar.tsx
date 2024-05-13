@@ -1,3 +1,6 @@
+import { Link } from "react-router-dom";
+import MainIcon from "../../assets/MainIcon.svg";
+
 function NavBar() {
     const linkStyle = "transition-transform hover:translate-y-[4px] duration-200 text-stone01";
 
@@ -7,19 +10,19 @@ function NavBar() {
             <div className="flex place-content-between
             xl:w-[1240px] 2xl:w-[1360px] h-auto">
                 <div className="flex items-center">
-                    <img src="https://s3-alpha-sig.figma.com/img/c3d8/2dc2/980a2683997252f7ab6fc0e497651cfc?Expires=1715558400&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=mCrYFI-dkCrwWp1hP25-EIZ9l8XVzmwyii~9zAxuwJw-OOLjK~39~2Uur3KxVNRrTWJokzDk1eQm0rkEvXHiO~eBh4uuzOfadbO3~LwDoHlireqV~hvKkqTp-1R0kzgAJi2wY-zpGU-lxxnsnB4pscK-5O4ar7e9dGbDvJBiXuirBBRuO1K7hgOy0ObZJ7Iif44Tt8ZpVnSkrlRlmxATpKVkl~493O2gwfzj~VUNElhyJ3RgWniNMeVqW2YS8PyX0YbWjSoT0GUG8BmflmlNPA14YLBHAvAhylV6s1J0vf-XoprxwsjZUefgt4mPk7W9cgWFnbhkaGjlxV4QJs5IOg__"
+                    <img src={MainIcon}
                     className="xl:w-[36px] xl:h-[36px] 2xl:w-[40px] 2xl:h-[40px]" alt="" />
                     <h2 className="text-stone01 text-[16px] m-[12px] ">
                         CE Boostup XII
                     </h2>
                 </div>
                 <div className="flex items-center place-content-between xl:w-[600px] 2xl:w-[660px]">
-                    <a className={linkStyle} href="/home">Home</a>
-                    <a className={linkStyle} href="/archive">Archive</a>
-                    <a className={linkStyle} href="/learn">Learn</a>
-                    <a className={linkStyle} href="/leaderboard">Leaderboard</a>
-                    <a className={linkStyle} href="/compiler">Compiler</a>
-                    <a className={linkStyle} href="/profile">Profile</a>
+                    <Link to="/home" className={linkStyle}>Home</Link>
+                    <Link to="/archive" className={linkStyle}>Archive</Link>
+                    <Link to="/learn" className={linkStyle}>Learn</Link>
+                    <Link to="/leaderboard" className={linkStyle}>Leaderboard</Link>
+                    <Link to="/compiler" className={linkStyle}>Compiler</Link>
+                    <Link to="/profile" className={linkStyle}>Profile</Link>
                 </div>
             </div>
         </div>

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Button from "../utils/Button";
 import Input from "../utils/Input";
+import { Link } from "react-router-dom";
 
 function RegisterFormCard() {
   const [usernameAlert01, setUsernameAlert01] = useState(false);
@@ -107,17 +108,6 @@ function RegisterFormCard() {
     }
   };
 
-  const [initPasswordAppearance, setInitPasswordAppearance] = useState(false);
-  const [confirmPasswordAppearance, setConfirmNewPasswordAppearance] =
-    useState(false);
-
-  const handleInitPasswordAppearance = () => {
-    setInitPasswordAppearance(!initPasswordAppearance);
-  };
-  const handleConfirmPasswordAppearance = () => {
-    setConfirmNewPasswordAppearance(!confirmPasswordAppearance);
-  };
-
   return (
     <div
       className="w-full h-full rounded-[30px] lg:p-[20px] xl:p-[30px] 2xl:p-[36px] bg-stone01">
@@ -149,7 +139,7 @@ function RegisterFormCard() {
                   ${initPasswordAlert01 || initPasswordAlert02
                   ? "border-red-500"
                   : "border-stone03"
-                }`} label="รหัสผ่าน" type={initPasswordAppearance ? "text" : "password"} placeholder=" " labelClass={`absolute left-[16px] bottom-[6px] text-[24px] font-[700]
+                }`} label="รหัสผ่าน" type="password" placeholder=" " labelClass={`absolute left-[16px] bottom-[6px] text-[24px] font-[700]
                   ${initPasswordAlert01 || initPasswordAlert02 ? "text-red-500" : ""
                   }`} func={(e) => { setPasswordInput(e.target.value); handleInitPasswordFunctionGroup() }} />
             </div>
@@ -173,7 +163,7 @@ function RegisterFormCard() {
                   ${confirmPasswordAlert
                   ? "border-red-500"
                   : "border-stone03"
-                }`} label="ยืนยันรหัสผ่าน" type={confirmPasswordAppearance ? "text" : "password"} placeholder=" " labelClass={`absolute left-[16px] bottom-[6px] text-[24px] font-[700]
+                }`} label="ยืนยันรหัสผ่าน" type="password" placeholder=" " labelClass={`absolute left-[16px] bottom-[6px] text-[24px] font-[700]
                   ${confirmPasswordAlert ? "text-red-500" : ""
                   }`} func={(e) => { setConfirmPasswordInput(e.target.value); handleConfirmPasswordFunctionGroup() }} />
             </div>
@@ -193,9 +183,7 @@ function RegisterFormCard() {
           ClickFunc={() => handleSubmit()}
           validate={checkedSumbitButton}
         />
-        <a href="/" className="text-stone04 leading-[1.2rem]">
-          มีแอคเคาท์แล้ว?
-        </a>
+        <Link to="/" className="text-stone04 leading-[1.2rem]">มีแอคเคาท์แล้ว?</Link>
       </form>
     </div>
   );

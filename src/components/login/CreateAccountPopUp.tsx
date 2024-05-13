@@ -1,6 +1,11 @@
 import DarkBackground from "../utils/DarkBackground"
+import { Link } from "react-router-dom";
+import Input from "../utils/Input";
+import { useState } from "react";
 
 function CreateAccountPopUp() {
+    const [email, setEmail] = useState<string>("");
+
     return (
         <div className="flex justify-center items-center fixed top-0 w-screen h-screen z-10">
             <DarkBackground />
@@ -11,11 +16,7 @@ function CreateAccountPopUp() {
                 </div>
                 <div className="relative w-full h-[40%] max-h-[50px]">
                     <div className="input-container w-full absolute bottom-0">
-                        <input type="email" name="" id=""
-                        className="w-full h-[48px] px-[16px] py-[8px] border-stone03 border-[1px] rounded-[10px] 
-                        text-stone04 text-[18px]" placeholder=" "/>
-                        <label htmlFor="" className="absolute left-[16px] bottom-[6px] 
-                        text-stone04 text-[24px] font-[700]">อีเมล</label>
+                        <Input func={(e) => setEmail(e.target.value)} label="อีเมล" type="email" placeholder=" " required={true} inputClass="w-full h-[48px] px-[16px] py-[8px] border-stone03 border-[1px] rounded-[10px] text-stone04 text-[18px]" labelClass="absolute left-[16px] bottom-[6px] text-stone04 text-[24px] font-[700]" />
                     </div>
                 </div>
                 <div className="flex flex-col place-content-between w-[35%] h-[20%] min-h-[80px] max-h-[90px]">
@@ -24,7 +25,7 @@ function CreateAccountPopUp() {
                         ดำเนินการต่อ
                     </button>
                     <div className="flex justify-center items-end w-full h-[45%]">
-                        <a href="" className="text-stone04">กลับเข้าสู่ระบบ</a>
+                        <Link to="/" className="text-stone04">กลับเข้าสู่ระบบ</Link>
                     </div>
                 </div>
             </div>

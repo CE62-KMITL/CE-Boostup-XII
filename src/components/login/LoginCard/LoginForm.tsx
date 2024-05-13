@@ -3,13 +3,13 @@ import Button from "../../utils/Button";
 import Input from "../../utils/Input";
 import axios from "axios";
 import { Cookies } from "react-cookie";
+import { Link } from "react-router-dom";
 
 type LoginFormProps = {
     setShowForgotPassword: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 function LoginForm({ setShowForgotPassword }: LoginFormProps) {
-    const [passwordAppearance, setPasswordAppearance] = useState(false)
     const [email, setEmail] = useState<string>("")
     const [password, setPassword] = useState<string>("")
     const [savePassword, setSavePassword] = useState<boolean>(false)
@@ -42,7 +42,7 @@ function LoginForm({ setShowForgotPassword }: LoginFormProps) {
                         </div>
                         <div className="relative w-full h-full max-h-[90px]">
                             <div className="input-container w-full absolute bottom-0">
-                                <Input label="รหัสผ่าน" type={passwordAppearance ? "text" : "password"} placeholder=" " required={true} inputClass="w-full h-[48px] px-[16px] py-[8px] border-stone03 border-[1px] rounded-[10px] text-stone04 text-[18px]" labelClass="absolute left-[16px] bottom-[6px] text-stone04 text-[24px] font-[700]" func={(e) => setPassword(e.target.value)} />
+                                <Input label="รหัสผ่าน" type="password" placeholder=" " required={true} inputClass="w-full h-[48px] px-[16px] py-[8px] border-stone03 border-[1px] rounded-[10px] text-stone04 text-[18px]" labelClass="absolute left-[16px] bottom-[6px] text-stone04 text-[24px] font-[700]" func={(e) => setPassword(e.target.value)} />
                             </div>
                         </div>
                         <div className="flex items-center place-content-between w-[96%]">
@@ -56,7 +56,7 @@ function LoginForm({ setShowForgotPassword }: LoginFormProps) {
                     </div>
                     <div className="flex flex-col items-center place-content-between w-[40%] h-[22.5%] min-h-[80px] max-h-[90px]">
                         <Button type={2} mode={0} validate={true} text="ตกลง" img="" ClickFunc={async () => await handleSubmit()} />
-                        <a href="/register" className="text-stone04">ยังไม่มีแอคเคาท์?</a>
+                        <Link to="/register" className="text-stone04">ยังไม่มีแอคเคาท์?</Link>
                     </div>
                 </div>
             </div>
