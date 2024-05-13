@@ -1,12 +1,25 @@
 import { useState } from "react";
 import Button from "../../utils/Button";
 import Input from "../../utils/Input";
+import axios from "axios";
 
 function LoginForm() {
     const [passwordAppearance, setPasswordAppearance] = useState(false)
     const [email, setEmail] = useState<string>("")
     const [password, setPassword] = useState<string>("")
     const [savePassword, setSavePassword] = useState<boolean>(false)
+
+    async function handleSubmit() {
+        try {
+            const response = await axios.post(`${import.meta.env.VITE_HOST_API}/auth/login`, {
+                email: email,
+                password: password
+            })
+            console.log(response.data)
+        } catch (error) {
+            console.error(error)
+        }
+    }
 
     const eyeIcon = () => {
         if (passwordAppearance) {
@@ -33,7 +46,7 @@ function LoginForm() {
 
     return (
         <div className="absolute bottom-0 w-full h-[90%] min-h-[400px] max-h-[450px] p-[30px]">
-            <form action="" className="flex flex-col items-center place-content-between w-full h-full">
+            <div className="flex flex-col items-center place-content-between w-full h-full">
                 <div className="flex flex-col items-center place-content-between w-full h-[75%]">
                     <div className="w-full text-stone05 text-[40px] text-center font-[700] leading-[3rem] bg-stone01">
                         เข้าสู่ระบบ
@@ -64,10 +77,10 @@ function LoginForm() {
                     </div>
                 </div>
                 <div className="flex flex-col items-center place-content-between w-[40%] h-[22.5%] min-h-[80px] max-h-[90px]">
-                    <Button type={2} mode={0} validate={true} text="ตกลง" img="" ClickFunc={() => console.log("test")} />
+                    <Button type={2} mode={0} validate={true} text="ตกลง" img="" ClickFunc={async () => await handleSubmit()} />
                     <a href="/register" className="text-stone04">ยังไม่มีแอคเคาท์?</a>
                 </div>
-            </form>
+            </div>
         </div>
     );
 }

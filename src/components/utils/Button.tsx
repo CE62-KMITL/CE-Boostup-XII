@@ -4,7 +4,7 @@ type ButtonProps = {
     text: string;
     img?: string;
     ClickFunc?: () => void;
-    validate: boolean;
+    validate?: boolean;
 };
 
 function Button({ type, mode, text, img, ClickFunc, validate }: ButtonProps) {
