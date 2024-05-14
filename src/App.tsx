@@ -9,7 +9,7 @@ import HomePage from './pages/HomePage'
 import ProfilePage from './pages/ProfilePage'
 import ResetPasswordPage from './pages/ResetPasswordPage'
 
-function App() {
+export default function App() {
   return (
     <BrowserRouter>
       <Routes>
@@ -24,7 +24,5 @@ function App() {
         </Route>
       </Routes>
     </BrowserRouter>
-  )
+  );
 }
-
-export default App

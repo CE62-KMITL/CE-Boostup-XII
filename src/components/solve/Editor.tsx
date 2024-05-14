@@ -2,7 +2,7 @@ import EditorFooter from "./EditorFooter";
 import OptionBar from "./OptionBar";
 import CodeMirror from '@uiw/react-codemirror';
 import { cpp } from "@codemirror/legacy-modes/mode/clike";
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import { StreamLanguage } from '@codemirror/language';
 import { githubLight } from "@uiw/codemirror-theme-github";
 

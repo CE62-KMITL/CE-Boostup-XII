@@ -1,5 +1,3 @@
-import NavBar from "../components/utils/NavBar";
-
 import TitleText from "../components/home/TitleText";
 import SearchBar from "../components/home/SearchBar";
 import ProblemBar from "../components/home/ProblemBar";
@@ -7,7 +5,6 @@ import ProblemsTable from "../components/home/ProblemsTable";
 import Background from "../components/utils/Background";
 
 function HomePage() {
-    // Sample data for demonstration
     const problems = [
         { number: 1, title: "Problem 1", lesson: "Lesson 1", level: 1, attempters: 5, score: "100", status: "pass" },
         { number: 2, title: "Problem 2", lesson: "Lesson 2", level: 3, attempters: 3, score: "120", status: "empty" },
@@ -31,7 +28,6 @@ function HomePage() {
         <>
             <Background/>
             <div className="flex justify-center overflow-y-auto">
-                <NavBar />
                 <div className="xl:w-[1240px] 2xl:w-[1360px] h-fit xl:my-[75px] 2xl:my-[90px]">
                     <div className="flex flex-col w-full h-fit">
                         <TitleText username="น้องลาบูบู๊"/>

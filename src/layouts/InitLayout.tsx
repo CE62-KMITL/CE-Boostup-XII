@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom"
+import { Outlet, useLocation } from "react-router-dom"
 import NavBar from "../components/utils/NavBar"
 
 export default function InitLayout() {
