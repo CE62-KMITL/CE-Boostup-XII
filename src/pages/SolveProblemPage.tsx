@@ -19,15 +19,13 @@ function SolveProblemPage() {
     setHeight(boxRef.current?.clientHeight || 0);
 }, [boxRef.current]);
   return (
-    <>
+    <div className="flex justify-center">
         <Background/>
-        <div className="flex items-center h-screen px-[80px]" ref={boxRef}>
-          <Editor height={height}/>
-          <Problem height={height}/>
+        <div className="flex items-center h-screen w-[90vw] justify-center py-[33px]" ref={boxRef}>
+            <Editor height={height}/>
+            <Problem height={height}/>
         </div>
-        {/* <div className="flex items-center h-screen px-[80px]">
-        </div> */}
-    </>
+    </div>
   );
 }
 

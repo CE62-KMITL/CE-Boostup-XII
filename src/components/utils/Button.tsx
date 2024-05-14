@@ -11,7 +11,6 @@ export default function Button({ text, img, ClickFunc, className, imgClassName, 
     return (
         <>
             <button className={className} onClick={ClickFunc}>
-                {/* {img && <img src={img} className={imgClassName} alt="" />} */}
                 {img && imgPosition === "left" ? <img src={img} className={imgClassName} alt="" /> : null}
                 {text}
                 {img && imgPosition === "right" ? <img src={img} className={imgClassName} alt="" /> : null}
