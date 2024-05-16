@@ -10,6 +10,9 @@ export const usersService = {
     async getUser(id: string): Promise<UserResponse> {
         return await apiController(`/users/${id}`, "get")
     },
+    async getAvatar(id: string): Promise<UserResponse> {
+        return await apiController(`/users/${id}/avatar`, "get")
+    },
     async createUser(createUserRequest: CreateUserDto): Promise<UserResponse> {
         return await apiController("/users", "post", createUserRequest)
     },
