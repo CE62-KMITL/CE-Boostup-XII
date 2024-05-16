@@ -16,6 +16,10 @@ const passwordValidator = yup
 
 const confirmPasswordValidator = yup
 .string()
-.oneOf([yup.ref("password")], "รหัสผ่านไม่ตรงกัน")
+.oneOf([yup.ref("password")], "ยืนยันรหัสผ่านไม่ถูกต้อง")
 
-export { emailValidator, passwordValidator, confirmPasswordValidator }
+const usernameValidator = yup
+.string()
+.max(10, "ควรไม่เกิน 10 ตัวอักษร")
+
+export { emailValidator, passwordValidator, confirmPasswordValidator, usernameValidator }

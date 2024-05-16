@@ -6,7 +6,7 @@ export type LoginValues = {
   password: string;
 };
 
-export const emptyLoginValues = {
+export const emptyLoginValues: LoginValues = {
   email: "",
   password: "",
 };

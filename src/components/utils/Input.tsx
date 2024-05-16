@@ -25,11 +25,8 @@ export default function Input({ label, type, inputClass, labelClass, onChange, e
         console.log(`${inputClass} ${error ? "text-red-600" : "text-stone04"}`),
         <>
             <input {...props} type={type === "password" ? eyeIcon ? "text" : "password" : type} placeholder={props.placeholder} autoComplete="new-password" className={`${inputClass} ${error ? "text-red-600" : "text-stone04"}`} ref={inputRef} onChange={(e) => { handleValid(inputRef, labelRef); onChange(e) }} />
-            <label className={labelClass + " flex"} ref={labelRef}>
+            <label className={`${labelClass} flex ${error ? "text-red-600" : "text-stone04"}`} ref={labelRef}>
                 {label}
-                {error &&
-                 <p className="text-red-600 text-[14px] font-[500] bottom-[-20px] self-center ml-3">{props.errorMessage}</p>
-                }
             </label>
             {type === "password" && <EyeIcon setPasswordAppearance={setEyeIcon} passwordAppearance={eyeIcon} />}
         </>

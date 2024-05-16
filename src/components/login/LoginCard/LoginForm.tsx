@@ -48,7 +48,6 @@ function LoginForm({ setShowForgotPassword }: LoginFormProps) {
                     <div className="w-full text-stone05 text-[40px] text-center font-[700] leading-[3rem] bg-stone01">
                         เข้าสู่ระบบ
                     </div>
-
                     <div className="relative w-full h-full max-h-[90px]">
                         <div className="input-container w-full absolute bottom-0">
                             <Input {...emailInputProps} label="อีเมล" type="email" placeholder=" " required={true} inputClass="w-full h-[48px] px-[16px] py-[8px] border-stone03 border-[1px] rounded-[10px] text-[18px]" labelClass="absolute left-[16px] bottom-[6px] text-[24px] font-[700]" 
