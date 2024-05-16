@@ -5,6 +5,7 @@ import { CreateSaveDto, UpdateSaveDto } from "../dto/saves.dto";
 import { CreateGroupDto, UpdateGroupDto } from "../dto/groups.dto";
 import { CreateUserDto, UpdateUserDto } from "../dto/users.dto";
 import { PaginationRequestDto } from "../dto/utils.dto";
+import { CreateAttachmentDto } from "../dto/attachments.dto";
 
 import axiosInstance from "../services/api.service";
 
@@ -14,7 +15,7 @@ export async function apiController<T>(
   data?: LoginDto | RegisterDto | ResetPasswordDto | RequestPasswordResetDto
     | UpdateProblemTagDto | CreateProblemTagDto | CreateProblemDto | UpdateProblemDto
     | CreateSaveDto | UpdateSaveDto | CreateGroupDto | UpdateGroupDto | CreateUserDto
-    | UpdateUserDto,
+    | UpdateUserDto | CreateAttachmentDto,
   params?: PaginationRequestDto
 ): Promise<T> {
   try {

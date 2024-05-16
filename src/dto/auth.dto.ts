@@ -4,7 +4,7 @@ export type LoginDto = {
 }
 
 export type RegisterDto = {
-    username: string
+    token: string
     password: string
 }
 

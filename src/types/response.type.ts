@@ -51,7 +51,7 @@ export interface ProblemTagModelResponse {
     updatedAt?: Date;
 }
 
-export interface SavesResponse {
+export interface SavesModelResponse {
     id: string;
     owner?: { id: string; displayName: string };
     problem?: { id: string; title: string };
@@ -60,7 +60,7 @@ export interface SavesResponse {
     updatedAt?: Date;
 }
 
-export interface GroupResponse {
+export interface GroupModelResponse {
     id: string;
     name?: string;
     description?: string;
@@ -75,7 +75,7 @@ export interface GroupResponse {
     updatedAt?: Date;
 }
 
-export interface UserResponse {
+export interface UserModelResponse {
     id: string;
     email?: string;
     roles?: Role[];
@@ -88,6 +88,19 @@ export interface UserResponse {
     lastEmailRequestedAt?: Date;
     createdAt?: Date;
     updatedAt?: Date;
+}
+
+export interface AttachmentModelResponse {
+    id: string;
+    name?: string;
+    type?: string;
+    size?: number;
+    url?: string;
+    owner?: {
+      id: string;
+      displayName: string;
+    };
+    createdAt?: Date;
 }
 
 export interface PaginationModelResponse<T> {
