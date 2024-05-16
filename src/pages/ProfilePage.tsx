@@ -13,7 +13,7 @@ function ProfilePage() {
         
     return(
         <div>
-            <div>
+            {/* <div>
                 <NavBar/>
                 <Background/>
             </div>
@@ -24,6 +24,10 @@ function ProfilePage() {
                     email={account_info.email}
                     house={account_info.house}
                 />
+            </div> */}
+
+            <div>
+                <button className="bg-accent w-[80px] h-[30px]">Button</button>
             </div>
         </div>
     );
