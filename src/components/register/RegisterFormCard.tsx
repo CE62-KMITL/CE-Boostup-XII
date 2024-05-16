@@ -6,8 +6,14 @@ import { RegisterValues, emptyRegisterValues, RegisterValidationSchema } from ".
 import { getFieldProps } from "../../utils/getFieldProps";
 import { authService } from "../../services/auth.service";
 import { Cookies } from "react-cookie";
+import { useDispatch } from "react-redux";
+import { setAuthAccessToken } from "../../store/auth/auth.slice";
+import { useNavigate } from "react-router-dom";
 
 function RegisterFormCard() {
+  const cookies = new Cookies();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   async function handleRegister() {
     try {
@@ -15,6 +21,9 @@ function RegisterFormCard() {
         username: formik.values.username,
         password: formik.values.password,
       });
+      dispatch(setAuthAccessToken(response.token));
+      cookies.set("token", response.token, { path: "/" });
+      navigate("/home");
     } catch (error) {
       console.error(error);
     }

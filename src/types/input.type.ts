@@ -5,6 +5,7 @@ export default interface InputProps {
     required?: boolean;
     inputClass: string;
     labelClass: string;
+    showErrorLabel?: boolean;
     error?: boolean;
     errorMessage?: string | null;
     onChange: (value: React.ChangeEvent<HTMLInputElement>) => void;

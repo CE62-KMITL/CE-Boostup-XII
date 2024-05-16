@@ -10,7 +10,6 @@ function SolveProblemPage() {
   useEffect(() => {
       const event = addEventListener('resize', () => {
           setHeight(boxRef.current?.clientHeight || 0);
-          console.log(boxRef.current?.clientHeight)
       });
       return () => removeEventListener('resize', () => event);
   }, [boxRef.current]);

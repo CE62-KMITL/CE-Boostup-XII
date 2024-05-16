@@ -23,7 +23,6 @@ function HomePage() {
         { number: 15, title: "Problem 15", lesson: "Lesson 15", level: 3, attempters: 3, score: "105", status: "unpass" },
         { number: 16, title: "Problem 16", lesson: "Lesson 16", level: 1, attempters: 7, score: "75", status: "pass" },
     ];
-
     return (
         <>
             <Background/>

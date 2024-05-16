@@ -1,10 +1,10 @@
-import { LoginDto, RegisterDto } from "../dto/auth.dto";
+import { LoginDto, RegisterDto, ResetPasswordDto, RequestPasswordResetDto } from "../dto/auth.dto";
 import axiosInstance from "../services/api.service";
 
 export async function apiController<T>(
   url: string,
   method: "get" | "post" | "put" | "patch" | "delete",
-  data?: LoginDto | RegisterDto,
+  data?: LoginDto | RegisterDto | ResetPasswordDto | RequestPasswordResetDto
 ): Promise<T> {
   try {
     const response = await axiosInstance.request({ url, method, data });
