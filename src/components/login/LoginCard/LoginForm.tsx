@@ -27,11 +27,11 @@ function LoginForm({ setShowForgotPassword }: LoginFormProps) {
                 username: formik.values.email,
                 password: formik.values.password
             })
-            cookies.set("token", response.token, { path: "/" })
-            dispatch(setAuthAccessToken(response.token))
-            navigate("/home")
+            cookies.set("token", response.token, { path: "/" });
+            dispatch(setAuthAccessToken(response.token));
+            navigate("/home");
         } catch (error) {
-            console.error(error)
+            console.error(error);
         }
     }
 
@@ -72,12 +72,12 @@ function LoginForm({ setShowForgotPassword }: LoginFormProps) {
                                 onChange={(e) => setSavePassword(e.target.checked)} />
                         </div>
                         <div>
-                            <Button ClickFunc={() => setShowForgotPassword(true)} className="text-[16px]" text="ลืมหรัสผ่าน?" />
+                            <Button type="button" ClickFunc={() => setShowForgotPassword(true)} className="text-[16px]" text="ลืมหรัสผ่าน?" />
                         </div>
                     </div>
                 </div>
                 <div className="flex flex-col items-center place-content-between w-[40%] h-[22.5%] min-h-[80px] max-h-[90px]">
-                    <Button className='bg-accent text-stone01 hover:bg-accent2 transition ease-in-out duration-200 shadow-md cursor-pointer w-36 h-10 rounded-lg flex items-center justify-center' text="เข้าสู่ระบบ" />
+                    <Button type="submit" className='bg-accent text-stone01 hover:bg-accent2 transition ease-in-out duration-200 shadow-md cursor-pointer w-36 h-10 rounded-lg flex items-center justify-center' text="เข้าสู่ระบบ" />
                     <Link to="/register" className="text-stone04">ยังไม่มีแอคเคาท์?</Link>
                 </div>
             </form>

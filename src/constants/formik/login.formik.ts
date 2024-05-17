@@ -1,4 +1,4 @@
-import { emailValidator, passwordValidator } from "../../utils/validator.util";
+import { emailValidator } from "../../utils/validator.util";
 import * as yup from "yup";
 
 export type LoginValues = {
@@ -13,5 +13,4 @@ export const emptyLoginValues: LoginValues = {
 
 export const loginValidationSchema = yup.object({
   email: emailValidator,
-  password: passwordValidator,
 });
