@@ -2,7 +2,6 @@ function ProblemBar() {
     return (
         <div className="grid grid-cols-[repeat(16,minmax(0,1fr))]
         w-full h-[45px] mb-[0.5rem]">
-
             <div className="flex justify-start items-center col-span-1 px-[0.6rem] text-stone01">
                 เลขข้อ
             </div>
@@ -24,7 +23,6 @@ function ProblemBar() {
             <div className="flex justify-end items-center col-span-1 px-[0.6rem] text-stone01">
                 สถานะ
             </div>
-
         </div>
     );
 }

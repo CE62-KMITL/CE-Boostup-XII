@@ -1,4 +1,4 @@
-import { passwordValidator, confirmPasswordValidator } from "../../utils/validator.util";
+import { passwordValidator, confirmPasswordValidator } from "../utils/validator.util";
 import * as yup from "yup";
 
 export type ResetPasswordValues = {

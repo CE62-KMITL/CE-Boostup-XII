@@ -1,10 +1,10 @@
 import { apiController } from "../controllers/api.controller"
 import { CreateProblemDto, UpdateProblemDto } from "../dto/problem.dto";
 import { PaginationRequestDto } from "../dto/utils.dto";
-import { ProblemModelResponse } from "../types/response.type";  
+import { ProblemModelResponse, PaginationModelResponse } from "../types/response.type";  
 
 export const problemService = {
-    getProblems: async (paginationRequest: PaginationRequestDto): Promise<ProblemModelResponse[]> => {
+    getProblems: async (paginationRequest: PaginationRequestDto): Promise<PaginationModelResponse<ProblemModelResponse>> => {
         return await apiController("/problems", "get", undefined, paginationRequest);
     },
     getProblem: async (id: string): Promise<ProblemModelResponse> => {

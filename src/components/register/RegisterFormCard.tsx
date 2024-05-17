@@ -2,12 +2,12 @@ import Button from "../utils/Button";
 import Input from "../utils/Input";
 import { Link } from "react-router-dom";
 import { useFormik } from "formik";
-import { RegisterValues, emptyRegisterValues, RegisterValidationSchema } from "../../constants/formik/register.formik";
+import { RegisterValues, emptyRegisterValues, RegisterValidationSchema } from "../../formik/register.formik";
 import { getFieldProps } from "../../utils/getFieldProps";
 import { authService } from "../../services/auth.service";
 import { Cookies } from "react-cookie";
 import { useDispatch } from "react-redux";
-import { setAuthAccessToken } from "../../store/auth/auth.slice";
+import { setAuthAccessToken } from "../../store/slices/auth.slice";
 import { useNavigate } from "react-router-dom";
 
 function RegisterFormCard() {

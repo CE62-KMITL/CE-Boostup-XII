@@ -6,6 +6,7 @@ import { CreateGroupDto, UpdateGroupDto } from "../dto/groups.dto";
 import { CreateUserDto, UpdateUserDto } from "../dto/users.dto";
 import { PaginationRequestDto } from "../dto/utils.dto";
 import { CreateAttachmentDto } from "../dto/attachments.dto";
+import { ErrorModelResponse } from "../types/response.type";
 
 import axiosInstance from "../services/api.service";
 
@@ -22,7 +23,7 @@ export async function apiController<T>(
     const response = await axiosInstance.request({ url, method, data, params });
     return response.data;
   } catch (error) {
-    const message = (error as Error).message;
+    const message: ErrorModelResponse = (error as any).response?.data;
     return Promise.reject(message);
   }
 }

@@ -1,4 +1,4 @@
-import { emailValidator } from "../../utils/validator.util";
+import { emailValidator } from "../utils/validator.util";
 import * as yup from "yup";
 
 export type LoginValues = {

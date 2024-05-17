@@ -18,14 +18,14 @@ function Problem({ height }: ProblemProps) {
     const [select, setSelect] = useState<number>(0);
 
     return (
-        <div className="h-full w-full min-w-[549px] ml-6">
+        <div className="h-full w-[570px] ml-6">
             <div>
                 <Button text="โจทย์ปัญหา" className={!select ? clickedStyle : unclickedStyle} ClickFunc={() => setSelect(0)} />
                 <Button text="ทดสอบ" className={select ? clickedStyle : unclickedStyle} ClickFunc={() => setSelect(1)} />
             </div>
             <div className="w-full -translate-y-1" style={{ height: `${height - 66 - 55}px` }}>
                 <div className="overflow-auto rounded-b-[8px] space-y-3 h-full bg-white flex justify-center">
-                    <div className="w-[500px] space-y-[18px]">
+                    <div className="w-[500px] space-y-[18px] p-3">
                         {components[select]}
                     </div>
                 </div>

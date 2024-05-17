@@ -1,38 +1,45 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Dropdown from "../utils/Dropdown";
 import Button from "../utils/OldButton";
+import { ProblemTagModelResponse } from "../../types/response.type";
+import { CompletionStatus } from "../../enum/problem.enum";
+import { store } from "../../store/store";
+import { problemTagsService } from "../../services/problemTags.service";
+import { setProblemTagState } from "../../store/slices/problemTags.slice";
+import { useDispatch } from "react-redux";
 
 const isComplete = [
     ["", "สถานะ"],
-    ["pass", "ผ่าน"],
-    ["unpass", "ไม่ผ่าน"],
-    ["empty", "ทำเลย"]
+    ["pass", CompletionStatus.Solved],
+    ["unpass", CompletionStatus.Attempted],
+    ["empty", CompletionStatus.Unattempted]
 ]
-const lessonList = [
-    ["", "บทเรียน"],
-    ["lesson01", "Lesson01"],
-    ["lesson02", "Lesson02"],
-    ["lesson03", "Lesson03"],
-    ["lesson04", "Lesson04"],
-    ["lesson05", "Lesson05"]
-]
-
 
 function SearchBar() {
+    const dispatch = useDispatch();
+    const problemTags = store.getState().problemTags.problemTags;
     const [statusRotation, setStatusRotation] = useState(false);
-    const handleStatusSelectClick = () => {
-        setStatusRotation(!statusRotation);
-    };
-    const onBLurStatusSelect = () => {
-        setStatusRotation(false);
-    }
     const [lessonRotation, setLessonRotation] = useState(false);
-    const handleLessonSelectClick = () => {
-        setLessonRotation(!lessonRotation);
-    };
-    const onBLurLessonSelect = () => {
-        setLessonRotation(false);
+
+    const lessonList = [["", "บทเรียน"]];
+
+    async function fetchProblemTags() {
+        try {
+            const response = await problemTagsService.getProblemTags({ page: 1, perPage: 10, sort: "name", search: "", owner: "" });
+            dispatch(setProblemTagState(response.data));
+        } catch (error) {
+            console.error(error);
+        }
     }
+
+    useEffect(() => {
+        if (problemTags) {
+            problemTags.map((problemTag: ProblemTagModelResponse) => {
+                lessonList.push([problemTag.name, problemTag.name]);
+            });
+        } else
+            fetchProblemTags();
+    }, [problemTags]);
 
     const [level, setLevel] = useState(0);
     const selectLevel = (selectedLevel: number) => {
@@ -72,8 +79,8 @@ function SearchBar() {
                     placeholder="พิมพ์ชื่อโจทย์ หรือเลขข้อ" />
                 <Button type={1} mode={4} validate={true} text="ตกลง" img="" ClickFunc={() => window.location.href = "https://google.com/"} />
             </div>
-            <Dropdown type="1" data={isComplete}></Dropdown>
-            <Dropdown type="2" data={lessonList}></Dropdown>
+            <Dropdown type={1} values={isComplete}></Dropdown>
+            <Dropdown type={2} values={lessonList}></Dropdown>
             <div className="flex items-center w-[224px] h-full rounded-[8px] px-[16px] bg-stone01">
                 <div className="flex items-center place-content-between w-full">
                     <p>ความยาก</p>

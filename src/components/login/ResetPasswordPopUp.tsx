@@ -4,7 +4,7 @@ import DarkBackground from "../utils/DarkBackground"
 import Input from "../utils/Input";
 import { authService } from "../../services/auth.service";
 import { useFormik } from "formik";
-import { ResetPasswordValues, emptyResetPasswordValues, ResetPasswordValidationSchema } from "../../constants/formik/resetPassword.formik";
+import { ResetPasswordValues, emptyResetPasswordValues, ResetPasswordValidationSchema } from "../../formik/resetPassword.formik";
 import { getFieldProps } from "../../utils/getFieldProps";
 
 function ResetPasswordPopUp() {

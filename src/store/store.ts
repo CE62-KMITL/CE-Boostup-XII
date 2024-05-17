@@ -9,18 +9,24 @@ import {
   REGISTER,
   REHYDRATE,
 } from "redux-persist";
-import { authSlice } from "./auth/auth.slice";
+import { authSlice } from "./slices/auth.slice";
+import { problemSlice } from "./slices/problem.slice";
+import { attachmentSlice } from "./slices/attachments.slice";
+import { problemTagSlice } from "./slices/problemTags.slice";
 import storage from "./storage";
 
 const rootReducer = combineReducers({
   auth: authSlice.reducer,
+  problem: problemSlice.reducer,
+  attachment: attachmentSlice.reducer,
+  problemTags: problemTagSlice.reducer,
 });
 
 const persistConfig = {
   key: "root",
   version: 1,
   storage,
-  whitelist: ["auth"],
+  whitelist: ["auth", "problem", "attachment", "problemTags"],
 };
 
 const persistedReducers = persistReducer(persistConfig, rootReducer);

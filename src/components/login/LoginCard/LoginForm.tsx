@@ -5,10 +5,10 @@ import { authService } from "../../../services/auth.service";
 import { Cookies } from "react-cookie";
 import { Link } from "react-router-dom";
 import { useFormik } from "formik";
-import { LoginValues, emptyLoginValues, loginValidationSchema } from "../../../constants/formik/login.formik";
+import { LoginValues, emptyLoginValues, loginValidationSchema } from "../../../formik/login.formik";
 import { getFieldProps } from "../../../utils/getFieldProps";
 import { useDispatch } from "react-redux";
-import { setAuthAccessToken } from "../../../store/auth/auth.slice";
+import { setAuthAccessToken, setAuthUser } from "../../../store/slices/auth.slice";
 import { useNavigate } from "react-router-dom";
 
 type LoginFormProps = {
@@ -26,8 +26,9 @@ function LoginForm({ setShowForgotPassword }: LoginFormProps) {
             const response = await authService.login({
                 username: formik.values.email,
                 password: formik.values.password
-            })
+            });
             cookies.set("token", response.token, { path: "/" });
+            dispatch(setAuthUser(response.user));
             dispatch(setAuthAccessToken(response.token));
             navigate("/home");
         } catch (error) {

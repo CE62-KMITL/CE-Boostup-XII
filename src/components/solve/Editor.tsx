@@ -15,7 +15,7 @@ function Editor({ height }: EditorProps) {
     const [code, setCode] = useState<string>(value);
 
     return (
-        <div className="h-full min-w-[779px]">
+        <div className="h-full min-w-[779px] w-full">
             <OptionBar />
             <div className={`rounded-[8px] overflow-hidden relative`} style={{ height: `${height - 66 - 55}px` }}>
                 <CodeMirror value={value} height={`${height - 66 - 102}px`} extensions={[StreamLanguage.define(cpp)]} onChange={(v) => setCode(v)} theme={githubLight} />

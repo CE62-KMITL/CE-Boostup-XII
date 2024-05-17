@@ -9,6 +9,8 @@ import LearnPage from './pages/LearnPage'
 import HomePage from './pages/HomePage'
 import ProfilePage from './pages/ProfilePage'
 import ResetPasswordPage from './pages/ResetPasswordPage'
+import { RouteController } from './controllers/route.controller'
+import { Role } from './enum/roles.enum'
 
 export default function App() {
   return (
@@ -18,11 +20,13 @@ export default function App() {
           <Route path="/" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/reset-password" element={<ResetPasswordPage />} />
-          <Route path="/solve" element={<SolveProblemPage />} />
-          <Route element={<InitLayout />}>
-            <Route path="/home" element={<HomePage />} />
-            <Route path="/learn" element={<LearnPage />} />
-            <Route path="/profile" element={<ProfilePage />} />
+          <Route element={<RouteController allowedRoles={[Role.User, Role.SuperAdmin]} />}>
+            <Route path="/solve" element={<SolveProblemPage />} />
+            <Route element={<InitLayout />}>
+              <Route path="/home" element={<HomePage />} />
+              <Route path="/learn" element={<LearnPage />} />
+              <Route path="/profile" element={<ProfilePage />} />
+            </Route>
           </Route>
         </Route>
       </Routes>
