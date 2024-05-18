@@ -7,6 +7,7 @@ import { store } from "../../store/store";
 import { problemTagsService } from "../../services/problemTags.service";
 import { setProblemTagState } from "../../store/slices/problemTags.slice";
 import { useDispatch } from "react-redux";
+import { PaginationRequestDto } from "../../dto/utils.dto";
 
 const isComplete = [
     ["", "สถานะ"],
@@ -15,11 +16,13 @@ const isComplete = [
     ["empty", CompletionStatus.Unattempted]
 ]
 
-function SearchBar() {
+type SearchBarProps = {
+    fetchFunc: (paginationRequest: PaginationRequestDto) => Promise<void>;
+}
+
+function SearchBar({ fetchFunc }: SearchBarProps) {
     const dispatch = useDispatch();
     const problemTags = store.getState().problemTags.problemTags;
-    const [statusRotation, setStatusRotation] = useState(false);
-    const [lessonRotation, setLessonRotation] = useState(false);
 
     const lessonList = [["", "บทเรียน"]];
 
@@ -41,10 +44,19 @@ function SearchBar() {
             fetchProblemTags();
     }, [problemTags]);
 
-    const [level, setLevel] = useState(0);
-    const selectLevel = (selectedLevel: number) => {
-        setLevel(selectedLevel);
-    };
+    const [level, setLevel] = useState<number>(0);
+    const [lesson, setLesson] = useState<string>("");
+    const [search, setSearch] = useState<string>("");
+    const [completionStatus, setCompletionStatus] = useState<string>("");
+
+    useEffect(() => {
+        fetchFunc({ page: 1, perPage: 10, sort: "number", search: "", tags: [], difficulties: [level] });
+    }, [level]);
+
+    async function handleSearch() {
+        await fetchFunc({ page: 1, perPage: 10, sort: "number", search: search });
+    }
+
     const recheckLevel = (selectedLevel: number) => {
         if (selectedLevel === level) {
             setLevel(0);
@@ -76,11 +88,11 @@ function SearchBar() {
         <div className="flex space-x-4 w-full h-[40px] mb-[1.6rem]">
             <div className="relative w-[calc(100%-630px)] h-full flex" >
                 <input type="text" className="search-box h-full w-full rounded-lg px-[16px] text-stone04 focus:outline-none"
-                    placeholder="พิมพ์ชื่อโจทย์ หรือเลขข้อ" />
-                <Button type={1} mode={4} validate={true} text="ตกลง" img="" ClickFunc={() => window.location.href = "https://google.com/"} />
+                    placeholder="พิมพ์ชื่อโจทย์ หรือเลขข้อ" onChange={(e) => setSearch(e.target.value)} />
+                <Button type={1} mode={4} validate={true} text="ตกลง" img="" ClickFunc={handleSearch} />
             </div>
-            <Dropdown type={1} values={isComplete}></Dropdown>
-            <Dropdown type={2} values={lessonList}></Dropdown>
+            <Dropdown type={1} values={isComplete} onChange={(v) => setCompletionStatus(v)}></Dropdown>
+            <Dropdown type={2} values={lessonList} onChange={(v) => setLesson(v)}></Dropdown>
             <div className="flex items-center w-[224px] h-full rounded-[8px] px-[16px] bg-stone01">
                 <div className="flex items-center place-content-between w-full">
                     <p>ความยาก</p>

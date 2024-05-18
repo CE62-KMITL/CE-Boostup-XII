@@ -1,5 +1,4 @@
-import { Cookies } from "react-cookie";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useSearchParams } from "react-router-dom";
 import DarkBackground from "../utils/DarkBackground"
 import Input from "../utils/Input";
 import { authService } from "../../services/auth.service";
@@ -9,13 +8,16 @@ import { getFieldProps } from "../../utils/getFieldProps";
 
 function ResetPasswordPopUp() {
     const navigate = useNavigate();
-    const cookies = new Cookies();
+    const [searchParams] = useSearchParams();
 
     async function handleResetPassword() {
         try {
+            const token = searchParams.get('token');
+            if (!token)
+                return navigate("/");
             const response = await authService.resetPassword({
                 password: formik.values.password,
-                token: cookies.get("token")
+                token
             })
             console.log(response.message)
             navigate("/");

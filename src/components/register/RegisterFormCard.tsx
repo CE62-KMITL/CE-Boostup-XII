@@ -5,25 +5,24 @@ import { useFormik } from "formik";
 import { RegisterValues, emptyRegisterValues, RegisterValidationSchema } from "../../formik/register.formik";
 import { getFieldProps } from "../../utils/getFieldProps";
 import { authService } from "../../services/auth.service";
-import { Cookies } from "react-cookie";
-import { useDispatch } from "react-redux";
-import { setAuthAccessToken } from "../../store/slices/auth.slice";
 import { useNavigate } from "react-router-dom";
+import { useSearchParams } from 'react-router-dom';
 
 function RegisterFormCard() {
-  const cookies = new Cookies();
-  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
 
   async function handleRegister() {
     try {
+      const token = searchParams.get('token');
+      if (!token) 
+        return navigate("/");
       const response = await authService.register({
-        username: formik.values.username,
+        token,
         password: formik.values.password,
       });
-      dispatch(setAuthAccessToken(response.token));
-      cookies.set("token", response.token, { path: "/" });
-      navigate("/home");
+      console.log(response.massage)
+      navigate("/");
     } catch (error) {
       console.error(error);
     }

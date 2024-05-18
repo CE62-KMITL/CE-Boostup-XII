@@ -4,9 +4,10 @@ import { ProblemTagModelResponse } from "../../types/response.type";
 type DropdownProps = {
   type: number;
   values: string[][];
+  onChange: (value: string) => void;
 };
 
-function Dropdown({ values, type }: DropdownProps) {
+function Dropdown({ values, type, onChange }: DropdownProps) {
   const [statusRotation, setStatusRotation] = useState(false);
   const handleStatusSelectClick = () => {
     setStatusRotation(!statusRotation);
@@ -40,6 +41,7 @@ function Dropdown({ values, type }: DropdownProps) {
             id="lesson"
             onClick={handleStatusSelectClick}
             onBlur={onBLurStatusSelect}
+            onChange={(e) => onChange(e.target.value)}
           >
             {values.map(([value, text]) => (
               <option key={value} value={value}>{text}</option>
