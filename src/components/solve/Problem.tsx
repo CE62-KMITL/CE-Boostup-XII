@@ -2,20 +2,43 @@ import Button from "../utils/Button";
 import Explain from "./ProblemComponents/Explain";
 import Playground from "./ProblemComponents/Playground";
 import { useState, ReactElement } from "react";
+import { useEffect } from "react";
+import { problemService } from "../../services/problem.service";
+import { ProblemModelResponse } from "../../types/response.type";
+import { useNavigate } from "react-router-dom";
+import TitleCard from "./ProblemComponents/TitleCard";
 
 type ProblemProps = {
     height: number;
+    problemId: string | undefined;
 }
 
-const components: ReactElement[] = [
-    <Explain />,
-    <Playground />
-];
-
-function Problem({ height }: ProblemProps) {
+function Problem({ height, problemId }: ProblemProps) {
     const clickedStyle = "bg-white w-1/2 h-[60px] rounded-t-[10px] self-end font-bold";
     const unclickedStyle = "bg-primary04 w-1/2 h-[60px] rounded-t-[10px] self-end text-white font-bold";
+    const navigate = useNavigate();
     const [select, setSelect] = useState<number>(0);
+    const [problem, setProblem] = useState<ProblemModelResponse | null>(null);
+
+    async function fetchProblem() {
+        try {
+            if (!problemId)
+                return navigate("/home");
+            const response = await problemService.getProblem(problemId);
+            setProblem(response);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    useEffect(() => {
+        fetchProblem();
+    }, []);
+
+    const components: ReactElement[] = [
+        <Explain problem={problem} />,
+        <Playground problem={problem} />
+    ];
 
     return (
         <div className="h-full w-[570px] ml-6">
@@ -26,6 +49,7 @@ function Problem({ height }: ProblemProps) {
             <div className="w-full -translate-y-1" style={{ height: `${height - 66 - 55}px` }}>
                 <div className="overflow-auto rounded-b-[8px] space-y-3 h-full bg-white flex justify-center">
                     <div className="w-[500px] space-y-[18px] p-3">
+                        <TitleCard title={problem?.title as string} difficulty={problem?.difficulty as number} userSolvedCount={problem?.userSolvedCount as number} />
                         {components[select]}
                     </div>
                 </div>

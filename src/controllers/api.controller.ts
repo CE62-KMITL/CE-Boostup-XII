@@ -23,7 +23,11 @@ export async function apiController<T>(
     const response = await axiosInstance.request({ url, method, data, params });
     return response.data;
   } catch (error) {
-    const message: ErrorModelResponse = (error as any).response?.data;
-    return Promise.reject(message);
+    const err: ErrorModelResponse = {
+      message: (error as any).response?.data.message,
+      statusCode: (error as any).response?.status,
+      error: (error as any).response?.data.error
+    }
+    return Promise.reject(err);
   }
 }

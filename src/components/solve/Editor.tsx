@@ -5,15 +5,15 @@ import { c, cpp } from "@codemirror/legacy-modes/mode/clike";
 import { useEffect, useState } from "react";
 import { StreamLanguage } from '@codemirror/language';
 import { githubLight } from "@uiw/codemirror-theme-github";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { savesService } from "../../services/saves.service";
 
 type EditorProps = {
     height: number;
+    problemId: string | undefined;
 }
 
-function Editor({ height }: EditorProps) {
-    const { problemId } = useParams();
+function Editor({ height, problemId }: EditorProps) {
     const navigate = useNavigate();
 
     async function handleSave() {
@@ -34,7 +34,8 @@ function Editor({ height }: EditorProps) {
             setCode(code);
         } catch (error) {
             console.error(error);
-            await createSave();
+            if ((error as any).statusCode === 404)
+                await createSave();
         }
     }
 

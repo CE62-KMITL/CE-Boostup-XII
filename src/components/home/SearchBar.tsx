@@ -58,12 +58,10 @@ function SearchBar({ fetchFunc }: SearchBarProps) {
     }
 
     const recheckLevel = (selectedLevel: number) => {
-        if (selectedLevel === level) {
+        if (selectedLevel === level) 
             setLevel(0);
-        }
-        else {
+        else 
             setLevel(selectedLevel);
-        }
     };
 
     const renderStars = () => {
