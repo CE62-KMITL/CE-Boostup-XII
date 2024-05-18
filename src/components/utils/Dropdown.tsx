@@ -43,8 +43,8 @@ function Dropdown({ values, type, onChange }: DropdownProps) {
             onBlur={onBLurStatusSelect}
             onChange={(e) => onChange(e.target.value)}
           >
-            {values.map(([value, text]) => (
-              <option key={value} value={value}>{text}</option>
+            {values.map(([id, text]) => (
+              <option key={id} value={id}>{text}</option>
             ))}
           </select>
         </div>
@@ -74,6 +74,7 @@ function Dropdown({ values, type, onChange }: DropdownProps) {
           id="lesson"
           onClick={handleStatusSelectClick}
           onBlur={onBLurStatusSelect}
+          onChange={(e) => onChange(e.target.value)}
         >
           {values.map(([value, text]) => (
             <option key={value} value={value}>{text}</option>

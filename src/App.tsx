@@ -21,7 +21,7 @@ export default function App() {
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/reset-password" element={<ResetPasswordPage />} />
           <Route element={<RouteController allowedRoles={[Role.User, Role.SuperAdmin]} />}>
-            <Route path="/solve" element={<SolveProblemPage />} />
+            <Route path="/solve/:problemId" element={<SolveProblemPage />} />
             <Route element={<InitLayout />}>
               <Route path="/home" element={<HomePage />} />
               <Route path="/learn" element={<LearnPage />} />

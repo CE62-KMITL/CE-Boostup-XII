@@ -24,7 +24,7 @@ function SearchBar({ fetchFunc }: SearchBarProps) {
     const dispatch = useDispatch();
     const problemTags = store.getState().problemTags.problemTags;
 
-    const lessonList = [["", "บทเรียน"]];
+    const tagList = [["", "บทเรียน"]];
 
     async function fetchProblemTags() {
         try {
@@ -38,20 +38,20 @@ function SearchBar({ fetchFunc }: SearchBarProps) {
     useEffect(() => {
         if (problemTags) {
             problemTags.map((problemTag: ProblemTagModelResponse) => {
-                lessonList.push([problemTag.name, problemTag.name]);
+                tagList.push([problemTag.id, problemTag.name]);
             });
         } else
             fetchProblemTags();
     }, [problemTags]);
 
     const [level, setLevel] = useState<number>(0);
-    const [lesson, setLesson] = useState<string>("");
+    const [tag, setTag] = useState<string>("");
     const [search, setSearch] = useState<string>("");
     const [completionStatus, setCompletionStatus] = useState<string>("");
 
     useEffect(() => {
-        fetchFunc({ page: 1, perPage: 10, sort: "number", search: "", tags: [], difficulties: [level] });
-    }, [level]);
+        fetchFunc({ page: 1, perPage: 10, sort: "number", tags: [tag], difficulties: [level] });
+    }, [level, tag, completionStatus]);
 
     async function handleSearch() {
         await fetchFunc({ page: 1, perPage: 10, sort: "number", search: search });
@@ -65,6 +65,7 @@ function SearchBar({ fetchFunc }: SearchBarProps) {
             setLevel(selectedLevel);
         }
     };
+
     const renderStars = () => {
         const stars = [];
         for (let i = 0; i < level; i++) {
@@ -92,7 +93,7 @@ function SearchBar({ fetchFunc }: SearchBarProps) {
                 <Button type={1} mode={4} validate={true} text="ตกลง" img="" ClickFunc={handleSearch} />
             </div>
             <Dropdown type={1} values={isComplete} onChange={(v) => setCompletionStatus(v)}></Dropdown>
-            <Dropdown type={2} values={lessonList} onChange={(v) => setLesson(v)}></Dropdown>
+            <Dropdown type={2} values={tagList} onChange={(v) => setTag(v)}></Dropdown>
             <div className="flex items-center w-[224px] h-full rounded-[8px] px-[16px] bg-stone01">
                 <div className="flex items-center place-content-between w-full">
                     <p>ความยาก</p>

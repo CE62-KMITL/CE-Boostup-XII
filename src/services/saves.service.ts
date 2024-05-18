@@ -10,8 +10,8 @@ export const savesService = {
     async getSave(id: string): Promise<SavesModelResponse> {
         return await apiController(`/saves/${id}`, "get");
     },
-    async createSave(id: string, createSaveRequest: CreateSaveDto): Promise<SavesModelResponse> {
-        return await apiController(`/saves/${id}`, "post", createSaveRequest);
+    async createSave(createSaveRequest: CreateSaveDto): Promise<SavesModelResponse> {
+        return await apiController(`/saves`, "post", createSaveRequest);
     },
     async updateSave(id: string, updateSaveRequest: UpdateSaveDto): Promise<SavesModelResponse> {
         return await apiController(`/saves/${id}`, "patch", updateSaveRequest);
