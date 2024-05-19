@@ -8,6 +8,7 @@ import { problemTagsService } from "../../services/problemTags.service";
 import { setProblemTagState } from "../../store/slices/problemTags.slice";
 import { useDispatch } from "react-redux";
 import { PaginationRequestDto } from "../../dto/utils.dto";
+import { useNavigate } from "react-router-dom";
 
 const isComplete = [
     ["", "สถานะ"],
@@ -23,6 +24,8 @@ type SearchBarProps = {
 function SearchBar({ fetchFunc }: SearchBarProps) {
     const dispatch = useDispatch();
     const problemTags = store.getState().problemTags.problemTags;
+    const problems = store.getState().problem.problem;
+    const navigate = useNavigate();
 
     const tagList = [["", "บทเรียน"]];
 
@@ -83,6 +86,10 @@ function SearchBar({ fetchFunc }: SearchBarProps) {
         return stars;
     };
 
+    function handleRandom() {
+        navigate(`/solve/${problems?.[Math.floor(Math.random() * problems.length)].id}`);
+    }
+
     return (
         <div className="flex space-x-4 w-full h-[40px] mb-[1.6rem]">
             <div className="relative w-[calc(100%-630px)] h-full flex" >
@@ -100,7 +107,7 @@ function SearchBar({ fetchFunc }: SearchBarProps) {
                     </div>
                 </div>
             </div>
-            <Button type={1} mode={0} validate={true} text="สุ่มโจทย์" img="" ClickFunc={() => window.location.href = "https://google.com/"} />
+            <Button type={1} mode={0} validate={true} text="สุ่มโจทย์" img="" ClickFunc={handleRandom} />
         </div>
     );
 }
