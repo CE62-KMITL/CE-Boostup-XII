@@ -15,12 +15,15 @@ type EditorProps = {
 
 function Editor({ height, problemId }: EditorProps) {
     const navigate = useNavigate();
+    const [isSaving, setIsSaving] = useState<boolean>(false);
 
     async function handleSave() {
         try {
+            setIsSaving(true);
             if (!problemId)
                 return navigate("/home");
             await savesService.updateSave(problemId, { code });
+            setIsSaving(false);
         } catch (error) {
             console.error(error);
         }
@@ -28,10 +31,12 @@ function Editor({ height, problemId }: EditorProps) {
 
     async function getSave() {
         try {
+            setIsSaving(true);
             if (!problemId)
                 return navigate("/home");
             const { code } = await savesService.getSave(problemId);
             setCode(code);
+            setIsSaving(false);
         } catch (error) {
             console.error(error);
             if ((error as any).statusCode === 404)
@@ -41,9 +46,11 @@ function Editor({ height, problemId }: EditorProps) {
 
     async function createSave() {
         try {
+            setIsSaving(true);
             if (!problemId)
                 return navigate("/home");
             await savesService.createSave({ code, problemId });
+            setIsSaving(false);
         } catch (error) {
             console.error(error);
         }
@@ -65,7 +72,7 @@ function Editor({ height, problemId }: EditorProps) {
             <OptionBar setLang={(v) => setLang(v)} />
             <div className={`rounded-[8px] overflow-hidden relative`} style={{ height: `${height - 66 - 55}px` }}>
                 <CodeMirror value={code} height={`${height - 66 - 102}px`} extensions={[StreamLanguage.define(lang === "c++" ? cpp : c)]} onChange={(v) => setCode(v)} theme={githubLight} />
-                <EditorFooter />
+                <EditorFooter isSaving={isSaving} handleSave={handleSave} />
             </div>
         </div>
     );

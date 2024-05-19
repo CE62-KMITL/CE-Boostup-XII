@@ -24,6 +24,7 @@ function ForgotPasswordPopUp({ setShowForgotPassword, setIsRecognizedPopUp }: Fo
             setShowForgotPassword(false);
         } catch (error) {
             console.error(error);
+            alert((error as any).message);
         }
     }
 

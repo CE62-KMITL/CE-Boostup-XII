@@ -13,9 +13,10 @@ import { useNavigate } from "react-router-dom";
 
 type LoginFormProps = {
     setShowForgotPassword: React.Dispatch<React.SetStateAction<boolean>>
+    setShowCreateAccount: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-function LoginForm({ setShowForgotPassword }: LoginFormProps) {
+function LoginForm({ setShowForgotPassword, setShowCreateAccount }: LoginFormProps) {
     const [savePassword, setSavePassword] = useState<boolean>(false);
     const cookies = new Cookies();
     const dispatch = useDispatch();
@@ -33,6 +34,7 @@ function LoginForm({ setShowForgotPassword }: LoginFormProps) {
             navigate("/home");
         } catch (error) {
             console.error(error);
+            alert((error as any).message);
         }
     }
 
@@ -79,7 +81,7 @@ function LoginForm({ setShowForgotPassword }: LoginFormProps) {
                 </div>
                 <div className="flex flex-col items-center place-content-between w-[40%] h-[22.5%] min-h-[80px] max-h-[90px]">
                     <Button type="submit" className='bg-accent text-stone01 hover:bg-accent2 transition ease-in-out duration-200 shadow-md cursor-pointer w-36 h-10 rounded-lg flex items-center justify-center' text="เข้าสู่ระบบ" />
-                    <Link to="/register" className="text-stone04">ยังไม่มีแอคเคาท์?</Link>
+                    <Button type="button" ClickFunc={() => setShowCreateAccount(true)} className="text-stone04" text="ยังไม่มีแอคเคาท์?" />
                 </div>
             </form>
         </div>

@@ -17,3 +17,8 @@ export type RequestPasswordResetDto = {
     email: string
     siteUrl: string
 }
+
+export type RequestAccountCreationDto = {
+    email: string
+    siteUrl: string
+}

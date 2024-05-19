@@ -1,5 +1,5 @@
 import { apiController } from "../controllers/api.controller";
-import { LoginDto, RegisterDto, ResetPasswordDto, RequestPasswordResetDto } from "../dto/auth.dto";
+import { LoginDto, RegisterDto, ResetPasswordDto, RequestPasswordResetDto, RequestAccountCreationDto } from "../dto/auth.dto";
 import { AuthModelResponse, ResetPasswordResponse } from "../types/response.type";
 
 export const authService = {
@@ -14,5 +14,8 @@ export const authService = {
   },
   requestPasswordReset: async (requestPasswordResetRequest: RequestPasswordResetDto): Promise<ResetPasswordResponse> => {
     return await apiController("/auth/request-password-reset", "post", requestPasswordResetRequest);
+  },
+  requestAccountCreation: async (requestAccountCreationRequest: RequestAccountCreationDto): Promise<ResetPasswordResponse> => {
+    return await apiController("/auth/request-account-creation", "post", requestAccountCreationRequest);
   }
 };

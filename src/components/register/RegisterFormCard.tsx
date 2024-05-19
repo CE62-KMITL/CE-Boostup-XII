@@ -25,6 +25,7 @@ function RegisterFormCard() {
       navigate("/");
     } catch (error) {
       console.error(error);
+      alert((error as any).message);
     }
   }
 
