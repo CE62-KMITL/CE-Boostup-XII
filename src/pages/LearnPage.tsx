@@ -13,15 +13,17 @@ import { useDispatch } from "react-redux";
 import { store } from "../store/store";
 import { setAttachmentState } from "../store/slices/attachments.slice";
 import { useQuery } from "react-query";
+import { useState } from "react";
 
 function LearnPage() {
     const lessons = store.getState().attachment.attachments;
+    const [search, setSearch] = useState<string>("");
     const dispatch = useDispatch();
 
-    const { data, status, error } = useQuery("attachments", async () => {
-        return await attachmentsService.getAttachments({ page: 1, perPage: 10, sort: "number", search: "", owner: "" });
-    }, {
-        enabled: lessons === undefined,
+    const { data, status, error, refetch } = useQuery({
+        queryKey: ['attachments'],
+        queryFn: async () => await attachmentsService.getAttachments({ page: 1, perPage: 10, sort: "number", search }),
+        enabled: lessons === null,
         onError: (error) => {
             console.error(error);
         },
@@ -31,24 +33,9 @@ function LearnPage() {
     });
 
     useEffect(() => {
+        console.log(lessons);
         console.log(status);
     }, [status]);
-
-    // async function fetchAttachments() {
-    //     try {
-    //         const response = await attachmentsService.getAttachments({ page: 1, perPage: 10, sort: "number", search: "", owner: "" });
-    //         dispatch(setAttachmentState(response.data));
-    //     } catch (error) {
-    //         console.error(error);
-    //     }
-    // }
-
-    // useEffect(() => {
-    //     if (!lessons)
-    //         fetchAttachments();
-    // }, []);
-
-    // const lessons = [
     //     { title: "Array", description: "ขนาดควรเหมาะสมกับสื่อที่แสดง (Mobile Desktop etc.) โดยไม่ให้เล็กหรือใหญ่เกินไปในการดีไซน์ mobile app...", img: Thumbnail1 },
     //     { title: "Function", description: "kfpavalvalvlka[kvapjvlajmvlmamvlkmavlalvmnanvalknvlamvlanvamnvlanvlanlvnasvanvjansnvajnvjavnanvkansvkjasn", img: Thumbnail2 },
     //     { title: "Loop", description: "kfpavalvalvlka[kvapjvlajmvlmasdjsadjlsakdklsajdlksjadkljsalkdjsajdlsajdlkjdaksldjlksadlamvlkmasdsdsadasdsadasdasdsadsadsadasdsadasdsadsadsadavlalvmnanvalknvlamvlanvamnvlanvlanlvnasvanvjansnvajnvjavnanvkansvkjasn", img: DefaultThumbnail },
@@ -71,7 +58,7 @@ function LearnPage() {
             <div className="flex justify-center z-30 ">
                 <div className="absolute">
                     <TitleText />
-                    <SearchBar />
+                    <SearchBar setSearch={setSearch} refetch={refetch} />
                     <LessonGroup lessons={lessons} />
                     <SolveComponent />
                 </div>

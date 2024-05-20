@@ -6,20 +6,26 @@ import { emailValidator } from "../../utils/validator.util";
 import { getFieldProps } from "../../utils/getFieldProps";
 import Button from "../utils/Button";
 import { authService } from "../../services/auth.service";
+import { useMutation } from "react-query";
 
 type CreateAccountPopUpProps = {
     setShowCreateAccount: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 function CreateAccountPopUp({ setShowCreateAccount }: CreateAccountPopUpProps) {
-    async function handleCreateAccount() {
-        try {
-            await authService.requestAccountCreation({ email: formik.values.email, siteUrl: window.location.origin });
-        } catch (error) {
+    function handleCreateAccount() {
+        mutate({
+            email: formik.values.email, 
+            siteUrl: window.location.origin
+        });
+    }
+
+    const { status, mutate } = useMutation(authService.requestAccountCreation, {
+        onError: (error) => {
             console.error(error);
             alert((error as any).message);
-        }
-    }
+        },
+    });
 
     const formik = useFormik<{ email: string }>({
         initialValues: {

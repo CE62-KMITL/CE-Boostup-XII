@@ -5,7 +5,7 @@ import RunIcon from "../../../assets/RunIcon.svg";
 import { ProblemModelResponse } from "../../../types/response.type";
 
 type PlaygroundProps = {
-    problem: ProblemModelResponse | null;
+    problem?: ProblemModelResponse | null;
 }
 
 export default function Playground({ problem }: PlaygroundProps) {

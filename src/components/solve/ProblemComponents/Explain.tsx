@@ -3,7 +3,7 @@ import ExampleCard from "./ExampleCard";
 import { ProblemModelResponse } from "../../../types/response.type";
 
 type ExplainProps = {
-    problem: ProblemModelResponse | null;
+    problem?: ProblemModelResponse | null;
 }
 
 export default function Explain({ problem }: ExplainProps) {
