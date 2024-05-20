@@ -11,25 +11,28 @@ import ProfilePage from './pages/ProfilePage'
 import ResetPasswordPage from './pages/ResetPasswordPage'
 import { RouteController } from './controllers/route.controller'
 import { Role } from './enum/roles.enum'
+import { QueryClient, QueryClientProvider } from 'react-query'
 
 export default function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route element={<StoreProvider />}>
-          <Route path="/" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/reset-password" element={<ResetPasswordPage />} />
-          <Route element={<RouteController allowedRoles={[Role.User, Role.SuperAdmin]} />}>
-            <Route path="/solve/:problemId" element={<SolveProblemPage />} />
-            <Route element={<InitLayout />}>
-              <Route path="/home" element={<HomePage />} />
-              <Route path="/learn" element={<LearnPage />} />
-              <Route path="/profile" element={<ProfilePage />} />
+      <QueryClientProvider client={new QueryClient()}>
+        <Routes>
+          <Route element={<StoreProvider />}>
+            <Route path="/" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/reset-password" element={<ResetPasswordPage />} />
+            <Route element={<RouteController allowedRoles={[Role.User, Role.SuperAdmin]} />}>
+              <Route path="/solve/:problemId" element={<SolveProblemPage />} />
+              <Route element={<InitLayout />}>
+                <Route path="/home" element={<HomePage />} />
+                <Route path="/learn" element={<LearnPage />} />
+                <Route path="/profile" element={<ProfilePage />} />
+              </Route>
             </Route>
           </Route>
-        </Route>
-      </Routes>
-    </BrowserRouter>
+        </Routes>
+      </QueryClientProvider>
+    </BrowserRouter >
   );
 }

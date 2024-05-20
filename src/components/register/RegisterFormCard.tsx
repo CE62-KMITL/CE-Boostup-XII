@@ -7,26 +7,30 @@ import { getFieldProps } from "../../utils/getFieldProps";
 import { authService } from "../../services/auth.service";
 import { useNavigate } from "react-router-dom";
 import { useSearchParams } from 'react-router-dom';
+import { useMutation } from "react-query";
 
 function RegisterFormCard() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
 
-  async function handleRegister() {
-    try {
-      const token = searchParams.get('token');
-      if (!token) 
-        return navigate("/");
-      const response = await authService.register({
-        token,
-        password: formik.values.password,
-      });
-      console.log(response.massage)
+  const { status, mutate } = useMutation(authService.register, {
+    onSuccess: () => {
       navigate("/");
-    } catch (error) {
+    },
+    onError: (error) => {
       console.error(error);
       alert((error as any).message);
-    }
+    },
+  });
+
+  function handleRegister() {
+    const token = searchParams.get('token');
+    if (!token)
+      return navigate("/");
+    mutate({
+      password: formik.values.password,
+      token
+    });
   }
 
   const formik = useFormik<RegisterValues>({
@@ -60,7 +64,7 @@ function RegisterFormCard() {
             </div>
           </div>
           <ol className="list list-disc list-inside xl:p-[12px_8px] 2xl:p-[16px_8px] leading-[1.2rem]">
-            <li className={usernameInputProps.error ? "text-red-600": ""}>
+            <li className={usernameInputProps.error ? "text-red-600" : ""}>
               ควรไม่เกิน 10 ตัวอักษร
             </li>
           </ol>
@@ -72,10 +76,10 @@ function RegisterFormCard() {
             </div>
           </div>
           <ol className="list list-disc list-inside xl:p-[12px_8px] 2xl:p-[16px_8px] leading-[1.2rem]">
-            <li className={passwordInputProps.error && passwordInputProps.errorMessage == "มีทั้งหมด 8 ตัวอักษรขึ้นไป" ? "text-red-600": ""}>
+            <li className={passwordInputProps.error && passwordInputProps.errorMessage == "มีทั้งหมด 8 ตัวอักษรขึ้นไป" ? "text-red-600" : ""}>
               มีทั้งหมด 8 ตัวอักษรขึ้นไป
             </li>
-            <li className={passwordInputProps.error && passwordInputProps.errorMessage == "ประกอบด้วยตัวพิมพ์ใหญ่, ตัวพิมพ์เล็ก, ตัวเลข และอักษรพิเศษ" ? "text-red-600": ""}>
+            <li className={passwordInputProps.error && passwordInputProps.errorMessage == "ประกอบด้วยตัวพิมพ์ใหญ่, ตัวพิมพ์เล็ก, ตัวเลข และอักษรพิเศษ" ? "text-red-600" : ""}>
               ประกอบด้วยตัวพิมพ์ใหญ่, ตัวพิมพ์เล็ก, ตัวเลข และอักษรพิเศษ
             </li>
           </ol>
@@ -91,7 +95,7 @@ function RegisterFormCard() {
           </div>
           <ol className="list list-disc list-inside xl:p-[12px_8px] 2xl:p-[16px_8px] leading-[1.2rem]">
             <li
-              className={confirmPasswordInputProps.error ? "text-red-600": ""}
+              className={confirmPasswordInputProps.error ? "text-red-600" : ""}
             >
               ยืนยันรหัสผ่านไม่ถูกต้อง
             </li>

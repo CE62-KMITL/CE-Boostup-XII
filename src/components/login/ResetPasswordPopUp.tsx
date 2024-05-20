@@ -5,26 +5,30 @@ import { authService } from "../../services/auth.service";
 import { useFormik } from "formik";
 import { ResetPasswordValues, emptyResetPasswordValues, ResetPasswordValidationSchema } from "../../formik/resetPassword.formik";
 import { getFieldProps } from "../../utils/getFieldProps";
+import { useMutation } from "react-query";
 
 function ResetPasswordPopUp() {
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
 
-    async function handleResetPassword() {
-        try {
-            const token = searchParams.get('token');
-            if (!token)
-                return navigate("/");
-            const response = await authService.resetPassword({
-                password: formik.values.password,
-                token
-            })
-            console.log(response.message)
+    const { status, mutate } = useMutation(authService.resetPassword, {
+        onSuccess: () => {
             navigate("/");
-        } catch (error) {
-            console.error(error)
-            alert((error as any).message)
-        }
+        },
+        onError: (error) => {
+            console.error(error);
+            alert((error as any).message);
+        },
+    });
+
+    function handleResetPassword() {
+        const token = searchParams.get('token');
+        if (!token)
+            return navigate("/");
+        mutate({
+            password: formik.values.password,
+            token
+        });
     }
 
     const formik = useFormik<ResetPasswordValues>({

@@ -6,6 +6,7 @@ import * as yup from "yup";
 import { getFieldProps } from "../../utils/getFieldProps";
 import { authService } from "../../services/auth.service";
 import Button from "../utils/Button";
+import { useMutation } from "react-query";
 
 type ForgotPasswordPopUpProps = {
     setShowForgotPassword: React.Dispatch<React.SetStateAction<boolean>>
@@ -13,19 +14,22 @@ type ForgotPasswordPopUpProps = {
 }
 
 function ForgotPasswordPopUp({ setShowForgotPassword, setIsRecognizedPopUp }: ForgotPasswordPopUpProps) {
-    async function handleContinue() {
-        try {
-            const response = await authService.requestPasswordReset({ 
-                email: formik.values.email,
-                siteUrl: window.location.origin
-             });
-             console.log(response.message);
+    const { status, mutate } = useMutation(authService.requestPasswordReset, {
+        onSuccess: () => {
             setIsRecognizedPopUp(true);
             setShowForgotPassword(false);
-        } catch (error) {
+        },
+        onError: (error) => {
             console.error(error);
             alert((error as any).message);
-        }
+        },
+    });
+
+    function handleContinue() {
+        mutate({
+            email: formik.values.email,
+            siteUrl: window.location.origin
+        });
     }
 
     const formik = useFormik<{ email: string }>({
@@ -52,7 +56,7 @@ function ForgotPasswordPopUp({ setShowForgotPassword, setIsRecognizedPopUp }: Fo
                 </div>
                 <div className="relative w-full h-[40%] max-h-[50px]">
                     <div className="input-container w-full absolute bottom-0">
-                        <Input {...emailInputProps} showErrorLabel={true} onChange={(e) => formik.setFieldValue("email" ,e.target.value)} placeholder=" " type="email" label="อีเมล" inputClass="w-full h-[48px] px-[16px] py-[8px] border-stone03 border-[1px] rounded-[10px] text-[18px]" labelClass="absolute left-[16px] bottom-[6px] text-[24px] font-[700]" />
+                        <Input {...emailInputProps} showErrorLabel={true} onChange={(e) => formik.setFieldValue("email", e.target.value)} placeholder=" " type="email" label="อีเมล" inputClass="w-full h-[48px] px-[16px] py-[8px] border-stone03 border-[1px] rounded-[10px] text-[18px]" labelClass="absolute left-[16px] bottom-[6px] text-[24px] font-[700]" />
                     </div>
                 </div>
                 <div className="flex flex-col place-content-between w-[35%] h-[20%] min-h-[80px] max-h-[90px]">

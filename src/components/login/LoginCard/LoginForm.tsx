@@ -1,15 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../../utils/Button";
 import Input from "../../utils/Input";
 import { authService } from "../../../services/auth.service";
 import { Cookies } from "react-cookie";
-import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 import { LoginValues, emptyLoginValues, loginValidationSchema } from "../../../formik/login.formik";
 import { getFieldProps } from "../../../utils/getFieldProps";
 import { useDispatch } from "react-redux";
 import { setAuthAccessToken, setAuthUser } from "../../../store/slices/auth.slice";
 import { useNavigate } from "react-router-dom";
+import { useMutation } from "react-query";
 
 type LoginFormProps = {
     setShowForgotPassword: React.Dispatch<React.SetStateAction<boolean>>
@@ -22,20 +22,28 @@ function LoginForm({ setShowForgotPassword, setShowCreateAccount }: LoginFormPro
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    async function handleLogin() {
-        try {
-            const response = await authService.login({
-                username: formik.values.email,
-                password: formik.values.password
-            });
+    const { status, mutate } = useMutation(authService.login, {
+        onSuccess: (response) => {
             cookies.set("token", response.token, { path: "/" });
             dispatch(setAuthUser(response.user));
             dispatch(setAuthAccessToken(response.token));
             navigate("/home");
-        } catch (error) {
+        },
+        onError: (error) => {
             console.error(error);
             alert((error as any).message);
-        }
+        },
+    });
+
+    useEffect(() => {
+        console.log(status);
+    }, [status]);
+
+    function handleLogin() {
+        mutate({
+            username: formik.values.email,
+            password: formik.values.password,
+        });
     }
 
     const formik = useFormik<LoginValues>({
@@ -59,8 +67,8 @@ function LoginForm({ setShowForgotPassword, setShowCreateAccount }: LoginFormPro
                     </div>
                     <div className="relative w-full h-full max-h-[90px]">
                         <div className="input-container w-full absolute bottom-0">
-                            <Input {...emailInputProps} showErrorLabel={true} label="อีเมล" type="email" placeholder=" " required={true} inputClass="w-full h-[48px] px-[16px] py-[8px] border-stone03 border-[1px] rounded-[10px] text-[18px]" labelClass="absolute left-[16px] bottom-[6px] text-[24px] font-[700]" 
-                            onChange={(e) => formik.setFieldValue("email", e.target.value)} />
+                            <Input {...emailInputProps} showErrorLabel={true} label="อีเมล" type="email" placeholder=" " required={true} inputClass="w-full h-[48px] px-[16px] py-[8px] border-stone03 border-[1px] rounded-[10px] text-[18px]" labelClass="absolute left-[16px] bottom-[6px] text-[24px] font-[700]"
+                                onChange={(e) => formik.setFieldValue("email", e.target.value)} />
                         </div>
                     </div>
                     <div className="relative w-full h-full max-h-[90px]">

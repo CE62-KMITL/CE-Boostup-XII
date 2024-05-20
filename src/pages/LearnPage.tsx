@@ -12,24 +12,41 @@ import { attachmentsService } from "../services/attachments.service";
 import { useDispatch } from "react-redux";
 import { store } from "../store/store";
 import { setAttachmentState } from "../store/slices/attachments.slice";
+import { useQuery } from "react-query";
 
 function LearnPage() {
     const lessons = store.getState().attachment.attachments;
     const dispatch = useDispatch();
 
-    async function fetchAttachments() {
-        try {
-            const response = await attachmentsService.getAttachments({ page: 1, perPage: 10, sort: "number", search: "", owner: "" });
-            dispatch(setAttachmentState(response.data));
-        } catch (error) {
+    const { data, status, error } = useQuery("attachments", async () => {
+        return await attachmentsService.getAttachments({ page: 1, perPage: 10, sort: "number", search: "", owner: "" });
+    }, {
+        enabled: lessons === undefined,
+        onError: (error) => {
             console.error(error);
+        },
+        onSuccess: (response) => {
+            dispatch(setAttachmentState(response.data));
         }
-    }
+    });
 
     useEffect(() => {
-        if (!lessons)
-            fetchAttachments();
-    }, []);
+        console.log(status);
+    }, [status]);
+
+    // async function fetchAttachments() {
+    //     try {
+    //         const response = await attachmentsService.getAttachments({ page: 1, perPage: 10, sort: "number", search: "", owner: "" });
+    //         dispatch(setAttachmentState(response.data));
+    //     } catch (error) {
+    //         console.error(error);
+    //     }
+    // }
+
+    // useEffect(() => {
+    //     if (!lessons)
+    //         fetchAttachments();
+    // }, []);
 
     // const lessons = [
     //     { title: "Array", description: "ขนาดควรเหมาะสมกับสื่อที่แสดง (Mobile Desktop etc.) โดยไม่ให้เล็กหรือใหญ่เกินไปในการดีไซน์ mobile app...", img: Thumbnail1 },
@@ -49,13 +66,13 @@ function LearnPage() {
         <div>
             <div>
                 <NavBar />
-                <Background/>
+                <Background />
             </div>
             <div className="flex justify-center z-30 ">
                 <div className="absolute">
                     <TitleText />
                     <SearchBar />
-                    {/* <LessonGroup lessons={lessons} /> */}
+                    <LessonGroup lessons={lessons} />
                     <SolveComponent />
                 </div>
             </div>

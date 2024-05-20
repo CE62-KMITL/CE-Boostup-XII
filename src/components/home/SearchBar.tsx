@@ -18,10 +18,10 @@ const isComplete = [
 ]
 
 type SearchBarProps = {
-    fetchFunc: (paginationRequest: PaginationRequestDto) => Promise<void>;
+    setParams: React.Dispatch<React.SetStateAction<PaginationRequestDto>>
 }
 
-function SearchBar({ fetchFunc }: SearchBarProps) {
+function SearchBar({ setParams }: SearchBarProps) {
     const dispatch = useDispatch();
     const problemTags = store.getState().problemTags.problemTags;
     const problems = store.getState().problem.problem;
@@ -53,11 +53,22 @@ function SearchBar({ fetchFunc }: SearchBarProps) {
     const [completionStatus, setCompletionStatus] = useState<string>("");
 
     useEffect(() => {
-        fetchFunc({ page: 1, perPage: 10, sort: "number", tags: [tag], difficulties: [level] });
-    }, [level, tag, completionStatus]);
+        setParams((prev) => {
+            return {
+                ...prev,
+                difficulties: level === 0 ? [1, 2, 3, 4, 5] : [level],
+                tags: tag === "" ? [] : [tag],
+            };
+        });
+    }, [level, tag]);
 
-    async function handleSearch() {
-        await fetchFunc({ page: 1, perPage: 10, sort: "number", search: search });
+    function handelSearch() {
+        setParams((prev) => {
+            return {
+                ...prev,
+                search: search
+            };
+        });
     }
 
     const recheckLevel = (selectedLevel: number) => {
@@ -95,7 +106,7 @@ function SearchBar({ fetchFunc }: SearchBarProps) {
             <div className="relative w-[calc(100%-630px)] h-full flex" >
                 <input type="text" className="search-box h-full w-full rounded-lg px-[16px] text-stone04 focus:outline-none"
                     placeholder="พิมพ์ชื่อโจทย์ หรือเลขข้อ" onChange={(e) => setSearch(e.target.value)} />
-                <Button type={1} mode={4} validate={true} text="ตกลง" img="" ClickFunc={handleSearch} />
+                <Button type={1} mode={4} validate={true} text="ตกลง" img="" ClickFunc={handelSearch} />
             </div>
             <Dropdown type={1} values={isComplete} onChange={(v) => setCompletionStatus(v)}></Dropdown>
             <Dropdown type={2} values={tagList} onChange={(v) => setTag(v)}></Dropdown>
