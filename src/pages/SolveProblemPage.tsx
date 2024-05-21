@@ -1,13 +1,19 @@
-import React from 'react';
-
-import Button from "../components/utils/Button";
-import BackIcon from "../assets/back.svg";
-import SubmitIcon from "../assets/submit.svg";
+import Background from "../components/utils/Background";
+import OptionBar from "../components/solve/OptionBar";
+const Language = [
+  ["c", "C"],
+  ["cpp", "C++"],
+  ["py", "Python"],
+];
 
 function SolveProblemPage() {
   return (
     <div>
-        
+      <Background/>
+        <div className="flex w-screen h-screen justify-center items-center">
+
+        <OptionBar items={Language} />
+        </div>
     </div>
   );
 }

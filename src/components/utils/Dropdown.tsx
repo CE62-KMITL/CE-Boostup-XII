@@ -1,5 +1,10 @@
 import { useState } from "react";
 
+// type ButtonProps = {
+//     type: number;
+//     data: Array<string>;
+// };
+
 function Dropdown({ type, data }) {
     const [statusRotation, setStatusRotation] = useState(false);
         const handleStatusSelectClick = () => {
