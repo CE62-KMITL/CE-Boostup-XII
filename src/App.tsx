@@ -8,6 +8,8 @@ import LearnPage from './pages/LearnPage'
 import HomePage from './pages/HomePage'
 import ProfilePage from './pages/ProfilePage'
 
+import ResetPasswordPopUp from './components/login/ResetPasswordPopUp'
+
 function App() {
   return (
     <BrowserRouter>
@@ -20,6 +22,9 @@ function App() {
           <Route path="/solve" element={<SolveProblemPage />} />
           <Route path="/profile" element={<ProfilePage />} />
         </Route>
+
+        <Route path="/reset-password" element={<ResetPasswordPopUp />} />
+        
       </Routes>
     </BrowserRouter>
   )

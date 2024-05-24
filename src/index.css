@@ -117,10 +117,15 @@
       font-weight: 700;
       bottom: 56px;
     }
-    100% {
-      font-size: 20px;
+    85% {
+      font-size: 22px;
       font-weight: 700;
       bottom: 4px;
+    }
+    100% {
+      font-size: 24px;
+      font-weight: 700;
+      bottom: 6px;
     }
   }
   
