@@ -1,4 +1,6 @@
 function NavBar() {
+    const linkStyle = "transition-transform hover:translate-y-[4px] duration-200 text-stone01";
+
     return (
         <div className="flex justify-center items-center fixed top-0 right-0 z-30
         w-full xl:h-[50px] 2xl:h-[60px] bg-primary04"> 
@@ -12,12 +14,12 @@ function NavBar() {
                     </h2>
                 </div>
                 <div className="flex items-center place-content-between xl:w-[600px] 2xl:w-[660px]">
-                    <a className="navbar-button text-stone01" href="">Home</a>
-                    <a className="navbar-button text-stone01" href="">Archive</a>
-                    <a className="navbar-button text-stone01" href="">Learn</a>
-                    <a className="navbar-button text-stone01" href="">Leaderboard</a>
-                    <a className="navbar-button text-stone01" href="">Compiler</a>
-                    <a className="navbar-button text-stone01" href="">Profile</a>
+                    <a className={linkStyle} href="/home">Home</a>
+                    <a className={linkStyle} href="/archive">Archive</a>
+                    <a className={linkStyle} href="/learn">Learn</a>
+                    <a className={linkStyle} href="/leaderboard">Leaderboard</a>
+                    <a className={linkStyle} href="/compiler">Compiler</a>
+                    <a className={linkStyle} href="/profile">Profile</a>
                 </div>
             </div>
         </div>

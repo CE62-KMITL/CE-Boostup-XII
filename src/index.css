@@ -16,11 +16,6 @@
     background: linear-gradient(180deg, #0b384b 29%, #10516c 62%, #097275 100%);
   }
 
-  .navbar-button:hover {
-    transform: translateY(4px);
-    transition: ease-in 0.2s;
-  }
-
   .holding-space {
     display: flex;
     position: absolute;
@@ -80,24 +75,6 @@
     transition: bottom 0.2s, font-size 0.2s;
   }
 
-  .input-container input:focus + label,
-  .warning-input-container input:focus + label,
-  .error-input-container input:focus + label {
-    animation-name: label-animation;
-    animation-duration: 0.5s;
-    animation-timing-function: ease-in-out;
-    animation-fill-mode: forwards;
-  }
-
-  .warning-input-container input:not(:focus) + label,
-  .input-container input:not(:focus) + label,
-  .error-input-container input:not(:focus) + label {
-    animation-name: reverse-label-animation;
-    animation-duration: 0.5s;
-    animation-timing-function: ease-in-out;
-    animation-fill-mode: forwards;
-  }
-
   @keyframes label-animation {
     25% {
       font-size: 20px;
@@ -129,12 +106,6 @@
       left: 0px;
       bottom: 56px;
     }
-    25% {
-      font-size: 18px;
-      font-weight: 700;
-      left: 0px;
-      bottom: 56px;
-    }
     50% {
       font-size: 18px;
       font-weight: 700;
@@ -152,23 +123,7 @@
       bottom: 4px;
     }
   }
-
-  /* .red-border-eye-icon{
-    @apply fill-[#FF0000] hover:fill-red-400
-  }
-
-  .red-dot-eye-icon{
-    @apply fill-[#FF0000] hover:fill-red-400
-  } */
-
-  /* .gray-border-eye-icon{
-    @apply fill-[#495057] hover:fill-black
-  }
-
-  .gray-dot-eye-icon{
-    @apply fill-[#495057] hover:fill-black
-  } */
-
+  
   .hide-scrollbar::-webkit-scrollbar {
     display: none;
   }

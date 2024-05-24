@@ -1,5 +1,6 @@
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import Button from "../utils/Button";
+import Input from "../utils/Input";
 
 function RegisterFormCard() {
   const [usernameAlert01, setUsernameAlert01] = useState(false);
@@ -7,15 +8,13 @@ function RegisterFormCard() {
   const [initPasswordAlert02, setInitPasswordAlert02] = useState(false);
   const [confirmPasswordAlert, setConfirmPasswordAlert] = useState(false);
   const [checkedSumbitButton, setCheckedSubmitButton] = useState(false);
-  const usernameInput = useRef<HTMLInputElement>(null);
-  const passwordInput = useRef<HTMLInputElement>(null);
-  const confirmPasswordInput = useRef<HTMLInputElement>(null);
+  const [usernameInput, setUsernameInput] = useState<string>("");
+  const [passwordInput, setPasswordInput] = useState<string>("");
+  const [confirmPasswordInput, setConfirmPasswordInput] = useState<string>("");
 
-  useEffect(() => {
-    handleConfirmPasswordFunctionGroup()
-    handleUsernameFunctionGroup()
-    handleInitPasswordFunctionGroup()
-  }, []);
+  function handleSubmit() {
+    console.log("submit");
+  }
 
   const handleUsernameFunctionGroup = () => {
     handleUsernameAlert01();
@@ -34,7 +33,7 @@ function RegisterFormCard() {
   }
 
   const handleUsernameAlert01 = () => {
-    const username = usernameInput.current?.value as string;
+    const username = usernameInput
     if (username.length > 10 && username.length != 0) {
       setUsernameAlert01(true);
     } else {
@@ -43,8 +42,7 @@ function RegisterFormCard() {
   };
 
   const handleInitPasswordAlert01 = () => {
-    const password = passwordInput.current?.value as string;
-    console.log("password : ", password);
+    const password = passwordInput
     if (password.length < 8 && password.length != 0) {
       setInitPasswordAlert01(true);
     } else {
@@ -53,7 +51,7 @@ function RegisterFormCard() {
   };
 
   const handleInitPasswordAlert02 = () => {
-    const password = passwordInput.current?.value as string;
+    const password = passwordInput
 
     const uppercaseRegex = /[A-Z]/;
     const lowercaseRegex = /[a-z]/;
@@ -76,8 +74,8 @@ function RegisterFormCard() {
   };
 
   const handleConfirmPasswordAlert = () => {
-    const password = passwordInput.current?.value as string;
-    const confirmPassword = confirmPasswordInput.current?.value as string;
+    const password = passwordInput
+    const confirmPassword = confirmPasswordInput
     if (
       confirmPassword != password ||
       initPasswordAlert01 == true ||
@@ -90,9 +88,9 @@ function RegisterFormCard() {
   };
 
   const handleCheckedSubmitButton = () => {
-    const username = usernameInput.current?.value as string;
-    const password = passwordInput.current?.value as string;
-    const confirmPassword = confirmPasswordInput.current?.value as string;
+    const username = usernameInput
+    const password = passwordInput
+    const confirmPassword = confirmPasswordInput
 
     if (
       username.length > 0 &&
@@ -206,25 +204,14 @@ function RegisterFormCard() {
         </div>
         <div className="flex flex-col xl:w-[372px] 2xl:w-[480px] xl:h-[400px] 2xl:h-[500px]">
           <div className="relative w-full h-[40%] xl:max-h-[80px] 2xl:max-h-[90px]">
-            <div className={`${usernameAlert01
-              ? "error-input-container" :
-              "input-container"} 
-            w-full absolute bottom-0`}>
-              <input type="email" name="" id=""
-                onChange={handleUsernameFunctionGroup}
-                onBlur={handleUsernameFunctionGroup}
-                className={`identify-username w-full h-[48px] px-[16px] py-[8px] border-[1px] rounded-[8px] bg-stone01 text-stone04 text-[18px] 
+            <div className={`${usernameAlert01 ? "error-input-container" : "input-container"} w-full absolute bottom-0`}>
+              <Input inputClass={`identify-username w-full h-[48px] px-[16px] py-[8px] border-[1px] rounded-[8px] bg-stone01 text-stone04 text-[18px]
                   ${usernameAlert01
-                    ? "border-red-500"
-                    : "border-stone03"
-                  }`}
-                placeholder=" "
-                ref={usernameInput}
-              />
-              <label htmlFor="" className={`absolute left-[16px] bottom-[6px] text-[24px] font-[700]
-              ${usernameAlert01 ? "text-red-500" : ""}`}>
-                ชื่อผู้ใช้
-              </label>
+                  ? "border-red-500"
+                  : "border-stone03"
+                }`} label="ชื่อผู้ใช้" type="text" placeholder=" " labelClass={`absolute left-[16px] bottom-[6px] text-[24px] font-[700]
+                  ${usernameAlert01 ? "text-red-500" : ""
+                  }`} func={(e) => { setUsernameInput(e.target.value); handleUsernameFunctionGroup() }} />
             </div>
           </div>
           <ol className="list list-disc list-inside xl:p-[12px_8px] 2xl:p-[16px_8px] leading-[1.2rem]">
@@ -233,33 +220,14 @@ function RegisterFormCard() {
             </li>
           </ol>
           <div className="relative w-full h-[40%] xl:max-h-[80px] 2xl:max-h-[90px]">
-            <div
-              className={`${initPasswordAlert01 || initPasswordAlert02
-                ? "error-input-container"
-                : "input-container"
-                } w-full absolute bottom-0`}>
-              <input
-                type={initPasswordAppearance ? "text" : "password"} name="" id=""
-                onChange={handleInitPasswordFunctionGroup}
-                onBlur={handleInitPasswordFunctionGroup}
-                className={`identify-init-password w-full h-[48px] px-[16px] py-[8px] border-[1px] rounded-[8px] bg-stone01 text-stone04 text-[18px]
+            <div className={`${initPasswordAlert01 || initPasswordAlert02 ? "error-input-container" : "input-container"} w-full absolute bottom-0`} >
+              <Input inputClass={`identify-init-password w-full h-[48px] px-[16px] py-[8px] border-[1px] rounded-[8px] bg-stone01 text-stone04 text-[18px]
                   ${initPasswordAlert01 || initPasswordAlert02
-                    ? "border-red-500"
-                    : "border-stone03"
-                  }`}
-                placeholder=" "
-                ref={passwordInput}
-                autoComplete="new-password"
-              />
-              <label
-                htmlFor=""
-                className={`absolute left-[16px] bottom-[6px] text-[24px] font-[700]
-                  ${initPasswordAlert01 || initPasswordAlert02
-                    ? "text-red-500"
-                    : ""
-                  }`}>
-                รหัสผ่าน
-              </label>
+                  ? "border-red-500"
+                  : "border-stone03"
+                }`} label="รหัสผ่าน" type={initPasswordAppearance ? "text" : "password"} placeholder=" " labelClass={`absolute left-[16px] bottom-[6px] text-[24px] font-[700]
+                  ${initPasswordAlert01 || initPasswordAlert02 ? "text-red-500" : ""
+                  }`} func={(e) => { setPasswordInput(e.target.value); handleInitPasswordFunctionGroup() }} />
               <div className="absolute bottom-0 right-0 w-[60px] h-[48px] border-[1px] border-transparent rounded-r-[10px]">
                 <div
                   className="flex justify-center items-center w-full h-full"
@@ -285,27 +253,13 @@ function RegisterFormCard() {
                 : "input-container"
                 } w-full absolute bottom-0`}
             >
-              <input
-                type={confirmPasswordAppearance ? "text" : "password"}
-                name=""
-                id=""
-                onChange={handleConfirmPasswordFunctionGroup}
-                onBlur={handleConfirmPasswordFunctionGroup}
-                className={`identify-confirm-password w-full h-[48px] px-[16px] py-[8px] border-[1px] rounded-[8px] bg-stone01 text-stone04 text-[18px]
+              <Input inputClass={`identify-confirm-password w-full h-[48px] px-[16px] py-[8px] border-[1px] rounded-[8px] bg-stone01 text-stone04 text-[18px]
                   ${confirmPasswordAlert
-                    ? "border-2 border-red-500 bg-red-300"
-                    : "border-[1px] border-stone03 bg-stone01"
-                  }`}
-                placeholder=" "
-                ref={confirmPasswordInput}
-              />
-              <label
-                htmlFor=""
-                className={`absolute left-[16px] bottom-[6px] text-[24px] font-[700]
-                  ${confirmPasswordAlert ? "text-red-500" : ""}`}
-              >
-                ยืนยันรหัสผ่าน
-              </label>
+                  ? "border-red-500"
+                  : "border-stone03"
+                }`} label="ยืนยันรหัสผ่าน" type={confirmPasswordAppearance ? "text" : "password"} placeholder=" " labelClass={`absolute left-[16px] bottom-[6px] text-[24px] font-[700]
+                  ${confirmPasswordAlert ? "text-red-500" : ""
+                  }`} func={(e) => { setConfirmPasswordInput(e.target.value); handleConfirmPasswordFunctionGroup() }} />
               <div className="absolute bottom-0 right-0 w-[60px] h-[48px] border-[1px] border-transparent rounded-r-[10px]">
                 <div
                   className="flex justify-center items-center w-full h-full"
@@ -328,10 +282,10 @@ function RegisterFormCard() {
           type={2}
           mode={0}
           text="ตกลง"
-          ClickFunc={() => window.location.href = "/"}
+          ClickFunc={() => handleSubmit()}
           validate={checkedSumbitButton}
         />
-        <a href="" className="text-stone04 leading-[1.2rem]">
+        <a href="/" className="text-stone04 leading-[1.2rem]">
           มีแอคเคาท์แล้ว?
         </a>
       </form>
