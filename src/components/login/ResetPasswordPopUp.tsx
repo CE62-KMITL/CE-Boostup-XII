@@ -280,7 +280,7 @@ function ResetPasswordPopUp() {
 
                 </div>
 
-                <div className="border-none border-red-500 flex flex-col items-center place-content-between w-[50%] h-[30%] min-w-[140px] max-w-[150px] min-h-[60px] max-h-[70px]">
+                <div className="flex flex-col items-center place-content-between w-[50%] h-[30%] min-w-[140px] max-w-[150px] min-h-[60px] max-h-[70px]">
                     <button className="flex justify-center items-center w-full h-[66%] min-h-[36px] max-h-[42px] 
                     rounded-lg shadow-md bg-accent text-stone01 text-[18px] font-[700]">
                         ตกลง
