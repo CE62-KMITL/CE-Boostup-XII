@@ -1,3 +1,6 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+
+import InitLayout from './layouts/InitLayout'
 import SolveProblemPage from './pages/SolveProblemPage'
 import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
@@ -5,29 +8,20 @@ import LearnPage from './pages/LearnPage'
 import HomePage from './pages/HomePage'
 import ProfilePage from './pages/ProfilePage'
 
-import CreateAccountPopUp from './components/login/CreateAccountPopUp'
-import ForgotPasswordPopUp from './components/login/ForgotPasswordPopUp'
-import RecognizedPopUp from './components/login/RecognizedPopUp'
-import ResetPasswordPopUp from './components/login/ResetPasswordPopUp'
-import ButtonTemplate from './pages/ButtonTemplate'
 function App() {
   return (
-    <div>
-      {/* <LoginPage/> */}
-      {/* <RegisterPage/> */}
-      {/* <LearnPage/> */}
-      <ProfilePage/>
-      {/* <HomePage/> */}
-      {/* <RegisterPage/> */}
-      {/* <SolveProblemPage/> */}
-      {/* <ButtonTemplate/> */}
-      {/* <HomePage/> */}
-
-      {/* <CreateAccountPopUp/> */}
-      {/* <ForgotPasswordPopUp/> */}
-      {/* <RecognizedPopUp/> */}
-      {/* <ResetPasswordPopUp/> */}
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+        <Route element={<InitLayout />}>
+          <Route path="/home" element={<HomePage />} />
+          <Route path="/learn" element={<LearnPage />} />
+          <Route path="/solve" element={<SolveProblemPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   )
 }
 

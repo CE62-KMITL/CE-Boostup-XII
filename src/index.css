@@ -12,14 +12,8 @@
     box-sizing: border-box;
   }
 
-
   .gradient-background {
     background: linear-gradient(180deg, #0b384b 29%, #10516c 62%, #097275 100%);
-  }
-
-  .navbar-button:hover {
-    transform: translateY(4px);
-    transition: ease-in 0.2s;
   }
 
   .holding-space {
@@ -81,18 +75,6 @@
     transition: bottom 0.2s, font-size 0.2s;
   }
 
-  .input-container input:focus + label,
-  .input-container input:not(:placeholder-shown) + label,
-  .warning-input-container input:focus + label,
-  .warning-input-container input:not(:placeholder-shown) + label,
-  .error-input-container input:focus + label,
-  .error-input-container input:not(:placeholder-shown) + label {
-    animation-name: label-animation;
-    animation-duration: 0.8s;
-    animation-timing-function: ease-in-out;
-    animation-fill-mode: forwards;
-  }
-
   @keyframes label-animation {
     25% {
       font-size: 20px;
@@ -117,23 +99,31 @@
       bottom: 56px;
     }
   }
-
-  /* .red-border-eye-icon{
-    @apply fill-[#FF0000] hover:fill-red-400
+  @keyframes reverse-label-animation {
+    0% {
+      font-size: 18px;
+      font-weight: 700;
+      left: 0px;
+      bottom: 56px;
+    }
+    50% {
+      font-size: 18px;
+      font-weight: 700;
+      left: 16px;
+      bottom: 56px;
+    }
+    75% {
+      font-size: 20px;
+      font-weight: 700;
+      bottom: 56px;
+    }
+    100% {
+      font-size: 20px;
+      font-weight: 700;
+      bottom: 4px;
+    }
   }
-
-  .red-dot-eye-icon{
-    @apply fill-[#FF0000] hover:fill-red-400
-  } */
-
-  /* .gray-border-eye-icon{
-    @apply fill-[#495057] hover:fill-black
-  }
-
-  .gray-dot-eye-icon{
-    @apply fill-[#495057] hover:fill-black
-  } */
-
+  
   .hide-scrollbar::-webkit-scrollbar {
     display: none;
   }
@@ -149,8 +139,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     max-height: 140px;
-}
-
+  }
 
   [type="checkbox"] {
     width: 2rem;
@@ -212,6 +201,10 @@
   [type="checkbox"]:checked::-ms-check {
     box-shadow: none;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E %3Cpath d='M15.88 8.29L10 14.17l-1.88-1.88a.996.996 0 1 0-1.41 1.41l2.59 2.59c.39.39 1.02.39 1.41 0L17.3 9.7a.996.996 0 0 0 0-1.41c-.39-.39-1.03-.39-1.42 0z' fill='%23fff'/%3E %3C/svg%3E");
+  }
+
+  input[type="text"].search-box::-webkit-input-placeholder {
+    @apply left-[18px] text-stone04;
   }
 
   input[type="password"]::-ms-reveal,
