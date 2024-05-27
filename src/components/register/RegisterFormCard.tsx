@@ -83,7 +83,8 @@ function RegisterFormCard() {
               ประกอบด้วยตัวพิมพ์ใหญ่, ตัวพิมพ์เล็ก, ตัวเลข และอักษรพิเศษ
             </li>
           </ol>
-          <div className="relative w-full h-[40%] xl:max-h-[80px] 2xl:max-h-[90px]">
+
+          <div className="relative w-full h-[50%] xl:min-h-[80px] xl:max-h-[90px] 2xl:min-h-[90px] 2xl:max-h-[100px]">
             <div
               className={`input-container
                 } w-full absolute bottom-0`}
@@ -93,13 +94,15 @@ function RegisterFormCard() {
                   }`} onChange={(e) => { formik.setFieldValue("confirmPassword", e.target.value) }} />
             </div>
           </div>
-          <ol className="list list-disc list-inside xl:p-[12px_8px] 2xl:p-[16px_8px] leading-[1.2rem]">
+
+          <ol className="list list-disc list-outside ml-[30px] xl:pt-[12px] 2xl:pt-[16px] leading-[1.1rem]">
             <li
               className={confirmPasswordInputProps.error ? "text-red-600" : ""}
             >
               ยืนยันรหัสผ่านไม่ถูกต้อง
             </li>
           </ol>
+
         </div>
         <Button
           className="bg-accent text-stone01 hover:bg-accent2 transition ease-in-out duration-200 shadow-md cursor-pointer w-36 h-10 rounded-lg flex items-center justify-center"

@@ -18,7 +18,7 @@
     "@types/codemirror": "^5.60.15",
     "@uiw/codemirror-theme-github": "^4.22.0",
     "@uiw/react-codemirror": "^4.22.0",
-    "axios": "^1.6.8",
+    "axios": "^1.7.2",
     "formik": "^2.4.6",
     "js-cookie": "^3.0.5",
     "lodash": "^4.17.21",

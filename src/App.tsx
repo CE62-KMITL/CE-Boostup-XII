@@ -13,6 +13,10 @@ import { RouteController } from './controllers/route.controller'
 import { Role } from './enum/roles.enum'
 import { QueryClient, QueryClientProvider } from 'react-query'
 
+import ResetPasswordPopUp from './components/login/ResetPasswordPopUp'
+import Error404Page from './pages/Error404Page'
+import LoadingPage from './pages/LoadingPage'
+
 export default function App() {
   return (
     <BrowserRouter>

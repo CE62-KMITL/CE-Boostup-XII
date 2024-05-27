@@ -43,7 +43,8 @@ function HomePage() {
         <>
             <Background />
             <div className="flex justify-center overflow-y-auto">
-                <div className="xl:w-[1240px] 2xl:w-[1360px] h-fit xl:my-[75px] 2xl:my-[90px]">
+                <NavBar />
+                <div className="xl:w-[1240px] 2xl:w-[1360px] h-fit xl:my-[98px] 2xl:my-[108px]x">
                     <div className="flex flex-col w-full h-fit">
                         <TitleText username={user?.displayName as string} />
                         <SearchBar setParams={setParams} />
