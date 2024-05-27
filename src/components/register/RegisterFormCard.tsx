@@ -16,22 +16,6 @@ function RegisterFormCard() {
     console.log("submit");
   }
 
-  const handleUsernameFunctionGroup = () => {
-    handleUsernameAlert01();
-    handleCheckedSubmitButton();
-  };
-
-  const handleInitPasswordFunctionGroup = () => {
-    handleInitPasswordAlert01();
-    handleInitPasswordAlert02();
-    handleCheckedSubmitButton();
-  }
-
-  const handleConfirmPasswordFunctionGroup = () => {
-    handleConfirmPasswordAlert();
-    handleCheckedSubmitButton();
-  }
-
   const handleUsernameAlert01 = () => {
     const username = usernameInput
     if (username.length > 10 && username.length != 0) {
@@ -108,8 +92,7 @@ function RegisterFormCard() {
   };
 
   const [initPasswordAppearance, setInitPasswordAppearance] = useState(false);
-  const [confirmPasswordAppearance, setConfirmNewPasswordAppearance] =
-    useState(false);
+  const [confirmPasswordAppearance, setConfirmNewPasswordAppearance] = useState(false);
 
   const handleInitPasswordAppearance = () => {
     setInitPasswordAppearance(!initPasswordAppearance);
@@ -194,51 +177,87 @@ function RegisterFormCard() {
     });
   };
 
+  const IntegralSystem = () => {
+    handleCheckedSubmitButton();
+    handleUsernameAlert01();
+    handleInitPasswordAlert01();
+    handleInitPasswordAlert02();
+    handleConfirmPasswordAlert();
+    handleCheckedSubmitButton();
+    onChangeData();
+  }
+
   return (
     <div
       className="w-full h-full rounded-[30px] lg:p-[20px] xl:p-[30px] 2xl:p-[36px] bg-stone01">
-      <form action=""
-        className="border-none border-blue-500 flex flex-col items-center place-content-between w-full h-full">
+      <form onKeyUp={IntegralSystem}
+      action="" className="border-none border-blue-500 flex flex-col items-center place-content-between w-full h-full">
+        
+        <div 
+        // className="flex flex-col xl:w-[372px] 2xl:w-[480px] xl:h-[400px] 2xl:h-[500px]"
+        className="w-full h-fit">
+
         <div className="text-stone05 text-[40px] text-center font-[700] xl:leading-[6rem] 2xl:leading-[8rem]">
           ลงทะเบียน
         </div>
-        <div className="flex flex-col xl:w-[372px] 2xl:w-[480px] xl:h-[400px] 2xl:h-[500px]">
-          <div className="relative w-full h-[40%] xl:max-h-[80px] 2xl:max-h-[90px]">
+          
+          <div className="relative w-full h-[50%] xl:min-h-[80px] xl:max-h-[90px] 2xl:min-h-[90px] 2xl:max-h-[100px]">
             <div className={`${usernameAlert01 ? "error-input-container" : "input-container"} w-full absolute bottom-0`}>
               <Input inputClass={`identify-username w-full h-[48px] px-[16px] py-[8px] border-[1px] rounded-[8px] bg-stone01 text-stone04 text-[18px]
                   ${usernameAlert01
-                  ? "border-red-500"
-                  : "border-stone03"
-                }`} label="ชื่อผู้ใช้" type="text" placeholder=" " labelClass={`absolute left-[16px] bottom-[6px] text-[24px] font-[700]
-                  ${usernameAlert01 ? "text-red-500" : ""
-                  }`} func={(e) => { setUsernameInput(e.target.value); handleUsernameFunctionGroup() }} />
+                    ? "border-red-500" : "border-stone03"
+                  }`} 
+                  label="ชื่อผู้ใช้" type="text" placeholder=" " 
+                  labelClass={`absolute left-[16px] bottom-[6px] text-[24px] font-[700] pointer-events-none
+                    ${usernameAlert01 
+                      ? "text-red-500" : ""
+                  }`} 
+                  func={(e) => { 
+                    setUsernameInput(e.target.value); 
+                    // handleUsernameFunctionGroup();
+                  }} />
             </div>
           </div>
-          <ol className="list list-disc list-inside xl:p-[12px_8px] 2xl:p-[16px_8px] leading-[1.2rem]">
-            <li className={`${usernameAlert01 ? "text-red-500" : ""}`}>
+
+          <ol className="list list-disc list-outside ml-[30px] xl:pt-[12px] 2xl:pt-[16px] leading-[1.1rem]">
+            <li className={`${usernameAlert01 
+                            ? "text-red-500" : ""}`
+                          }>
               ควรไม่เกิน 10 ตัวอักษร
             </li>
           </ol>
-          <div className="relative w-full h-[40%] xl:max-h-[80px] 2xl:max-h-[90px]">
+
+          <div className="relative w-full h-[50%] xl:min-h-[80px] xl:max-h-[90px] 2xl:min-h-[90px] 2xl:max-h-[100px]">
             <div className={`${initPasswordAlert01 || initPasswordAlert02 ? "error-input-container" : "input-container"} w-full absolute bottom-0`} >
               <Input inputClass={`identify-init-password w-full h-[48px] px-[16px] py-[8px] border-[1px] rounded-[8px] bg-stone01 text-stone04 text-[18px]
                   ${initPasswordAlert01 || initPasswordAlert02
-                  ? "border-red-500"
-                  : "border-stone03"
-                }`} label="รหัสผ่าน" type={initPasswordAppearance ? "text" : "password"} placeholder=" " labelClass={`absolute left-[16px] bottom-[6px] text-[24px] font-[700]
-                  ${initPasswordAlert01 || initPasswordAlert02 ? "text-red-500" : ""
-                  }`} func={(e) => { setPasswordInput(e.target.value); handleInitPasswordFunctionGroup() }} />
+                    ? "border-red-500" : "border-stone03"
+                  }`} 
+                  label="รหัสผ่าน" type={initPasswordAppearance 
+                    ? "text" : "password"
+                  } 
+                  placeholder=" " labelClass={`absolute left-[16px] bottom-[6px] text-[24px] font-[700] pointer-events-none
+                    ${initPasswordAlert01 || initPasswordAlert02 
+                      ? "text-red-500" : ""
+                    }`} 
+                    func={(e) => { 
+                      setPasswordInput(e.target.value); 
+                      // handleInitPasswordFunctionGroup() 
+                    }} />
               <div className="absolute bottom-0 right-0 w-[60px] h-[48px] border-[1px] border-transparent rounded-r-[10px]">
                 <div
                   className="flex justify-center items-center w-full h-full"
                   onClick={handleInitPasswordAppearance}
                 >
-                  {initEyeIcon(initPasswordAlert01 || initPasswordAlert02 ? 'alert' : 'allow')}
+                  {initEyeIcon(initPasswordAlert01 || initPasswordAlert02 
+                    ? 'alert' : 'allow'
+                  )}
                 </div>
               </div>
             </div>
           </div>
-          <ol className="list list-disc list-inside xl:p-[12px_8px] 2xl:p-[16px_8px] leading-[1.2rem]">
+
+          <ol className="list list-disc list-outside ml-[30px] xl:pt-[12px] 2xl:pt-[16px] leading-[1.1rem]">
             <li className={`${initPasswordAlert01 ? "text-red-500" : ""}`}>
               มีทั้งหมด 8 ตัวอักษรขึ้นไป
             </li>
@@ -246,20 +265,25 @@ function RegisterFormCard() {
               ประกอบด้วยตัวพิมพ์ใหญ่, ตัวพิมพ์เล็ก, ตัวเลข และอักษรพิเศษ
             </li>
           </ol>
-          <div className="relative w-full h-[40%] xl:max-h-[80px] 2xl:max-h-[90px]">
+
+          <div className="relative w-full h-[50%] xl:min-h-[80px] xl:max-h-[90px] 2xl:min-h-[90px] 2xl:max-h-[100px]">
             <div
               className={`${confirmPasswordAlert
-                ? "error-input-container"
-                : "input-container"
-                } w-full absolute bottom-0`}
-            >
+                          ? "error-input-container" : "input-container"
+                        } w-full absolute bottom-0`}
+            > 
               <Input inputClass={`identify-confirm-password w-full h-[48px] px-[16px] py-[8px] border-[1px] rounded-[8px] bg-stone01 text-stone04 text-[18px]
                   ${confirmPasswordAlert
-                  ? "border-red-500"
-                  : "border-stone03"
-                }`} label="ยืนยันรหัสผ่าน" type={confirmPasswordAppearance ? "text" : "password"} placeholder=" " labelClass={`absolute left-[16px] bottom-[6px] text-[24px] font-[700]
-                  ${confirmPasswordAlert ? "text-red-500" : ""
-                  }`} func={(e) => { setConfirmPasswordInput(e.target.value); handleConfirmPasswordFunctionGroup() }} />
+                    ? "border-red-500" : "border-stone03"
+                  }`} 
+                  label="ยืนยันรหัสผ่าน" type={confirmPasswordAppearance ? "text" : "password"} placeholder=" " labelClass={`absolute left-[16px] bottom-[6px] text-[24px] font-[700] pointer-events-none
+                  ${confirmPasswordAlert 
+                    ? "text-red-500" : ""
+                  }`} 
+                  func={(e) => { 
+                    setConfirmPasswordInput(e.target.value); 
+                    // handleConfirmPasswordFunctionGroup() 
+                  }} />
               <div className="absolute bottom-0 right-0 w-[60px] h-[48px] border-[1px] border-transparent rounded-r-[10px]">
                 <div
                   className="flex justify-center items-center w-full h-full"
@@ -270,24 +294,36 @@ function RegisterFormCard() {
               </div>
             </div>
           </div>
-          <ol className="list list-disc list-inside xl:p-[12px_8px] 2xl:p-[16px_8px] leading-[1.2rem]">
+
+          <ol className="list list-disc list-outside ml-[30px] xl:pt-[12px] 2xl:pt-[16px] leading-[1.1rem]">
             <li
-              className={`${confirmPasswordAlert ? "text-red-500" : "text-transparent"}`}
+              className={`${confirmPasswordAlert 
+                ? "text-red-500" 
+                : "text-transparent"
+              }`}
             >
               ยืนยันรหัสผ่านไม่ถูกต้อง
             </li>
           </ol>
+
         </div>
-        <Button
-          type={2}
-          mode={0}
-          text="ตกลง"
-          ClickFunc={() => handleSubmit()}
-          validate={checkedSumbitButton}
-        />
-        <a href="/" className="text-stone04 leading-[1.2rem]">
-          มีแอคเคาท์แล้ว?
-        </a>
+
+        <div className="flex flex-col items-center place-content-between w-fit h-[20%] xl:min-h-[75px] xl:max-h-[85px] 2xl:min-h-[80px] 2xl:max-h-[90px]">
+
+          <Button
+            type={2}
+            mode={0}
+            text="ตกลง"
+            ClickFunc={() => handleSubmit()}
+            validate={checkedSumbitButton}
+          />
+
+          <a href="/" className="text-stone04 leading-[1.2rem]">
+            มีแอคเคาท์แล้ว?
+          </a>
+
+        </div>
+
       </form>
     </div>
   );
