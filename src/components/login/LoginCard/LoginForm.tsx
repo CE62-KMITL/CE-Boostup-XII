@@ -53,7 +53,14 @@ function LoginForm() {
                     </div>
                     <div className="relative w-full h-full max-h-[90px]">
                         <div className="input-container w-full absolute bottom-0">
-                            <Input label="อีเมล" type="email" placeholder=" " required={true} inputClass="w-full h-[48px] px-[16px] py-[8px] border-stone03 border-[1px] rounded-[10px] text-stone04 text-[18px]" labelClass="absolute left-[16px] bottom-[6px] text-stone04 text-[24px] font-[700]" func={(e) => setEmail(e.target.value)} />
+                            <Input 
+                            label="อีเมล" 
+                            type="email" 
+                            placeholder=" " 
+                            required={true} 
+                            inputClass="w-full h-[48px] px-[16px] py-[8px] border-stone03 border-[1px] rounded-[10px] text-stone04 text-[18px]" 
+                            labelClass="absolute left-[16px] bottom-[6px] text-stone04 text-[24px] font-[700]" 
+                            func={(e) => setEmail(e.target.value)} />
                         </div>
                     </div>
                     <div className="relative w-full h-full max-h-[90px]">

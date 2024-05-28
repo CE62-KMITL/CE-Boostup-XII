@@ -18,20 +18,12 @@ function RegisterFormCard() {
 
   const handleUsernameAlert01 = () => {
     const username = usernameInput
-    if (username.length > 10 && username.length != 0) {
-      setUsernameAlert01(true);
-    } else {
-      setUsernameAlert01(false);
-    }
+    setUsernameAlert01((username.length > 32 && username.length != 0) ? true : false);
   };
 
   const handleInitPasswordAlert01 = () => {
     const password = passwordInput
-    if (password.length < 8 && password.length != 0) {
-      setInitPasswordAlert01(true);
-    } else {
-      setInitPasswordAlert01(false);
-    }
+    setInitPasswordAlert01((password.length < 8 && password.length != 0) ? true : false);
   };
 
   const handleInitPasswordAlert02 = () => {
@@ -47,28 +39,15 @@ function RegisterFormCard() {
     const hasNumber = numberRegex.test(password);
     const hasSpecialChar = specialCharRegex.test(password);
 
-    if (
+    setInitPasswordAlert02(
       (!hasUppercase || !hasLowercase || !hasNumber || !hasSpecialChar) &&
-      password.length != 0
-    ) {
-      setInitPasswordAlert02(true);
-    } else {
-      setInitPasswordAlert02(false);
-    }
+      password.length != 0);
   };
 
   const handleConfirmPasswordAlert = () => {
     const password = passwordInput
     const confirmPassword = confirmPasswordInput
-    if (
-      confirmPassword != password ||
-      initPasswordAlert01 == true ||
-      initPasswordAlert02 == true
-    ) {
-      setConfirmPasswordAlert(true);
-    } else {
-      setConfirmPasswordAlert(false);
-    }
+    setConfirmPasswordAlert(confirmPassword != password || initPasswordAlert01 || initPasswordAlert02);
   };
 
   const handleCheckedSubmitButton = () => {
@@ -178,7 +157,6 @@ function RegisterFormCard() {
   };
 
   const IntegralSystem = () => {
-    handleCheckedSubmitButton();
     handleUsernameAlert01();
     handleInitPasswordAlert01();
     handleInitPasswordAlert02();
@@ -194,42 +172,40 @@ function RegisterFormCard() {
       action="" className="border-none border-blue-500 flex flex-col items-center place-content-between w-full h-full">
         
         <div 
-        // className="flex flex-col xl:w-[372px] 2xl:w-[480px] xl:h-[400px] 2xl:h-[500px]"
         className="w-full h-fit">
 
-        <div className="text-stone05 text-[40px] text-center font-[700] xl:leading-[6rem] 2xl:leading-[8rem]">
-          ลงทะเบียน
-        </div>
+          <div className="text-stone05 text-[40px] text-center font-[700] xl:leading-[6rem] 2xl:leading-[8rem]">
+            ลงทะเบียน
+          </div>
           
           <div className="relative w-full h-[50%] xl:min-h-[80px] xl:max-h-[90px] 2xl:min-h-[90px] 2xl:max-h-[100px]">
             <div className={`${usernameAlert01 ? "error-input-container" : "input-container"} w-full absolute bottom-0`}>
-              <Input inputClass={`identify-username w-full h-[48px] px-[16px] py-[8px] border-[1px] rounded-[8px] bg-stone01 text-stone04 text-[18px]
+              <Input inputClass={`w-full h-[48px] px-[16px] py-[8px] border-[1px] rounded-[8px] bg-stone01 text-stone04 text-[18px]
                   ${usernameAlert01
                     ? "border-red-500" : "border-stone03"
                   }`} 
-                  label="ชื่อผู้ใช้" type="text" placeholder=" " 
+                  label="ชื่อผู้ใช้" type="text" placeholder=" "
                   labelClass={`absolute left-[16px] bottom-[6px] text-[24px] font-[700] pointer-events-none
                     ${usernameAlert01 
                       ? "text-red-500" : ""
                   }`} 
                   func={(e) => { 
                     setUsernameInput(e.target.value); 
-                    // handleUsernameFunctionGroup();
                   }} />
             </div>
           </div>
 
           <ol className="list list-disc list-outside ml-[30px] xl:pt-[12px] 2xl:pt-[16px] leading-[1.1rem]">
-            <li className={`${usernameAlert01 
+            <li className={`font-medium ${usernameAlert01 
                             ? "text-red-500" : ""}`
                           }>
-              ควรไม่เกิน 10 ตัวอักษร
+              ควรไม่เกิน 32 ตัวอักษร
             </li>
           </ol>
 
           <div className="relative w-full h-[50%] xl:min-h-[80px] xl:max-h-[90px] 2xl:min-h-[90px] 2xl:max-h-[100px]">
-            <div className={`${initPasswordAlert01 || initPasswordAlert02 ? "error-input-container" : "input-container"} w-full absolute bottom-0`} >
-              <Input inputClass={`identify-init-password w-full h-[48px] px-[16px] py-[8px] border-[1px] rounded-[8px] bg-stone01 text-stone04 text-[18px]
+            <div className={`${initPasswordAlert01 || initPasswordAlert02 ? "error-input-container" : "input-container"} w-full absolute bottom-0`}>
+              <Input inputClass={`w-full h-[48px] px-[16px] py-[8px] border-[1px] rounded-[8px] bg-stone01 text-stone04 text-[18px]
                   ${initPasswordAlert01 || initPasswordAlert02
                     ? "border-red-500" : "border-stone03"
                   }`} 
@@ -242,7 +218,6 @@ function RegisterFormCard() {
                     }`} 
                     func={(e) => { 
                       setPasswordInput(e.target.value); 
-                      // handleInitPasswordFunctionGroup() 
                     }} />
               <div className="absolute bottom-0 right-0 w-[60px] h-[48px] border-[1px] border-transparent rounded-r-[10px]">
                 <div
@@ -258,10 +233,10 @@ function RegisterFormCard() {
           </div>
 
           <ol className="list list-disc list-outside ml-[30px] xl:pt-[12px] 2xl:pt-[16px] leading-[1.1rem]">
-            <li className={`${initPasswordAlert01 ? "text-red-500" : ""}`}>
+            <li className={`font-medium ${initPasswordAlert01 ? "text-red-500" : ""}`}>
               มีทั้งหมด 8 ตัวอักษรขึ้นไป
             </li>
-            <li className={`${initPasswordAlert02 ? "text-red-500" : ""}`}>
+            <li className={`font-medium ${initPasswordAlert02 ? "text-red-500" : ""}`}>
               ประกอบด้วยตัวพิมพ์ใหญ่, ตัวพิมพ์เล็ก, ตัวเลข และอักษรพิเศษ
             </li>
           </ol>
@@ -272,7 +247,7 @@ function RegisterFormCard() {
                           ? "error-input-container" : "input-container"
                         } w-full absolute bottom-0`}
             > 
-              <Input inputClass={`identify-confirm-password w-full h-[48px] px-[16px] py-[8px] border-[1px] rounded-[8px] bg-stone01 text-stone04 text-[18px]
+              <Input inputClass={`w-full h-[48px] px-[16px] py-[8px] border-[1px] rounded-[8px] bg-stone01 text-stone04 text-[18px]
                   ${confirmPasswordAlert
                     ? "border-red-500" : "border-stone03"
                   }`} 
@@ -282,7 +257,6 @@ function RegisterFormCard() {
                   }`} 
                   func={(e) => { 
                     setConfirmPasswordInput(e.target.value); 
-                    // handleConfirmPasswordFunctionGroup() 
                   }} />
               <div className="absolute bottom-0 right-0 w-[60px] h-[48px] border-[1px] border-transparent rounded-r-[10px]">
                 <div
@@ -297,9 +271,9 @@ function RegisterFormCard() {
 
           <ol className="list list-disc list-outside ml-[30px] xl:pt-[12px] 2xl:pt-[16px] leading-[1.1rem]">
             <li
-              className={`${confirmPasswordAlert 
+              className={`font-medium ${confirmPasswordAlert 
                 ? "text-red-500" 
-                : "text-transparent"
+                : "hidden"
               }`}
             >
               ยืนยันรหัสผ่านไม่ถูกต้อง
