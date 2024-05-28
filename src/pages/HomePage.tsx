@@ -3,42 +3,34 @@ import SearchBar from "../components/home/SearchBar";
 import ProblemBar from "../components/home/ProblemBar";
 import ProblemsTable from "../components/home/ProblemsTable";
 import Background from "../components/utils/Background";
-import { problemService } from "../services/problem.service";
-import { useEffect, useState } from "react";
-import { setProblemState } from "../store/slices/problem.slice";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { store } from "../store/store";
 import { PaginationRequestDto } from "../dto/utils.dto";
-import { useQuery } from "react-query";
 import NavBar from "../components/utils/NavBar";
+import { useProblem } from "../components/hooks/problem.hook";
+import LoadingPage from "./LoadingPage";
+import { useProblemTags } from "../components/hooks/problemTags.hook";
 
 function HomePage() {
     const dispatch = useDispatch();
     const user = store.getState().auth.user;
-    const problems = store.getState().problem.problem;
 
     const [params, setParams] = useState<PaginationRequestDto>({
         page: 1,
         perPage: 10,
         sort: "number",
-        tags: "fab65fe9-5941-4e20-9969-061beba2399f",
-        difficulties: "1",
+        difficulties: "1,2,3,4,5",
     });
 
-    const { data, status, error } = useQuery({
-        queryKey: ['problems', params],
-        queryFn: async ({ queryKey }) => await problemService.getProblems(queryKey[1] as PaginationRequestDto),
-        onError: (error) => {
-            console.error(error);
-        },
-        onSuccess: (response) => {
-            dispatch(setProblemState(response.data));
-        }
-    });
+    const { problems, isLoading: isLoadingProblem, error } = useProblem(params);
+    const { problemTags, isLoading: isLoadingProblemTags } = useProblemTags({ page: 1, perPage: 10, sort: "name", search: "", owner: "" });
 
-    useEffect(() => {
-        console.log(status);
-    }, [status]);
+    if (error) console.error(error);
+
+    if (isLoadingProblem || isLoadingProblemTags) return <LoadingPage />;
+
+    if (problems) console.log(problems);
 
     return (
         <>
@@ -52,12 +44,12 @@ function HomePage() {
                         <ProblemBar />
                     </div>
                     <div className="flex flex-col w-full space-y-[16px]">
-                        {problems?.map((problem) => (
+                        {problems?.data.map((problem) => (
                             <ProblemsTable
-                                key={problem.id}
+                                id={problem.id}
                                 number={problem.number?.toString() as string}
                                 title={problem.title as string}
-                                lesson={problem.attachments?.[0].type as string}
+                                lesson={problem.tags as { id: string, name: string }[]}
                                 level={problem.difficulty as number}
                                 attempters={problem.userSolvedCount as number}
                                 score={problem.score as number}

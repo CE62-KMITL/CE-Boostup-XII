@@ -4,33 +4,33 @@ import { Link } from "react-router-dom";
 import { useFormik } from "formik";
 import { RegisterValues, emptyRegisterValues, RegisterValidationSchema } from "../../formik/register.formik";
 import { getFieldProps } from "../../utils/getFieldProps";
-import { authService } from "../../services/auth.service";
 import { useNavigate } from "react-router-dom";
 import { useSearchParams } from 'react-router-dom';
-import { useMutation } from "react-query";
+import { UseMutationResult } from "react-query";
+import { RegisterDto } from "../../dto/auth.dto";
 
-function RegisterFormCard() {
+type RegisterFormCardProps = {
+  mutation: UseMutationResult<{ massage: string; }, unknown, RegisterDto, unknown>
+};
+
+function RegisterFormCard({ mutation }: RegisterFormCardProps) {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
 
-  const { status, mutate } = useMutation(authService.register, {
-    onSuccess: () => {
+  async function handleRegister() {
+    try {
+      const token = searchParams.get('token');
+      if (!token)
+        return navigate("/");
+      await mutation.mutateAsync({
+        password: formik.values.password,
+        token
+      });
       navigate("/");
-    },
-    onError: (error) => {
+    } catch (error) {
       console.error(error);
       alert((error as any).message);
-    },
-  });
-
-  function handleRegister() {
-    const token = searchParams.get('token');
-    if (!token)
-      return navigate("/");
-    mutate({
-      password: formik.values.password,
-      token
-    });
+    }
   }
 
   const formik = useFormik<RegisterValues>({

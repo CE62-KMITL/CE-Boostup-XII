@@ -6,4 +6,5 @@ export type PaginationRequestDto = {
     tags?: string;
     difficulties?: string;
     owner?: string;
+    problem?: string;
 }

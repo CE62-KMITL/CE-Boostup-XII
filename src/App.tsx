@@ -13,18 +13,15 @@ import { RouteController } from './controllers/route.controller'
 import { Role } from './enum/roles.enum'
 import { QueryClient, QueryClientProvider } from 'react-query'
 
-import ResetPasswordPopUp from './components/login/ResetPasswordPopUp'
 import Error404Page from './pages/Error404Page'
-import LoadingPage from './pages/LoadingPage'
 
 export default function App() {
   return (
     <BrowserRouter>
       <QueryClientProvider client={new QueryClient()}>
         <Routes>
+          <Route path='*' element={<Error404Page />} />
           <Route element={<StoreProvider />}>
-            <Route path="/loading" element={<LoadingPage />} />
-            <Route path='*' element={<Error404Page />} />
             <Route path="/" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/reset-password" element={<ResetPasswordPage />} />
