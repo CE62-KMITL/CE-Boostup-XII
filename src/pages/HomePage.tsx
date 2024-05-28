@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 import { store } from "../store/store";
 import { PaginationRequestDto } from "../dto/utils.dto";
 import { useQuery } from "react-query";
+import NavBar from "../components/utils/NavBar";
 
 function HomePage() {
     const dispatch = useDispatch();
@@ -20,8 +21,8 @@ function HomePage() {
         page: 1,
         perPage: 10,
         sort: "number",
-        tags: ["fab65fe9-5941-4e20-9969-061beba2399f"],
-        difficulties: [1, 2, 3, 4, 5],
+        tags: "fab65fe9-5941-4e20-9969-061beba2399f",
+        difficulties: "1",
     });
 
     const { data, status, error } = useQuery({

@@ -3,7 +3,7 @@ export type PaginationRequestDto = {
     perPage: number;
     sort: string;
     search?: string;
-    tags?: string[];
-    difficulties?: number[];
+    tags?: string;
+    difficulties?: string;
     owner?: string;
 }

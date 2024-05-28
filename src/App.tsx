@@ -23,6 +23,8 @@ export default function App() {
       <QueryClientProvider client={new QueryClient()}>
         <Routes>
           <Route element={<StoreProvider />}>
+            <Route path="/loading" element={<LoadingPage />} />
+            <Route path='*' element={<Error404Page />} />
             <Route path="/" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/reset-password" element={<ResetPasswordPage />} />

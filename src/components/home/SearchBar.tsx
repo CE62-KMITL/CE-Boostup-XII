@@ -56,8 +56,8 @@ function SearchBar({ setParams }: SearchBarProps) {
         setParams((prev) => {
             return {
                 ...prev,
-                difficulties: level === 0 ? [1, 2, 3, 4, 5] : [level],
-                tags: tag === "" ? [] : [tag],
+                difficulties: level === 0 ? "1" : "0",
+                tags: tag === "" ? "" : "fab65fe9-5941-4e20-9969-061beba2399f",
             };
         });
     }, [level, tag]);
