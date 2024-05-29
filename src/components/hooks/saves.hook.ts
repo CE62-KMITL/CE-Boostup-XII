@@ -1,41 +1,37 @@
 import { savesService } from "../../services/saves.service";
-import { PaginationRequestDto } from "../../dto/utils.dto";
-import { SavesModelResponse, PaginationModelResponse } from "../../types/response.type";
+import { CreateSaveDto, UpdateSaveDto } from "../../dto/saves.dto";
+import { SavesModelResponse } from "../../types/response.type";
 import {
     UseQueryOptions,
     useMutation,
     useQuery,
-    useQueryClient,
 } from "react-query";
 
 const SAVES_QUERY_KEY = "saves";
 
-export const useSaves = (paginationRequest: PaginationRequestDto, options?: UseQueryOptions<PaginationModelResponse<SavesModelResponse>>) => {
-    const queryClient = useQueryClient();
-
-    const fetchSave = async (): Promise<PaginationModelResponse<SavesModelResponse>> => {
-        return await savesService.getSaves(paginationRequest);
+export const useSaves = (problemId: string, options?: UseQueryOptions<SavesModelResponse>) => {
+    const fetchSaves = async (): Promise<SavesModelResponse> => {
+        return await savesService.getSaveForProblem(problemId);
     };
 
-    const createSaveMutation = useMutation(savesService.createSave, {
-        onSuccess: () => {
-            queryClient.invalidateQueries(SAVES_QUERY_KEY);
-        },
+    const createSaveMutation = useMutation(async (createSaveDto: CreateSaveDto) => {
+        const response = await savesService.createSave(createSaveDto);
+        return response;
     });
 
-    const {
-        data: saves,
-        isLoading,
-        error,
-    } = useQuery<PaginationModelResponse<SavesModelResponse>>(SAVES_QUERY_KEY, fetchSave, {
+    const updateSaveMutation = useMutation(async ({ saveId, updateSaveRequest }: { saveId: string, updateSaveRequest: UpdateSaveDto }) => {
+        const response = await savesService.updateSave(saveId, updateSaveRequest);
+        return response;
+    });
+
+    const savesQuery = useQuery<SavesModelResponse>(SAVES_QUERY_KEY, fetchSaves, {
         ...options,
         refetchOnWindowFocus: false,
     });
 
     return {
         createSaveMutation,
-        saves,
-        isLoading,
-        error,
+        updateSaveMutation,
+        savesQuery,
     };
 };

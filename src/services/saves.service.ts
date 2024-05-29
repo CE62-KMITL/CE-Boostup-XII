@@ -18,5 +18,8 @@ export const savesService = {
     },
     async deleteSave(id: string): Promise<void> {   
         return await apiController(`/saves/${id}`, "delete");
-    }
+    },
+    async getSaveForProblem(problemId: string): Promise<SavesModelResponse> {
+        return await apiController(`/saves/for-problem/${problemId}`, "get");
+    },
 };

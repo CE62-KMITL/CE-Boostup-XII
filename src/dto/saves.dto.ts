@@ -1,5 +1,5 @@
 export type CreateSaveDto = {
-    problemId: string;
+    problem: string;
     code: string;
 };
 
