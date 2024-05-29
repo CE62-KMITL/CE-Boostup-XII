@@ -10,7 +10,7 @@ import { usePopUp } from "../components/hooks/popUp.hook";
 
 function SolveProblemPage() {
   const { problemId } = useParams();
-  const { problem, isLoading, error } = useProblem(problemId as string);
+  const { problem, isLoading } = useProblem(problemId as string);
   const { savesQuery, updateSaveMutation, createSaveMutation } = useSaves(problemId as string);
   const { popUp, popUpComponents, content } = usePopUp();
 
