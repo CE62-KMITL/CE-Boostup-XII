@@ -8,9 +8,9 @@ import { useDispatch } from "react-redux";
 import { store } from "../store/store";
 import { PaginationRequestDto } from "../dto/utils.dto";
 import NavBar from "../components/utils/NavBar";
-import { useProblem } from "../components/hooks/problem.hook";
+import { useProblems } from "../components/hooks/problems.hook";
 import LoadingPage from "./LoadingPage";
-import { useProblemTags } from "../components/hooks/problemTags.hook";
+import { useProblemsTags } from "../components/hooks/problemTags.hook";
 
 function HomePage() {
     const dispatch = useDispatch();
@@ -23,8 +23,8 @@ function HomePage() {
         difficulties: "1,2,3,4,5",
     });
 
-    const { problems, isLoading: isLoadingProblem, error } = useProblem(params);
-    const { problemTags, isLoading: isLoadingProblemTags } = useProblemTags({ page: 1, perPage: 10, sort: "name", search: "", owner: "" });
+    const { problems, isLoading: isLoadingProblem, error } = useProblems(params);
+    const { problemTags, isLoading: isLoadingProblemTags } = useProblemsTags({ page: 1, perPage: 10, sort: "name", search: "", owner: "" });
 
     if (error) console.error(error);
 

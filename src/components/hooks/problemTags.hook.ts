@@ -14,7 +14,7 @@ import { useEffect } from "react";
 
 const PROBLEM_TAGS_QUERY_KEY = "problemTags";
 
-export const useProblemTags = (paginationRequest: PaginationRequestDto, options?: UseQueryOptions<PaginationModelResponse<ProblemTagModelResponse>>) => {
+export const useProblemsTags = (paginationRequest: PaginationRequestDto, options?: UseQueryOptions<PaginationModelResponse<ProblemTagModelResponse>>) => {
     const dispatch = useDispatch();
     const queryClient = useQueryClient();
 

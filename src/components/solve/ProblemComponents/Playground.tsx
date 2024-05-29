@@ -16,8 +16,7 @@ export default function Playground({ problem }: PlaygroundProps) {
                 <Button text="Run" className="bg-jenna rounded-[8px] h-[42px] w-[118px] flex justify-evenly items-center" ClickFunc={() => console.log("Run")} img={RunIcon} imgPosition="right" />
             </div>
             <div className="divide-y-2 px-3">
-                <ExampleCard title="1) Testcase" input="1" output="20" />
-                <ExampleCard title="2) Testcase" input="2" output="40" />
+                <ExampleCard inputMode={true} title="1) Testcase" input={problem?.testcases[0].input as string} output={problem?.testcases[0].output as string} />
             </div>
         </>
     );

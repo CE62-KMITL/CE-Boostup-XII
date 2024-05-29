@@ -5,13 +5,15 @@ import Problem from "../components/solve/Problem";
 import { useParams } from "react-router-dom";
 import { useSaves } from "../components/hooks/saves.hook";
 import LoadingPage from "./LoadingPage";
-import { store } from "../store/store";
-import { ErrorModelResponse } from "../types/response.type";
+import { useProblem } from "../components/hooks/problem.hook";
+import { usePopUp } from "../components/hooks/popUp.hook";
 
 function SolveProblemPage() {
   const { problemId } = useParams();
+  const { problem, isLoading, error } = useProblem(problemId as string);
   const { savesQuery, updateSaveMutation, createSaveMutation } = useSaves(problemId as string);
- 
+  const { popUp, popUpComponents, content } = usePopUp();
+
   const boxRef = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState<number>(0);
 
@@ -26,17 +28,20 @@ function SolveProblemPage() {
     setHeight(boxRef.current?.clientHeight || 0);
   }, [boxRef.current, savesQuery.isSuccess]);
 
-  if (savesQuery.isLoading)
+  if (savesQuery.isLoading || isLoading)
     return <LoadingPage />;
 
   return (
-    <div className="flex justify-center">
-      <Background />
-      <div className="flex items-center h-screen w-[90vw] justify-center py-[33px]" ref={boxRef}>
-        <Editor height={height} problemId={problemId} savesQuery={savesQuery} updateSaveMutation={updateSaveMutation} createSaveMutation={createSaveMutation} />
-        <Problem height={height} problemId={problemId} />
+    <>
+      {popUp && popUpComponents(content)[popUp]}
+      <div className="flex justify-center">
+        <Background />
+        <div className="flex items-center h-screen w-[90vw] justify-center py-[33px]" ref={boxRef}>
+          <Editor starterCode={problem?.starterCode as string} height={height} problemId={problemId} savesQuery={savesQuery} updateSaveMutation={updateSaveMutation} createSaveMutation={createSaveMutation} />
+          <Problem height={height} problem={problem} />
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

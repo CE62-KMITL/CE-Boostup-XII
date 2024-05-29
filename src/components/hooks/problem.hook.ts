@@ -1,45 +1,28 @@
-import { CreateProblemDto } from "../../dto/problem.dto";
 import { problemService } from "../../services/problem.service";
-import { setProblemState } from "../../store/slices/problem.slice";
-import { PaginationRequestDto } from "../../dto/utils.dto";
-import { useDispatch } from "react-redux";
-import { ProblemModelResponse, PaginationModelResponse } from "../../types/response.type";
-import { store } from "../../store/store";
+import { ProblemModelResponse } from "../../types/response.type";
 import {
     UseQueryOptions,
-    useMutation,
     useQuery,
-    useQueryClient,
 } from "react-query";
-import { useEffect } from "react";
 
-const PROBLEM_QUERY_KEY = "problems";
+const PROBLEM_QUERY_KEY = "problem";
 
-export const useProblem = (paginationRequest: PaginationRequestDto, options?: UseQueryOptions<PaginationModelResponse<ProblemModelResponse>>) => {
-    const dispatch = useDispatch();
-    const queryClient = useQueryClient();
-
-    const fetchProblems = async (): Promise<PaginationModelResponse<ProblemModelResponse>> => {
-        return await problemService.getProblems(paginationRequest);
+export const useProblem = (problemId: string, options?: UseQueryOptions<ProblemModelResponse>) => {
+    const fetchProblem = async (): Promise<ProblemModelResponse> => {
+        return await problemService.getProblem(problemId);
     };
-    
+
     const {
-        data: problems,
+        data: problem,
         isLoading,
         error,
-    } = useQuery<PaginationModelResponse<ProblemModelResponse>>(PROBLEM_QUERY_KEY, fetchProblems, {
+    } = useQuery<ProblemModelResponse>(PROBLEM_QUERY_KEY, fetchProblem, {
         ...options,
-        enabled: !!store.getState().problem.problem,
         refetchOnWindowFocus: false,
     });
-    
-    useEffect(() => {
-        if (problems) 
-            dispatch(setProblemState(problems.data));
-    }, [problems, dispatch]);
 
     return {
-        problems,
+        problem,
         isLoading,
         error,
     };

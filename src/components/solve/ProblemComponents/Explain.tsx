@@ -1,12 +1,16 @@
 import DetailCard from "./DetailCard";
 import ExampleCard from "./ExampleCard";
 import { ProblemModelResponse } from "../../../types/response.type";
+import InfoIcon from "../../../assets/InfoIcon.svg";
+import { usePopUp } from "../../hooks/popUp.hook";
 
 type ExplainProps = {
     problem?: ProblemModelResponse | null;
 }
 
 export default function Explain({ problem }: ExplainProps) {
+    const { setPopUp } = usePopUp();
+
     return (
         <>
             <div className="bg-jenna w-full flex flex-col items-center rounded-xl p-3">
@@ -25,8 +29,14 @@ export default function Explain({ problem }: ExplainProps) {
                         <span key={index}>{func}</span>
                     ))
                 }</p>} />
-                <ExampleCard title="ตัวอย่างที่ 1" input="1" output="20" /> 
-                {/* TODO: ExampleCard */}
+                <div className="relative">
+                    <img src={InfoIcon} alt="info" className="w-[20px] h-[20px] absolute top-[15px] left-[96px] hover:cursor-pointer" onClick={() => setPopUp(1)} />
+                    <div className="divide-y-2">
+                        {problem?.testcases.map((testcase, index) => {
+                            return <ExampleCard key={index} title={`ตัวอย่างที่ ${index + 1}`} input={testcase.input} output={testcase.output} />
+                        })}
+                    </div>
+                </div>
             </div>
         </>
     );

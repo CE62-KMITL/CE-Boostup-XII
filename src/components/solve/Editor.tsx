@@ -17,12 +17,13 @@ type EditorProps = {
     savesQuery: UseQueryResult<SavesModelResponse, unknown>;
     updateSaveMutation: UseMutationResult<SavesModelResponse, unknown, { saveId: string; updateSaveRequest: UpdateSaveDto; }, unknown>
     createSaveMutation: UseMutationResult<SavesModelResponse, unknown, CreateSaveDto, unknown>
+    starterCode: string;
 }
 
-function Editor({ height, problemId, updateSaveMutation, createSaveMutation, savesQuery }: EditorProps) {
+function Editor({ height, problemId, updateSaveMutation, createSaveMutation, savesQuery, starterCode }: EditorProps) {
     const navigate = useNavigate();
 
-    const [code, setCode] = useState<string>("#include <iostream>");
+    const [code, setCode] = useState<string>(starterCode);
     const [lang, setLang] = useState<string>("c");
 
     useEffect(() => {
@@ -59,9 +60,9 @@ function Editor({ height, problemId, updateSaveMutation, createSaveMutation, sav
     }
 
     useEffect(() => {
-        if (savesQuery.data)
-            handleSave();
-    }, [code, savesQuery.data]);
+        if (savesQuery.isSuccess && starterCode !== code)
+            handleSave(); 
+    }, [code]);
 
     return (
         <div className="h-full min-w-[779px] w-full">
