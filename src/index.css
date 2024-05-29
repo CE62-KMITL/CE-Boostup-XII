@@ -211,4 +211,30 @@
   input[type="password"]::-ms-clear {
     display: none;
   }
+
+  /* Radial Progress Bar */
+  .progress-bar{
+    fill:None;
+    stroke: #097275;
+    stroke-width: 15px;
+    stroke-dasharray: 565;
+    stroke-dashoffset: var(--stroke-dashoffset);
+    transform: rotate(270deg)
+  }
+
+  .progress-bar-bg{
+    fill:None;
+    stroke: #DDE2E5;
+    stroke-width: 15px;
+    stroke-dasharray: 565;
+    stroke-dashoffset: 0;
+  }
+
+  
+
+  
 }
+
+  
+    
+  

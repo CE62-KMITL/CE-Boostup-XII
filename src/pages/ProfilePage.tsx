@@ -8,12 +8,16 @@ function ProfilePage() {
         profile_picture: "https://picsum.photos/200",
         username: "นุกนิก นิกกี้เดส",
         email: "ce_nicky@gmail.com",
-        house: "บ้านบางแค"
+        house: "บ้านบางแค",
+        ranking: "999",
+        point: "123",
+        problem_count:"10",
+        problem_progress: "35"
     }
         
     return(
         <div>
-            {/* <div>
+            <div>
                 <NavBar/>
                 <Background/>
             </div>
@@ -23,12 +27,13 @@ function ProfilePage() {
                     username={account_info.username}
                     email={account_info.email}
                     house={account_info.house}
+                    ranking={account_info.ranking}
+                    point={account_info.point}
+                    problem_count={account_info.problem_count}
+                    problem_progress={account_info.problem_progress}
                 />
-            </div> */}
-
-            <div>
-                <button className="bg-accent w-[80px] h-[30px]">Button</button>
             </div>
+    
         </div>
     );
 }
