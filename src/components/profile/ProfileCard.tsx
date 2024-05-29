@@ -16,9 +16,9 @@ function ProfileCard({ profile_picture, username, email, house, ranking, point, 
 }) {
     return (
         <div>
-            <div className="relative flex flex-col mt-[96px] w-[1353px] h-[833px] bg-stone01 rounded-b-[10px]">
-                <div>
-                    <img className="w-[1353px] h-[325px]" src="https://picsum.photos/1353/325" alt="ProfileBackground" />
+            <div className="relative flex flex-col mt-[9.7vh] w-[100%] h-[84.8vh] bg-stone01 rounded-b-[10px]">
+                <div className="w-[1353px] h-[325px] object-cover">
+                    <img src={ProfileBackground} alt="ProfileBackground" />
                 </div>
                 <div className="absolute top-[233px] left-[211px]">
                     <ProfilePicture profile_picture={profile_picture} />
