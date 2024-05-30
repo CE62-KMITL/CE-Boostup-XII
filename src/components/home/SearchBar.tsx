@@ -1,13 +1,9 @@
 import { useEffect, useState } from "react";
 import Dropdown from "../utils/Dropdown";
 import Button from "../utils/OldButton";
-import { PaginationModelResponse, ProblemTagModelResponse } from "../../types/response.type";
+import { ProblemTagModelResponse } from "../../types/response.type";
 import { CompletionStatus } from "../../enum/problem.enum";
 import { store } from "../../store/store";
-import { problemTagsService } from "../../services/problemTags.service";
-import { setProblemTagState } from "../../store/slices/problemTags.slice";
-import { useDispatch } from "react-redux";
-import { PaginationRequestDto } from "../../dto/utils.dto";
 import { useNavigate } from "react-router-dom";
 import { usePaginationRequestStore } from "../../store/zustand/pagination.zustand";
 import { DropdownType } from "../../types/dropdown.type";
@@ -18,18 +14,12 @@ const isComplete: DropdownType[] = [
     { value: CompletionStatus.Unattempted, name: "empty" },
 ]
 
-
-type SearchBarProps = {
-    setParams: React.Dispatch<React.SetStateAction<PaginationRequestDto>>
-}
-
 function SearchBar() {
-    const dispatch = useDispatch();
     const { setPaginationRequest, paginationRequest } = usePaginationRequestStore();
     const problemTags = store.getState().problemTags.problemTags;
     const problems = store.getState().problem.problem;
     const navigate = useNavigate();
-    const [tagList, setTagList] = useState<DropdownType[]>([]);
+    const [tagList] = useState<DropdownType[]>([]);
 
     useEffect(() => {
         if (problemTags && tagList.length === 0) {
