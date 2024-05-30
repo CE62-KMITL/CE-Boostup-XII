@@ -34,7 +34,7 @@ function HomePage() {
                     </div>
                     <div className="flex flex-col w-full space-y-[16px]">
                         {
-                            problemsStore?.length === 0 ? <div className="text-6xl mt-4 self-center text-accent2">ไม่พบข้อมูล</div> :
+                            problemsStore?.length === 0 ? <div className="text-6xl mt-4 self-center text-accent02">ไม่พบข้อมูล</div> :
                                 problemsStore?.map((problem) => (
                                     <ProblemsTable
                                         id={problem.id}

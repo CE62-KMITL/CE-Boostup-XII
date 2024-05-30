@@ -7,9 +7,12 @@ import { useSaves } from "../hooks/saves.hook";
 import LoadingPage from "./LoadingPage";
 import { useProblem } from "../hooks/problem.hook";
 import { usePopUp } from "../hooks/pop-up.hook";
+import { useNavigate } from "react-router-dom";
+import { ErrorModelResponse } from "../types/response.type";
 
 function SolveProblemPage() {
   const { problemId } = useParams();
+  const navigate = useNavigate();
   const { problem, isLoading: isLoadingProblem } = useProblem(problemId as string);
   const { savesQuery, updateSaveMutation, createSaveMutation } = useSaves(problemId as string);
   const { popUp, popUpComponents, content } = usePopUp();
@@ -28,8 +31,28 @@ function SolveProblemPage() {
     setHeight(boxRef.current?.clientHeight || 0);
   }, [boxRef.current, savesQuery.isSuccess]);
 
-  if (savesQuery.isLoading || isLoadingProblem)
+
+  async function handleCreateSave() {
+    try {
+      if (!problemId)
+        return navigate("/home");
+      const response = await createSaveMutation.mutateAsync({ problem: problemId, code: problem?.starterCode as string });
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  useEffect(() => {
+    if (savesQuery.error && (savesQuery.error as ErrorModelResponse).statusCode === 404) {
+      handleCreateSave();
+      return navigate(0);
+    }
+  }, [savesQuery.error]);
+
+  if (savesQuery.isLoading || savesQuery.isError || isLoadingProblem || createSaveMutation.isLoading) {
     return <LoadingPage />;
+  }
 
   return (
     <>

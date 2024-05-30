@@ -2,7 +2,7 @@ import EditorFooter from "./EditorFooter";
 import OptionBar from "./OptionBar";
 import CodeMirror from '@uiw/react-codemirror';
 import { c, cpp } from "@codemirror/legacy-modes/mode/clike";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { StreamLanguage } from '@codemirror/language';
 import { githubLight } from "@uiw/codemirror-theme-github";
 import { useNavigate } from "react-router-dom";
@@ -22,13 +22,15 @@ type EditorProps = {
     starterCode: string;
 }
 
-function Editor({ height, problemId, updateSaveMutation, createSaveMutation, savesQuery }: EditorProps) {
+function Editor({ height, problemId, updateSaveMutation, createSaveMutation, savesQuery, starterCode }: EditorProps) {
     const navigate = useNavigate();
     const { language, code, setCode } = useCompilerSettingStore();
 
     useEffect(() => {
-        if (savesQuery.error && (savesQuery.error as ErrorModelResponse).statusCode === 404)
+        if (savesQuery.error && (savesQuery.error as ErrorModelResponse).statusCode === 404) {
             handleCreateSave();
+            return navigate(0);
+        }
     }, [savesQuery.error]);
 
     async function handleSave() {
@@ -46,7 +48,8 @@ function Editor({ height, problemId, updateSaveMutation, createSaveMutation, sav
         try {
             if (!problemId)
                 return navigate("/home");
-            await createSaveMutation.mutateAsync({ problem: problemId, code });
+            const response = await createSaveMutation.mutateAsync({ problem: problemId, code: starterCode });
+            console.log(response);
         } catch (error) {
             console.error(error);
         }

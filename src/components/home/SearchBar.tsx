@@ -36,13 +36,11 @@ function SearchBar() {
     const [completionStatus, setCompletionStatus] = useState<string>("");
 
     useEffect(() => {
-        if (tag !== "" || level !== 0 || completionStatus !== "") {
-            setPaginationRequest({
-                ...paginationRequest,
-                difficulties: level.toString() === "0" ? undefined : level.toString(),
-                tags: tag,
-            });
-        }
+        setPaginationRequest({
+            ...paginationRequest,
+            difficulties: level.toString() === "0" ? undefined : level.toString(),
+            tags: tag,
+        });
     }, [level, tag]);
 
     function handelSearch() {
@@ -53,10 +51,7 @@ function SearchBar() {
     }
 
     const recheckLevel = (selectedLevel: number) => {
-        if (selectedLevel === level)
-            setLevel(0);
-        else
-            setLevel(selectedLevel);
+        setLevel((prev) => prev === selectedLevel ? 0 : selectedLevel);
     };
 
     const renderStars = () => {
