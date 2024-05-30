@@ -1,38 +1,34 @@
 import { problemService } from "../../services/problem.service";
-import { setProblemState } from "../../store/slices/problems.slice";
-import { PaginationRequestDto } from "../../dto/utils.dto";
-import { useDispatch } from "react-redux";
 import { ProblemModelResponse, PaginationModelResponse } from "../../types/response.type";
-import { store } from "../../store/store";
 import {
     UseQueryOptions,
     useQuery,
 } from "react-query";
-import { useEffect } from "react";
+import { usePaginationRequestStore } from "../../store/zustand/pagination.zustand";
+import { useProblemsStore } from "../../store/zustand/problems.zustand";
 
 const PROBLEM_QUERY_KEY = "problems";
 
-export const useProblems = (paginationRequest: PaginationRequestDto, options?: UseQueryOptions<PaginationModelResponse<ProblemModelResponse>>) => {
-    const dispatch = useDispatch();
+export const useProblems = (options?: UseQueryOptions<PaginationModelResponse<ProblemModelResponse>>) => {
+    const { paginationRequest } = usePaginationRequestStore();
+    const { setProblems, isFetched, setIsFetched } = useProblemsStore();
 
     const fetchProblems = async (): Promise<PaginationModelResponse<ProblemModelResponse>> => {
-        return await problemService.getProblems(paginationRequest);
+        const response = await problemService.getProblems(paginationRequest);
+        setProblems(response.data);
+        if (!isFetched) 
+            setIsFetched(true);
+        return response;
     };
-    
+
     const {
         data: problems,
         isLoading,
         error,
-    } = useQuery<PaginationModelResponse<ProblemModelResponse>>(PROBLEM_QUERY_KEY, fetchProblems, {
+    } = useQuery<PaginationModelResponse<ProblemModelResponse>>([PROBLEM_QUERY_KEY, paginationRequest], fetchProblems, {
         ...options,
-        enabled: !!store.getState().problem.problem,
         refetchOnWindowFocus: false,
     });
-    
-    useEffect(() => {
-        if (problems) 
-            dispatch(setProblemState(problems.data));
-    }, [problems, dispatch]);
 
     return {
         problems,

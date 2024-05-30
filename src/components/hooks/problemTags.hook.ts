@@ -6,17 +6,20 @@ import { ProblemTagModelResponse, PaginationModelResponse } from "../../types/re
 import { store } from "../../store/store";
 import {
     UseQueryOptions,
-    useMutation,
     useQuery,
-    useQueryClient,
 } from "react-query";
 import { useEffect } from "react";
 
 const PROBLEM_TAGS_QUERY_KEY = "problemTags";
+const initialPaginationRequest: PaginationRequestDto = {
+    page: 1,
+    perPage: 10,
+    sort: "name",
+};
 
-export const useProblemsTags = (paginationRequest: PaginationRequestDto, options?: UseQueryOptions<PaginationModelResponse<ProblemTagModelResponse>>) => {
+export const useProblemsTags = (paginationRequest: PaginationRequestDto = initialPaginationRequest, options?: UseQueryOptions<PaginationModelResponse<ProblemTagModelResponse>>) => {
     const dispatch = useDispatch();
-    const queryClient = useQueryClient();
+    const tagList = [["", "บทเรียน"]];
 
     const fetchProblemTags = async (): Promise<PaginationModelResponse<ProblemTagModelResponse>> => {
         return await problemTagsService.getProblemTags(paginationRequest);
@@ -33,13 +36,18 @@ export const useProblemsTags = (paginationRequest: PaginationRequestDto, options
     });
     
     useEffect(() => {
-        if (problemTags) 
+        if (problemTags) {
             dispatch(setProblemTagState(problemTags.data));
+            problemTags.data.map((problemTag: ProblemTagModelResponse) => {
+                tagList.push([problemTag.id, problemTag.name]);
+            });
+        }
     }, [problemTags, dispatch]);
 
     return {
         problemTags,
         isLoading,
         error,
+        tagList
     };
 };

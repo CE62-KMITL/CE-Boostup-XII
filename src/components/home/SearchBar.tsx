@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Dropdown from "../utils/Dropdown";
 import Button from "../utils/OldButton";
-import { ProblemTagModelResponse } from "../../types/response.type";
+import { PaginationModelResponse, ProblemTagModelResponse } from "../../types/response.type";
 import { CompletionStatus } from "../../enum/problem.enum";
 import { store } from "../../store/store";
 import { problemTagsService } from "../../services/problemTags.service";
@@ -9,42 +9,34 @@ import { setProblemTagState } from "../../store/slices/problemTags.slice";
 import { useDispatch } from "react-redux";
 import { PaginationRequestDto } from "../../dto/utils.dto";
 import { useNavigate } from "react-router-dom";
+import { usePaginationRequestStore } from "../../store/zustand/pagination.zustand";
+import { DropdownType } from "../../types/dropdown.type";
 
-const isComplete = [
-    ["", "สถานะ"],
-    ["pass", CompletionStatus.Solved],
-    ["unpass", CompletionStatus.Attempted],
-    ["empty", CompletionStatus.Unattempted]
+const isComplete: DropdownType[] = [
+    { value: CompletionStatus.Solved, name: "pass" },
+    { value: CompletionStatus.Attempted, name: "unpass" },
+    { value: CompletionStatus.Unattempted, name: "empty" },
 ]
+
 
 type SearchBarProps = {
     setParams: React.Dispatch<React.SetStateAction<PaginationRequestDto>>
 }
 
-function SearchBar({ setParams }: SearchBarProps) {
+function SearchBar() {
     const dispatch = useDispatch();
+    const { setPaginationRequest, paginationRequest } = usePaginationRequestStore();
     const problemTags = store.getState().problemTags.problemTags;
     const problems = store.getState().problem.problem;
     const navigate = useNavigate();
-
-    const tagList = [["", "บทเรียน"]];
-
-    async function fetchProblemTags() {
-        try {
-            const response = await problemTagsService.getProblemTags({ page: 1, perPage: 10, sort: "name", search: "", owner: "" });
-            dispatch(setProblemTagState(response.data));
-        } catch (error) {
-            console.error(error);
-        }
-    }
+    const [tagList, setTagList] = useState<DropdownType[]>([]);
 
     useEffect(() => {
-        if (problemTags) {
+        if (problemTags && tagList.length === 0) {
             problemTags.map((problemTag: ProblemTagModelResponse) => {
-                tagList.push([problemTag.id, problemTag.name]);
+                tagList.push({ value: problemTag.id, name: problemTag.name });
             });
-        } else
-            fetchProblemTags();
+        }
     }, [problemTags]);
 
     const [level, setLevel] = useState<number>(0);
@@ -53,28 +45,26 @@ function SearchBar({ setParams }: SearchBarProps) {
     const [completionStatus, setCompletionStatus] = useState<string>("");
 
     useEffect(() => {
-        setParams((prev) => {
-            return {
-                ...prev,
-                difficulties: level === 0 ? "1" : "0",
-                tags: tag === "" ? "" : "fab65fe9-5941-4e20-9969-061beba2399f",
-            };
-        });
+        if (tag !== "" || level !== 0 || completionStatus !== "") {
+            setPaginationRequest({
+                ...paginationRequest,
+                difficulties: level.toString() === "0" ? undefined : level.toString(),
+                tags: tag,
+            });
+        }
     }, [level, tag]);
 
     function handelSearch() {
-        setParams((prev) => {
-            return {
-                ...prev,
-                search: search
-            };
+        setPaginationRequest({
+            ...paginationRequest,
+            search: search
         });
     }
 
     const recheckLevel = (selectedLevel: number) => {
-        if (selectedLevel === level) 
+        if (selectedLevel === level)
             setLevel(0);
-        else 
+        else
             setLevel(selectedLevel);
     };
 
@@ -108,8 +98,8 @@ function SearchBar({ setParams }: SearchBarProps) {
                     placeholder="พิมพ์ชื่อโจทย์ หรือเลขข้อ" onChange={(e) => setSearch(e.target.value)} />
                 <Button type={1} mode={4} validate={true} text="ตกลง" img="" ClickFunc={handelSearch} />
             </div>
-            <Dropdown type={1} values={isComplete} onChange={(v) => setCompletionStatus(v)}></Dropdown>
-            <Dropdown type={2} values={tagList} onChange={(v) => setTag(v)}></Dropdown>
+            <Dropdown type={1} values={isComplete} title="สถานะ" onChange={(v) => setCompletionStatus(v)} />
+            <Dropdown type={2} title="บทเรียน" values={tagList} onChange={(v) => setTag(v)} />
             <div className="flex items-center w-[224px] h-full rounded-[8px] px-[16px] bg-stone01">
                 <div className="flex items-center place-content-between w-full">
                     <p>ความยาก</p>

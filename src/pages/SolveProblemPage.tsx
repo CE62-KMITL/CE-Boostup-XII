@@ -10,7 +10,7 @@ import { usePopUp } from "../components/hooks/pop-up.hook";
 
 function SolveProblemPage() {
   const { problemId } = useParams();
-  const { problem, isLoading } = useProblem(problemId as string);
+  const { problem, isLoading: isLoadingProblem } = useProblem(problemId as string);
   const { savesQuery, updateSaveMutation, createSaveMutation } = useSaves(problemId as string);
   const { popUp, popUpComponents, content } = usePopUp();
 
@@ -28,7 +28,7 @@ function SolveProblemPage() {
     setHeight(boxRef.current?.clientHeight || 0);
   }, [boxRef.current, savesQuery.isSuccess]);
 
-  if (savesQuery.isLoading || isLoading)
+  if (savesQuery.isLoading || isLoadingProblem)
     return <LoadingPage />;
 
   return (

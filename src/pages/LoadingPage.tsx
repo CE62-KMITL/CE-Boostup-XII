@@ -2,7 +2,7 @@ import Background from "../components/utils/Background";
 
 export default function LoadingPage() {
     return (
-        <>
+        <div className="z-50 fixed">
             <Background />
             <div className="flex justify-center items-center w-screen h-screen">
                 <svg
@@ -32,6 +32,6 @@ export default function LoadingPage() {
                     </defs>
                 </svg>
             </div>
-        </>
+        </div>
     );
 }
