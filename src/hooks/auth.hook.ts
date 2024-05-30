@@ -1,10 +1,10 @@
-import { LoginDto, RegisterDto } from "../../dto/auth.dto";
-import { authService } from "../../services/auth.service";
-import { usersService } from "../../services/users.service";
-import { setAuthUser, setAuthAccessToken } from "../../store/slices/auth.slice";
+import { LoginDto, RegisterDto } from "../dto/auth.dto";
+import { authService } from "../services/auth.service";
+import { usersService } from "../services/users.service";
+import { setAuthUser, setAuthAccessToken } from "../store/slices/auth.slice";
 import { useDispatch } from "react-redux";
-import { UserModelResponse } from "../../types/response.type";
-import { store } from "../../store/store";
+import { UserModelResponse } from "../types/response.type";
+import { store } from "../store/store";
 import {
     UseQueryOptions,
     useMutation,

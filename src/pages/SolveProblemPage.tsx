@@ -3,10 +3,10 @@ import Background from "../components/utils/Background";
 import Editor from "../components/solve/Editor";
 import Problem from "../components/solve/Problem";
 import { useParams } from "react-router-dom";
-import { useSaves } from "../components/hooks/saves.hook";
+import { useSaves } from "../hooks/saves.hook";
 import LoadingPage from "./LoadingPage";
-import { useProblem } from "../components/hooks/problem.hook";
-import { usePopUp } from "../components/hooks/pop-up.hook";
+import { useProblem } from "../hooks/problem.hook";
+import { usePopUp } from "../hooks/pop-up.hook";
 
 function SolveProblemPage() {
   const { problemId } = useParams();

@@ -1,11 +1,11 @@
 import { useEffect } from "react";
-import { problemService } from "../../services/problem.service";
-import { ProblemModelResponse } from "../../types/response.type";
+import { problemService } from "../services/problem.service";
+import { ProblemModelResponse } from "../types/response.type";
 import {
     UseQueryOptions,
     useQuery,
 } from "react-query";
-import { useProblemStore } from "../../store/zustand/problem.zustand";
+import { useProblemStore } from "../store/zustand/problem.zustand";
 
 const PROBLEM_QUERY_KEY = "problem";
 

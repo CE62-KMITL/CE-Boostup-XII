@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { ReactElement } from 'react';
-import PopUp from '../solve/PopUp/PopUp';
+import PopUp from '../components/solve/PopUp/PopUp';
 
 interface PopUpStore {
     popUp: number | null;

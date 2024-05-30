@@ -1,9 +1,9 @@
-import { problemTagsService } from "../../services/problemTags.service";
-import { setProblemTagState } from "../../store/slices/problemTags.slice";
-import { PaginationRequestDto } from "../../dto/utils.dto";
+import { problemTagsService } from "../services/problemTags.service";
+import { setProblemTagState } from "../store/slices/problemTags.slice";
+import { PaginationRequestDto } from "../dto/utils.dto";
 import { useDispatch } from "react-redux";
-import { ProblemTagModelResponse, PaginationModelResponse } from "../../types/response.type";
-import { store } from "../../store/store";
+import { ProblemTagModelResponse, PaginationModelResponse } from "../types/response.type";
+import { store } from "../store/store";
 import {
     UseQueryOptions,
     useQuery,

@@ -2,7 +2,7 @@ import ExampleCard from "./ExampleCard";
 import Button from "../../utils/Button";
 import RunIcon from "../../../assets/RunIcon.svg";
 import { ProblemModelResponse } from "../../../types/response.type";
-import { useCompileAndRun } from "../../hooks/compile-and-run.hook";
+import { useCompileAndRun } from "../../../hooks/compile-and-run.hook";
 import { useCompilerSettingStore } from "../../../store/zustand/compiler-setting.zustand";
 import { useState } from "react";
 

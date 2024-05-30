@@ -3,11 +3,11 @@ import BackIcon from "../../assets/back.svg";
 import SendIcon from "../../assets/sendIcon.svg";
 import Dropdown from "../utils/Dropdown";
 import { useNavigate } from "react-router-dom";
-import { usePopUp } from "../hooks/pop-up.hook";
+import { usePopUp } from "../../hooks/pop-up.hook";
 import { useProblemStore } from "../../store/zustand/problem.zustand";
 import { ProgrammingLanguage } from "../../enum/compile-and-run.enum";
 import { useCompilerSettingStore } from "../../store/zustand/compiler-setting.zustand";
-import { useSubmission } from "../hooks/submission.hook";
+import { useSubmission } from "../../hooks/submission.hook";
 
 export default function OptionBar() {
     const navigate = useNavigate();

@@ -2,7 +2,7 @@ import DetailCard from "./DetailCard";
 import ExampleCard from "./ExampleCard";
 import { ProblemModelResponse } from "../../../types/response.type";
 import InfoIcon from "../../../assets/InfoIcon.svg";
-import { usePopUp } from "../../hooks/pop-up.hook";
+import { usePopUp } from "../../../hooks/pop-up.hook";
 
 type ExplainProps = {
     problem?: ProblemModelResponse | null;

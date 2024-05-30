@@ -1,14 +1,14 @@
-import { savesService } from "../../services/saves.service";
-import { CreateSaveDto, UpdateSaveDto } from "../../dto/saves.dto";
-import { SavesModelResponse } from "../../types/response.type";
+import { savesService } from "../services/saves.service";
+import { CreateSaveDto, UpdateSaveDto } from "../dto/saves.dto";
+import { SavesModelResponse } from "../types/response.type";
 import {
     UseQueryOptions,
     useMutation,
     useQuery,
 } from "react-query";
-import { useCompilerSettingStore } from "../../store/zustand/compiler-setting.zustand";
+import { useCompilerSettingStore } from "../store/zustand/compiler-setting.zustand";
 import { useEffect } from "react";
-import { useProblemStore } from "../../store/zustand/problem.zustand";
+import { useProblemStore } from "../store/zustand/problem.zustand";
 
 const SAVES_QUERY_KEY = "saves";
 

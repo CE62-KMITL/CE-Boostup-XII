@@ -5,9 +5,9 @@ import ProblemsTable from "../components/home/ProblemsTable";
 import Background from "../components/utils/Background";
 import { store } from "../store/store";
 import NavBar from "../components/utils/NavBar";
-import { useProblems } from "../components/hooks/problems.hook";
+import { useProblems } from "../hooks/problems.hook";
 import LoadingPage from "./LoadingPage";
-import { useProblemsTags } from "../components/hooks/problemTags.hook";
+import { useProblemsTags } from "../hooks/problemTags.hook";
 import { useProblemsStore } from "../store/zustand/problems.zustand";
 
 function HomePage() {

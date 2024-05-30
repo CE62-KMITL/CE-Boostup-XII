@@ -60,9 +60,6 @@ function Dropdown({ values, type, onChange, title }: DropdownProps) {
                 <option key={value.value} value={value.value}>{value.name}</option>
               ))
             }
-            {/* {values.map(([id, text]) => (
-              <option key={id} value={id}>{text}</option>
-            ))} */}
           </select>
         </div>
       </div>);

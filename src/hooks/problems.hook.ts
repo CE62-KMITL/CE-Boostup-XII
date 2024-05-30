@@ -1,11 +1,11 @@
-import { problemService } from "../../services/problem.service";
-import { ProblemModelResponse, PaginationModelResponse } from "../../types/response.type";
+import { problemService } from "../services/problem.service";
+import { ProblemModelResponse, PaginationModelResponse } from "../types/response.type";
 import {
     UseQueryOptions,
     useQuery,
 } from "react-query";
-import { usePaginationRequestStore } from "../../store/zustand/pagination.zustand";
-import { useProblemsStore } from "../../store/zustand/problems.zustand";
+import { usePaginationRequestStore } from "../store/zustand/pagination.zustand";
+import { useProblemsStore } from "../store/zustand/problems.zustand";
 
 const PROBLEM_QUERY_KEY = "problems";
 

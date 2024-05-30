@@ -1,7 +1,7 @@
 import Background from '../components/utils/Background';
 import InstagramCard from "../components/register/InstagramCard";
 import RegisterFormCard from "../components/register/RegisterFormCard";
-import { useAuth } from '../components/hooks/auth.hook';
+import { useAuth } from '../hooks/auth.hook';
 import LoadingPage from './LoadingPage';
 
 export default function RegisterPage() {

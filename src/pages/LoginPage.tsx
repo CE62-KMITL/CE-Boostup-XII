@@ -6,7 +6,7 @@ import ForgotPasswordPopUp from "../components/login/ForgotPasswordPopUp";
 import RecognizedPopUp from "../components/login/RecognizedPopUp";
 import CreateAccountPopUp from "../components/login/CreateAccountPopUp";
 import LoadingPage from "./LoadingPage";
-import { useAuth } from "../components/hooks/auth.hook";
+import { useAuth } from "../hooks/auth.hook";
 import { useState } from "react";
 
 export default function LoginPage() {
