@@ -7,6 +7,7 @@ import { store } from "../../store/store";
 import { useNavigate } from "react-router-dom";
 import { usePaginationRequestStore } from "../../store/zustand/pagination.zustand";
 import { DropdownType } from "../../types/dropdown.type";
+import { useProblemsStore } from "../../store/zustand/problems.zustand";
 
 const isComplete: DropdownType[] = [
     { value: CompletionStatus.Solved, name: "pass" },
@@ -17,7 +18,7 @@ const isComplete: DropdownType[] = [
 function SearchBar() {
     const { setPaginationRequest, paginationRequest } = usePaginationRequestStore();
     const problemTags = store.getState().problemTags.problemTags;
-    const problems = store.getState().problem.problem;
+    const { problems } = useProblemsStore();
     const navigate = useNavigate();
     const [tagList] = useState<DropdownType[]>([]);
 

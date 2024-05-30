@@ -8,6 +8,7 @@ import { useProblemStore } from "../../store/zustand/problem.zustand";
 import { ProgrammingLanguage } from "../../enum/compile-and-run.enum";
 import { useCompilerSettingStore } from "../../store/zustand/compiler-setting.zustand";
 import { useSubmission } from "../../hooks/submission.hook";
+import { DropdownType } from "../../types/dropdown.type";
 
 export default function OptionBar() {
     const navigate = useNavigate();
@@ -17,7 +18,10 @@ export default function OptionBar() {
     const { setPopUp, setContent } = usePopUp();
     const { problem } = useProblemStore();
 
-    const langList = [[ProgrammingLanguage.C17, "C"], [ProgrammingLanguage.CPP17, "C++"]]
+    const langList: DropdownType[] = [
+        { value: ProgrammingLanguage.C17, name: "C" },
+        { value: ProgrammingLanguage.CPP17, name: "C++" }
+    ]
 
     async function handleSubmit() {
         try {
