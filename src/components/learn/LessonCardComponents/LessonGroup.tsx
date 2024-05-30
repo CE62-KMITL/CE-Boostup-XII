@@ -7,7 +7,7 @@ type LessonGroupProps = {
 
 function LessonGroup({ lessons }: LessonGroupProps) {
     return (
-        <div className=" w-auto h-auto grid grid-cols-5 gap-x-[19px] gap-y-[36px]">
+        <div className=" w-auto h-auto grid grid-cols-3 gap-x-[19px] gap-y-[36px]">
             {lessons?.map((lesson, index) => (
                 <LessonCard key={index} title={lesson.name} description={lesson.type} img={lesson.url} />
             ))}
