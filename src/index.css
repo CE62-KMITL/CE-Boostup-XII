@@ -13,7 +13,7 @@
   }
 
   .gradient-background {
-    background: linear-gradient(180deg, #0b384b 29%, #10516c 62%, #097275 100%);
+     background: linear-gradient(180deg, #0b384b 29%, #10516c 62%, #097275 100%);
   }
 
   .holding-space {
@@ -23,6 +23,7 @@
     width: 50%;
     height: 12%;
     min-height: 25px;
+    
   }
 
   .curve-bl,

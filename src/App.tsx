@@ -8,9 +8,11 @@ import LearnPage from './pages/LearnPage'
 import HomePage from './pages/HomePage'
 import ProfilePage from './pages/ProfilePage'
 
-import ResetPasswordPopUp from './components/login/ResetPasswordPopUp'
+import ResetPasswordPopUp from './components/login/LoginPopUp/ResetPasswordPopUp'
 import Error404Page from './pages/Error404Page'
 import LoadingPage from './pages/LoadingPage'
+import ChangePassword from './components/profile/ProfilePopUp/ChangePassword'
+import EditProfile from './components/profile/ProfilePopUp/EditProfile'
 
 function App() {
   return (
@@ -28,7 +30,10 @@ function App() {
         <Route path="/reset-password" element={<ResetPasswordPopUp />} />
         <Route path="/error404" element={<Error404Page />} />
         <Route path="/loading" element={<LoadingPage />} />
-        
+
+        <Route path="/change-password" element={<ChangePassword />} />
+        <Route path="/edit-profile" element={<EditProfile />} />
+
       </Routes>
     </BrowserRouter>
   )

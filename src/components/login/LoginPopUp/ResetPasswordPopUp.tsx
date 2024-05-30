@@ -1,6 +1,6 @@
 import { useState } from "react";
-import DarkBackground from "../utils/DarkBackground"
-import Input from "../utils/Input"
+import DarkBackground from "../../utils/DarkBackground"
+import Input from "../../utils/Input";
 
 function ResetPasswordPopUp() {
     const [PasswordAlert01, setPasswordAlert01] = useState(false);
@@ -8,32 +8,13 @@ function ResetPasswordPopUp() {
     const [confirmPasswordAlert, setConfirmPasswordAlert] = useState(false);
     const [checkedSumbitButton, setCheckedSubmitButton] = useState(false);
 
-    const [usernameInput, setUsernameInput] = useState<string>("");
     const [passwordInput, setPasswordInput] = useState<string>("");
     const [confirmPasswordInput, setConfirmPasswordInput] = useState<string>("");
   
-    function handleSubmit() {
-      console.log("submit");
-    }
-  
-    const handlePasswordFunctionGroup = () => {
-      handlePasswordAlert01();
-      handlePasswordAlert02();
-      handleCheckedSubmitButton();
-    }
-  
-    const handleConfirmPasswordFunctionGroup = () => {
-      handleConfirmPasswordAlert();
-      handleCheckedSubmitButton();
-    }
-  
     const handlePasswordAlert01 = () => {
       const password = passwordInput
-      if (password.length < 8 && password.length != 0) {
-        setPasswordAlert01(true);
-      } else {
-        setPasswordAlert01(false);
-      }
+
+      setPasswordAlert01(password.length < 8 && password.length != 0);
     };
   
     const handlePasswordAlert02 = () => {
@@ -48,42 +29,23 @@ function ResetPasswordPopUp() {
       const hasLowercase = lowercaseRegex.test(password);
       const hasNumber = numberRegex.test(password);
       const hasSpecialChar = specialCharRegex.test(password);
-  
-      if (
-        (!hasUppercase || !hasLowercase || !hasNumber || !hasSpecialChar) &&
-        password.length != 0
-      ) {
-        setPasswordAlert02(true);
-      } else {
-        setPasswordAlert02(false);
-      }
+
+      setPasswordAlert02((!hasUppercase || !hasLowercase || !hasNumber || !hasSpecialChar) && password.length != 0);
     };
   
     const handleConfirmPasswordAlert = () => {
       const password = passwordInput
       const confirmPassword = confirmPasswordInput
-      if (
-        confirmPassword != password || PasswordAlert01 == true || PasswordAlert02 == true
-      ) {
-        setConfirmPasswordAlert(true);
-      } else {
-        setConfirmPasswordAlert(false);
-      }
+
+      setConfirmPasswordAlert(confirmPassword != password || PasswordAlert01 || PasswordAlert02);
     };
   
     const handleCheckedSubmitButton = () => {
-      const username = usernameInput
       const password = passwordInput
       const confirmPassword = confirmPasswordInput
-  
-      if (
-        username.length > 0 && password.length > 0 && confirmPassword.length > 0 &&
-        !PasswordAlert01 && !PasswordAlert02 && !confirmPasswordAlert
-      ) {
-        setCheckedSubmitButton(true);
-      } else {
-        setCheckedSubmitButton(false);
-      }
+
+      setCheckedSubmitButton(password.length > 0 && confirmPassword.length > 0 &&
+        !PasswordAlert01 && !PasswordAlert02 && !confirmPasswordAlert);
     };
   
     const [initPasswordAppearance, setInitPasswordAppearance] = useState(false);
@@ -147,38 +109,27 @@ function ResetPasswordPopUp() {
     );
   
     const initEyeIcon = (state: string) => {
-      if (initPasswordAppearance) {
-        return <OpenEyeIcon status={state} />;
-      } else {
-        return <ClosedEyeIcon status={state} />;
-      }
+      return initPasswordAppearance ? <OpenEyeIcon status={state} /> : <ClosedEyeIcon status={state} />;
     };
   
     const confirmEyeIcon = (state: string) => {
-      if (confirmPasswordAppearance) {
-        return <OpenEyeIcon status={state} />;
-      } else {
-        return <ClosedEyeIcon status={state} />;
-      }
+      return confirmPasswordAppearance ? <OpenEyeIcon status={state} /> : <ClosedEyeIcon status={state} />;
     };
   
-    const onChangeData = () => {
-      console.log({
-        PasswordAlert01: PasswordAlert01,
-        PasswordAlert02: PasswordAlert02,
-        confirmPasswordAlert: confirmPasswordAlert,
-        checkedSumbitButton: checkedSumbitButton,
-      });
+    const integralSystems = () => {
+      handlePasswordAlert01();
+      handlePasswordAlert02();
+      handleConfirmPasswordAlert();
+      handleCheckedSubmitButton();
     };
 
     return (
         <div className="flex justify-center items-center fixed top-0 w-screen h-screen z-10">
             <DarkBackground />
             <form onKeyUp={() => {
-              handlePasswordFunctionGroup();
-              handleConfirmPasswordFunctionGroup();
+              integralSystems();
             }}
-            action="" className="flex flex-col items-center place-content-between absolute
+            action="" className="flex flex-col items-center place-content-between absolute z-20
             w-[50%] min-w-[450px] max-w-[500px] h-[50%] min-h-[540px] max-h-[600px] rounded-[30px] p-[36px] bg-stone01">
                 
                 <div className="flex flex-col items-center w-full h-auto">
@@ -201,7 +152,7 @@ function ResetPasswordPopUp() {
                               ? "text" : "password"
                           }
                           placeholder=" " 
-                          labelClass={`absolute left-[16px] bottom-[6px] text-[24px] font-[700]
+                          labelClass={`absolute left-[16px] bottom-[6px] text-[24px] font-[700] pointer-events-none
                           ${PasswordAlert01 || PasswordAlert02
                               ? "text-red-500" : ""
                           }`}
@@ -247,7 +198,7 @@ function ResetPasswordPopUp() {
                           type={confirmPasswordAppearance 
                             ? "text" : "password"
                           } placeholder=" " 
-                          labelClass={`absolute left-[16px] bottom-[6px] text-[24px] font-[700]
+                          labelClass={`absolute left-[16px] bottom-[6px] text-[24px] font-[700] pointer-events-none
                           ${confirmPasswordAlert 
                               ? "text-red-500" : ""
                           }`} 
@@ -281,10 +232,11 @@ function ResetPasswordPopUp() {
                 </div>
 
                 <div className="flex flex-col items-center place-content-between w-[50%] h-[30%] min-w-[140px] max-w-[150px] min-h-[60px] max-h-[70px]">
-                    <button className="flex justify-center items-center w-full h-[66%] min-h-[36px] max-h-[42px] 
-                    rounded-lg shadow-md bg-accent text-stone01 text-[18px] font-[700]">
-                        ตกลง
-                    </button>
+                    <button className={`w-[180px] h-[48px] rounded-[10px] text-[18px] font-bold shadow-md
+                    ${checkedSumbitButton 
+                        ? "bg-accent text-stone01 hover:bg-accent02 transition-all ease-in-out duration-200 cursor-pointer" 
+                        : "bg-[#D7C398] text-stone01 hover:cursor-default pointer-events-none"
+                    }`}>ตกลง</button>
                     <a href="" className="text-stone04 text-[16px] leading-[0.5rem]">กลับเข้าสู่ระบบ</a>
                 </div>
 
