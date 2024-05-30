@@ -5,20 +5,9 @@ import {
     UseQueryOptions,
     useQuery,
 } from "react-query";
-import { create } from "zustand";
+import { useProblemStore } from "../../store/zustand/problem.zustand";
 
 const PROBLEM_QUERY_KEY = "problem";
-
-
-interface ProblemStore {
-    problem: ProblemModelResponse | null;
-    setProblem: (problem: ProblemModelResponse) => void;
-}
-
-export const useProblemStore = create<ProblemStore>((set) => ({ 
-    problem: null,
-    setProblem: (problem: ProblemModelResponse) => set({ problem }),
-}));
 
 export const useProblem = (problemId: string, options?: UseQueryOptions<ProblemModelResponse>) => {
     const { setProblem } = useProblemStore();

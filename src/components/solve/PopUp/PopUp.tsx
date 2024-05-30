@@ -1,6 +1,6 @@
 import DarkBackground from "../../utils/DarkBackground";
 import Button from "../../utils/Button";
-import { usePopUp } from "../../hooks/popUp.hook";
+import { usePopUp } from "../../hooks/pop-up.hook";
 
 type PopUpProps = {
     title: string;

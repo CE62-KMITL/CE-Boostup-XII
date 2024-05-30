@@ -1,6 +1,35 @@
-import { CompletionStatus, ProgrammingLanguage, OptimizationLevel, PublicationStatus } from "../enum/problem.enum";
+import { CompletionStatus, PublicationStatus } from "../enum/problem.enum";
+import { OptimizationLevel, ProgrammingLanguage, ResultCode } from "../enum/compile-and-run.enum";
 import { Role } from "../enum/roles.enum";
 import { AttachmentModel } from "./problem.type";
+import { CompileAndRunOutput } from "./compile-and-run.type";
+import { User } from "./user.type";
+
+export interface CompileAndRunModelResponse {
+    compilerOutput: string;
+    compilationTime: number;
+    compilationMemory: number;
+    executableSize: number;
+    totalExecutionTime: number;
+    maxExecutionMemory: number;
+    code: ResultCode;
+    outputs: CompileAndRunOutput[];
+}
+
+export interface SubmissionsModelResponse {
+    id: string;
+    owner: User;
+    problem: { id: string; title: string };
+    code: string;
+    language: ProgrammingLanguage;
+    outputCodes: string[];
+    accepted: boolean;
+    compilationTime: number;
+    compilationMemory: number;
+    executionTime: number;
+    executionMemory: number;
+    createdAt: Date;
+}
 
 export interface AuthModelResponse {
     token: string;
@@ -98,8 +127,8 @@ export interface AttachmentModelResponse {
     size: number;
     url: string;
     owner: {
-      id: string;
-      displayName: string;
+        id: string;
+        displayName: string;
     };
     createdAt: Date;
 }

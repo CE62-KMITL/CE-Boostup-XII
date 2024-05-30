@@ -1,4 +1,4 @@
-import { ProgrammingLanguage, OptimizationLevel } from '../enum/problem.enum';
+import { ProgrammingLanguage, OptimizationLevel } from '../enum/compile-and-run.enum';
 
 export type CreateProblemDto = {
   title: string;

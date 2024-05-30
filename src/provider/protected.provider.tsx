@@ -5,11 +5,11 @@ import { Outlet } from "react-router-dom";
 import { useEffect } from "react";
 import { usersService } from "../services/users.service";
 
-type RouteControllerProps = {
+type ProtectedProviderProps = {
     allowedRoles: Role[];
 }
 
-export function RouteController({ allowedRoles }: RouteControllerProps) {
+export function ProtectedProvider({ allowedRoles }: ProtectedProviderProps) {
     const location = useLocation();
     const navigate = useNavigate();
     const userRoles = store.getState().auth.user?.roles;

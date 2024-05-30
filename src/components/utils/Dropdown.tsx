@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { ProblemTagModelResponse } from "../../types/response.type";
 
 type DropdownProps = {
   type: number;
@@ -50,6 +49,7 @@ function Dropdown({ values, type, onChange }: DropdownProps) {
         </div>
       </div>);
   }
+
   return (
     <div className="test">
       <div className="relative w-28 h-10 shadow-md rounded-lg before:flex before:justify-center before:items-center before:absolute before:right-0 before:-top-0 before:w-10 before:h-10 before:rounded-lg before:bg-cream before:hover:bg-cream2 before:hover:pointer-events-none before:transistion before:duration-200 before:ease-in-out">

@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import { useSaves } from "../components/hooks/saves.hook";
 import LoadingPage from "./LoadingPage";
 import { useProblem } from "../components/hooks/problem.hook";
-import { usePopUp } from "../components/hooks/popUp.hook";
+import { usePopUp } from "../components/hooks/pop-up.hook";
 
 function SolveProblemPage() {
   const { problemId } = useParams();

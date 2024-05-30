@@ -9,7 +9,7 @@ import LearnPage from './pages/LearnPage'
 import HomePage from './pages/HomePage'
 import ProfilePage from './pages/ProfilePage'
 import ResetPasswordPage from './pages/ResetPasswordPage'
-import { RouteController } from './controllers/route.controller'
+import { ProtectedProvider } from './provider/protected.provider'
 import { Role } from './enum/roles.enum'
 import { QueryClient, QueryClientProvider } from 'react-query'
 
@@ -25,7 +25,7 @@ export default function App() {
             <Route path="/" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/reset-password" element={<ResetPasswordPage />} />
-            <Route element={<RouteController allowedRoles={[Role.User, Role.SuperAdmin]} />}>
+            <Route element={<ProtectedProvider allowedRoles={[Role.User, Role.SuperAdmin]} />}>
               <Route path="/solve/:problemId" element={<SolveProblemPage />} />
               <Route element={<InitLayout />}>
                 <Route path="/home" element={<HomePage />} />

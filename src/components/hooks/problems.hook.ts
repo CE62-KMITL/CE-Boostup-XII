@@ -1,5 +1,5 @@
 import { problemService } from "../../services/problem.service";
-import { setProblemState } from "../../store/slices/problem.slice";
+import { setProblemState } from "../../store/slices/problems.slice";
 import { PaginationRequestDto } from "../../dto/utils.dto";
 import { useDispatch } from "react-redux";
 import { ProblemModelResponse, PaginationModelResponse } from "../../types/response.type";

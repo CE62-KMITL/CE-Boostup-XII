@@ -29,7 +29,7 @@ const errorInterceptor = async (error: AxiosError) => {
 
     if (
         (error.response?.status === 401 ||
-        store.getState().auth.user != null) &&
+            store.getState().auth.user != null) &&
         originalRequest
     ) {
         const accessToken = store.getState().auth.accessToken;

@@ -10,7 +10,7 @@ import {
   REHYDRATE,
 } from "redux-persist";
 import { authSlice } from "./slices/auth.slice";
-import { problemSlice } from "./slices/problem.slice";
+import { problemSlice } from "./slices/problems.slice";
 import { attachmentSlice } from "./slices/attachments.slice";
 import { problemTagSlice } from "./slices/problemTags.slice";
 import storage from "./storage";
