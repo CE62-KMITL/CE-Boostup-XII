@@ -15,7 +15,7 @@ function ProfileCard({ profile_picture, username, email, house, ranking, point, 
     problem_progress: string
 }) {
     return (
-        <div>
+        <>
             <div className="relative flex flex-col mt-[9.7vh] w-[1353px] h-[84.8vh] min-h-[742px] max-h-[900px] bg-stone01 rounded-b-[10px]">
                 <div className="w-[1353px] h-[325px] object-cover">
                     <img src={ProfileBackground} alt="ProfileBackground" />
@@ -41,11 +41,8 @@ function ProfileCard({ profile_picture, username, email, house, ranking, point, 
                 <div className="absolute bottom-[33px] left-[598px]">
                     <LogOutButton />
                 </div>
-
-
             </div>
-
-        </div>
+        </>
     );
 }
 

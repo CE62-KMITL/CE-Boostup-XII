@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import DarkBackground from "../../utils/DarkBackground";
 import Input from "../../utils/Input";
 
@@ -159,7 +159,7 @@ export default function ChangePassword() {
     }
 
     return (
-        <div className="flex justify-center items-center fixed top-0 w-screen h-screen">
+        <div className="flex justify-center items-center fixed top-0 w-screen h-screen z-50">
             <DarkBackground/>
             <div onKeyUp={IntegralSystem} className="flex flex-col items-center place-content-between gap-6 z-20
             xl:w-[480px] 2xl:w-[500px] h-fit p-[36px_33px] rounded-[30px] bg-stone01">
@@ -267,4 +267,3 @@ export default function ChangePassword() {
         </div>
     )
 };
-

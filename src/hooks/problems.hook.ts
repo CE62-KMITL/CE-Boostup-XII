@@ -11,13 +11,15 @@ const PROBLEM_QUERY_KEY = "problems";
 
 export const useProblems = (options?: UseQueryOptions<PaginationModelResponse<ProblemModelResponse>>) => {
     const { paginationRequest } = usePaginationRequestStore();
-    const { setProblems, isFetched, setIsFetched } = useProblemsStore();
+    const { setProblems, isFetched, setIsFetched, setAllProblems } = useProblemsStore();
 
     const fetchProblems = async (): Promise<PaginationModelResponse<ProblemModelResponse>> => {
         const response = await problemService.getProblems(paginationRequest);
         setProblems(response.data);
-        if (!isFetched) 
+        if (!isFetched) {
             setIsFetched(true);
+            setAllProblems(response.data);
+        }
         return response;
     };
 
