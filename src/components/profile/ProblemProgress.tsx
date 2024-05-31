@@ -7,11 +7,10 @@ type ProblemProgressProps = {
 function ProblemProgress({finished_percentage}: ProblemProgressProps) {
     const progressPercentage = Math.floor(finished_percentage);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-    const [windowState, setWindowState] = useState('');
+    const [windowHeight, setWindowHeight] = useState(window.innerHeight);
     const [scaleWidth, setScaleWidth] = useState(0);
     const [radius, setRadius] = useState(0);
     const [strokeWidth, setStrokeWidth] = useState(0);
-    const [innerSpace, setInnerSpace] = useState(0);
 
     const lgWidth = 160;
     const xlWidth = 180;
@@ -23,8 +22,10 @@ function ProblemProgress({finished_percentage}: ProblemProgressProps) {
     useEffect(() => {
         const handleResize = () => {
             const newWidth = window.innerWidth;
-            if (newWidth !== windowWidth) {
+            const newHeight = window.innerHeight;
+            if (newWidth !== windowWidth || newHeight !== windowHeight) {
                 setWindowWidth(newWidth);
+                setWindowHeight(newHeight);
                 window.location.reload();
             }
         };
@@ -35,59 +36,45 @@ function ProblemProgress({finished_percentage}: ProblemProgressProps) {
             window.removeEventListener('resize', handleResize);
         };
         
-    }, [windowWidth]);
+    }, [windowWidth, windowHeight]);
 
     useEffect(() => {
         if (windowWidth >= 1024 && windowWidth < 1280) {
-            setWindowState('lg-screen');
             setScaleWidth(lgWidth);
-            setRadius((lgWidth / 2) - (lgStroke / 2));
             setStrokeWidth(lgStroke);
-            setInnerSpace(lgStroke * 2);
         } else if (windowWidth >= 1280 && windowWidth < 1536) {
-            setWindowState('xl-screen');
             setScaleWidth(xlWidth);
-            setRadius((xlWidth / 2) - (xlStroke / 2));
             setStrokeWidth(xlStroke);
-            setInnerSpace(xlStroke * 2);
         } else if (windowWidth >= 1536) {
-            setWindowState('2xl-screen');
             setScaleWidth(xxlWidth);
-            setRadius((xxlWidth / 2) - (xxlStroke / 2));
             setStrokeWidth(xxlStroke);
-            setInnerSpace(xxlStroke * 2);
         }
-    }, [windowWidth]);
+        setRadius((scaleWidth / 2) - (strokeWidth / 2));
+    }, [windowWidth, scaleWidth, strokeWidth]);
 
     const circumference = 2 * Math.PI * radius;
     const offset = circumference - (progressPercentage / 100) * circumference;
 
     return (
-        <div className={`relative flex justify-center items-center w-[${scaleWidth}px] h-[${scaleWidth}px]`}>
+        <div className="relative flex justify-center items-center" 
+        style={{ width: `${scaleWidth}px`, height: `${scaleWidth}px` }}>
             <div className="absolute flex justify-center items-center">
-                <div className={`bg-stone-300 rounded-full flex justify-center items-center w-[${scaleWidth}px] h-[${scaleWidth}px] p-[${strokeWidth}px]`}>
-                    <div className={`bg-stone-100 rounded-full flex justify-center items-center w-[${scaleWidth - innerSpace}px] h-[${scaleWidth - innerSpace}px]`}>
+                <div className="bg-stone-300 rounded-full flex justify-center items-center" 
+                style={{ width: `${scaleWidth}px`, height: `${scaleWidth}px`, padding: `${strokeWidth}px` }}>
+                    <div className="bg-stone-100 rounded-full flex justify-center items-center" 
+                    style={{ width: `${scaleWidth - strokeWidth * 2}px`, height: `${scaleWidth - strokeWidth * 2}px` }}>
                         <div className="flex flex-col justify-center items-center">
-                            <div className={`
-                                ${windowState === 'lg-screen' ? 'text-[12px] font-medium leading-2' : ''}
-                                ${windowState === 'xl-screen' ? 'text-[14px] font-medium leading-4' : ''}
-                                ${windowState === '2xl-screen' ? 'text-[16px] font-medium leading-6' : ''}
-                            `}>
+                            <div className={`text-[${windowWidth >= 1536 ? 16 : windowWidth >= 1280 ? 14 : 12}px] font-medium`}>
                                 ทำโจทย์ไปแล้ว
                             </div>
-                            <div className={`
-                                ${windowState === 'lg-screen' ? 'text-[20px] font-bold leading-4' : ''}
-                                ${windowState === 'xl-screen' ? 'text-[22px] font-bold leading-6' : ''}
-                                ${windowState === '2xl-screen' ? 'text-[24px] font-bold leading-8' : ''}
-                            `}>
+                            <div className={`text-[${windowWidth >= 1536 ? 24 : windowWidth >= 1280 ? 22 : 20}px] font-bold`}>
                                 {progressPercentage}%
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <svg className={`absolute transform -rotate-90 w-[${scaleWidth}px] h-[${scaleWidth}px]`} 
-            xmlns="http://www.w3.org/2000/svg" version="1.1">
+            <svg className="absolute transform -rotate-90" style={{ width: `${scaleWidth}px`, height: `${scaleWidth}px` }} xmlns="http://www.w3.org/2000/svg" version="1.1">
                 <defs>
                     <linearGradient id="GradientColor">
                         <stop offset="0%" stopColor="#097275" />
@@ -95,11 +82,12 @@ function ProblemProgress({finished_percentage}: ProblemProgressProps) {
                     </linearGradient>
                 </defs>
                 <circle
-                    className={`fill-none stroke-[${strokeWidth}px]`}
+                    className="fill-none"
                     cx="50%"
                     cy="50%"
                     r={radius}
                     strokeLinecap="round"
+                    strokeWidth={strokeWidth}
                     style={{
                         stroke: 'url(#GradientColor)',
                         strokeDasharray: circumference,
