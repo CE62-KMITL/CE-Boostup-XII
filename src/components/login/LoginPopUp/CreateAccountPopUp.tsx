@@ -31,6 +31,9 @@ function CreateAccountPopUp({ setShowCreateAccount }: CreateAccountPopUpProps) {
         initialValues: {
             ...{ email: "" },
         },
+        initialErrors: {
+            ...{ email: "" },
+        },
         validateOnChange: true,
         enableReinitialize: true,
         validationSchema: yup.object({

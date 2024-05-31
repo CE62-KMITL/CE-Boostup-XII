@@ -37,6 +37,9 @@ function RegisterFormCard({ mutation }: RegisterFormCardProps) {
     initialValues: {
       ...emptyRegisterValues,
     },
+    initialErrors: {
+      ...emptyRegisterValues,
+    },
     validateOnChange: true,
     enableReinitialize: true,
     validationSchema: RegisterValidationSchema,
@@ -65,7 +68,7 @@ function RegisterFormCard({ mutation }: RegisterFormCardProps) {
           </div>
           <ol className="list list-disc list-inside xl:p-[12px_8px] 2xl:p-[16px_8px] leading-[1.2rem]">
             <li className={usernameInputProps.error ? "text-red-600" : ""}>
-              ควรไม่เกิน 10 ตัวอักษร
+              ควรไม่เกิน 32 ตัวอักษร
             </li>
           </ol>
           <div className="relative w-full h-[40%] xl:max-h-[80px] 2xl:max-h-[90px]">

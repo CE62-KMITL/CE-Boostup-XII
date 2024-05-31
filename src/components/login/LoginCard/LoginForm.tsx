@@ -39,6 +39,9 @@ function LoginForm({ setShowForgotPassword, setShowCreateAccount, mutation }: Lo
         initialValues: {
             ...emptyLoginValues,
         },
+        initialErrors: {
+            ...emptyLoginValues,
+        },
         validateOnChange: true,
         enableReinitialize: true,
         validationSchema: loginValidationSchema,

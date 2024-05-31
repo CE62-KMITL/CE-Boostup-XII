@@ -36,6 +36,9 @@ function ForgotPasswordPopUp({ setShowForgotPassword, setIsRecognizedPopUp }: Fo
         initialValues: {
             ...{ email: "" },
         },
+        initialErrors: {
+            ...{ email: "" },
+        },
         validateOnChange: true,
         enableReinitialize: true,
         validationSchema: yup.object({
