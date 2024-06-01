@@ -13,7 +13,7 @@ export const usersService = {
     async getMe(): Promise<UserModelResponse> {
         return await apiController("/users/me", "get")
     },
-    async getAvatar(id: string): Promise<UserModelResponse> {
+    async getAvatar(id: string): Promise<any> {
         return await apiController(`/users/${id}/avatar`, "get")
     },
     async createUser(createUserRequest: CreateUserDto): Promise<UserModelResponse> {

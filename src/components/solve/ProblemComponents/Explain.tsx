@@ -30,7 +30,7 @@ export default function Explain({ problem }: ExplainProps) {
                     ))
                 }</p>} />
                 <div className="relative">
-                    <img src={InfoIcon} alt="info" className="w-[20px] h-[20px] absolute top-[15px] left-[96px] hover:cursor-pointer" onClick={() => setPopUp(1)} />
+                    <img src={InfoIcon} alt="info" className="w-[20px] h-[20px] absolute top-[15px] left-[96px] hover:cursor-pointer" onClick={() => setPopUp(0)} />
                     <div className="divide-y-2">
                         {problem?.testcases.map((testcase, index) => {
                             return <ExampleCard key={index} title={`ตัวอย่างที่ ${index + 1}`} input={testcase.input} output={testcase.output} />

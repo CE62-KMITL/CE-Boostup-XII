@@ -56,7 +56,7 @@ function SolveProblemPage() {
 
   return (
     <>
-      {popUp && popUpComponents(content)[popUp]}
+      {popUp !== null && popUpComponents(content)[popUp]}
       <div className="flex justify-center">
         <Background />
         <div className="flex items-center h-screen w-[90vw] justify-center py-[33px]" ref={boxRef}>

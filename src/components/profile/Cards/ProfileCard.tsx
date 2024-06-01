@@ -4,8 +4,7 @@ import ProblemProgress from "../ProblemProgress";
 import ProfilePicture from "../ProfilePicture";
 import UserInfo from "../UserInfo";
 
-function ProfileCard({ profile_picture, username, email, house, ranking, point, problem_count, problem_progress }: {
-    profile_picture: string,
+function ProfileCard({ username, email, house, ranking, point, problem_count, problem_progress }: {
     username: string,
     email: string,
     house: string,
@@ -21,7 +20,7 @@ function ProfileCard({ profile_picture, username, email, house, ranking, point, 
                     <img src={ProfileBackground} alt="ProfileBackground" />
                 </div>
                 <div className="absolute top-[233px] left-[211px]">
-                    <ProfilePicture profile_picture={profile_picture} />
+                    <ProfilePicture />
                 </div>
                 <div className="ml-[467px] mt-[33px]">
                     <UserInfo

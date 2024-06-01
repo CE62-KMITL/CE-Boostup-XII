@@ -3,15 +3,15 @@ import SearchBar from "../components/home/SearchBar";
 import ProblemBar from "../components/home/ProblemBar";
 import ProblemsTable from "../components/home/ProblemsTable";
 import Background from "../components/utils/Background";
-import { store } from "../store/store";
 import NavBar from "../components/utils/NavBar";
 import { useProblems } from "../hooks/problems.hook";
 import LoadingPage from "./LoadingPage";
 import { useProblemsTags } from "../hooks/problem-tags.hook";
 import { useProblemsStore } from "../store/zustand/problems.zustand";
+import { useUser } from "../hooks/user.hook";
 
 function HomePage() {
-    const user = store.getState().auth.user;
+    const user = useUser().user;
     const { problems: problemsStore, isFetched } = useProblemsStore();
 
     const { isLoading: isLoadingProblem, error } = useProblems();
@@ -38,13 +38,13 @@ function HomePage() {
                                 problemsStore?.map((problem) => (
                                     <ProblemsTable
                                         id={problem.id}
-                                        number={problem.number?.toString() as string}
-                                        title={problem.title as string}
+                                        number={problem.number?.toString()}
+                                        title={problem.title}
                                         lesson={problem.tags as { id: string, name: string }[]}
-                                        level={problem.difficulty as number}
-                                        attempters={problem.userSolvedCount as number}
-                                        score={problem.score as number}
-                                        status={problem.completionStatus as string}
+                                        level={problem.difficulty}
+                                        attempters={problem.userSolvedCount}
+                                        score={problem.score}
+                                        status={problem.completionStatus}
                                     />
                                 ))
                         }

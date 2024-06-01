@@ -25,7 +25,6 @@ export default function OptionBar() {
 
     async function handleSubmit() {
         try {
-            console.log(problem?.id, code.replace(/\n/g, "\\n"), language)
             await createSubmissionMutation.mutateAsync({
                 code,
                 language: language,

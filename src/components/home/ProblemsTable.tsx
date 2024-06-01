@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { CompletionStatus } from "../../enum/problem.enum";
 
 export default function ProblemsTable({ number, title, lesson, level, attempters, score, status, id }: {
     number: string,
@@ -7,7 +8,7 @@ export default function ProblemsTable({ number, title, lesson, level, attempters
     level: number,
     attempters: number,
     score: number,
-    status: string,
+    status: CompletionStatus,
     id: string
 }) {
     return (
@@ -44,8 +45,8 @@ export default function ProblemsTable({ number, title, lesson, level, attempters
             <div className="flex justify-start items-center col-span-2 p-[0rem_0.6rem]">
                 {attempters}
             </div>
-            <div className={`flex justify-end items-center col-span-1 p-[0rem_1rem] ${status === 'pass' ? 'text-pass' : status === 'unpass' ? 'text-unpass' : 'text-empty'}`}>
-                {status === 'pass' ? 'ผ่าน' : status === 'unpass' ? 'ไม่ผ่าน' : 'ทำเลย'}
+            <div className={`flex justify-end items-center col-span-1 p-[0rem_1rem] ${status === CompletionStatus.Solved ? 'text-pass' : status === CompletionStatus.Attempted ? 'text-unpass' : 'text-empty'}`}>
+                {status === CompletionStatus.Solved ? 'ผ่าน' : status === CompletionStatus.Attempted ? 'ไม่ผ่าน' : 'ทำเลย'}
             </div>
         </Link>
     );

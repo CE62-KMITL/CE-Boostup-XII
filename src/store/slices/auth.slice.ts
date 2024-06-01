@@ -4,11 +4,13 @@ import { UserModelResponse } from "../../types/response.type";
 export interface AuthAppState {
   accessToken: string | null;
   user: UserModelResponse | null;
+  avatar: string | null;
 }
 
 const initialState: AuthAppState = {
   accessToken: null,
   user: null,
+  avatar: null,
 };
 
 export const authSlice = createSlice({
@@ -21,6 +23,9 @@ export const authSlice = createSlice({
     },
     setAuthAccessToken: (state, action: PayloadAction<string>) => {
       state.accessToken = action.payload;
+    },
+    setAvatar: (state, action: PayloadAction<string>) => {
+      state.avatar = action.payload;
     },
     setAuthUser: (state, action: PayloadAction<UserModelResponse>) => {
       state.user = action.payload;
@@ -37,4 +42,5 @@ export const {
   setAuthAccessToken,
   setAuthUser,
   deleteAuthState,
+  setAvatar,
 } = authSlice.actions;
