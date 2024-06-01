@@ -31,8 +31,15 @@ export default function OptionBar() {
                 problem: problem?.id as string
             },{
                 onSuccess: (response) => {
-                    console.log(response);
-                    setPopUp(1);
+                    if (response.accepted)
+                        setPopUp(1);
+                    else {
+                        const content = response.outputCodes?.map((output, index) => {
+                            return `Testcase ${index + 1}:\n${output}`;
+                        });
+                        setContent(content.join(", "));
+                        setPopUp(3);
+                    }
                 }
             });
         } catch (error) {
