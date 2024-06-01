@@ -31,8 +31,8 @@ function SearchBar() {
     }, [problemTags]);
 
     const [level, setLevel] = useState<number>(0);
-    const [tag, setTag] = useState<string | undefined>("");
-    const [search, setSearch] = useState<string>("");
+    const [tag, setTag] = useState<string>();
+    const [search, setSearch] = useState<string>();
     const [completionStatus, setCompletionStatus] = useState<CompletionStatus>();
 
     useEffect(() => {
