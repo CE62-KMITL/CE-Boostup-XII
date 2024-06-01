@@ -83,7 +83,7 @@ export default function EditProfile() {
                         <Button ClickFunc={() => { setComponents(0) }} className="w-[136px] h-[48px] border-accent border-[1px] shadow-[0_0_5px] shadow-accent rounded-[10px] text-accent text-[18px] font-bold" text="เปลี่ยนรหัส" />
                     </div>
                 </div>
-                <Button type="submit" className={`p-[8px_68px] rounded-[10px] ${formik.isValid ? "bg-accent" : "bg-[#D7C398]"} text-stone01 text-[18px] font-bold`} text="บันทึก" />
+                <Button type="submit" className={`p-[8px_68px] rounded-[10px] ${formik.isValid ? "bg-accent" : "bg-[#D7C398] pointer-events-none"} text-stone01 text-[18px] font-bold`} text="บันทึก" />
                 <Button type="button" ClickFunc={() => setComponents(null)} className="font-medium leading-[0.5rem]" text="กลับเข้าสู่หน้าโปรไฟล์" />
             </form>
         </div>
