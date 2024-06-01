@@ -1,8 +1,8 @@
-import ProfileBackground from "../../assets/profile-background.png";
-import LogOutButton from "./LogoutButton";
-import ProblemProgress from "./ProblemProgress";
-import ProfilePicture from "./ProfilePicture";
-import UserInfo from "./UserInfo";
+import ProfileBackground from "../../../assets/profile-background.png";
+import LogOutButton from "../LogoutButton";
+import ProblemProgress from "../ProblemProgress";
+import ProfilePicture from "../ProfilePicture";
+import UserInfo from "../UserInfo";
 
 function ProfileCard({ profile_picture, username, email, house, ranking, point, problem_count, problem_progress }: {
     profile_picture: string,

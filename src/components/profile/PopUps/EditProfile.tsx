@@ -5,15 +5,22 @@ import Button from "../../utils/Button";
 import { EditProfileValidationSchema, emptyEditProfileValues, EditProfileValues } from "../../../formik/edit-profile.formik";
 import { useFormik } from "formik";
 import { getFieldProps } from "../../../utils/getFieldProps";
-import { store } from "../../../store/store";
-import { useEffect } from "react";
+import { useUser } from "../../../hooks/user.hook";
 
 export default function EditProfile() {
     const { setComponents } = useProfileComponentsStore();
-    const user = store.getState().auth.user;
+    const { user, updateUserMutation } = useUser();
 
     async function handleEditProfile() {
-        formik.setSubmitting(true);
+        try {
+            await updateUserMutation.mutateAsync({
+                displayName: formik.values.username,
+            }, {
+                onSuccess: () => setComponents(2)
+            });
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     const formik = useFormik<EditProfileValues>({
@@ -30,10 +37,6 @@ export default function EditProfile() {
     });
 
     const usernameInputProps = getFieldProps(formik, "username");
-
-    useEffect(() => {
-        console.log(formik.isValid);
-    }, [formik]);
 
     return (
         <div className="flex justify-center items-center fixed top-0 w-screen h-screen z-50">

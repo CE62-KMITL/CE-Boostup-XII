@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { setAuthState } from "../../store/slices/auth.slice";
+import { deleteAuthState } from "../../store/slices/auth.slice";
 import { useNavigate } from "react-router-dom";
 
 function LogOutButton() {
@@ -7,7 +7,7 @@ function LogOutButton() {
     const navigate = useNavigate();
 
     function handleLogOut() {
-        dispatch(setAuthState({ accessToken: null, user: null }));
+        dispatch(deleteAuthState());
         navigate("/");
     }
 

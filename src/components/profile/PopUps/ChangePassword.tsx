@@ -5,12 +5,23 @@ import { useProfileComponentsStore } from "../../../store/zustand/profile-compon
 import { useFormik } from "formik";
 import { ChangePasswordValues, emptyChangePasswordValues, ChangePasswordValidationSchema } from "../../../formik/change-password.formik";
 import { getFieldProps } from "../../../utils/getFieldProps";
+import { useUser } from "../../../hooks/user.hook";
 
 export default function ChangePassword() {
+    const { updateUserMutation } = useUser();
     const { setComponents } = useProfileComponentsStore();
 
     async function handleChangePassword() {
-
+        try {
+            await updateUserMutation.mutateAsync({
+                password: formik.values.password,
+                oldPassword: formik.values.oldPassword,
+            }, {
+                onSuccess: () => setComponents(2)
+            });
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     const formik = useFormik<ChangePasswordValues>({
@@ -33,7 +44,7 @@ export default function ChangePassword() {
     return (
         <div className="flex justify-center items-center fixed top-0 w-screen h-screen z-50">
             <DarkBackground />
-            <div className="flex flex-col items-center place-content-between gap-6 z-20
+            <form onSubmit={formik.handleSubmit} className="flex flex-col items-center place-content-between gap-6 z-20
             xl:w-[480px] 2xl:w-[500px] h-fit p-[36px_33px] rounded-[30px] bg-stone01">
                 <h2 className="text-[40px] font-bold text-center">เปลี่ยนรหัสผ่าน</h2>
                 <div className="w-full h-fit">
@@ -63,7 +74,6 @@ export default function ChangePassword() {
                             ประกอบด้วยตัวพิมพ์ใหญ่, ตัวพิมพ์เล็ก, ตัวเลข และอักษรพิเศษ
                         </li>
                     </ol>
-
                     <div className={`relative w-full trnasition-all duration-500 ease-in-out xl:h-[96px] 2xl:h-[96px]}`}>
                         <div className={`w-full absolute bottom-0`}>
                             <Input fixPosition={true} inputClass={`w-full h-[48px] px-[16px] py-[8px] border-[1px] rounded-[8px] bg-stone01 text-stone04 text-[18px] border-stone04`}
@@ -79,7 +89,6 @@ export default function ChangePassword() {
                         </li>
                     </ol>
                 </div>
-
                 <div className="flex flex-col items-center place-content-between w-full h-[75px]">
                     <Button className={`w-[180px] h-[48px] rounded-[10px] text-[18px] font-bold shadow-md
                     ${formik.isValid
@@ -89,8 +98,7 @@ export default function ChangePassword() {
                     />
                     <Button type="button" ClickFunc={() => setComponents(null)} className="font-medium leading-[0.5rem]" text="กลับเข้าสู่หน้าโปรไฟล์" />
                 </div>
-
-            </div>
+            </form>
         </div>
     )
 };

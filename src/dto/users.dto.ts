@@ -8,6 +8,10 @@ export type CreateUserDto = {
 }
 
 export type UpdateUserDto = {
+    displayName?: string;
+    email?: string;
+    roles?: Role[];
+    group?: string;
     bio?: string;
     avatar?: string;
     password?: string;

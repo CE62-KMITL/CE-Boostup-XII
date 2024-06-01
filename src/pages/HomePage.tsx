@@ -7,7 +7,7 @@ import { store } from "../store/store";
 import NavBar from "../components/utils/NavBar";
 import { useProblems } from "../hooks/problems.hook";
 import LoadingPage from "./LoadingPage";
-import { useProblemsTags } from "../hooks/problemTags.hook";
+import { useProblemsTags } from "../hooks/problem-tags.hook";
 import { useProblemsStore } from "../store/zustand/problems.zustand";
 
 function HomePage() {
