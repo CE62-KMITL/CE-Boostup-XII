@@ -1,3 +1,5 @@
+import { CompletionStatus } from "../enum/problem.enum";
+
 export type PaginationRequestDto = {
     page: number;
     perPage: number;
@@ -7,4 +9,5 @@ export type PaginationRequestDto = {
     difficulties?: string;
     owner?: string;
     problem?: string;
+    completionStatus?: CompletionStatus;
 }

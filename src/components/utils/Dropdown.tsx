@@ -4,7 +4,7 @@ import { DropdownType } from "../../types/dropdown.type";
 type DropdownProps = {
   type: number;
   values: DropdownType[];
-  onChange: (value: string) => void;
+  onChange: (value?: string) => void;
   title?: string;
 };
 
@@ -44,10 +44,10 @@ function Dropdown({ values, type, onChange, title }: DropdownProps) {
             id="lesson"
             onClick={handleStatusSelectClick}
             onBlur={onBLurStatusSelect}
-            onChange={(e) => onChange(e.target.value)}
+            onChange={(e) => {onChange(e.target.value); console.log(e.target.value)}}
           >
             {
-              title && <option value="" disabled selected>{title}</option>
+              title && <option value={""} selected>{title}</option>
             }
             {
               values.map((value) => (
@@ -83,10 +83,10 @@ function Dropdown({ values, type, onChange, title }: DropdownProps) {
           id="lesson"
           onClick={handleStatusSelectClick}
           onBlur={onBLurStatusSelect}
-          onChange={(e) => onChange(e.target.value)}
+          onChange={(e) => {onChange(e.target.value); console.log(e.target.value)}}
         >
           {
-            title && <option value="" disabled selected>{title}</option>
+            title && <option value={""} selected>{title}</option>
           }
           {
             values.map((value) => (

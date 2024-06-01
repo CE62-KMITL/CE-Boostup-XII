@@ -31,17 +31,18 @@ function SearchBar() {
     }, [problemTags]);
 
     const [level, setLevel] = useState<number>(0);
-    const [tag, setTag] = useState<string>("");
+    const [tag, setTag] = useState<string | undefined>("");
     const [search, setSearch] = useState<string>("");
-    const [completionStatus, setCompletionStatus] = useState<string>("");
+    const [completionStatus, setCompletionStatus] = useState<CompletionStatus>();
 
     useEffect(() => {
         setPaginationRequest({
             ...paginationRequest,
             difficulties: level.toString() === "0" ? undefined : level.toString(),
             tags: tag,
+            completionStatus: completionStatus as string != "" ? completionStatus : undefined
         });
-    }, [level, tag]);
+    }, [level, tag, completionStatus]);
 
     function handelSearch() {
         setPaginationRequest({
@@ -84,7 +85,7 @@ function SearchBar() {
                     placeholder="พิมพ์ชื่อโจทย์ หรือเลขข้อ" onChange={(e) => setSearch(e.target.value)} />
                 <Button type={1} mode={4} validate={true} text="ตกลง" img="" ClickFunc={handelSearch} />
             </div>
-            <Dropdown type={1} values={isComplete} title="สถานะ" onChange={(v) => setCompletionStatus(v)} />
+            <Dropdown type={1} values={isComplete} title="สถานะ" onChange={(v) => setCompletionStatus(v as CompletionStatus)} />
             <Dropdown type={2} title="บทเรียน" values={tagList} onChange={(v) => setTag(v)} />
             <div className="flex items-center w-[224px] h-full rounded-[8px] px-[16px] bg-stone01">
                 <div className="flex items-center place-content-between w-full">
