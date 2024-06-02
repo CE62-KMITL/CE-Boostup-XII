@@ -42,6 +42,7 @@ function SearchBar() {
             tags: tag,
             completionStatus: completionStatus as string != "" ? completionStatus : undefined
         });
+        navigate(`/home/1`);
     }, [level, tag, completionStatus]);
 
     function handelSearch() {
@@ -49,6 +50,7 @@ function SearchBar() {
             ...paginationRequest,
             search: search
         });
+        navigate(`/home/1`);
     }
 
     const recheckLevel = (selectedLevel: number) => {

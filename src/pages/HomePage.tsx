@@ -9,13 +9,42 @@ import LoadingPage from "./LoadingPage";
 import { useProblemsTags } from "../hooks/problem-tags.hook";
 import { useProblemsStore } from "../store/zustand/problems.zustand";
 import { useUser } from "../hooks/user.hook";
+import Dropdown from "../components/utils/Dropdown";
+import { useEffect, useState } from "react";
+import { DropdownType } from "../types/dropdown.type";
+import { usePaginationRequestStore } from "../store/zustand/pagination.zustand";
+import { useParams, useNavigate } from "react-router-dom";
 
-function HomePage() {
+export default function HomePage() {
     const user = useUser().user;
-    const { problems: problemsStore, isFetched } = useProblemsStore();
+    const { page } = useParams();
+    const navigate = useNavigate();
+    const { problems: problemsStore, isFetched, pages } = useProblemsStore();
+    const [pagesList] = useState<DropdownType[]>([]);
+    const { setPaginationRequest, paginationRequest } = usePaginationRequestStore();
+
+    useEffect(() => {
+        if (page)
+            setPaginationRequest({
+                ...paginationRequest,
+                page: parseInt(page)
+            });
+    }, [page]);
 
     const { isLoading: isLoadingProblem, error } = useProblems();
     const { isLoading: isLoadingProblemTags } = useProblemsTags();
+
+    useEffect(() => {
+        if (pagesList.length !== 0) pagesList.splice(0, pagesList.length);
+        if (pages) {
+            for (let i = 1; i <= pages; i++)
+                pagesList.push({ value: i.toString(), name: i.toString() });
+        }
+    }, [pages]);
+
+    function handelPageChange(selectedPage: string) {
+        navigate(`/home/${selectedPage}`);
+    }
 
     if (error) console.error(error);
 
@@ -48,11 +77,12 @@ function HomePage() {
                                     />
                                 ))
                         }
+                        <div className="self-end">
+                            <Dropdown type={1} selected={page} values={pagesList} onChange={(e) => handelPageChange(e as string)} />
+                        </div>
                     </div>
                 </div>
             </div>
         </>
     );
 }
-
-export default HomePage;

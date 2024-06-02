@@ -6,9 +6,10 @@ type DropdownProps = {
   values: DropdownType[];
   onChange: (value?: string) => void;
   title?: string;
+  selected?: string;
 };
 
-function Dropdown({ values, type, onChange, title }: DropdownProps) {
+function Dropdown({ values, type, onChange, title, selected }: DropdownProps) {
   const [statusRotation, setStatusRotation] = useState(false);
 
   const handleStatusSelectClick = () => {
@@ -44,7 +45,7 @@ function Dropdown({ values, type, onChange, title }: DropdownProps) {
             id="lesson"
             onClick={handleStatusSelectClick}
             onBlur={onBLurStatusSelect}
-            onChange={(e) => {onChange(e.target.value); console.log(e.target.value)}}
+            onChange={(e) => { onChange(e.target.value); console.log(e.target.value) }}
           >
             {
               title && <option value={""} selected>{title}</option>
@@ -83,15 +84,18 @@ function Dropdown({ values, type, onChange, title }: DropdownProps) {
           id="lesson"
           onClick={handleStatusSelectClick}
           onBlur={onBLurStatusSelect}
-          onChange={(e) => {onChange(e.target.value); console.log(e.target.value)}}
+          onChange={(e) => { onChange(e.target.value); console.log(e.target.value) }}
         >
           {
             title && <option value={""} selected>{title}</option>
           }
           {
-            values.map((value) => (
-              <option key={value.value} value={value.value}>{value.name}</option>
-            ))
+            values.map((value) => {
+              if (selected == value.value)
+                return <option key={value.value} value={value.value} selected>{value.name}</option>
+              else
+                return <option key={value.value} value={value.value}>{value.name}</option>
+            })
           }
         </select>
       </div>

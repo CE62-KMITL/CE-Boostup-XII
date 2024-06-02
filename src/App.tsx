@@ -27,7 +27,7 @@ export default function App() {
             <Route element={<ProtectedProvider allowedRoles={[Role.User, Role.SuperAdmin]} />}>
               <Route path="/solve/:problemId" element={<SolveProblemPage />} />
               <Route element={<InitLayout />}>
-                <Route path="/home" element={<HomePage />} />
+                <Route path="/home/:page" element={<HomePage />} />
                 <Route path="/learn" element={<LearnPage />} />
                 <Route path="/profile" element={<ProfilePage />} />
               </Route>
