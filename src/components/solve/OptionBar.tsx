@@ -35,9 +35,9 @@ export default function OptionBar() {
                         setPopUp(1);
                     else {
                         const content = response.outputCodes?.map((output, index) => {
-                            return `Testcase ${index + 1}:\n${output}`;
+                            return `Testcase ${index + 1}: ${output}`;
                         });
-                        setContent(content.join(", "));
+                        setContent(content.join("\n"));
                         setPopUp(3);
                     }
                 }
