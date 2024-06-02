@@ -20,7 +20,7 @@ function CreateAccountPopUp({ setShowCreateAccount }: CreateAccountPopUpProps) {
         });
     }
 
-    const { status, mutate } = useMutation(authService.requestAccountCreation, {
+    const { mutate } = useMutation(authService.requestAccountCreation, {
         onError: (error) => {
             console.error(error);
             alert((error as any).message);

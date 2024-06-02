@@ -11,7 +11,7 @@ function ResetPasswordPopUp() {
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
 
-    const { status, mutate } = useMutation(authService.resetPassword, {
+    const { mutate } = useMutation(authService.resetPassword, {
         onSuccess: () => {
             navigate("/");
         },

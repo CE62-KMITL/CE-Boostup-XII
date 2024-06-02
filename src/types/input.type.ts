@@ -11,5 +11,5 @@ export default interface InputProps {
     errorMessage?: string | null;
     fixPosition?: boolean;
     isEditabled?: boolean;
-    onChange: (value: React.ChangeEvent<HTMLInputElement>) => void;
+    onChange?: (value: React.ChangeEvent<HTMLInputElement>) => void;
 }

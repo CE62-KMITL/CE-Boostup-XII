@@ -14,7 +14,7 @@ type ForgotPasswordPopUpProps = {
 }
 
 function ForgotPasswordPopUp({ setShowForgotPassword, setIsRecognizedPopUp }: ForgotPasswordPopUpProps) {
-    const { status, mutate } = useMutation(authService.requestPasswordReset, {
+    const { mutate } = useMutation(authService.requestPasswordReset, {
         onSuccess: () => {
             setIsRecognizedPopUp(true);
             setShowForgotPassword(false);

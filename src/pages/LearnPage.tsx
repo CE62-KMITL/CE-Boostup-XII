@@ -20,7 +20,7 @@ function LearnPage() {
     const [search, setSearch] = useState<string>("");
     const dispatch = useDispatch();
 
-    const { data, status, error, refetch } = useQuery({
+    const { status, refetch } = useQuery({
         queryKey: ['attachments'],
         queryFn: async () => await attachmentsService.getAttachments({ page: 1, perPage: 10, sort: "number", search }),
         enabled: lessons === null,

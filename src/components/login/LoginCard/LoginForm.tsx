@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Button from "../../utils/Button";
 import Input from "../../utils/Input";
 import { Cookies } from "react-cookie";
@@ -17,7 +16,7 @@ type LoginFormProps = {
 }
 
 function LoginForm({ setShowForgotPassword, setShowCreateAccount, mutation }: LoginFormProps) {
-    const [savePassword, setSavePassword] = useState<boolean>(false);
+    // const [setSavePassword] = useState<boolean>(false);
     const cookies = new Cookies();
     const navigate = useNavigate();
 
@@ -72,8 +71,7 @@ function LoginForm({ setShowForgotPassword, setShowCreateAccount, mutation }: Lo
                         </div>
                         <div className="flex items-center place-content-between w-[96%]">
                             <div className="flex items-center place-content-between h-full">
-                                <Input label="จดจำรหัสผ่าน?" type="checkbox" placeholder="_" required={false} inputClass="scale-[0.66]" labelClass="text-[16px]"
-                                    onChange={(e) => setSavePassword(e.target.checked)} />
+                                <Input label="จดจำรหัสผ่าน?" type="checkbox" placeholder="_" required={false} inputClass="scale-[0.66]" labelClass="text-[16px]" />
                             </div>
                             <div>
                                 <Button type="button" ClickFunc={() => setShowForgotPassword(true)} className="text-[16px]" text="ลืมหรัสผ่าน?" />

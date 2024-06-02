@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import EyeIcon from "./EyeIcon";
 import InputProps from "../../types/input.type";
 
-export default function Input({ label, type, inputClass, labelClass, onChange, error, showErrorLabel, fixPosition = false, isEditabled = true, ...props }: InputProps) {
+export default function Input({ label, type, inputClass, labelClass, onChange = () => { }, error, showErrorLabel, fixPosition = false, isEditabled = true, ...props }: InputProps) {
     const inputRef = useRef<HTMLInputElement>(null);
     const labelRef = useRef<HTMLLabelElement>(null);
     const [eyeIcon, setEyeIcon] = useState<boolean>(false);

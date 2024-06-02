@@ -1,4 +1,4 @@
-import default_thumbnail from "../../assets/default-learn-thumbnail.png"
+// import default_thumbnail from "../../assets/default-learn-thumbnail.png"
 
 function LessonCard({ title, description, img }: { title: string; description: string; img: string }) {
     return (
