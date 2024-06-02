@@ -1,9 +1,7 @@
 import { Role } from "../enum/roles.enum";
-import { useLocation, Navigate, useNavigate } from "react-router-dom";
-import { store } from "../store/store";
+import { useLocation, Navigate } from "react-router-dom";
 import { Outlet } from "react-router-dom";
-import { useEffect } from "react";
-import { usersService } from "../services/users.service";
+import { useUser } from "../hooks/user.hook";
 
 type ProtectedProviderProps = {
     allowedRoles: Role[];
@@ -11,23 +9,8 @@ type ProtectedProviderProps = {
 
 export function ProtectedProvider({ allowedRoles }: ProtectedProviderProps) {
     const location = useLocation();
-    const navigate = useNavigate();
-    const userRoles = store.getState().auth.user?.roles;
-    const userId = store.getState().auth.user?.id;
-
-    async function fetchUser() {
-        try {
-            if (!userId) 
-                return navigate("/");
-            await usersService.getUser(userId);
-        } catch (error) {
-            return navigate("/");
-        }
-    }
-
-    useEffect(() => {
-        fetchUser();
-    }, []);
+    const { user } = useUser();
+    const userRoles = user?.roles;
 
     const isAllowed = userRoles?.some((role) => allowedRoles.includes(role));
 

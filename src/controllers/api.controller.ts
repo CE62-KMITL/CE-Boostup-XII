@@ -1,6 +1,6 @@
 import { LoginDto, RegisterDto, ResetPasswordDto, RequestPasswordResetDto } from "../dto/auth.dto";
 import { CreateProblemDto, UpdateProblemDto } from "../dto/problem.dto";
-import { UpdateProblemTagDto, CreateProblemTagDto } from "../dto/problemTags.dto";
+import { UpdateProblemTagDto, CreateProblemTagDto } from "../dto/problem-tags.dto";
 import { CreateSaveDto, UpdateSaveDto } from "../dto/saves.dto";
 import { CreateGroupDto, UpdateGroupDto } from "../dto/groups.dto";
 import { CreateUserDto, UpdateUserDto } from "../dto/users.dto";

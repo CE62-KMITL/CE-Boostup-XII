@@ -1,5 +1,5 @@
-import { problemTagsService } from "../services/problemTags.service";
-import { setProblemTagState } from "../store/slices/problemTags.slice";
+import { problemTagsService } from "../services/problem-tags.service";
+import { setProblemTagState } from "../store/slices/problem-tags.slice";
 import { PaginationRequestDto } from "../dto/utils.dto";
 import { useDispatch } from "react-redux";
 import { ProblemTagModelResponse, PaginationModelResponse } from "../types/response.type";

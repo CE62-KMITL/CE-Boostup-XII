@@ -1,5 +1,8 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import StoreProvider from './provider/store.provider'
+import { ProtectedProvider } from './provider/protected.provider'
+import { Role } from './enum/roles.enum'
+import { QueryClient, QueryClientProvider } from 'react-query'
 
 import InitLayout from './layouts/InitLayout'
 import SolveProblemPage from './pages/SolveProblemPage'
@@ -9,10 +12,6 @@ import LearnPage from './pages/LearnPage'
 import HomePage from './pages/HomePage'
 import ProfilePage from './pages/ProfilePage'
 import ResetPasswordPage from './pages/ResetPasswordPage'
-import { ProtectedProvider } from './provider/protected.provider'
-import { Role } from './enum/roles.enum'
-import { QueryClient, QueryClientProvider } from 'react-query'
-
 import Error404Page from './pages/Error404Page'
 
 export default function App() {

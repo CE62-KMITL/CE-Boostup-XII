@@ -1,5 +1,5 @@
 import { apiController } from "../controllers/api.controller";
-import { UpdateProblemTagDto, CreateProblemTagDto } from "../dto/problemTags.dto";
+import { UpdateProblemTagDto, CreateProblemTagDto } from "../dto/problem-tags.dto";
 import { PaginationModelResponse, ProblemTagModelResponse } from "../types/response.type";
 import { PaginationRequestDto } from "../dto/utils.dto";
 

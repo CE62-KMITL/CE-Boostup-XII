@@ -12,7 +12,7 @@ import {
 import { authSlice } from "./slices/auth.slice";
 import { problemSlice } from "./slices/problems.slice";
 import { attachmentSlice } from "./slices/attachments.slice";
-import { problemTagSlice } from "./slices/problemTags.slice";
+import { problemTagSlice } from "./slices/problem-tags.slice";
 import storage from "./storage";
 
 const rootReducer = combineReducers({
