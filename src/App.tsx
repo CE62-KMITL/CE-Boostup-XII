@@ -16,7 +16,7 @@ import Error404Page from './pages/Error404Page'
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename='/grader'>
       <QueryClientProvider client={new QueryClient()}>
         <Routes>
           <Route path='*' element={<Error404Page />} />
