@@ -10,7 +10,7 @@ function OptionBar({ items }) {
         type={1}
         mode={1}
         validate={true}
-        text="กลับ"
+        text="กลับบ้าน"
         img={BackIcon}
         ClickFunc={() => (window.location.href = "https://www.google.com/")}
       />
