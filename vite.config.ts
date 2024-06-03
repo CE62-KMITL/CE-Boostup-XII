@@ -14,5 +14,5 @@ export default defineConfig({
   host: true,
   origin: "http://localhost:8080",
  },
- base: `/${process.env.VITE_PREFIX_URL || ""}/`,
+//  base: `/${process.env.VITE_PREFIX_URL || ""}/`,
 })

@@ -17,8 +17,11 @@ export const useUser = () => {
         return response;
     });
 
+    const getAvatar = `${import.meta.env.VITE_PUBLIC_ENV}/users/${user?.id}/avatar`;
+
     return {
         user,
         updateUserMutation,
+        getAvatar
     };
 };
