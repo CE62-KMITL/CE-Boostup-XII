@@ -13,7 +13,7 @@
   }
 
   .gradient-background {
-    background: linear-gradient(180deg, #0b384b 29%, #10516c 62%, #097275 100%);
+     background: linear-gradient(180deg, #0b384b 29%, #10516c 62%, #097275 100%);
   }
 
   .holding-space {
@@ -23,6 +23,7 @@
     width: 50%;
     height: 12%;
     min-height: 25px;
+    
   }
 
   .curve-bl,
@@ -117,10 +118,15 @@
       font-weight: 700;
       bottom: 56px;
     }
-    100% {
-      font-size: 20px;
+    85% {
+      font-size: 22px;
       font-weight: 700;
       bottom: 4px;
+    }
+    100% {
+      font-size: 24px;
+      font-weight: 700;
+      bottom: 6px;
     }
   }
   
@@ -211,4 +217,30 @@
   input[type="password"]::-ms-clear {
     display: none;
   }
+
+  /* Radial Progress Bar */
+  .progress-bar{
+    fill:None;
+    stroke: #097275;
+    stroke-width: 15px;
+    stroke-dasharray: 565;
+    stroke-dashoffset: var(--stroke-dashoffset);
+    transform: rotate(270deg)
+  }
+
+  .progress-bar-bg{
+    fill:None;
+    stroke: #DDE2E5;
+    stroke-width: 15px;
+    stroke-dasharray: 565;
+    stroke-dashoffset: 0;
+  }
+
+  
+
+  
 }
+
+  
+    
+  

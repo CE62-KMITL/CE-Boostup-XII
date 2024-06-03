@@ -1,4 +1,4 @@
-import DarkBackground from "../utils/DarkBackground"
+import DarkBackground from "../../utils/DarkBackground";
 
 function RecognizedPopUp() {
     return (
@@ -11,7 +11,7 @@ function RecognizedPopUp() {
                 </div>
                 <p className="text-stone04">หากไม่พบ ตรวจสอบได้ในสแปม</p>
                 <button className="flex justify-center items-center w-[50%] min-w-[160px] max-w-[170px] h-[30%] min-h-[45px] max-h-[50px]
-                rounded-lg shadow-md bg-accent text-stone01 text-[18px] font-[700]">
+                rounded-lg shadow-md bg-accent text-stone01 text-[18px] font-[700] hover:bg-accent02">
                      รับทราบ
                 </button>
             </div>
