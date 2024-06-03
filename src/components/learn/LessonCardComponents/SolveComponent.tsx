@@ -1,4 +1,12 @@
+import { useNavigate } from "react-router-dom";
+
 function SolveComponent() {
+    const navigate = useNavigate();
+
+    function handleSolve() {
+        navigate("/home/1");
+    }
+
     return (
         <div className="sticky">
             <div className="flex justify-center flex-col items-center mt-[80px] ">
@@ -7,7 +15,7 @@ function SolveComponent() {
                     <div className="text-[24px] text-accent font-bold">เริ่มต้นทำโจทย์เลย</div>
                 </div>
                 <div className="mt-2">
-                    <button className="bg-cream hover:bg-cream2 w-[291px] h-[49px] rounded-[10px] font-bold m-[34px] drop-shadow transition ease-in-out duration-200">
+                    <button onClick={handleSolve} className="bg-cream hover:bg-cream2 w-[291px] h-[49px] rounded-[10px] font-bold m-[34px] drop-shadow transition ease-in-out duration-200">
                         <div className="text-[18px] text-stone05 font-bold">ไปทำโจทย์เลย</div>
                     </button>
                 </div>

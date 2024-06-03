@@ -20,7 +20,7 @@ function NavBar() {
                     </h2>
                 </div>
                 <div className="flex items-center place-content-between xl:w-[600px] 2xl:w-[660px]">
-                    <Link to="/home" className={`${linkStyle} ${page === "home" ? "text-accent" : "text-white"}`}>Home</Link>
+                    <Link to="/home/1" className={`${linkStyle} ${page === "home" ? "text-accent" : "text-white"}`}>Home</Link>
                     <Link to="/archive" className={`${linkStyle} ${page === "archive" ? "text-accent" : "text-white"}`}>Archive</Link>
                     <Link to="/learn" className={`${linkStyle} ${page === "learn" ? "text-accent" : "text-white"}`}>Learn</Link>
                     <Link to="/leaderboard" className={`${linkStyle} ${page === "leaderboard" ? "text-accent" : "text-white"}`}>Leaderboard</Link>

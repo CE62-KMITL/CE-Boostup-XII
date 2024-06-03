@@ -1,15 +1,14 @@
 import LessonCard from "../LessonCard";
-import { AttachmentModelResponse } from "../../../types/response.type";
+import { useLearn } from "../../../hooks/learn.hook";
+import { useEffect } from "react";
 
-type LessonGroupProps = {
-    lessons: AttachmentModelResponse[] | null;
-}
+function LessonGroup() {
+    const { learn } = useLearn();
 
-function LessonGroup({ lessons }: LessonGroupProps) {
     return (
         <div className=" w-auto h-auto grid grid-cols-3 gap-x-[19px] gap-y-[36px]">
-            {lessons?.map((lesson, index) => (
-                <LessonCard key={index} title={lesson.name} description={lesson.type} img={lesson.url} />
+            {learn?.map((lesson, index) => (
+                <LessonCard key={index} title={lesson.title} description={lesson.description} img={lesson.img} />
             ))}
         </div>
     );
