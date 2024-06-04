@@ -48,8 +48,7 @@ function Editor({ height, problemId, updateSaveMutation, createSaveMutation, sav
         try {
             if (!problemId)
                 return navigate("/home");
-            const response = await createSaveMutation.mutateAsync({ problem: problemId, code: starterCode });
-            console.log(response);
+            await createSaveMutation.mutateAsync({ problem: problemId, code: starterCode });
         } catch (error) {
             console.error(error);
         }

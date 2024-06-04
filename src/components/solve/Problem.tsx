@@ -1,7 +1,7 @@
 import Button from "../utils/Button";
 import Explain from "./ProblemComponents/Explain";
 import Playground from "./ProblemComponents/Playground";
-import { useState, ReactElement, useEffect } from "react";
+import { useState, ReactElement } from "react";
 import { ProblemModelResponse } from "../../types/response.type";
 import TitleCard from "./ProblemComponents/TitleCard";
 

@@ -3,7 +3,6 @@ import ExampleCard from "./ExampleCard";
 import { ProblemModelResponse } from "../../../types/response.type";
 import InfoIcon from "../../../assets/InfoIcon.svg";
 import { usePopUp } from "../../../hooks/pop-up.hook";
-import { useEffect } from "react";
 
 type ExplainProps = {
     problem?: ProblemModelResponse | null;
@@ -11,10 +10,6 @@ type ExplainProps = {
 
 export default function Explain({ problem }: ExplainProps) {
     const { setPopUp } = usePopUp();
-
-    useEffect(() => {
-        console.log(problem);
-    }, [problem]);
 
     return (
         <>
