@@ -9,7 +9,7 @@ function ProfilePage() {
         email: "uchiha404@gmail.com",
         house: "konohagakure",
         profile_icon: "https://i.pinimg.com/originals/7a/04/18/7a04186fe969cca602e223e2346fc68e.jpg",
-        finished_percentage: 67.5,
+        finished_percentage: 80.5,
         ranking: 12,
         total_points: 150,
         total_problems: 16,
