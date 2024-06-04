@@ -1,63 +1,101 @@
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from "react"; 
 
-function ProblemProgress({ranking, point, problem_count, problem_progress}: {
-    ranking: string,
-    point: string,
-    problem_count: string,
-    problem_progress: string
-}): JSX.Element {
-    const [percentage, setPercentage] = useState<number>(parseFloat(problem_progress));
+type ProblemProgressProps = {
+    finished_percentage: number;
+}
+
+function ProblemProgress({finished_percentage}: ProblemProgressProps) {
+    const progressPercentage = Math.floor(finished_percentage);
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    const [windowHeight, setWindowHeight] = useState(window.innerHeight);
+    const [scaleWidth, setScaleWidth] = useState(0);
+    const [radius, setRadius] = useState(0);
+    const [strokeWidth, setStrokeWidth] = useState(0);
+
+    const lgWidth = 160;
+    const xlWidth = 180;
+    const xxlWidth = 200;
+    const lgStroke = 12;
+    const xlStroke = 16;
+    const xxlStroke = 20;
 
     useEffect(() => {
-        const numberElement = document.getElementById('number');
-        if (numberElement) {
-            const value = parseInt(numberElement.innerText.replace('%', ''), 10);
-            setPercentage(value);
+        const handleResize = () => {
+            const newWidth = window.innerWidth;
+            const newHeight = window.innerHeight;
+            if (newWidth !== windowWidth || newHeight !== windowHeight) {
+                setWindowWidth(newWidth);
+                setWindowHeight(newHeight);
+                window.location.reload();
+            }
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+        
+    }, [windowWidth, windowHeight]);
+
+    useEffect(() => {
+        if (windowWidth >= 1024 && windowWidth < 1280) {
+            setScaleWidth(lgWidth);
+            setStrokeWidth(lgStroke);
+        } else if (windowWidth >= 1280 && windowWidth < 1536) {
+            setScaleWidth(xlWidth);
+            setStrokeWidth(xlStroke);
+        } else if (windowWidth >= 1536) {
+            setScaleWidth(xxlWidth);
+            setStrokeWidth(xxlStroke);
         }
-    }, []);
+        setRadius((scaleWidth / 2) - (strokeWidth / 2));
+    }, [windowWidth, scaleWidth, strokeWidth]);
 
-    const circumference: number = 2 * Math.PI * 90;
-    const strokeDashoffset: number = circumference - circumference * (percentage / 100);
-
-    useEffect(() => {
-        const root = document.documentElement;
-        root.style.setProperty('--stroke-dashoffset', `${strokeDashoffset}`);
-    }, [strokeDashoffset]);
+    const circumference = 2 * Math.PI * radius;
+    const offset = circumference - (progressPercentage / 100) * circumference;
 
     return (
-        <div className="flex">
-            <div className="relative w-[200px] h-[200px] rounded-full p-[20px]">
-                    <div className="flex flex-col justify-center items-center w-[160px] h-[160px] rounded-full ">
-                        <div className='font-medium'>ทำโจทย์ไปแล้ว</div>
-                        <div  className="font-bold text-[24px]" id="number">
-                            {percentage}%
+        <div className="relative flex justify-center items-center" 
+        style={{ width: `${scaleWidth}px`, height: `${scaleWidth}px` }}>
+            <div className="absolute flex justify-center items-center">
+                <div className="bg-stone-300 rounded-full flex justify-center items-center" 
+                style={{ width: `${scaleWidth}px`, height: `${scaleWidth}px`, padding: `${strokeWidth}px` }}>
+                    <div className="bg-stone-100 rounded-full flex justify-center items-center" 
+                    style={{ width: `${scaleWidth - strokeWidth * 2}px`, height: `${scaleWidth - strokeWidth * 2}px` }}>
+                        <div className="flex flex-col justify-center items-center">
+                            <div className={`text-[${windowWidth >= 1536 ? 16 : windowWidth >= 1280 ? 14 : 12}px] font-medium`}>
+                                ทำโจทย์ไปแล้ว
+                            </div>
+                            <div className={`text-[${windowWidth >= 1536 ? 24 : windowWidth >= 1280 ? 22 : 20}px] font-bold`}>
+                                {progressPercentage}%
+                            </div>
                         </div>
                     </div>
-                
-                <svg className="progress-bar-bg absolute top-0 left-0 rotate-90" xmlns="http://www.w3.org/2000/svg" version="1.1" width="200px" height="200px">
-                    <circle 
-                        cx="100"
-                        cy="100"
-                        r="90"
-                        strokeLinecap="round"
-                    />
-                </svg>
-                <svg className="progress-bar absolute top-0 left-0 " xmlns="http://www.w3.org/2000/svg" version="1.1" width="200px" height="200px">
-                    <circle 
-                        cx="100"
-                        cy="100"
-                        r="90"
-                        strokeLinecap="round"
-                    />
-                </svg>
-                
+                </div>
             </div>
-
-            <div className="ml-[72px] mt-[40px]">
-                <div className="text-[24px] font-bold">อันดับที่ {ranking} </div>
-                <div className="text-[16px] mt-[15px] font-medium">คะเเนนนรวมทั้งหมด {point} คะเเนน</div>
-                <div className="text-[16px] font-medium">ทำผ่านไปเเล้วทั้งหมด {problem_count} ข้อ</div>
-            </div>
+            <svg className="absolute transform -rotate-90" style={{ width: `${scaleWidth}px`, height: `${scaleWidth}px` }} xmlns="http://www.w3.org/2000/svg" version="1.1">
+                <defs>
+                    <linearGradient id="GradientColor">
+                        <stop offset="0%" stopColor="#097275" />
+                        <stop offset="100%" stopColor="#28799C" />
+                    </linearGradient>
+                </defs>
+                <circle
+                    className="fill-none"
+                    cx="50%"
+                    cy="50%"
+                    r={radius}
+                    strokeLinecap="round"
+                    strokeWidth={strokeWidth}
+                    style={{
+                        stroke: 'url(#GradientColor)',
+                        strokeDasharray: circumference,
+                        strokeDashoffset: offset,
+                        transition: 'stroke-dashoffset 0.6s ease-in-out',
+                    }}
+                />
+            </svg>
         </div>
     );
 }

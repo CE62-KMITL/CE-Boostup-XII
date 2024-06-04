@@ -10,7 +10,7 @@ function ProblemsTable({ number, title, lesson, level, attempters, score, status
     return (
         <div className="grid grid-cols-[repeat(16,minmax(0,1fr))] w-full h-[45px] rounded-md bg-stone01 
         cursor-pointer transition-all duration-300 ease-in-out hover:bg-cream">
-            <div className="flex justify-start items-center col-span-1 p-[0rem_0.6rem]">
+            <div className="flex justify-start items-center col-span-1 p-[0rem_1rem]">
                 {number}
             </div>
             <div className="flex justify-start items-start col-span-4 p-[0.4rem_0.6rem]
@@ -41,7 +41,7 @@ function ProblemsTable({ number, title, lesson, level, attempters, score, status
             <div className="flex justify-start items-center col-span-2 p-[0rem_0.6rem]">
                 {attempters}
             </div>
-            <div className={`flex justify-end items-center col-span-1 p-[0rem_0.6rem] ${status === 'pass' ? 'text-pass' : status === 'unpass' ? 'text-unpass' : 'text-empty'}`}>
+            <div className={`flex justify-end items-center col-span-1 p-[0rem_1rem] ${status === 'pass' ? 'text-pass' : status === 'unpass' ? 'text-unpass' : 'text-empty'}`}>
                 {status === 'pass' ? 'ผ่าน' : status === 'unpass' ? 'ไม่ผ่าน' : 'ทำเลย'}
             </div>
         </div>

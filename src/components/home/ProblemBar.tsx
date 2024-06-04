@@ -3,7 +3,7 @@ function ProblemBar() {
         <div className="grid grid-cols-[repeat(16,minmax(0,1fr))]
         w-full h-[45px] mb-[0.5rem]">
 
-            <div className="flex justify-start items-center col-span-1 px-[0.6rem] text-stone01">
+            <div className="flex justify-start items-center col-span-1 px-[1rem] text-stone01">
                 เลขข้อ
             </div>
             <div className="flex justify-start items-center col-span-4 px-[0.6rem] text-stone01">
@@ -21,7 +21,7 @@ function ProblemBar() {
             <div className="flex justify-start items-center col-span-2 px-[0.6rem] text-stone01">
                 ผ่านแล้ว
             </div>
-            <div className="flex justify-end items-center col-span-1 px-[0.6rem] text-stone01">
+            <div className="flex justify-end items-center col-span-1 px-[1rem] text-stone01">
                 สถานะ
             </div>
 

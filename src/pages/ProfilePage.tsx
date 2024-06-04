@@ -1,41 +1,33 @@
 import NavBar from "../components/utils/NavBar";
-import Footer from "../components/utils/Footer";
 import Background from "../components/utils/Background";
 import ProfileCard from "../components/profile/ProfileCard";
 import Nick from "../assets/Ellipse 28.png"
 
 function ProfilePage() {
-    const account_info = {
-        profile_picture: Nick,
-        username: "นุกนิก นิกกี้เดส",
-        email: "ce_nicky@gmail.com",
-        house: "บ้านบางแค",
-        ranking: "999",
-        point: "123",
-        problem_count:"10",
-        problem_progress: "35"
-    }
-        
+    const data = {
+        username: "Uchiha Itachi",
+        email: "uchiha404@gmail.com",
+        house: "konohagakure",
+        profile_icon: "https://i.pinimg.com/originals/7a/04/18/7a04186fe969cca602e223e2346fc68e.jpg",
+        finished_percentage: 67.5,
+        ranking: 12,
+        total_points: 150,
+        total_problems: 16,
+    }    
+
     return(
-        <div>
-            <div>
-                <NavBar/>
-                <Background/>
-            </div>
-            <div className="flex justify-center">
-                <ProfileCard 
-                    profile_picture={account_info.profile_picture}
-                    username={account_info.username}
-                    email={account_info.email}
-                    house={account_info.house}
-                    ranking={account_info.ranking}
-                    point={account_info.point}
-                    problem_count={account_info.problem_count}
-                    problem_progress={account_info.problem_progress}
+        <>
+            <Background/>
+            <NavBar/>
+            <div className="flex justify-center items-center absolute bottom-0 w-screen 
+            lg:h-[calc(100vh-40px)] xl:h-[calc(100vh-50px)] 2xl:h-[calc(100vh-60px)] 
+            lg:px-[40px] xl:px-[60px] 2xl:px-[80px] 
+            lg:py-[35px] xl:py-[40px] 2xl:py-[45px]">
+                <ProfileCard
+                    data={data}
                 />
             </div>
-    
-        </div>
+        </>
     );
 }
 
