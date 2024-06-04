@@ -15,11 +15,16 @@ function ProfileCard({ username, email, house, ranking, point, problem_count, pr
 }) {
     return (
         <>
-            <div className="relative flex flex-col mt-[9.7vh] w-[1353px] h-[84.8vh] min-h-[742px] max-h-[900px] bg-stone01 rounded-b-[10px]">
-                <div className="w-[1353px] h-[325px] object-cover">
-                    <img src={ProfileBackground} alt="ProfileBackground" />
-                </div>
-                <div className="absolute top-[233px] left-[211px]">
+            <div className="relative flex flex-col mt-[9.7vh] w-[1353px] h-[84.8vh] min-h-[600px] max-h-[900px] bg-stone01 rounded-b-[10px] items-center">
+            <div id="profile-background" className="w-full h-[40%] min-h-[250px] max-h-[325px]"
+                style={{ 
+                    backgroundImage: `url(${ProfileBackground})`, 
+                    backgroundPosition: "center",
+                    backgroundRepeat: "no-repeat",
+                    backgroundSize: "cover"
+                }}>
+            </div>
+                <div className="absolute top-[150px] left-[211px]">
                     <ProfilePicture />
                 </div>
                 <div className="ml-[467px] mt-[33px]">
@@ -29,13 +34,23 @@ function ProfileCard({ username, email, house, ranking, point, problem_count, pr
                         house={house}
                     />
                 </div>
-                <div className="ml-[430px] mt-[52px] ">
+                <div className="flex items-center place-content-between 
+                lg:w-[400px] xl:w-[450px] 2xl:w-[500px] h-full pb-20">
                     <ProblemProgress
                         ranking={ranking}
                         point={point}
                         problem_count={problem_count}
                         problem_progress={problem_progress}
                     />
+                    <div className='flex flex-col justify-center lg:w-[200px] xl:w-[220px] 2xl:w-[240px] h-full'>
+                        <div className='lg:text-[20px] xl:text-[22px] 2xl:text-[24px] font-bold'>
+                            อันดับที่ {ranking}
+                        </div>
+                        <div className='lg:text-[12px] xl:text-[14px] 2xl:text-[16px] font-medium'>
+                            คะเเนนรวมทั้งหมด {point} คะเเนน <br />
+                            ทำผ่านไปเเล้วทั้งหมด {problem_count} ข้อ
+                        </div>
+                    </div>
                 </div>
                 <div className="absolute bottom-[33px] left-[598px]">
                     <LogOutButton />
