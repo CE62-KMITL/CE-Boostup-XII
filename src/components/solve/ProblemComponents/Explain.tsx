@@ -3,6 +3,7 @@ import ExampleCard from "./ExampleCard";
 import { ProblemModelResponse } from "../../../types/response.type";
 import InfoIcon from "../../../assets/InfoIcon.svg";
 import { usePopUp } from "../../../hooks/pop-up.hook";
+import { useEffect } from "react";
 
 type ExplainProps = {
     problem?: ProblemModelResponse | null;
@@ -10,6 +11,10 @@ type ExplainProps = {
 
 export default function Explain({ problem }: ExplainProps) {
     const { setPopUp } = usePopUp();
+
+    useEffect(() => {
+        console.log(problem);
+    }, [problem]);
 
     return (
         <>
@@ -32,7 +37,7 @@ export default function Explain({ problem }: ExplainProps) {
                 <div className="relative">
                     <img src={InfoIcon} alt="info" className="w-[20px] h-[20px] absolute top-[15px] left-[96px] hover:cursor-pointer" onClick={() => setPopUp(0)} />
                     <div className="divide-y-2">
-                        {problem?.testcases.map((testcase, index) => {
+                        {problem?.exampleTestcases.map((testcase, index) => {
                             return <ExampleCard key={index} title={`ตัวอย่างที่ ${index + 1}`} input={testcase.input} output={testcase.output} />
                         })}
                     </div>

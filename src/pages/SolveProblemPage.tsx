@@ -36,8 +36,8 @@ function SolveProblemPage() {
     try {
       if (!problemId)
         return navigate("/home");
-      const response = await createSaveMutation.mutateAsync({ problem: problemId, code: problem?.starterCode as string });
-      console.log(response);
+      await createSaveMutation.mutateAsync({ problem: problemId, code: problem?.starterCode as string });
+      return navigate(0);
     } catch (error) {
       console.error(error);
     }
@@ -46,13 +46,11 @@ function SolveProblemPage() {
   useEffect(() => {
     if (savesQuery.error && (savesQuery.error as ErrorModelResponse).statusCode === 404) {
       handleCreateSave();
-      return navigate(0);
     }
   }, [savesQuery.error]);
 
-  if (savesQuery.isLoading || savesQuery.isError || isLoadingProblem || createSaveMutation.isLoading) {
+  if (savesQuery.isLoading || savesQuery.isError || isLoadingProblem || createSaveMutation.isLoading)
     return <LoadingPage />;
-  }
 
   return (
     <>
