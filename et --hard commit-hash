@@ -1,0 +1,86 @@
+[33m08f29d7[m[33m ([m[1;36mHEAD -> [m[1;32mfeat/gan[m[33m)[m HEAD@{0}: pull -f origin a00929950a5a491b3bd343b25c171eada38efa46: Merge made by the 'ort' strategy.
+[33mf9d3181[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/feat/gan[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{1}: reset: moving to HEAD
+[33mf9d3181[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/feat/gan[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{2}: checkout: moving from feat/gan to feat/gan
+[33mf9d3181[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/feat/gan[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{3}: reset: moving to f9d31819c993681743b1ff544039cfa62ddd19a5
+[33mffdc9e3[m HEAD@{4}: reset: moving to HEAD
+[33mffdc9e3[m HEAD@{5}: reset: moving to HEAD
+[33mffdc9e3[m HEAD@{6}: reset: moving to HEAD
+[33mffdc9e3[m HEAD@{7}: commit: refactor: Remove empty lines in UserInfo component
+[33m10111cf[m HEAD@{8}: commit (merge): Merge branch 'dev' of https://github.com/CE62-KMITL/CE-Boostup-XII into feat/gan
+[33ma9e2235[m HEAD@{9}: checkout: moving from dev to feat/gan
+[33m52d246c[m[33m ([m[1;31morigin/dev[m[33m, [m[1;32mdev[m[33m)[m HEAD@{10}: pull --tags origin dev: Fast-forward
+[33mf26e793[m HEAD@{11}: checkout: moving from main to dev
+[33mf9d3181[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/feat/gan[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m HEAD@{12}: commit: chore: Update .gitignore to ignore .env files
+[33mac2c340[m HEAD@{13}: checkout: moving from feat/gan to main
+[33ma9e2235[m HEAD@{14}: commit: refactor: Update ProtectedProvider allowedRoles to include Role.Staff
+[33md8dab34[m HEAD@{15}: commit: refactor: Update ProtectedProvider allowedRoles to include Role.Staff
+[33m01afd11[m HEAD@{16}: commit: refactor: Remove unused environment variables
+[33m35b7e13[m HEAD@{17}: commit: refactor: Update NavBar link to use "/home/1" instead of "/home"
+[33m2df7ea2[m HEAD@{18}: commit: add: URL Prefix
+[33m3f65708[m HEAD@{19}: commit: refactor: Update problem tags file naming convention and imports
+[33m79185ef[m HEAD@{20}: commit: refactor: Update problem tags file naming convention and imports
+[33mdd4a440[m HEAD@{21}: commit: refactor: Update problem tags file naming convention and imports
+[33m270ab1c[m HEAD@{22}: commit: Update favicon link in index.html
+[33m718f014[m HEAD@{23}: commit: refactor: Update SearchBar component to use optional tag and search values
+[33m47c82af[m HEAD@{24}: commit: feat: Update SearchBar component to include completion status in pagination request
+[33mb9c186c[m HEAD@{25}: commit: feat: Add lazy loading for images in PopUp component
+[33m209ef8e[m HEAD@{26}: commit: feat: Add error handling for response in OptionBar component
+[33mac8dd15[m HEAD@{27}: commit: feat: Update form submit button disabled state in EditProfile component
+[33md99e7a3[m HEAD@{28}: commit: feat: Update form submit button disabled state in EditProfile component
+[33mdefc789[m HEAD@{29}: commit: feat: Update imports for usePopUp and useAuth hooks
+[33m395ea17[m HEAD@{30}: commit: feat: Add lazy loading for images in LoginForm, CreateAccountPopUp, and ForgotPasswordPopUp components
+[33m51a10bf[m HEAD@{31}: commit: feat: Add lazy loading for images in ProfileCard and SearchBar components
+[33m51e4458[m HEAD@{32}: commit: feat: Update imports for usePopUp and useAuth hooks
+[33mda54bc2[m HEAD@{33}: commit (merge): Merge branch 'dev' of https://github.com/CE62-KMITL/CE-Boostup-XII into feat/gan
+[33m3b67d9c[m HEAD@{34}: commit: feat: Update favicon link in index.html
+[33m2122cdc[m HEAD@{35}: commit: feat: Add lazy loading for images in OptionBar and SearchBar components
+[33m39e9667[m HEAD@{36}: commit: feat: Update imports for usePopUp and useAuth hooks
+[33mea038e9[m HEAD@{37}: commit: feat: Add lazy loading for images in SearchBar component
+[33m37ee34e[m HEAD@{38}: commit: feat: Update lazy loading for images in OptionBar and SearchBar components
+[33m755d43a[m HEAD@{39}: commit: feat: Update enum import in problem.dto.ts and submissions.dto.ts
+[33m141a6e8[m HEAD@{40}: commit: feat: Add lazy loading for images in OptionBar component
+[33m709c372[m HEAD@{41}: commit: feat: Add Zustand dependency and update package.json
+[33mceafd99[m HEAD@{42}: commit: feat: Update saves service to include getSaveForProblem method
+[33mc3f5439[m HEAD@{43}: commit: feat: Add problem field to PaginationRequestDto
+[33m9c1c775[m HEAD@{44}: commit: feat: Add lazy loading for images in SearchBar component
+[33m98d616d[m HEAD@{45}: commit (merge): Merge branch 'dev' of https://github.com/CE62-KMITL/CE-Boostup-XII into feat/gan
+[33ma560301[m HEAD@{46}: commit: feat: Update InstagramCard to use a different Instagram post URL
+[33mb24f39b[m HEAD@{47}: commit: feat: Update dependencies and add react-query for improved data fetching
+[33m3c72dc0[m HEAD@{48}: commit: feat: Update dependencies and add react-query for improved data fetching
+[33m97cf5bb[m HEAD@{49}: commit: feat: Add RequestAccountCreationDto type and endpoint
+[33m75d7fbe[m HEAD@{50}: commit: feat: Add lazy loading for images in SearchBar component
+[33mdeb072e[m HEAD@{51}: commit: feat: Add problemId parameter to SolveProblemPage route
+[33mbfa7a98[m HEAD@{52}: commit: feat: Add problemId parameter to SolveProblemPage route
+[33m18abeae[m HEAD@{53}: commit: feat: Add onChange prop to Dropdown component
+[33m1fc8ac5[m HEAD@{54}: commit: feat: Add search, tags, difficulties, and owner fields to PaginationRequestDto
+[33m398392d[m HEAD@{55}: commit: feat: Add Button component to ForgotPasswordPopUp and LoginForm
+[33m9ac7d44[m HEAD@{56}: commit: ```text
+[33me628041[m HEAD@{57}: commit: feat: Add getAvatar method to users service
+[33m7f7b8c4[m HEAD@{58}: commit: Refactor API controller to include pagination parameters
+[33m7440e45[m HEAD@{59}: commit: Refactor API controller to include pagination parameters
+[33m64b155e[m HEAD@{60}: commit: Refactor LoginValues type and add usernameValidator
+[33m001bf0b[m HEAD@{61}: commit: Refactor LoginValues type and add usernameValidator
+[33mad30773[m HEAD@{62}: commit: Refactor Button component to improve image positioning logic
+[33m8d3dd0e[m HEAD@{63}: commit: Refactor Button component to improve image positioning logic
+[33m7183d9f[m HEAD@{64}: commit: Refactor Button component to remove commented out code and improve image positioning logic
+[33m7c8b194[m HEAD@{65}: commit: feat: Refactor Editor and EditorFooter components
+[33m24545e4[m HEAD@{66}: commit: feat: Update login page UI and functionality
+[33m1027a84[m HEAD@{67}: commit: feat: Update login page UI and functionality
+[33ma054ea7[m HEAD@{68}: commit: feat: Add react-cookie dependency for managing cookies and implement password reset functionality
+[33mf26e793[m HEAD@{69}: checkout: moving from dev to feat/gan
+[33mf26e793[m HEAD@{70}: pull --tags origin feat/gan: Fast-forward
+[33me079b4b[m HEAD@{71}: checkout: moving from feat/gan to dev
+[33mf26e793[m HEAD@{72}: commit: feat: Add axios dependency and update Button component props
+[33m6c64257[m HEAD@{73}: commit: Refactor Input component to use event object instead of value in the func prop
+[33ma2008c5[m HEAD@{74}: commit: feat: Improve search bar styling and add lazy loading for images
+[33ma06d869[m HEAD@{75}: commit: feat: Add registration page for user sign up
+[33me079b4b[m HEAD@{76}: checkout: moving from dev to feat/gan
+[33me079b4b[m HEAD@{77}: pull --tags origin feat/gan: Fast-forward
+[33m49668b2[m HEAD@{78}: checkout: moving from feat/gan to dev
+[33me079b4b[m HEAD@{79}: commit: feat: Update dependencies and add react-router-dom for routing
+[33m49668b2[m HEAD@{80}: pull --tags origin dev: Fast-forward
+[33m75e56d4[m HEAD@{81}: checkout: moving from dev to feat/gan
+[33m49668b2[m HEAD@{82}: pull --tags origin dev: Fast-forward
+[33m75e56d4[m HEAD@{83}: checkout: moving from feat/gan to dev
+[33m75e56d4[m HEAD@{84}: pull --tags origin dev: Fast-forward
+[33mac2c340[m HEAD@{85}: checkout: moving from dev to feat
