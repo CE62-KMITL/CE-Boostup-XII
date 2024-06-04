@@ -36,12 +36,7 @@ function ProfileCard({ username, email, house, ranking, point, problem_count, pr
                 </div>
                 <div className="flex items-center place-content-between 
                 lg:w-[400px] xl:w-[450px] 2xl:w-[500px] h-full pb-20">
-                    <ProblemProgress
-                        ranking={ranking}
-                        point={point}
-                        problem_count={problem_count}
-                        problem_progress={problem_progress}
-                    />
+                    <ProblemProgress problem_progress={problem_progress} />
                     <div className='flex flex-col justify-center lg:w-[200px] xl:w-[220px] 2xl:w-[240px] h-full'>
                         <div className='lg:text-[20px] xl:text-[22px] 2xl:text-[24px] font-bold'>
                             อันดับที่ {ranking}

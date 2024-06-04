@@ -1,9 +1,6 @@
 import { useEffect, useState } from 'react';
 
-function ProblemProgress({ ranking, point, problem_count, problem_progress }: {
-    ranking: string,
-    point: string,
-    problem_count: string,
+function ProblemProgress({ problem_progress }: {
     problem_progress: string
 }): JSX.Element {
     const progressPercentage = Math.floor(parseInt(problem_progress));
