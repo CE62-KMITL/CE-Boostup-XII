@@ -7,7 +7,7 @@ type ProtectedProviderProps = {
     allowedRoles: Role[];
 }
 
-export function ProtectedProvider({ allowedRoles }: ProtectedProviderProps) {
+export default function ProtectedProvider({ allowedRoles }: ProtectedProviderProps) {
     const location = useLocation();
     const { user } = useUser();
     const userRoles = user?.roles;

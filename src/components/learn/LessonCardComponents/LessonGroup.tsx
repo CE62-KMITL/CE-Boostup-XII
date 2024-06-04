@@ -1,6 +1,5 @@
 import LessonCard from "../LessonCard";
 import { useLearn } from "../../../hooks/learn.hook";
-import { useEffect } from "react";
 
 function LessonGroup() {
     const { learn } = useLearn();

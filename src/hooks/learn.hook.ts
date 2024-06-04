@@ -5,10 +5,11 @@ export const useLearn = () => {
     const { learn, setLearn } = useLearnStore();
 
     const searchLearn = (title: string) => {
+        console.log(title);
         if (title === "")
             setLearn(learnConstant);
         else
-            setLearn(learn.filter((lesson) => lesson.title.toLowerCase().includes(title.toLowerCase())));
+            setLearn(learnConstant.filter((lesson) => lesson.title.toLowerCase().includes(title.toLowerCase())));
     }
 
     return {

@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import StoreProvider from './provider/store.provider'
-import { ProtectedProvider } from './provider/protected.provider'
+import ProtectedProvider from './provider/protected.provider'
+import VerifyProvider from './provider/verify.provider'
 import { Role } from './enum/roles.enum'
 import { QueryClient, QueryClientProvider } from 'react-query'
 
@@ -21,8 +22,10 @@ export default function App() {
         <Routes>
           <Route path='*' element={<Error404Page />} />
           <Route element={<StoreProvider />}>
-            <Route path="/" element={<LoginPage />} />
-            <Route path="/register" element={<RegisterPage />} />
+            <Route element={<VerifyProvider />}>
+              <Route path="/" element={<LoginPage />} />
+              <Route path="/register" element={<RegisterPage />} />
+            </Route>
             <Route path="/reset-password" element={<ResetPasswordPage />} />
             <Route element={<ProtectedProvider allowedRoles={[Role.User, Role.Admin, Role.Staff]} />}>
               <Route path="/solve/:problemId" element={<SolveProblemPage />} />
