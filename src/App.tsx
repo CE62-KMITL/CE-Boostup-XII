@@ -13,6 +13,7 @@ import Error404Page from './pages/Error404Page'
 import LoadingPage from './pages/LoadingPage'
 import ChangePassword from './components/profile/ProfilePopUp/ChangePassword'
 import EditProfile from './components/profile/ProfilePopUp/EditProfile'
+import LeaderboardPage from './pages/LeaderboardPage'
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/home" element={<HomePage />} />
           <Route path="/learn" element={<LearnPage />} />
           <Route path="/solve" element={<SolveProblemPage />} />
+          <Route path="/rank" element={<LeaderboardPage />} />
           <Route path="/profile" element={<ProfilePage />} />
         </Route>
 
