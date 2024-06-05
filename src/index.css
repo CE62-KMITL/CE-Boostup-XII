@@ -238,6 +238,25 @@
 
   
 
+  .input-container-problem input {
+    box-sizing: border-box;
+    transition: border-color 0.2s, background-color 0.2s;
+  }
+
+  .input-container-problem input:focus {
+    @apply border-2 border-stone04 bg-cream;
+    outline: none;
+  }
+
+  .error-input-container-problem input:focus {
+    @apply border-2 border-red-500;
+    outline: none;
+  }
+
+  .input-container-problem label {
+    pointer-events: none;
+    transition: bottom 0.2s, font-size 0.2s;
+  }
   
 }
 

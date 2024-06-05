@@ -14,6 +14,7 @@ import LoadingPage from './pages/LoadingPage'
 import ChangePassword from './components/profile/ProfilePopUp/ChangePassword'
 import EditProfile from './components/profile/ProfilePopUp/EditProfile'
 import LeaderboardPage from './pages/LeaderboardPage'
+import BackOfficePage from './pages/BackOfficePage'
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
         <Route path="/reset-password" element={<ResetPasswordPopUp />} />
         <Route path="/error404" element={<Error404Page />} />
         <Route path="/loading" element={<LoadingPage />} />
+        <Route path="/backoffice" element={<BackOfficePage />} />
 
         <Route path="/change-password" element={<ChangePassword />} />
         <Route path="/edit-profile" element={<EditProfile />} />
