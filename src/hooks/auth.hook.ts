@@ -1,7 +1,7 @@
 import { LoginDto, RegisterDto } from "../dto/auth.dto";
 import { authService } from "../services/auth.service";
 import { usersService } from "../services/users.service";
-import { setAuthUser, setAuthAccessToken } from "../store/slices/auth.slice";
+import { setAuthUser, setAuthAccessToken, deleteAuthState } from "../store/slices/auth.slice";
 import { useDispatch } from "react-redux";
 import { UserModelResponse } from "../types/response.type";
 import { store } from "../store/store";
@@ -44,11 +44,16 @@ export const useAuth = (options?: UseQueryOptions<UserModelResponse>) => {
         return response;
     });
 
+    const logout = () => {
+        dispatch(deleteAuthState());
+    }
+
     return {
         user,
         isLoading,
         error,
         loginMutation,
         registerMutation,
+        logout,
     };
 };
