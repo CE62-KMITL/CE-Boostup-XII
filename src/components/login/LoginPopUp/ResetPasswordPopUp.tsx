@@ -67,8 +67,8 @@ function ResetPasswordPopUp() {
                     </div>
                 </div>
                 <div className="border-none border-red-500 flex flex-col items-center place-content-between w-[50%] h-[30%] min-w-[140px] max-w-[150px] min-h-[60px] max-h-[70px]">
-                    <Button className="flex justify-center items-center w-full h-[66%] min-h-[36px] max-h-[42px] 
-                    rounded-lg shadow-md bg-accent text-stone01 text-[18px] font-[700]" type="submit" text="ตกลง" />
+                    <Button className={`flex justify-center items-center w-full h-[66%] min-h-[36px] max-h-[42px] 
+                    rounded-lg shadow-md ${formik.isValid ? "bg-accent" : "bg-[#D7C398] pointer-events-none"} text-stone01 text-[18px] font-[700]`} type="submit" text="ตกลง" />
                     <Link to="/" className="text-stone04 text-[16px] leading-[0.5rem]">กลับเข้าสู่ระบบ</Link>
                 </div>
             </form>
