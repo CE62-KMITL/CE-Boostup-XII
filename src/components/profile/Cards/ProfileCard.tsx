@@ -16,18 +16,18 @@ function ProfileCard({ username, email, house, ranking, point, problem_count, pr
     return (
         <>
             <div className="relative flex flex-col mt-[9.7vh] w-[1353px] h-[84.8vh] min-h-[600px] max-h-[900px] bg-stone01 rounded-b-[10px] items-center">
-            <div id="profile-background" className="w-full h-[40%] min-h-[250px] max-h-[325px]"
-                style={{ 
-                    backgroundImage: `url(${ProfileBackground})`, 
-                    backgroundPosition: "center",
-                    backgroundRepeat: "no-repeat",
-                    backgroundSize: "cover"
-                }}>
-            </div>
+                <div id="profile-background" className="w-full h-[40%] min-h-[250px] max-h-[325px]"
+                    style={{
+                        backgroundImage: `url(${ProfileBackground})`,
+                        backgroundPosition: "center",
+                        backgroundRepeat: "no-repeat",
+                        backgroundSize: "cover"
+                    }}>
+                </div>
                 <div className="absolute top-[150px] left-[211px]">
                     <ProfilePicture />
                 </div>
-                <div className="ml-[467px] mt-[33px]">
+                <div className="ml-[450px] mt-[33px] self-start">
                     <UserInfo
                         username={username}
                         email={email}

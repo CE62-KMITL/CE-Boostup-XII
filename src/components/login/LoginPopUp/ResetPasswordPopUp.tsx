@@ -3,32 +3,25 @@ import { ResetPasswordValues, emptyResetPasswordValues, ResetPasswordValidationS
 import Button from "../../utils/Button";
 import { useFormik } from "formik";
 import { getFieldProps } from "../../../utils/getFieldProps";
-import { authService } from "../../../services/auth.service";
-import { useMutation } from "react-query";
 import Input from "../../utils/Input";
+import { useAuth } from "../../../hooks/auth.hook";
 
 function ResetPasswordPopUp() {
+    const { resetPasswordMutation } = useAuth();
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
 
-    const { mutate } = useMutation(authService.resetPassword, {
-        onSuccess: () => {
+    async function handleResetPassword() {
+        try {
+            const token = searchParams.get('token');
+            if (!token)
+                return navigate("/");
+            await resetPasswordMutation.mutateAsync({ token, password: formik.values.password });
             navigate("/");
-        },
-        onError: (error) => {
+        } catch (error) {
             console.error(error);
             alert((error as any).message);
-        },
-    });
-
-    function handleResetPassword() {
-        const token = searchParams.get('token');
-        if (!token)
-            return navigate("/");
-        mutate({
-            password: formik.values.password,
-            token
-        });
+        }
     }
 
     const formik = useFormik<ResetPasswordValues>({
@@ -74,8 +67,8 @@ function ResetPasswordPopUp() {
                     </div>
                 </div>
                 <div className="border-none border-red-500 flex flex-col items-center place-content-between w-[50%] h-[30%] min-w-[140px] max-w-[150px] min-h-[60px] max-h-[70px]">
-                    <Button className="flex justify-center items-center w-full h-[66%] min-h-[36px] max-h-[42px] 
-                    rounded-lg shadow-md bg-accent text-stone01 text-[18px] font-[700]" type="submit" text="ตกลง" />
+                    <Button className={`flex justify-center items-center w-full h-[66%] min-h-[36px] max-h-[42px] 
+                    rounded-lg shadow-md ${formik.isValid ? "bg-accent" : "bg-[#D7C398] pointer-events-none"} text-stone01 text-[18px] font-[700]`} type="submit" text="ตกลง" />
                     <Link to="/" className="text-stone04 text-[16px] leading-[0.5rem]">กลับเข้าสู่ระบบ</Link>
                 </div>
             </form>
