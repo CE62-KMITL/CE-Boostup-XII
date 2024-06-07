@@ -4,28 +4,25 @@ import { useFormik } from "formik";
 import { emailValidator } from "../../../utils/validator.util";
 import * as yup from "yup";
 import { getFieldProps } from "../../../utils/getFieldProps";
-import { authService } from "../../../services/auth.service";
 import Button from "../../utils/Button";
-import { useMutation } from "react-query";
+import { useAuth } from "../../../hooks/auth.hook";
 
 type CreateAccountPopUpProps = {
     setShowCreateAccount: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 function CreateAccountPopUp({ setShowCreateAccount }: CreateAccountPopUpProps) {
-    function handleCreateAccount() {
-        mutate({
-            email: formik.values.email,
-            siteUrl: window.location.origin
-        });
-    }
+    const { createAccountMutation } = useAuth();
 
-    const { mutate } = useMutation(authService.requestAccountCreation, {
-        onError: (error) => {
+    async function handleCreateAccount() {
+        try {
+            await createAccountMutation.mutateAsync({ email: formik.values.email, siteUrl: window.location.origin });
+            setShowCreateAccount(false);
+        } catch (error) {
             console.error(error);
             alert((error as any).message);
-        },
-    });
+        }
+    }
 
     const formik = useFormik<{ email: string }>({
         initialValues: {

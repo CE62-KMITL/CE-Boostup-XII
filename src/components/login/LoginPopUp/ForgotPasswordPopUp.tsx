@@ -4,32 +4,26 @@ import { useFormik } from "formik";
 import { emailValidator } from "../../../utils/validator.util";
 import * as yup from "yup";
 import { getFieldProps } from "../../../utils/getFieldProps";
-import { authService } from "../../../services/auth.service";
 import Button from "../../utils/Button";
-import { useMutation } from "react-query";
+import { useAuth } from "../../../hooks/auth.hook";
 
 type ForgotPasswordPopUpProps = {
     setShowForgotPassword: React.Dispatch<React.SetStateAction<boolean>>
     setIsRecognizedPopUp: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-function ForgotPasswordPopUp({ setShowForgotPassword, setIsRecognizedPopUp }: ForgotPasswordPopUpProps) {
-    const { mutate } = useMutation(authService.requestPasswordReset, {
-        onSuccess: () => {
+export default function ForgotPasswordPopUp({ setShowForgotPassword, setIsRecognizedPopUp }: ForgotPasswordPopUpProps) {
+    const { requestResetPasswordMutation } = useAuth();
+
+    async function handleContinue() {
+        try {
+            await requestResetPasswordMutation.mutateAsync({ email: formik.values.email, siteUrl: window.location.origin });
             setIsRecognizedPopUp(true);
             setShowForgotPassword(false);
-        },
-        onError: (error) => {
+        } catch (error) {
             console.error(error);
             alert((error as any).message);
-        },
-    });
-
-    function handleContinue() {
-        mutate({
-            email: formik.values.email,
-            siteUrl: window.location.origin
-        });
+        }
     }
 
     const formik = useFormik<{ email: string }>({
@@ -67,7 +61,7 @@ function ForgotPasswordPopUp({ setShowForgotPassword, setIsRecognizedPopUp }: Fo
                         <Button className="flex justify-center items-center w-full h-[50%] min-h-[45px] max-h-[50px] rounded-lg 
                     shadow-md bg-accent text-stone01 text-[18px] font-[700]" type="submit" text="ดำเนินการต่อ" />
                         <div className="flex justify-center items-end w-full h-[45%]">
-                            <Button ClickFunc={() => setShowForgotPassword(false)} text="ดำเนินการต่อ" type="button" className="text-stone04" />
+                            <Button ClickFunc={() => setShowForgotPassword(false)} text="กลับเข้าสู่ระบบ" type="button" className="text-stone04" />
                         </div>
                     </div>
                 </form>
@@ -75,5 +69,3 @@ function ForgotPasswordPopUp({ setShowForgotPassword, setIsRecognizedPopUp }: Fo
         </>
     );
 }
-
-export default ForgotPasswordPopUp;

@@ -3,32 +3,25 @@ import { ResetPasswordValues, emptyResetPasswordValues, ResetPasswordValidationS
 import Button from "../../utils/Button";
 import { useFormik } from "formik";
 import { getFieldProps } from "../../../utils/getFieldProps";
-import { authService } from "../../../services/auth.service";
-import { useMutation } from "react-query";
 import Input from "../../utils/Input";
+import { useAuth } from "../../../hooks/auth.hook";
 
 function ResetPasswordPopUp() {
+    const { resetPasswordMutation } = useAuth();
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
 
-    const { mutate } = useMutation(authService.resetPassword, {
-        onSuccess: () => {
+    async function handleResetPassword() {
+        try {
+            const token = searchParams.get('token');
+            if (!token)
+                return navigate("/");
+            await resetPasswordMutation.mutateAsync({ token, password: formik.values.password });
             navigate("/");
-        },
-        onError: (error) => {
+        } catch (error) {
             console.error(error);
             alert((error as any).message);
-        },
-    });
-
-    function handleResetPassword() {
-        const token = searchParams.get('token');
-        if (!token)
-            return navigate("/");
-        mutate({
-            password: formik.values.password,
-            token
-        });
+        }
     }
 
     const formik = useFormik<ResetPasswordValues>({

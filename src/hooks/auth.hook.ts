@@ -1,4 +1,4 @@
-import { LoginDto, RegisterDto } from "../dto/auth.dto";
+import { LoginDto, RegisterDto, RequestPasswordResetDto, RequestAccountCreationDto, ResetPasswordDto } from "../dto/auth.dto";
 import { authService } from "../services/auth.service";
 import { usersService } from "../services/users.service";
 import { setAuthUser, setAuthAccessToken, deleteAuthState } from "../store/slices/auth.slice";
@@ -44,6 +44,18 @@ export const useAuth = (options?: UseQueryOptions<UserModelResponse>) => {
         return response;
     });
 
+    const requestResetPasswordMutation = useMutation(async (requestPasswordResetRequest: RequestPasswordResetDto) => {
+        return await authService.requestPasswordReset(requestPasswordResetRequest);
+    });
+
+    const createAccountMutation = useMutation(async (requestAccountCreationRequest: RequestAccountCreationDto) => {
+        return await authService.requestAccountCreation(requestAccountCreationRequest);
+    });
+
+    const resetPasswordMutation = useMutation(async (resetPasswordRequest: ResetPasswordDto) => {
+        return await authService.resetPassword(resetPasswordRequest);
+    });
+
     const logout = () => {
         dispatch(deleteAuthState());
     }
@@ -54,6 +66,9 @@ export const useAuth = (options?: UseQueryOptions<UserModelResponse>) => {
         error,
         loginMutation,
         registerMutation,
+        requestResetPasswordMutation,
+        createAccountMutation,
+        resetPasswordMutation,
         logout,
     };
 };
