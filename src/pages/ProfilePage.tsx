@@ -1,3 +1,4 @@
+import NavBar from "../components/utils/NavBar";
 import Background from "../components/utils/Background";
 import ProfileCard from "../components/profile/Cards/ProfileCard";
 import { useUser } from "../hooks/user.hook";

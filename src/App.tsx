@@ -11,6 +11,7 @@ import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
 import LearnPage from './pages/LearnPage'
 import HomePage from './pages/HomePage'
+import AdminHomePage from './pages/AdminHomePage'
 import ProfilePage from './pages/ProfilePage'
 import ResetPasswordPage from './pages/ResetPasswordPage'
 import Error404Page from './pages/Error404Page'
@@ -30,7 +31,7 @@ export default function App() {
             <Route element={<ProtectedProvider allowedRoles={[Role.User, Role.Admin, Role.Staff]} />}>
               <Route path="/solve/:problemId" element={<SolveProblemPage />} />
               <Route element={<InitLayout />}>
-                <Route path="/home/:page" element={<HomePage />} />
+                <Route path="/home/:page" element={<AdminHomePage />} />
                 <Route path="/learn" element={<LearnPage />} />
                 <Route path="/profile" element={<ProfilePage />} />
               </Route>

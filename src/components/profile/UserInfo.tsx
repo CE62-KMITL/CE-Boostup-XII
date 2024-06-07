@@ -24,7 +24,7 @@ function UserInfo({ username, email, house }: {
                 </button>
             </div>
             <div className="text-[18px] font-bold">
-                บ้านบางแค
+                {house}
             </div>
         </div>
     );
