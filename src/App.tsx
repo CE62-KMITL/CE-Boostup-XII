@@ -1,9 +1,10 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { QueryClient, QueryClientProvider } from 'react-query'
+
 import StoreProvider from './provider/store.provider'
 import ProtectedProvider from './provider/protected.provider'
 import VerifyProvider from './provider/verify.provider'
 import { Role } from './enum/roles.enum'
-import { QueryClient, QueryClientProvider } from 'react-query'
 
 import InitLayout from './layouts/InitLayout'
 import SolveProblemPage from './pages/SolveProblemPage'
