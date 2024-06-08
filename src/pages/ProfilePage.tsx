@@ -27,8 +27,8 @@ export default function ProfilePage() {
                     house={user.group?.name as string}
                     ranking={user.problemSolvedCount.toString()}
                     point={user.totalScore.toString()}
-                    problem_count={user.problemSolvedCount.toString()}
-                    problem_progress={(user.problemSolvedCount * 100 / (allProblems as []).length).toString()}
+                    problemCount={user.problemSolvedCount.toString()}
+                    problemProgress={(user.problemSolvedCount * 100 / (allProblems as []).length).toString()}
                 />
             </div>
         </>

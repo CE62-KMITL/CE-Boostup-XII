@@ -31,7 +31,7 @@ export default function App() {
             <Route element={<ProtectedProvider allowedRoles={[Role.User, Role.Admin, Role.Staff]} />}>
               <Route path="/solve/:problemId" element={<SolveProblemPage />} />
               <Route element={<InitLayout />}>
-                <Route path="/home/:page" element={<AdminHomePage />} />
+                <Route path="/home/:page" element={<HomePage />} />
                 <Route path="/learn" element={<LearnPage />} />
                 <Route path="/profile" element={<ProfilePage />} />
               </Route>

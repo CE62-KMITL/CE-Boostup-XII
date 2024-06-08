@@ -1,3 +1,4 @@
+import { isEmpty } from "lodash";
 import { useProfileComponentsStore } from "../../store/zustand/profile-components.zustand";
 
 function UserInfo({ username, email, house }: {
@@ -6,12 +7,12 @@ function UserInfo({ username, email, house }: {
     house: string,
 }) {
     const { setComponents } = useProfileComponentsStore();
-
+    
     return (
-        <div className="flex flex-col justify-end 
-        lg:gap-[6px] xl:gap-[8px] 2xl:gap-[12px] w-fit h-[50%]">
-            <div className="flex items-end 
-            lg:gap-[6px] xl:gap-[8px] 2xl:gap-[12px]">
+        <div className={`flex flex-col justify-end 
+        lg:gap-[6px] xl:gap-[8px] 2xl:gap-[12px] w-fit h-[50%]`}>
+            <div className={`flex items-end 
+            lg:gap-[6px] xl:gap-[8px] 2xl:gap-[12px] ${isEmpty(house) ? 'mb-7' : ''}`}>
                 <span className="text-[32px] font-bold  leading-8">
                     {username}</span>
                 <span className="text-[16px] font-medium">
@@ -23,11 +24,13 @@ function UserInfo({ username, email, house }: {
                     </div>
                 </button>
             </div>
-            <div className="text-[18px] font-bold">
-                {house}
-            </div>
+            {!isEmpty(house) && (
+                <div className="text-[18px] font-bold mt-[2px]">
+                    {house}
+                </div>
+            )}
         </div>
     );
 }
 
-export default UserInfo
+export default UserInfo;

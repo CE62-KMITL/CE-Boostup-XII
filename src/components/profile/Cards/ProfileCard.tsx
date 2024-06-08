@@ -4,14 +4,14 @@ import ProblemProgress from "../ProblemProgress";
 import ProfilePicture from "../ProfilePicture";
 import UserInfo from "../UserInfo";
 
-function ProfileCard({ username, email, house, ranking, point, problem_count, problem_progress }: {
+function ProfileCard({ username, email, house, ranking, point, problemCount, problemProgress }: {
     username: string,
     email: string,
     house: string,
     ranking: string,
     point: string,
-    problem_count: string,
-    problem_progress: string
+    problemCount: string,
+    problemProgress: string
 }) {
     return (
         <>
@@ -38,14 +38,14 @@ function ProfileCard({ username, email, house, ranking, point, problem_count, pr
                 </div>
                 <div className="flex items-center place-content-between 
                 lg:w-[400px] xl:w-[450px] 2xl:w-[500px] h-full pb-20">
-                    <ProblemProgress problem_progress={problem_progress} />
+                    <ProblemProgress problemProgress={problemProgress} />
                     <div className='flex flex-col justify-center lg:w-[200px] xl:w-[220px] 2xl:w-[240px] h-full'>
                         <div className='lg:text-[20px] xl:text-[22px] 2xl:text-[24px] font-bold'>
                             อันดับที่ {ranking}
                         </div>
                         <div className='lg:text-[12px] xl:text-[14px] 2xl:text-[16px] font-medium'>
                             คะเเนนรวมทั้งหมด {point} คะเเนน <br />
-                            ทำผ่านไปเเล้วทั้งหมด {problem_count} ข้อ
+                            ทำผ่านไปเเล้วทั้งหมด {problemCount} ข้อ
                         </div>
                     </div>
                 </div>
