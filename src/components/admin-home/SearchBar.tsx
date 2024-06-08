@@ -103,7 +103,8 @@ function SearchBar() {
             <Dropdown  type={2} values={isComplete} title="สถานะ" onChange={(v) => setCompletionStatus(v as CompletionStatus)} />
             <div className="flex justify-center items-center w-[170px] h-100% bg-white rounded-lg">
                 <p>โจทย์ของฉัน</p>
-                <input type="checkbox02" className="ml-[8px] w-[20px] h-[20px]"/>
+                <input type="checkbox" className="search-bar-checkbox ml-[8px] w-[20px] h-[20px] rounded-none border-4 border-accent"/>
+
             </div>
             <Button type={1} mode={5} validate={true} text="สร้างโจทย์เลย" img=""/>
         </div>
