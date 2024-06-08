@@ -49,7 +49,7 @@ export default function HomePage() {
     if (error) console.error(error);
 
     if ((isLoadingProblem && !isFetched) || isLoadingProblemTags) return <LoadingPage />;
-
+    
     return (
         <>
             <Background />
@@ -67,13 +67,11 @@ export default function HomePage() {
                                 problemsStore?.map((problem) => (
                                     <ProblemsTable
                                         id={problem.id}
-                                        number={problem.number?.toString()}
                                         title={problem.title}
                                         lesson={problem.tags as { id: string, name: string }[]}
                                         level={problem.difficulty}
-                                        attempters={problem.userSolvedCount}
-                                        score={problem.score}
-                                        status={problem.completionStatus}
+                                        status={problem.publicationStatus}
+                                        owner={problem.owner}
                                     />
                                 ))
                         }

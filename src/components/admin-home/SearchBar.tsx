@@ -2,21 +2,21 @@ import { useEffect, useState } from "react";
 import Dropdown from "../utils/Dropdown";
 import Button from "../utils/OldButton";
 import { ProblemTagModelResponse } from "../../types/response.type";
-import { CompletionStatus } from "../../enum/problem.enum";
+import { PublicationStatus } from "../../enum/problem.enum";
 import { store } from "../../store/store";
 import { useNavigate } from "react-router-dom";
 import { usePaginationRequestStore } from "../../store/zustand/pagination.zustand";
 import { DropdownType } from "../../types/dropdown.type";
 import { useProblemsStore } from "../../store/zustand/problems.zustand";
 
-const isComplete: DropdownType[] = [
-    { value: "Draft", name: "Draft" },
-    { value: "Awaiting Approval", name: "Awaiting Approval" },
-    { value: "Approve", name: "Approved" },
-    { value: "Rejected", name: "Rejected" },
-    { value: "Published", name: "Published" },
-    { value: "Archived", name: "Archived" },
-]
+const isPublicate: DropdownType[] = [
+    { value: PublicationStatus.Draft, name: "Draft" },
+    { value: PublicationStatus.AwaitingApproval, name: "Awaiting Approval" },
+    { value: PublicationStatus.Approved, name: "Approved" },
+    { value: PublicationStatus.Rejected, name: "Rejected" },
+    { value: PublicationStatus.Published, name: "Published" },
+    { value: PublicationStatus.Archived, name: "Archived" },
+];
 
 function SearchBar() {
     const { setPaginationRequest, paginationRequest } = usePaginationRequestStore();
@@ -36,28 +36,28 @@ function SearchBar() {
     const [level, setLevel] = useState<number>(0);
     const [tag, setTag] = useState<string>();
     const [search, setSearch] = useState<string>();
-    const [completionStatus, setCompletionStatus] = useState<CompletionStatus>();
+    const [publicationStatus, setPublicationStatus] = useState<PublicationStatus>();
 
     useEffect(() => {
         setPaginationRequest({
             ...paginationRequest,
             difficulties: level.toString() === "0" ? undefined : level.toString(),
             tags: tag,
-            completionStatus: completionStatus as string != "" ? completionStatus : undefined
+            publicationStatus: publicationStatus ? publicationStatus : undefined,
         });
         navigate(`/home/1`);
-    }, [level, tag, completionStatus]);
+    }, [level, tag, publicationStatus]);
 
     function handelSearch() {
         setPaginationRequest({
             ...paginationRequest,
-            search: search
+            search: search,
         });
         navigate(`/home/1`);
     }
 
     const recheckLevel = (selectedLevel: number) => {
-        setLevel((prev) => prev === selectedLevel ? 0 : selectedLevel);
+        setLevel((prev) => (prev === selectedLevel ? 0 : selectedLevel));
     };
 
     const renderStars = () => {
@@ -79,16 +79,12 @@ function SearchBar() {
         return stars;
     };
 
-    function handleRandom() {
-        navigate(`/solve/${problems?.[Math.floor(Math.random() * problems.length)].id}`);
-    }
-
     return (
         <div className="flex space-x-4 w-full h-[40px] mb-[1.6rem]">
-            <div className="relative w-[calc(100%-630px)] h-full flex" >
+            <div className="relative w-[calc(100%-630px)] h-full flex">
                 <input type="text" className="search-box h-full w-full rounded-lg px-[16px] text-stone04 focus:outline-none"
                     placeholder="พิมพ์ชื่อโจทย์ หรือเลขข้อ" onChange={(e) => setSearch(e.target.value)} />
-                <Button type={1} mode={4} validate={true} text="ตกลง" img="" ClickFunc={handelSearch} />
+                <Button type={1} mode={4} validate={true} text="ค้นหา" img="" ClickFunc={handelSearch} />
             </div>
             
             <Dropdown type={2} title="บทเรียน" values={tagList} onChange={(v) => setTag(v)} />
@@ -100,11 +96,10 @@ function SearchBar() {
                     </div>
                 </div>
             </div>
-            <Dropdown  type={2} values={isComplete} title="สถานะ" onChange={(v) => setCompletionStatus(v as CompletionStatus)} />
+            <Dropdown type={2} values={isPublicate} title="สถานะ" onChange={(v) => setPublicationStatus(v as PublicationStatus)} />
             <div className="flex justify-center items-center w-[170px] h-100% bg-white rounded-lg">
                 <p>โจทย์ของฉัน</p>
                 <input type="checkbox" className="search-bar-checkbox ml-[8px] w-[20px] h-[20px] rounded-none border-4 border-accent"/>
-
             </div>
             <Button type={1} mode={5} validate={true} text="สร้างโจทย์เลย" img=""/>
         </div>

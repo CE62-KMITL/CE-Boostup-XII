@@ -1,25 +1,25 @@
 import { Link } from "react-router-dom";
-import { CompletionStatus } from "../../enum/problem.enum";
+import { PublicationStatus } from "../../enum/problem.enum";
 
-export default function ProblemsTable({ number, title, lesson, level, attempters, score, status, id }: {
-    number: string,
+export default function ProblemsTable({title, lesson, level, status, id ,owner}: {
     title: string,
     lesson: { id: string, name: string }[],
     level: number,
-    attempters: number,
-    score: number,
-    status: CompletionStatus,
+    status: PublicationStatus,
     id: string
+    owner: { id: string, displayName: string }
 }) {
     return (
         <Link to={`/solve/${id}`} className="grid grid-cols-[repeat(16,minmax(0,1fr))] w-full h-[45px] rounded-md bg-stone01 
         cursor-pointer transition-all duration-300 ease-in-out hover:bg-cream">
-            <div className="flex justify-start items-center col-span-1 p-[0rem_1rem]">
-                {number}
-            </div>
-            <div className="flex justify-start items-start col-span-4 p-[0.4rem_0.6rem]
+            
+            <div className="flex justify-start items-start col-span-5 p-[0.4rem_0.6rem]
             leading-[2rem] overflow-y-scroll hide-scrollbar text-[18px] font-[700]">
                 {title}
+            </div>
+            <div className="flex justify-start items-start col-span-4 p-[0.4rem_2rem]
+            leading-[2rem] overflow-y-scroll hide-scrollbar text-[18px] font-[700]">
+                {owner.displayName}
             </div>
             <div className="flex justify-start items-start col-span-3 p-[0.4rem_0.6rem]
             leading-[2rem] overflow-y-scroll hide-scrollbar">
@@ -39,14 +39,11 @@ export default function ProblemsTable({ number, title, lesson, level, attempters
                     ))}
                 </div>
             </div>
-            <div className="flex justify-start items-center col-span-2 p-[0rem_0.6rem]">
-                {score}
-            </div>
-            <div className="flex justify-start items-center col-span-2 p-[0rem_0.6rem]">
-                {attempters}
-            </div>
-            <div className={`flex justify-end items-center col-span-1 p-[0rem_1rem] ${status === CompletionStatus.Solved ? 'text-pass' : status === CompletionStatus.Attempted ? 'text-unpass' : 'text-empty'}`}>
-                {status === CompletionStatus.Solved ? 'ผ่าน' : status === CompletionStatus.Attempted ? 'ไม่ผ่าน' : 'ทำเลย'}
+            
+           
+            <div className={`flex justify-end items-center col-span-1 p-[0rem_1rem]`}>
+                {status === PublicationStatus.Approved ? 'Approved' : status === PublicationStatus.Archived ? 'Archived' : status === PublicationStatus.AwaitingApproval ? 'AwaitingApproval' :
+                 status === PublicationStatus.Draft ? 'Draft':status === PublicationStatus.Published ? 'Published':'Rejected'}
             </div>
         </Link>
     );
