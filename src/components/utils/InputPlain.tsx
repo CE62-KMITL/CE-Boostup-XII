@@ -12,30 +12,20 @@ type InputProps = {
     func: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export default function InputPlain({ label, inputClass, labelClass, pClass, subtext, func, ...props }: InputProps) {
+export default function InputPlain({ label, inputClass, labelClass, pClass, subtext, type, func, ...props }: InputProps) {
     const inputRef = useRef<HTMLInputElement>(null);
     const labelRef = useRef<HTMLLabelElement>(null);
     const pRef = useRef<HTMLParagraphElement>(null);
-
-    // function handleValid(inputRef: React.RefObject<HTMLInputElement>, labelRef: React.RefObject<HTMLLabelElement>) {
-    //     const current = inputRef.current as HTMLInputElement;
-    //     const parent = labelRef.current as HTMLLabelElement;
-    //     if (current && parent) {
-    //         if (current.value.length > 0)
-    //             parent.style.animationName = "label-animation";
-    //         else if (current.value.length === 0)
-    //             parent.style.animationName = "reverse-label-animation";
-    //         parent.style.animationDuration = "0.3s";
-    //         parent.style.animationTimingFunction = "ease-in-out";
-    //         parent.style.animationFillMode = "forwards";
-    //     }
-    // }
-
+    inputClass = inputClass+" resize-none py-2"
     return (
         <div className="flex flex-col">
             <label className={labelClass} ref={labelRef}>{label}</label>
             <p className={pClass} ref={pRef}>{subtext}</p>
-            <input {...props} autoComplete="new-password" className={inputClass} ref={inputRef} onChange={(e) => { handleValid(inputRef, labelRef); func(e) }} />
+            {type === "textarea" ? (
+                <textarea className={inputClass} name="" id="" cols={30} rows={10}></textarea>
+                ) : (
+                <input {...props} autoComplete="new-password" type={type} className={inputClass} ref={inputRef} onChange={(e) => { handleValid(inputRef, labelRef); func(e) }} />
+            )}
         </div>
     );
 }

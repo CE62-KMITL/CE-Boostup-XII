@@ -18,10 +18,10 @@ function Testcase() {
               <InputPlain
                 label="ตัวอย่างที่ 1 *"
                 subtext="Input :"
-                type="text"
+                type="textarea"
                 placeholder=" "
                 required={true}
-                inputClass="h-[76px] mr-[14px] px-[16px] border-stone03 border-[1px] rounded-[10px] text-stone04 text-[18px]"
+                inputClass="w-[15vw] h-[76px] mr-[14px] px-[16px] border-stone03 border-[1px] rounded-[10px] text-stone04 text-[18px]"
                 labelClass="text-stone04 text-[20px] font-[700] mt-4"
                 pClass="mb-2 text-stone05"
                 // func={(e) => setEmail(e.target.value)}
@@ -29,23 +29,24 @@ function Testcase() {
               <InputPlain
                 label=""
                 subtext="Output :"
-                type="text"
+                type="textarea"
                 placeholder=" "
                 required={true}
-                inputClass="h-[76px] ml-[14px]  px-[16px] border-stone03 border-[1px] rounded-[10px] text-stone04 text-[18px]"
+                inputClass="w-[15vw] h-[76px] ml-[14px]  px-[16px] border-stone03 border-[1px] rounded-[10px] text-stone04 text-[18px]"
                 labelClass="text-stone04 text-[20px] font-[700] mt-[46px]"
                 pClass="ml-[14px]  mb-2 text-stone05"
                 // func={(e) => setEmail(e.target.value)}
               />
+              
             </div>
             <div className="flex ">
               <InputPlain
                 label="ตัวอย่างที่ 3 *"
                 subtext="Input :"
-                type="text"
+                type="textarea"
                 placeholder=" "
                 required={true}
-                inputClass="h-[76px] mr-[14px] px-[16px] border-stone03 border-[1px] rounded-[10px] text-stone04 text-[18px]"
+                inputClass="w-[15vw] h-[76px] mr-[14px] px-[16px] border-stone03 border-[1px] rounded-[10px] text-stone04 text-[18px]"
                 labelClass="text-stone04 text-[20px] font-[700] mt-4"
                 pClass="mb-2 text-stone05"
                 // func={(e) => setEmail(e.target.value)}
@@ -53,10 +54,10 @@ function Testcase() {
               <InputPlain
                 label=""
                 subtext="Output :"
-                type="text"
+                type="textarea"
                 placeholder=" "
                 required={true}
-                inputClass="h-[76px] ml-[14px]  px-[16px] border-stone03 border-[1px] rounded-[10px] text-stone04 text-[18px]"
+                inputClass="w-[15vw] h-[76px] ml-[14px]  px-[16px] border-stone03 border-[1px] rounded-[10px] text-stone04 text-[18px]"
                 labelClass="text-stone04 text-[20px] font-[700] mt-[46px]"
                 pClass="ml-[14px]  mb-2 text-stone05"
                 // func={(e) => setEmail(e.target.value)}
@@ -70,10 +71,10 @@ function Testcase() {
               <InputPlain
                 label="ตัวอย่างที่ 2 *"
                 subtext="Input :"
-                type="text"
+                type="textarea"
                 placeholder=" "
                 required={true}
-                inputClass="h-[76px] mr-[14px] px-[16px] border-stone03 border-[1px] rounded-[10px] text-stone04 text-[18px]"
+                inputClass="w-[15vw] h-[76px] mr-[14px] px-[16px] border-stone03 border-[1px] rounded-[10px] text-stone04 text-[18px]"
                 labelClass="text-stone04 text-[20px] font-[700] mt-4"
                 pClass="mb-2 text-stone05"
                 // func={(e) => setEmail(e.target.value)}
@@ -81,10 +82,10 @@ function Testcase() {
               <InputPlain
                 label=""
                 subtext="Output :"
-                type="text"
+                type="textarea"
                 placeholder=" "
                 required={true}
-                inputClass="h-[76px] ml-[14px]  px-[16px] border-stone03 border-[1px] rounded-[10px] text-stone04 text-[18px]"
+                inputClass="w-[15vw] h-[76px] ml-[14px]  px-[16px] border-stone03 border-[1px] rounded-[10px] text-stone04 text-[18px]"
                 labelClass="text-stone04 text-[20px] font-[700] mt-[46px]"
                 pClass="ml-[14px]  mb-2 text-stone05"
                 // func={(e) => setEmail(e.target.value)}
@@ -94,10 +95,10 @@ function Testcase() {
               <InputPlain
                 label="ตัวอย่างที่ 4 *"
                 subtext="Input :"
-                type="text"
+                type="textarea"
                 placeholder=" "
                 required={true}
-                inputClass="h-[76px] mr-[14px] px-[16px] border-stone03 border-[1px] rounded-[10px] text-stone04 text-[18px]"
+                inputClass="w-[15vw] h-[76px] mr-[14px] px-[16px] border-stone03 border-[1px] rounded-[10px] text-stone04 text-[18px]"
                 labelClass="text-stone04 text-[20px] font-[700] mt-4"
                 pClass="mb-2 text-stone05"
                 // func={(e) => setEmail(e.target.value)}
@@ -105,10 +106,10 @@ function Testcase() {
               <InputPlain
                 label=""
                 subtext="Output :"
-                type="text"
+                type="textarea"
                 placeholder=" "
                 required={true}
-                inputClass="h-[76px] ml-[14px]  px-[16px] border-stone03 border-[1px] rounded-[10px] text-stone04 text-[18px]"
+                inputClass="w-[15vw] h-[76px] ml-[14px]  px-[16px] border-stone03 border-[1px] rounded-[10px] text-stone04 text-[18px]"
                 labelClass="text-stone04 text-[20px] font-[700] mt-[46px]"
                 pClass="ml-[14px]  mb-2 text-stone05"
                 // func={(e) => setEmail(e.target.value)}

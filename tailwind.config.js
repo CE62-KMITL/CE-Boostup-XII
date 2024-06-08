@@ -20,6 +20,7 @@ export default {
           'stone04': '#495057',
           'stone05': '#212429',
           'stone06': '#CCCCCC',
+          'stone07': '#D9D9D9',
           'accent': '#E2AD39',
           'accent02': '#D19220',
           'cream': '#F4E9CD',
