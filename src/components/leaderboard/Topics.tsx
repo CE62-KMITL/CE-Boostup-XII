@@ -19,7 +19,7 @@ function Topics() {
       <div className="flex justify-start items-center col-span-3 px-[0.6rem] ">
       จำนวนข้อที่ผ่าน
       </div>
-      <div className="flex justify-start items-center col-span-2 px-[0rem] ">
+      <div className="flex justify-start items-center col-span-2 pl-[0rem] ">
       การส่งล่าสุด
       </div>
     </div>

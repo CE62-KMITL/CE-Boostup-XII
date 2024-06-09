@@ -1,18 +1,16 @@
-function AccountTable({
+function TeamAccountTable({
   number,
   img,
-  name,
   group,
   score,
-  pass,
+  submit,
   latest,
 }: {
   number: number;
   img: string;
-  name: string;
   group: string;
   score: number;
-  pass: number;
+  submit: number;
   latest: string;
 }) {
   return (
@@ -23,7 +21,7 @@ function AccountTable({
             {number}
           </div>
           <div
-            className="flex justify-start items-center col-span-4 p-[0.4rem_0.6rem]
+            className="flex justify-start items-center col-span-5 p-[0.4rem_0.6rem]
             leading-[2rem] overflow-y-scroll hide-scrollbar text-[16px]"
           >
             <img
@@ -31,19 +29,13 @@ function AccountTable({
               alt="รูป"
               className="bg-red-500 rounded-[100%] w-9 h-9 mr-6"
             />
-            {name}
-          </div>
-          <div
-            className="flex justify-start items-center col-span-3 p-[0.4rem_0.6rem]
-            leading-[2rem] overflow-y-scroll hide-scrollbar"
-          >
             {group}
           </div>
-          <div className="flex justify-start items-center col-span-3 p-[0rem_0.6rem]">
+          <div className="flex justify-start items-center col-span-4 p-[0rem_0.6rem]">
             {score}
           </div>
-          <div className="flex justify-start items-center col-span-3 p-[0rem_0.6rem]">
-            {pass}
+          <div className="flex justify-start items-center col-span-4 p-[0rem_0.6rem]">
+            {submit}
           </div>
 
           <div className="flex justify-start items-center col-span-2  pr-[1rem] ">
@@ -57,7 +49,7 @@ function AccountTable({
             {number}
           </div>
           <div
-            className="flex justify-start items-center col-span-4 p-[0.4rem_0.6rem]
+            className="flex justify-start items-center col-span-5 p-[0.4rem_0.6rem]
             leading-[2rem] overflow-y-scroll hide-scrollbar text-[16px]"
           >
             <img
@@ -65,19 +57,13 @@ function AccountTable({
               alt="รูป"
               className="bg-red-500 rounded-[100%] w-9 h-9 mr-6"
             />
-            {name}
-          </div>
-          <div
-            className="flex justify-start items-center col-span-3 p-[0.4rem_0.6rem]
-            leading-[2rem] overflow-y-scroll hide-scrollbar"
-          >
             {group}
           </div>
-          <div className="flex justify-start items-center col-span-3 p-[0rem_0.6rem]">
+          <div className="flex justify-start items-center col-span-4  p-[0rem_0.6rem]">
             {score}
           </div>
-          <div className="flex justify-start items-center col-span-3 p-[0rem_0.6rem]">
-            {pass}
+          <div className="flex justify-start items-center col-span-4 p-[0rem_0.6rem]">
+            {submit}
           </div>
 
           <div className="flex justify-start items-center col-span-2  pr-[1rem] ">
@@ -91,4 +77,4 @@ function AccountTable({
   );
 }
 
-export default AccountTable;
+export default TeamAccountTable;
