@@ -18,7 +18,7 @@ export default function ProblemsTable({title, lesson, level, status, id ,owner}:
                 {title}
             </div>
             <div className="flex justify-start items-start col-span-4 p-[0.4rem_2rem]
-            leading-[2rem] overflow-y-scroll hide-scrollbar text-[18px] font-[700]">
+            leading-[2rem] overflow-y-scroll hide-scrollbar text-[18px] font-[700] truncate">
                 {owner.displayName}
             </div>
             <div className="flex justify-start items-start col-span-3 p-[0.4rem_0.6rem]

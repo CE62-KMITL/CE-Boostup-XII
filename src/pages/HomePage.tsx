@@ -3,20 +3,23 @@ import SearchBar from "../components/home/SearchBar";
 import ProblemBar from "../components/home/ProblemBar";
 import ProblemsTable from "../components/home/ProblemsTable";
 import Background from "../components/utils/Background";
-import NavBar from "../components/utils/NavBar";
 import { useProblems } from "../hooks/problems.hook";
 import LoadingPage from "./LoadingPage";
 import { useProblemsTags } from "../hooks/problem-tags.hook";
 import { useProblemsStore } from "../store/zustand/problems.zustand";
-import { useUser } from "../hooks/user.hook";
 import Dropdown from "../components/utils/Dropdown";
 import { useEffect, useState } from "react";
 import { DropdownType } from "../types/dropdown.type";
 import { usePaginationRequestStore } from "../store/zustand/pagination.zustand";
 import { useParams, useNavigate } from "react-router-dom";
+import AdminSearchBar from "../components/admin-home/SearchBar";
+import AdminProblemsTable from "../components/admin-home/ProblemsTable";
+import AdminProblemBar from "../components/admin-home/ProblemBar";
+import { Role } from "../enum/roles.enum";
+import { usePermission } from "../hooks/permission.hook";
 
 export default function HomePage() {
-    const user = useUser().user;
+    const permission = usePermission([Role.Admin, Role.Staff]);
     const { page } = useParams();
     const navigate = useNavigate();
     const { problems: problemsStore, isFetched, pages } = useProblemsStore();
@@ -54,27 +57,38 @@ export default function HomePage() {
         <>
             <Background />
             <div className="flex justify-center overflow-y-auto">
-                <NavBar />
                 <div className="xl:w-[1240px] 2xl:w-[1360px] h-fit xl:my-[98px] 2xl:my-[108px]x">
                     <div className="flex flex-col w-full h-fit">
-                        <TitleText username={user?.displayName as string} />
-                        <SearchBar />
-                        {problemsStore?.length !== 0 && <ProblemBar />}
+                        <TitleText />
+                        {
+                            permission ? <AdminSearchBar /> : <SearchBar />
+                        }
+                        {problemsStore?.length !== 0 && permission ? <AdminProblemBar /> : <ProblemBar />}
                     </div>
                     <div className="flex flex-col w-full space-y-[16px]">
                         {
                             problemsStore?.length === 0 ? <div className="text-6xl mt-4 self-center text-accent02">ไม่พบข้อมูล</div> :
                                 problemsStore?.map((problem) => (
-                                    <ProblemsTable
-                                        id={problem.id}
-                                        number={problem.number?.toString()}
-                                        title={problem.title}
-                                        lesson={problem.tags as { id: string, name: string }[]}
-                                        level={problem.difficulty}
-                                        attempters={problem.userSolvedCount}
-                                        score={problem.score}
-                                        status={problem.completionStatus}
-                                    />
+                                    permission ?
+                                        <AdminProblemsTable
+                                            id={problem.id}
+                                            title={problem.title}
+                                            lesson={problem.tags as { id: string, name: string }[]}
+                                            level={problem.difficulty}
+                                            owner={problem.owner}
+                                            status={problem.publicationStatus}
+                                        />
+                                        :
+                                        <ProblemsTable
+                                            id={problem.id}
+                                            number={problem.number?.toString()}
+                                            title={problem.title}
+                                            lesson={problem.tags as { id: string, name: string }[]}
+                                            level={problem.difficulty}
+                                            attempters={problem.userSolvedCount}
+                                            score={problem.score}
+                                            status={problem.completionStatus}
+                                        />
                                 ))
                         }
                         <div className="self-end">

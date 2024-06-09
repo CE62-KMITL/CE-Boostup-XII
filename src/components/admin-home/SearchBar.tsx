@@ -3,11 +3,11 @@ import Dropdown from "../utils/Dropdown";
 import Button from "../utils/OldButton";
 import { ProblemTagModelResponse } from "../../types/response.type";
 import { PublicationStatus } from "../../enum/problem.enum";
-import { store } from "../../store/store";
 import { useNavigate } from "react-router-dom";
 import { usePaginationRequestStore } from "../../store/zustand/pagination.zustand";
 import { DropdownType } from "../../types/dropdown.type";
-import { useProblemsStore } from "../../store/zustand/problems.zustand";
+import { useAppSelector } from "../../store/hook";
+import { useUser } from "../../hooks/user.hook";
 
 const isPublicate: DropdownType[] = [
     { value: PublicationStatus.Draft, name: "Draft" },
@@ -20,10 +20,10 @@ const isPublicate: DropdownType[] = [
 
 function SearchBar() {
     const { setPaginationRequest, paginationRequest } = usePaginationRequestStore();
-    const problemTags = store.getState().problemTags.problemTags;
-    const { problems } = useProblemsStore();
+    const problemTags = useAppSelector((state) => state.problemTags.problemTags);
     const navigate = useNavigate();
     const [tagList] = useState<DropdownType[]>([]);
+    const user = useUser().user;
 
     useEffect(() => {
         if (problemTags && tagList.length === 0) {
@@ -52,6 +52,14 @@ function SearchBar() {
         setPaginationRequest({
             ...paginationRequest,
             search: search,
+        });
+        navigate(`/home/1`);
+    }
+
+    function handelGetSelfProblem(checked: boolean) {
+        setPaginationRequest({
+            ...paginationRequest,
+            owner: checked ? user?.id : undefined,
         });
         navigate(`/home/1`);
     }
@@ -86,7 +94,6 @@ function SearchBar() {
                     placeholder="พิมพ์ชื่อโจทย์ หรือเลขข้อ" onChange={(e) => setSearch(e.target.value)} />
                 <Button type={1} mode={4} validate={true} text="ค้นหา" img="" ClickFunc={handelSearch} />
             </div>
-
             <Dropdown type={2} title="บทเรียน" values={tagList} onChange={(v) => setTag(v)} />
             <div className="flex items-center w-[277px] h-full rounded-[8px] px-[16px] bg-stone01">
                 <div className="flex items-center place-content-between w-full">
@@ -100,11 +107,11 @@ function SearchBar() {
             <div className="flex justify-center items-center w-[170px] h-100% bg-white rounded-lg">
                 <p>โจทย์ของฉัน</p>
                 <div className="custom-checkbox">
-                    <input type="checkbox" id="customCheckbox" />
-                    <label for="customCheckbox"></label>
+                    <input type="checkbox" id="customCheckbox" onChange={(e) => handelGetSelfProblem(e.target.checked)} />
+                    <label htmlFor="customCheckbox"></label>
                 </div>
             </div>
-            <Button type={1} mode={5} validate={true} text="สร้างโจทย์เลย" img="" />
+            <Button type={1} mode={5} validate={true} text="สร้างโจทย์เลย" />
         </div>
     );
 }
