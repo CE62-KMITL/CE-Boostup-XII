@@ -24,7 +24,6 @@ function SolveProblemPage() {
   const boxRef = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState<number>(0);
 
-
   if (isLoadingProblem)
     return <LoadingPage />;
 
@@ -35,14 +34,13 @@ function SolveProblemPage() {
       <div className="flex justify-center">
         <div className="flex items-center h-screen w-[90vw] justify-center py-[33px]">
           <div className="flex justify-center gap-[24px] w-full h-full" ref={boxRef}>
-            <AdminEditor starterCode={problem?.starterCode} height={height} solutionCode={problem?.solution}
-              problemId={problemId} />
+            <AdminEditor height={height} />
             <AdminProblem problem={problem} />
           </div>
         </div>
       </div>
     </>
-  )
+  );
 
   const { savesQuery, updateSaveMutation, createSaveMutation } = useSaves(problemId as string);
 

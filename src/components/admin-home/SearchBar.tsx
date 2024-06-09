@@ -37,6 +37,7 @@ function SearchBar() {
     const [tag, setTag] = useState<string>();
     const [search, setSearch] = useState<string>();
     const [publicationStatus, setPublicationStatus] = useState<PublicationStatus>();
+    const [selfProblem, setSelfProblem] = useState<boolean>(false);
 
     useEffect(() => {
         setPaginationRequest({
@@ -44,22 +45,15 @@ function SearchBar() {
             difficulties: level.toString() === "0" ? undefined : level.toString(),
             tags: tag,
             publicationStatus: publicationStatus ? publicationStatus : undefined,
+            owner: selfProblem ? user?.id : undefined,
         });
         navigate(`/home/1`);
-    }, [level, tag, publicationStatus]);
+    }, [level, tag, publicationStatus, selfProblem]);
 
     function handelSearch() {
         setPaginationRequest({
             ...paginationRequest,
             search: search,
-        });
-        navigate(`/home/1`);
-    }
-
-    function handelGetSelfProblem(checked: boolean) {
-        setPaginationRequest({
-            ...paginationRequest,
-            owner: checked ? user?.id : undefined,
         });
         navigate(`/home/1`);
     }
@@ -107,7 +101,7 @@ function SearchBar() {
             <div className="flex justify-center items-center w-[170px] h-100% bg-white rounded-lg">
                 <p>โจทย์ของฉัน</p>
                 <div className="custom-checkbox">
-                    <input type="checkbox" id="customCheckbox" onChange={(e) => handelGetSelfProblem(e.target.checked)} />
+                    <input type="checkbox" id="customCheckbox" onChange={(e) => setSelfProblem(e.target.checked)} />
                     <label htmlFor="customCheckbox"></label>
                 </div>
             </div>

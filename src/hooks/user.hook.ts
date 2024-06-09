@@ -6,12 +6,14 @@ import {
     useMutation,
     useQuery,
 } from "react-query";
+import { useProblemStore } from "../store/zustand/problem.zustand";
 
 const USER_QUERY_KEY = "user";
 
 export const useUser = () => {
     const dispatch = useAppDispatch();
     const user = useAppSelector((state) => state.auth.user);
+    const { problem } = useProblemStore();
 
     const updateUserMutation = useMutation(async (userData: UpdateUserDto) => {
         const response = await usersService.updateUser(user?.id as string, userData);
@@ -23,10 +25,13 @@ export const useUser = () => {
 
     const getAvatar = `${import.meta.env.VITE_PUBLIC_ENV}/users/${user?.id}/avatar`;
 
+    const isOwner = user?.id === problem?.owner.id;
+
     return {
         user,
         updateUserMutation,
         getSelfQuery,
-        getAvatar
+        getAvatar,
+        isOwner,
     };
 };
