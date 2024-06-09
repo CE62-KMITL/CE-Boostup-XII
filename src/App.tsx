@@ -35,8 +35,10 @@ export default function App() {
               <Route element={<InitLayout />}>
                 <Route path="/home/:page" element={<HomePage />} />
                 <Route path="/learn" element={<LearnPage />} />
+                <Route path="/leaderboard" element={<LeaderboardPage />} />
                 <Route path="/profile" element={<ProfilePage />} />
               </Route>
+              <Route path='/create-problem' element={<BackOfficePage />} />
             </Route>
           </Route>
         </Routes>

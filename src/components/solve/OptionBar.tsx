@@ -1,7 +1,6 @@
 import SubmitIcon from "../../assets/submit.svg";
 import BackIcon from "../../assets/back.svg";
 import Button from "../utils/Button";
-import BackIcon from "../../assets/back.svg";
 import SendIcon from "../../assets/sendIcon.svg";
 import Dropdown from "../utils/Dropdown";
 import { useNavigate } from "react-router-dom";
