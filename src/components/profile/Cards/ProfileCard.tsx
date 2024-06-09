@@ -26,18 +26,15 @@ function ProfileCard({ username, email, house, ranking, point, problemCount, pro
                 </div>
                 <div className="-translate-y-1/2 flex items-end place-content-between 
                 lg:w-[72.5%] xl:w-[70%] 2xl:w-[67.5%] h-[100%] min-h-[120px] max-h-[200px] mt-[1%]">
-
                     <ProfilePicture />
                     <UserInfo
                         username={username}
                         email={email}
                         house={house}
                     />
-
-
                 </div>
-                <div className="flex items-center place-content-between 
-                lg:w-[400px] xl:w-[450px] 2xl:w-[500px] h-full pb-20">
+                <div className="flex items-center place-content-between absolute bottom-1/4 translate-y-[45%]
+                lg:w-[400px] xl:w-[450px] 2xl:w-[500px] h-fit">
                     <ProblemProgress problemProgress={problemProgress} />
                     <div className='flex flex-col justify-center lg:w-[200px] xl:w-[220px] 2xl:w-[240px] h-full'>
                         <div className='lg:text-[20px] xl:text-[22px] 2xl:text-[24px] font-bold'>
