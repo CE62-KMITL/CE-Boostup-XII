@@ -9,16 +9,42 @@ import { useProblem } from "../hooks/problem.hook";
 import { usePopUp } from "../hooks/pop-up.hook";
 import { useNavigate } from "react-router-dom";
 import { ErrorModelResponse } from "../types/response.type";
+import { usePermission } from "../hooks/permission.hook";
+import { Role } from "../enum/roles.enum";
+import AdminEditor from "../components/checkmode/Editor";
+import AdminProblem from "../components/checkmode/Problem";
 
 function SolveProblemPage() {
+  const permission = usePermission([Role.Admin, Role.Staff, Role.Reviewer]);
   const { problemId } = useParams();
   const navigate = useNavigate();
   const { problem, isLoading: isLoadingProblem } = useProblem(problemId as string);
-  const { savesQuery, updateSaveMutation, createSaveMutation } = useSaves(problemId as string);
   const { popUp, popUpComponents, content } = usePopUp();
 
   const boxRef = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState<number>(0);
+
+
+  if (isLoadingProblem)
+    return <LoadingPage />;
+
+  if (permission) return (
+    <>
+      <Background />
+      {popUp !== null && popUpComponents(content)[popUp]}
+      <div className="flex justify-center">
+        <div className="flex items-center h-screen w-[90vw] justify-center py-[33px]">
+          <div className="flex justify-center gap-[24px] w-full h-full" ref={boxRef}>
+            <AdminEditor starterCode={problem?.starterCode} height={height} solutionCode={problem?.solution}
+              problemId={problemId} />
+            <AdminProblem problem={problem} />
+          </div>
+        </div>
+      </div>
+    </>
+  )
+
+  const { savesQuery, updateSaveMutation, createSaveMutation } = useSaves(problemId as string);
 
   useEffect(() => {
     const event = addEventListener('resize', () => {
@@ -30,7 +56,6 @@ function SolveProblemPage() {
   useEffect(() => {
     setHeight(boxRef.current?.clientHeight || 0);
   }, [boxRef.current, savesQuery.isSuccess]);
-
 
   async function handleCreateSave() {
     try {
@@ -44,19 +69,19 @@ function SolveProblemPage() {
   }
 
   useEffect(() => {
-    if (savesQuery.error && (savesQuery.error as ErrorModelResponse).statusCode === 404) {
+    if (savesQuery.error && (savesQuery.error as ErrorModelResponse).statusCode === 404 && !permission) {
       handleCreateSave();
     }
   }, [savesQuery.error]);
 
-  if (savesQuery.isLoading || savesQuery.isError || isLoadingProblem || createSaveMutation.isLoading)
+  if (savesQuery.isLoading || savesQuery.isError || createSaveMutation.isLoading)
     return <LoadingPage />;
 
   return (
     <>
+      <Background />
       {popUp !== null && popUpComponents(content)[popUp]}
       <div className="flex justify-center">
-        <Background />
         <div className="flex items-center h-screen w-[90vw] justify-center py-[33px]" ref={boxRef}>
           <Editor starterCode={problem?.starterCode as string} height={height} problemId={problemId} savesQuery={savesQuery} updateSaveMutation={updateSaveMutation} createSaveMutation={createSaveMutation} />
           <Problem height={height} problem={problem} />

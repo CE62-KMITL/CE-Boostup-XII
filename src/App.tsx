@@ -16,9 +16,6 @@ import ProfilePage from './pages/ProfilePage'
 import ResetPasswordPage from './pages/ResetPasswordPage'
 import Error404Page from './pages/Error404Page'
 
-// test checkmode
-import CheckModePage from './pages/CheckMode'
-
 export default function App() {
   return (
     <BrowserRouter basename='/grader'>
@@ -33,8 +30,6 @@ export default function App() {
             <Route path="/reset-password" element={<ResetPasswordPage />} />
             <Route element={<ProtectedProvider allowedRoles={[Role.User, Role.Admin, Role.Staff]} />}>
               <Route path="/solve/:problemId" element={<SolveProblemPage />} />
-              {/* test checkmode */}
-              <Route path="/checkmode/:problemId" element={<CheckModePage />}></Route>
               <Route element={<InitLayout />}>
                 <Route path="/home/:page" element={<HomePage />} />
                 <Route path="/learn" element={<LearnPage />} />

@@ -3,10 +3,10 @@ import { ProgrammingLanguage } from "../../enum/compile-and-run.enum";
 
 interface CompilerSettingState {
     language: ProgrammingLanguage;
-    code: string;
+    code?: string;
     input: string;
     setLanguage: (lang: ProgrammingLanguage) => void;
-    setCode: (code: string) => void;
+    setCode: (code: string | undefined) => void;
     setInput: (input: string) => void;
 }
 

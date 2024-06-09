@@ -34,7 +34,6 @@ function Editor({ height, problemId, updateSaveMutation, createSaveMutation, sav
                 setEditorHeight(editorHeightRef.current.clientHeight);
             }
         };
-
         updateEditorHeight();
 
         window.addEventListener('resize', updateEditorHeight);
@@ -53,7 +52,7 @@ function Editor({ height, problemId, updateSaveMutation, createSaveMutation, sav
     async function handleSave() {
         try {
             if (!problemId) return navigate("/home");
-            if (savesQuery.data) {
+            if (savesQuery.data && code) {
                 await updateSaveMutation.mutateAsync({
                     saveId: savesQuery.data.id,
                     updateSaveRequest: { code: code.replace(/\n/g, "\\n") }
@@ -94,12 +93,12 @@ function Editor({ height, problemId, updateSaveMutation, createSaveMutation, sav
             <div
                 ref={editorHeightRef}
                 id="editor-height"
-                className="relative rounded-[10px] p-[16px] bg-stone01"
+                className="relative rounded-[10px] bg-stone01 border-red-500 overflow-hidden"
                 style={{ height: `${height - 66 - 55}px` }}
             >
                 <CodeMirror
                     value={code}
-                    height={`${editorHeight - 50 - 16}px`}
+                    height={`${editorHeight - 50}px`}
                     extensions={[StreamLanguage.define(language === ProgrammingLanguage.CPP17 ? cpp : c)]}
                     onChange={handleChange}
                     theme={githubLight}

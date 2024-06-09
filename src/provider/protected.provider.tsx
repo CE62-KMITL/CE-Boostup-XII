@@ -26,7 +26,7 @@ export default function ProtectedProvider({ allowedRoles }: ProtectedProviderPro
             logout();
         }
         if (cookies.get('token')) {
-            if ((getSelfQuery.error as Response).status === 401) {
+            if (getSelfQuery.isError && (getSelfQuery.error as Response).status === 401) {
                 cookies.remove('token');
                 logout();
             }
