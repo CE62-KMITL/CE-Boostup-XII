@@ -1,8 +1,12 @@
-function TitleText({ username }: { username: string }) {
+import { useUser } from "../../hooks/user.hook";
+
+function TitleText() {
+    const user = useUser().user;
+
     return (
         <div className="mb-9">
             <h2 className="text-stone01 text-[40px] font-[700]">
-                วันนี้{username} 
+                วันนี้น้อง{user?.displayName} 
                 <p className="text-accent text-[40px] font-[700] inline">
                     ทำโจทย์
                 </p> 

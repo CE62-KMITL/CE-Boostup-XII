@@ -1,6 +1,4 @@
 type ButtonProps = {
-    type: number;
-    mode: number;
     text: string;
     img?: string;
     class: string;
@@ -126,10 +124,12 @@ function Button({ type, mode, text, img,  ClickFunc, validate }: ButtonProps) {
 
 
     return (
-        <div className="c w-24 h-10 bg-cream rounded-lg">
-            {text}
-        </div>
+        <>
+            <button className={className} onClick={ClickFunc} type={type}>
+                {img && imgPosition === "left" ? <img src={img} className={imgClassName} alt="" /> : null}
+                {text}
+                {img && imgPosition === "right" ? <img src={img} className={imgClassName} alt="" /> : null}
+            </button>
+        </>
     );
 }
-
-export default Button;

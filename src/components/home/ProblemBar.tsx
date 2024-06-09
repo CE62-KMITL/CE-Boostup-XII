@@ -24,7 +24,6 @@ function ProblemBar() {
             <div className="flex justify-end items-center col-span-1 px-[1rem] text-stone01">
                 สถานะ
             </div>
-
         </div>
     );
 }

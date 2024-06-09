@@ -1,4 +1,10 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { QueryClient, QueryClientProvider } from 'react-query'
+
+import StoreProvider from './provider/store.provider'
+import ProtectedProvider from './provider/protected.provider'
+import VerifyProvider from './provider/verify.provider'
+import { Role } from './enum/roles.enum'
 
 import InitLayout from './layouts/InitLayout'
 import SolveProblemPage from './pages/SolveProblemPage'
@@ -7,40 +13,34 @@ import RegisterPage from './pages/RegisterPage'
 import LearnPage from './pages/LearnPage'
 import HomePage from './pages/HomePage'
 import ProfilePage from './pages/ProfilePage'
-
-import ResetPasswordPopUp from './components/login/LoginPopUp/ResetPasswordPopUp'
+import ResetPasswordPage from './pages/ResetPasswordPage'
 import Error404Page from './pages/Error404Page'
-import LoadingPage from './pages/LoadingPage'
-import ChangePassword from './components/profile/ProfilePopUp/ChangePassword'
-import EditProfile from './components/profile/ProfilePopUp/EditProfile'
 import LeaderboardPage from './pages/LeaderboardPage'
 import BackOfficePage from './pages/BackOfficePage'
 
-function App() {
+export default function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route element={<InitLayout />}>
-          <Route path="/home" element={<HomePage />} />
-          <Route path="/learn" element={<LearnPage />} />
-          <Route path="/solve" element={<SolveProblemPage />} />
-          <Route path="/leaderboard" element={<LeaderboardPage />} />
-          <Route path="/profile" element={<ProfilePage />} />
-        </Route>
-
-        <Route path="/reset-password" element={<ResetPasswordPopUp />} />
-        <Route path="/error404" element={<Error404Page />} />
-        <Route path="/loading" element={<LoadingPage />} />
-        <Route path="/backoffice" element={<BackOfficePage />} />
-
-        <Route path="/change-password" element={<ChangePassword />} />
-        <Route path="/edit-profile" element={<EditProfile />} />
-
-      </Routes>
-    </BrowserRouter>
-  )
+    <BrowserRouter basename='/grader'>
+      <QueryClientProvider client={new QueryClient()}>
+        <Routes>
+          <Route path='*' element={<Error404Page />} />
+          <Route element={<StoreProvider />}>
+            <Route element={<VerifyProvider />}>
+              <Route path="/" element={<LoginPage />} />
+              <Route path="/register" element={<RegisterPage />} />
+            </Route>
+            <Route path="/reset-password" element={<ResetPasswordPage />} />
+            <Route element={<ProtectedProvider allowedRoles={[Role.User, Role.Admin, Role.Staff]} />}>
+              <Route path="/solve/:problemId" element={<SolveProblemPage />} />
+              <Route element={<InitLayout />}>
+                <Route path="/home/:page" element={<HomePage />} />
+                <Route path="/learn" element={<LearnPage />} />
+                <Route path="/profile" element={<ProfilePage />} />
+              </Route>
+            </Route>
+          </Route>
+        </Routes>
+      </QueryClientProvider>
+    </BrowserRouter >
+  );
 }
-
-export default App

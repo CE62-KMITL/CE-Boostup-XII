@@ -1,8 +1,15 @@
 import Background from '../components/utils/Background';
 import InstagramCard from "../components/register/InstagramCard";
 import RegisterFormCard from "../components/register/RegisterFormCard";
+import { useAuth } from '../hooks/auth.hook';
+import LoadingPage from './LoadingPage';
 
-function RegisterPage() {
+export default function RegisterPage() {
+    const { registerMutation } = useAuth();
+
+    if (registerMutation.isLoading) 
+        return <LoadingPage />;
+
     return (
         <>
             <Background/>
@@ -10,11 +17,9 @@ function RegisterPage() {
                 <div className="flex gap-4 
                 xl:w-[1024px] xl:h-[664px] 2xl:w-[1345px] 2xl:h-[864px]">
                     <InstagramCard />
-                    <RegisterFormCard />
+                    <RegisterFormCard mutation={registerMutation} />
                 </div>
             </div>
         </>
     );
 }
-
-export default RegisterPage;
