@@ -6,7 +6,7 @@ function LeaderboardPage() {
       <Background />
       <div className="px-20 flex w-screen h-screen flex-col">
         <header className="mt-[108px] mb-12 text-[40px] text-stone01">การจัดอันดับ</header>
-        <Leaderboard></Leaderboard>
+        <Leaderboard/>
       </div>
     </>
   );
