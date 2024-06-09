@@ -19,7 +19,7 @@ export const useAuth = (options?: UseQueryOptions<UserModelResponse>) => {
     const queryClient = useQueryClient();
 
     const fetchAuthUser = async (): Promise<UserModelResponse> => {
-        return await usersService.getMe();
+        return await usersService.getSelf();
     };
 
     const registerMutation = useMutation(async (registerRequest: RegisterDto) => {

@@ -12,7 +12,7 @@ type ProtectedProviderProps = {
 
 export default function ProtectedProvider({ allowedRoles }: ProtectedProviderProps) {
     const location = useLocation();
-    const { user } = useUser();
+    const { user, getSelfQuery } = useUser();
     const { logout } = useAuth();
     
     const cookies = new Cookies();
@@ -25,7 +25,13 @@ export default function ProtectedProvider({ allowedRoles }: ProtectedProviderPro
             cookies.remove('token');
             logout();
         }
-    }, [isAllowed]);
+        if (cookies.get('token')) {
+            if ((getSelfQuery.error as Response).status === 401) {
+                cookies.remove('token');
+                logout();
+            }
+        }
+    }, [isAllowed, cookies.get('token')]);
 
     return isAllowed ? <Outlet /> : <Navigate to="/" state={{ from: location }} replace />;
 }

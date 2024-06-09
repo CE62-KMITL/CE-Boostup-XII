@@ -29,15 +29,12 @@ export default function App() {
             <Route element={<VerifyProvider />}>
               <Route path="/" element={<LoginPage />} />
               <Route path="/register" element={<RegisterPage />} />
-
             </Route>
             <Route path="/reset-password" element={<ResetPasswordPage />} />
             <Route element={<ProtectedProvider allowedRoles={[Role.User, Role.Admin, Role.Staff]} />}>
               <Route path="/solve/:problemId" element={<SolveProblemPage />} />
-
               {/* test checkmode */}
               <Route path="/checkmode/:problemId" element={<CheckModePage />}></Route>
-
               <Route element={<InitLayout />}>
                 <Route path="/home/:page" element={<HomePage />} />
                 <Route path="/learn" element={<LearnPage />} />
