@@ -23,7 +23,18 @@ function Dropdown({ values, type, onChange, title, selected }: DropdownProps) {
   if (type == 2) {
     return (
       <div className="test">
-        <div className="relative w-36 h-10 shadow-md rounded-lg before:flex before:justify-center before:items-center before:absolute before:right-0 before:-top-0 before:w-10 before:h-10 before:rounded-lg before:bg-cream before:hover:bg-cream2 before:hover:pointer-events-none before:transistion before:duration-200 before:ease-in-out">
+        <div className="relative w-36 h-10 shadow-md rounded-lg 
+        before:flex before:justify-center 
+        before:items-center before:absolute 
+        before:right-0 before:-top-0 
+        before:w-10 before:h-10 
+        before:rounded-lg 
+        before:bg-cream 
+        before:hover:bg-cream2 
+        before:hover:pointer-events-none 
+        before:transistion 
+        before:duration-200 
+        before:ease-in-out">
           <svg
             className={`pointer-events-none absolute right-3 top-3 w-4 h-4 transition-all duration-200 ${statusRotation ? "rotate-180" : ""
               }`}
@@ -39,7 +50,7 @@ function Dropdown({ values, type, onChange, title, selected }: DropdownProps) {
               strokeLinejoin="round"
             />
           </svg>
-          <select
+          <select 
             className="hover:cursor-pointer flex w-full h-full rounded-lg pl-3 focus:outline-none"
             name="lesson"
             id="lesson"
