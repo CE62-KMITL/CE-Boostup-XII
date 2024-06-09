@@ -11,7 +11,7 @@ function UserInfo({ username, email, house }: {
     return (
         <div className={`flex flex-col justify-end 
         lg:gap-[6px] xl:gap-[8px] 2xl:gap-[12px] w-fit h-[50%]`}>
-            <div className={`flex items-end 
+            <div className={`flex items-end
             lg:gap-[6px] xl:gap-[8px] 2xl:gap-[12px] ${isEmpty(house) ? 'mb-7' : ''}`}>
                 <span className="text-[32px] font-bold leading-8 text-nowrap max-w-[255px] truncate">
                     {username}</span>

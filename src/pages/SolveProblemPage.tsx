@@ -20,12 +20,40 @@ function SolveProblemPage() {
   const navigate = useNavigate();
   const { problem, isLoading: isLoadingProblem } = useProblem(problemId as string);
   const { popUp, popUpComponents, content } = usePopUp();
-
+  const { savesQuery, updateSaveMutation, createSaveMutation } = useSaves(problemId as string);
   const boxRef = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState<number>(0);
 
-  if (isLoadingProblem)
-    return <LoadingPage />;
+  useEffect(() => {
+    const event = addEventListener('resize', () => {
+      setHeight(boxRef.current?.clientHeight || 0);
+    });
+    return () => removeEventListener('resize', () => event);
+  }, [boxRef.current, savesQuery.isSuccess]);
+  
+  useEffect(() => {
+    setHeight(boxRef.current?.clientHeight || 0);
+  }, [boxRef.current, savesQuery.isSuccess]);
+  
+  async function handleCreateSave() {
+    try {
+      if (!problemId)
+        return navigate("/home");
+      await createSaveMutation.mutateAsync({ problem: problemId, code: problem?.starterCode as string });
+      return navigate(0);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  
+  useEffect(() => {
+    if (savesQuery.error && (savesQuery.error as ErrorModelResponse).statusCode === 404 && !permission) {
+      handleCreateSave();
+    }
+  }, [savesQuery.error]);
+
+  if (isLoadingProblem) return <LoadingPage />;
+  if (!permission && (savesQuery.isLoading || savesQuery.isError || createSaveMutation.isLoading)) return <LoadingPage />;
 
   if (permission) return (
     <>
@@ -41,39 +69,6 @@ function SolveProblemPage() {
       </div>
     </>
   );
-
-  const { savesQuery, updateSaveMutation, createSaveMutation } = useSaves(problemId as string);
-
-  useEffect(() => {
-    const event = addEventListener('resize', () => {
-      setHeight(boxRef.current?.clientHeight || 0);
-    });
-    return () => removeEventListener('resize', () => event);
-  }, [boxRef.current, savesQuery.isSuccess]);
-
-  useEffect(() => {
-    setHeight(boxRef.current?.clientHeight || 0);
-  }, [boxRef.current, savesQuery.isSuccess]);
-
-  async function handleCreateSave() {
-    try {
-      if (!problemId)
-        return navigate("/home");
-      await createSaveMutation.mutateAsync({ problem: problemId, code: problem?.starterCode as string });
-      return navigate(0);
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  useEffect(() => {
-    if (savesQuery.error && (savesQuery.error as ErrorModelResponse).statusCode === 404 && !permission) {
-      handleCreateSave();
-    }
-  }, [savesQuery.error]);
-
-  if (savesQuery.isLoading || savesQuery.isError || createSaveMutation.isLoading)
-    return <LoadingPage />;
 
   return (
     <>

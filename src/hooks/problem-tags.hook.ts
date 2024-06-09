@@ -35,7 +35,6 @@ export const useProblemsTags = (paginationRequest: PaginationRequestDto = initia
     });
     
     useEffect(() => {
-        console.log(problemTags);
         if (problemTags) {
             dispatch(setProblemTagState(problemTags.data));
             problemTags.data.map((problemTag: ProblemTagModelResponse) => {

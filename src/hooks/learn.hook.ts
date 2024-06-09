@@ -5,7 +5,6 @@ export const useLearn = () => {
     const { learn, setLearn } = useLearnStore();
 
     const searchLearn = (title: string) => {
-        console.log(title);
         if (title === "")
             setLearn(learnConstant);
         else

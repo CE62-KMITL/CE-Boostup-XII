@@ -2,9 +2,8 @@ import { LoginDto, RegisterDto, RequestPasswordResetDto, RequestAccountCreationD
 import { authService } from "../services/auth.service";
 import { usersService } from "../services/users.service";
 import { setAuthUser, setAuthAccessToken, deleteAuthState } from "../store/slices/auth.slice";
-import { useDispatch } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../store/hook";
 import { UserModelResponse } from "../types/response.type";
-import { store } from "../store/store";
 import {
     UseQueryOptions,
     useMutation,
@@ -15,7 +14,7 @@ import {
 const AUTH_USER_QUERY_KEY = "auth";
 
 export const useAuth = (options?: UseQueryOptions<UserModelResponse>) => {
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const queryClient = useQueryClient();
 
     const fetchAuthUser = async (): Promise<UserModelResponse> => {
@@ -33,7 +32,7 @@ export const useAuth = (options?: UseQueryOptions<UserModelResponse>) => {
         error,
     } = useQuery<UserModelResponse>(AUTH_USER_QUERY_KEY, fetchAuthUser, {
         ...options,
-        enabled: !!store.getState().auth.accessToken,
+        enabled: !!useAppSelector((state) => state.auth.accessToken),
     });
 
     const loginMutation = useMutation(async (loginRequest: LoginDto) => {
