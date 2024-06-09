@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 
-function ProblemProgress({ problem_progress }: {
-    problem_progress: string
+function ProblemProgress({ problemProgress }: {
+    problemProgress: string
 }): JSX.Element {
-    const progressPercentage = Math.floor(parseInt(problem_progress));
+    const progressPercentage = Math.floor(parseInt(problemProgress));
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const [windowHeight, setWindowHeight] = useState(window.innerHeight);
     const [scaleWidth, setScaleWidth] = useState(0);

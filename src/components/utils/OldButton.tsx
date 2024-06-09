@@ -33,6 +33,13 @@ function Button({ type, mode, text, img, ClickFunc, validate }: ButtonProps) {
                 </button>
             );
         }
+        else if (mode == 5) {
+            return(
+                <button onClick={ClickFunc} className="w-[132px] h-10 bg-cream rounded-lg flex items-center justify-center hover:bg-cream2 transition ease-in-out duration-200 shadow-md ">
+                    {text}
+                </button>
+            )
+        }
 
         else {
             return (

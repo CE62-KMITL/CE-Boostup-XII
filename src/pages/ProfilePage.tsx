@@ -1,3 +1,4 @@
+import NavBar from "../components/utils/NavBar";
 import Background from "../components/utils/Background";
 import ProfileCard from "../components/profile/Cards/ProfileCard";
 import { useUser } from "../hooks/user.hook";
@@ -26,8 +27,8 @@ export default function ProfilePage() {
                     house={user.group?.name as string}
                     ranking={user.problemSolvedCount.toString()}
                     point={user.totalScore.toString()}
-                    problem_count={user.problemSolvedCount.toString()}
-                    problem_progress={(user.problemSolvedCount * 100 / (allProblems as []).length).toString()}
+                    problemCount={user.problemSolvedCount.toString()}
+                    problemProgress={(user.problemSolvedCount * 100 / (allProblems as []).length).toString()}
                 />
             </div>
         </>
