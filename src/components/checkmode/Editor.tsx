@@ -23,9 +23,9 @@ export default function Editor({ height }: EditorProps) {
 
     useEffect(() => {
         if (mode === "solution")
-            setCode(problem?.solution);
+            setCode(problem?.solution.replace(/\\n/g, "\n"));
         else
-            setCode(problem?.starterCode);
+            setCode(problem?.starterCode.replace(/\\n/g, "\n"));
     }, [mode, problem]);
 
     return (

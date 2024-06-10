@@ -11,7 +11,7 @@ type ExampleCardProps = {
 
 export default function ExampleCard({ title, input, output, inputMode = false }: ExampleCardProps) {
     const { setInput } = useCompilerSettingStore();
-    const {setPopUp } = usePopUp();
+    const { setPopUp } = usePopUp();
 
     return (
         <div className="py-2">
@@ -33,16 +33,12 @@ export default function ExampleCard({ title, input, output, inputMode = false }:
                                 <input type="text" className="w-full bg-jenna border-none" placeholder={input} onChange={(e) => setInput(e.target.value)} />
                             </div>
                         ) :
-                            <div className="bg-stone02 w-full rounded-[10px] p-2 text-[16px] font-medium">
-                                {input}
-                            </div>
+                            <div dangerouslySetInnerHTML={{ __html: input }} className="bg-stone02 w-full rounded-[10px] p-2 text-[16px] font-medium" />
                     }
                 </div>
                 <div className="flex flex-col w-full py-2">
                     <p className="mb-[4px] text-[14px] font-medium">output :</p>
-                    <div className="bg-stone02 w-full rounded-[10px] p-2 text-[16px] font-medium">
-                        {output}
-                    </div>
+                    <div dangerouslySetInnerHTML={{ __html: output }} className="bg-stone02 w-full rounded-[10px] p-2 text-[16px] font-medium" />
                 </div>
             </div>
         </div>

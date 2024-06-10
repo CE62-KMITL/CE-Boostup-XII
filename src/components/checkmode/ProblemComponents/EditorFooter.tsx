@@ -5,9 +5,9 @@ export default function EditorFooter() {
     const { isOwner } = useUser();
 
     if (isOwner) return (
-        <div className="flex justify-end gap-[16px] w-full h-[42px] pr-3 absolute bottom-3">
-            <Button text="Reject" className="w-[90px] h-full rounded-[8px] bg-stone01 border-accent border-[1px] text-accent text-[16px] font-medium"></Button>
-            <Button text="Approve" className="w-[120px] h-full rounded-[8px] bg-accent text-stone01 text-[18px] font-bold"></Button>
+        <div className="flex justify-end gap-[16px] w-full h-[42px] pr-3 absolute bottom-3 font-medium">
+            <Button text="Archive" className="w-[90px] h-full rounded-[8px] bg-stone01 border-accent border-[1px] text-accent text-[16px]" />
+            <Button text="Publish" className="w-[90px] h-full rounded-[8px] bg-accent text-stone01 text-[18px]" />
         </div>
     )
 
@@ -21,8 +21,8 @@ export default function EditorFooter() {
                 style={{ resize: "none" }}>
             </textarea>
             <div className="flex justify-end gap-[16px] w-full h-[42px]">
-                <Button text="Reject" className="w-[90px] h-full rounded-[8px] bg-stone01 border-accent border-[1px] text-accent text-[16px] font-medium"></Button>
-                <Button text="Approve" className="w-[120px] h-full rounded-[8px] bg-accent text-stone01 text-[18px] font-bold"></Button>
+                <Button text="Reject" className="w-[90px] h-full rounded-[8px] bg-stone01 border-accent border-[1px] text-accent text-[16px] font-medium" />
+                <Button text="Approve" className="w-[120px] h-full rounded-[8px] bg-accent text-stone01 text-[18px] font-bold" />
             </div>
         </div>
     )
