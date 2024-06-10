@@ -3,6 +3,7 @@ import OfficeHeader from "../components/backoffice/OfficeHeader";
 import OfficeContent from "../components/backoffice/OfficeContent";
 
 function BackOfficePage() {
+
   return (
     <>
       <Background />

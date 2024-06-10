@@ -3,11 +3,13 @@ import { ProblemModelResponse, PaginationModelResponse } from "../types/response
 import {
     UseQueryOptions,
     useQuery,
+    useMutation,
 } from "react-query";
 import { usePaginationRequestStore } from "../store/zustand/pagination.zustand";
 import { useProblemsStore } from "../store/zustand/problems.zustand";
 import { useEffect } from "react";
 import { PublicationStatus } from "../enum/problem.enum";
+import { CreateProblemDto } from "../dto/problem.dto";
 
 const PROBLEM_QUERY_KEY = "problems";
 
@@ -44,6 +46,10 @@ export const useProblems = (options?: UseQueryOptions<PaginationModelResponse<Pr
         refetchOnWindowFocus: false,
     });
 
+    const createProblemMutation = useMutation(async (problemRequest: CreateProblemDto) => {
+        return await problemService.createProblem(problemRequest);
+    });
+
     useEffect(() => {
         if (problems){
             setPages(Math.ceil(problems.total / paginationRequest.perPage));
@@ -55,5 +61,6 @@ export const useProblems = (options?: UseQueryOptions<PaginationModelResponse<Pr
         isLoading,
         error,
         publishedProblemsQuery,
+        createProblemMutation,
     };
 };

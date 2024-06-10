@@ -1,9 +1,11 @@
 import { useEffect } from "react";
 import { problemService } from "../services/problem.service";
 import { ProblemModelResponse } from "../types/response.type";
+import { CreateProblemDto } from "../dto/problem.dto";
 import {
     UseQueryOptions,
     useQuery,
+    useMutation,
 } from "react-query";
 import { useProblemStore } from "../store/zustand/problem.zustand";
 
@@ -15,7 +17,7 @@ export const useProblem = (problemId: string, options?: UseQueryOptions<ProblemM
     const fetchProblem = async (): Promise<ProblemModelResponse> => {
         return await problemService.getProblem(problemId);
     };
-        
+
     const {
         data: problem,
         isLoading,
@@ -25,7 +27,7 @@ export const useProblem = (problemId: string, options?: UseQueryOptions<ProblemM
         enabled: !!problemId,
         refetchOnWindowFocus: false,
     });
-    
+
     useEffect(() => {
         if (problem)
             setProblem(problem);

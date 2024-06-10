@@ -5,7 +5,6 @@ import { FormikProps } from "formik";
 import { useAppSelector } from "../../../store/hook";
 import { useCreateProblemStore } from "../../../store/zustand/create-problem.zustand";
 import { getFieldProps } from "../../../utils/getFieldProps";
-import { useEffect } from "react";
 
 type GeneralProps = {
   formik: FormikProps<CreateProblemValues>;
@@ -86,6 +85,7 @@ export default function General({ formik }: GeneralProps) {
               type="text"
               placeholder=" "
               required={true}
+              value={formik.values.title}
               inputClass="h-[44px] px-[16px] border-[1px] rounded-[10px] text-[18px] focus:border-[1px]"
               labelClass="text-[20px] font-[700] mt-4"
               pClass="mb-2 text-stone05"
@@ -98,6 +98,7 @@ export default function General({ formik }: GeneralProps) {
               type="textarea"
               placeholder=" "
               required={true}
+              value={formik.values.description}
               inputClass="h-[76px] px-[16px] border-[1px] rounded-[10px] text-[18px]"
               labelClass="text-[20px] font-[700] mt-4"
               pClass="mb-2 text-stone05"
@@ -109,6 +110,7 @@ export default function General({ formik }: GeneralProps) {
               subtext="เช่น บรรทัดที่ 1 รับตัวเลขจำนวนเต็ม และตั้งแต่บรรทัดที่ 2 ใส่ข้อความลงไป เป็นต้น"
               type="textarea"
               placeholder=" "
+              value={formik.values.input}
               required={true}
               inputClass="h-[76px] px-[16px] border-[1px] rounded-[10px] text-[18px]"
               labelClass="text-[20px] font-[700] mt-4"
@@ -121,6 +123,7 @@ export default function General({ formik }: GeneralProps) {
               subtext="เช่น แสดงผลเป็นรูปแบบข้อความในบรรทัดที่ 1 ว่า “Hello CE”"
               type="textarea"
               placeholder=" "
+              value={formik.values.output}
               required={true}
               inputClass="h-[76px] px-[16px] border-[1px] rounded-[10px] text-[18px]"
               labelClass="text-[20px] font-[700] mt-4"
@@ -136,6 +139,7 @@ export default function General({ formik }: GeneralProps) {
               label="คำใบ้"
               subtext=""
               type="textarea"
+              value={formik.values.hint}
               placeholder=" "
               required={true}
               inputClass="h-[76px] px-[16px] border-[1px] rounded-[10px] text-[18px]"
@@ -149,6 +153,7 @@ export default function General({ formik }: GeneralProps) {
               subtext="เช่น ข้อมูลที่ Input จะมีค่าตั้งแต่ 0 - 1,000,000 หรือ หากมีเศษ ให้ทำการปัดขึ้น"
               type="text"
               placeholder=" "
+              value={formik.values.bannedFunctions}
               required={true}
               inputClass="h-[44px] px-[16px] border-[1px] rounded-[10px] text-[18px]"
               labelClass="text-[20px] font-[700] mt-4"
@@ -161,6 +166,7 @@ export default function General({ formik }: GeneralProps) {
                 label="ราคาคำใบ้ *"
                 subtext="คะแนนที่เสียในการเปิดคำใบ้"
                 type="number"
+                value={formik.values.hintCost}
                 placeholder=" "
                 required={true}
                 inputClass="w-[200px] h-[44px] px-[16px] border-[1px] rounded-[10px] text-[18px]"

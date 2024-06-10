@@ -22,8 +22,7 @@ export const useAuth = (options?: UseQueryOptions<UserModelResponse>) => {
     };
 
     const registerMutation = useMutation(async (registerRequest: RegisterDto) => {
-        const response = await authService.register(registerRequest);
-        return response;
+        return await authService.register(registerRequest);
     });
 
     const {

@@ -9,10 +9,48 @@ import { githubLight } from "@uiw/codemirror-theme-github";
 import { cpp } from "@codemirror/legacy-modes/mode/clike";
 import Button from "../utils/Button";
 import { getFieldProps } from "../../utils/getFieldProps";
+import { useProblems } from "../../hooks/problems.hook";
+import { useCreateProblemStore } from "../../store/zustand/create-problem.zustand";
+import { TestcaseType } from "../../types/testcase.type";
+import { ProgrammingLanguage } from "../../enum/compile-and-run.enum";
+import SuccessCard from "./cards/SuccessCard";
+import { useEffect, useState } from "react";
+import Popup from "./Popup";
 
 function OfficeContent() {
+  const { createProblemMutation } = useProblems();
+  const { testcases, difficulty, hiddenTestcases, selectedTags } = useCreateProblemStore();
+  const [show, setShow] = useState<boolean>(false);
+  const [showPopup, setShowPopup] = useState<boolean>(false);
+
+  function getValidTestcases(testcases: TestcaseType[]) {
+    return testcases.filter((testcase) => testcase.input !== "" && testcase.output !== "");
+  }
+
   async function handleCreateProblem() {
-    // replace(/\n/g, "\\n");
+    try {
+      await createProblemMutation.mutateAsync({
+        title: formik.values.title.replace(/\n/g, "\\n"),
+        description: formik.values.description.replace(/\n/g, "\\n"),
+        input: formik.values.input.replace(/\n/g, "\\n"),
+        output: formik.values.output.replace(/\n/g, "\\n"),
+        hint: formik.values.hint.replace(/\n/g, "\\n"),
+        hintCost: parseInt(formik.values.hintCost),
+        exampleTestcases: getValidTestcases(testcases),
+        starterCode: formik.values.starterCode.replace(/\n/g, "\\n"),
+        solution: formik.values.solution.replace(/\n/g, "\\n"),
+        bannedFunctions: [formik.values.bannedFunctions.replace(/\n/g, "\\n")],
+        difficulty: difficulty,
+        testcases: getValidTestcases(hiddenTestcases),
+        tags: selectedTags,
+        solutionLanguage: ProgrammingLanguage.CPP17,
+        score: 100 * difficulty,
+      });
+      formik.resetForm();
+      setShowPopup(false);
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   const formik = useFormik<CreateProblemValues>({
@@ -25,14 +63,22 @@ function OfficeContent() {
     validateOnChange: true,
     enableReinitialize: true,
     validationSchema: CreateProblemValidationSchema,
-    onSubmit: handleCreateProblem,
+    onSubmit: () => setShowPopup(true),
   });
 
   const starterCodeInputProps = getFieldProps(formik, "starterCode");
   const solutionInputProps = getFieldProps(formik, "solution");
 
+  useEffect(() => {
+    if (createProblemMutation.isSuccess) {
+      setShow(true);
+    }
+  }, [createProblemMutation.isSuccess]);
+
   return (
     <>
+      {show && <SuccessCard setShow={setShow} />}
+      {showPopup && <Popup setShowPopUp={setShowPopup} handleSubmit={handleCreateProblem} />}
       <form onSubmit={formik.handleSubmit} className="bg-stone01 mx-20 mb-10 h-fit rounded-lg px-[64px] py-16">
         <General formik={formik} />
         <Testcase />
@@ -52,7 +98,7 @@ function OfficeContent() {
           </div>
           <div className="space-y-[36px] w-full">
             <p className={`text-[18px] font-bold ${solutionInputProps.error ? "text-red-600" : "text-stone05"}`}>Solution Code (Source Code)</p>
-            <div className="rounded-[8px] overflow-hidden">
+            <div className="rounded-[8px] overflow-hidden -z-50">
               <CodeMirror
                 value={formik.values.solution}
                 height={`385px`}
