@@ -1,5 +1,3 @@
-import { useRef } from "react";
-
 type InputProps = {
     label: string;
     type: string;
@@ -9,22 +7,21 @@ type InputProps = {
     labelClass: string;
     pClass: string;
     subtext: string;
-    func: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    error?: boolean;
+    func?: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
 }
 
-export default function InputPlain({ label, inputClass, labelClass, pClass, subtext, type, func, ...props }: InputProps) {
-    const inputRef = useRef<HTMLInputElement>(null);
-    const labelRef = useRef<HTMLLabelElement>(null);
-    const pRef = useRef<HTMLParagraphElement>(null);
+export default function InputPlain({ label, inputClass, labelClass, pClass, subtext, type, func, error,...props }: InputProps) {
     inputClass = inputClass + " resize-none py-2"
+
     return (
         <div className="flex flex-col">
-            <label className={labelClass} ref={labelRef}>{label}</label>
-            <p className={pClass} ref={pRef}>{subtext}</p>
+            <label className={`${labelClass} ${error ? "text-red-600": "text-stone04"}`}>{label}</label>
+            <p className={pClass}>{subtext}</p>
             {type === "textarea" ? (
-                <textarea className={inputClass} name="" id="" cols={30} rows={10}></textarea>
+                <textarea className={`${inputClass} ${error ? "border-red-600 border-2": "border-stone03"}`} onChange={(e) => func && func(e)} cols={30} rows={10}></textarea>
             ) : (
-                <input {...props} autoComplete="new-password" type={type} className={inputClass} ref={inputRef} onChange={(e) => { handleValid(inputRef, labelRef); func(e) }} />
+                <input {...props} autoComplete="new-password" type={type} className={`${inputClass} border-[1px] ${error ? "border-red-600": "border-stone03"}`} onChange={(e) => func && func(e) } />
             )}
         </div>
     );

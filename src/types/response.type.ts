@@ -3,6 +3,7 @@ import { OptimizationLevel, ProgrammingLanguage, ResultCode } from "../enum/comp
 import { Role } from "../enum/roles.enum";
 import { AttachmentModel } from "./problem.type";
 import { CompileAndRunOutput } from "./compile-and-run.type";
+import { TestcaseType } from "./testcase.type";
 import { User } from "./user.type";
 
 export interface CompileAndRunModelResponse {
@@ -49,8 +50,8 @@ export interface ProblemModelResponse {
     output: string;
     hint: string;
     hintCost: number;
-    testcases: { input: string; output: string }[];
-    exampleTestcases: { input: string; output: string }[];
+    testcases: TestcaseType[];
+    exampleTestcases: TestcaseType[];
     starterCode: string;
     solution: string;
     solutionLanguage: ProgrammingLanguage;

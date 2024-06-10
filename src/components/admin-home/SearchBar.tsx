@@ -105,7 +105,7 @@ function SearchBar() {
                     <label htmlFor="customCheckbox"></label>
                 </div>
             </div>
-            <Button type={1} mode={5} validate={true} text="สร้างโจทย์เลย" />
+            <Button type={1} mode={5} validate={true} text="สร้างโจทย์เลย" ClickFunc={() => navigate("/create-problem")} />
         </div>
     );
 }

@@ -27,3 +27,7 @@ export const usernameValidator = yup
 export const oldPasswordValidator = yup
     .string()
     .required("กรุณากรอกรหัสผ่านเดิม")
+
+export const requiredValidator = yup
+    .string()
+    .required("กรุณากรอกข้อมูล")

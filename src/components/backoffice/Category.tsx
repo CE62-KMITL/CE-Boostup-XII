@@ -1,22 +1,19 @@
+import { useState } from "react";
+import { ProblemTagModelResponse } from "../../types/response.type";
 
-
-type CategoryProp = {
-    text: string;
-    type: boolean;
+type CategoryProps = {
+    tag: ProblemTagModelResponse;
+    onClick: (value: string) => void;
 }
 
-function Category({ text, type}: CategoryProp) {
-    if (type === true) {
-       return( <button className="h-8 rounded-[20px] py-1 px-7  mr-[10px] mb-[10px] bg-accent text-white">
-            {text}
-        </button>)
-        
-    }
+function Category({ tag, onClick }: CategoryProps) {
+    const [active, setActive] = useState<boolean>(false);
+
     return (
-    <button className="h-8 rounded-[20px] py-1 px-7 border-[1px] border-stone07 mr-[10px] mb-[10px] bg-white">
-        {text}
-    </button>
-  );
+        <button className={`h-8 rounded-[20px] py-1 px-7 mr-[10px] mb-[10px] ${active ? "bg-accent text-white" : "text-black bg-white border-[1px] border-stone07"}`} onClick={() => {setActive((prev) => !prev); onClick(tag.id)}}>
+            {tag.name}
+        </button>
+    );
 }
 
 export default Category;
