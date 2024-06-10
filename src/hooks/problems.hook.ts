@@ -7,6 +7,7 @@ import {
 import { usePaginationRequestStore } from "../store/zustand/pagination.zustand";
 import { useProblemsStore } from "../store/zustand/problems.zustand";
 import { useEffect } from "react";
+import { PublicationStatus } from "../enum/problem.enum";
 
 const PROBLEM_QUERY_KEY = "problems";
 
@@ -25,11 +26,20 @@ export const useProblems = (options?: UseQueryOptions<PaginationModelResponse<Pr
         return response;
     };
 
+    const fetchPublishedProblems = async (): Promise<PaginationModelResponse<ProblemModelResponse>> => {
+        return await problemService.getProblems({ ...paginationRequest, publicationStatus: PublicationStatus.Published });
+    }
+
     const {
         data: problems,
         isLoading,
         error,
     } = useQuery<PaginationModelResponse<ProblemModelResponse>>([PROBLEM_QUERY_KEY, paginationRequest], fetchProblems, {
+        ...options,
+        refetchOnWindowFocus: false,
+    });
+
+    const publishedProblemsQuery = useQuery<PaginationModelResponse<ProblemModelResponse>>([PROBLEM_QUERY_KEY], fetchPublishedProblems, {
         ...options,
         refetchOnWindowFocus: false,
     });
@@ -44,5 +54,6 @@ export const useProblems = (options?: UseQueryOptions<PaginationModelResponse<Pr
         problems,
         isLoading,
         error,
+        publishedProblemsQuery,
     };
 };

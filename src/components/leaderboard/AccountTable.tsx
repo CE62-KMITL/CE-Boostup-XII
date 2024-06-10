@@ -1,3 +1,13 @@
+type AccountTableProps = {
+  number: number;
+  img: string;
+  name: string;
+  group: string;
+  score: number;
+  pass: number;
+  latest: string;
+};
+
 function AccountTable({
   number,
   img,
@@ -6,15 +16,8 @@ function AccountTable({
   score,
   pass,
   latest,
-}: {
-  number: number;
-  img: string;
-  name: string;
-  group: string;
-  score: number;
-  pass: number;
-  latest: string;
-}) {
+}: AccountTableProps) {
+
   return (
     <>
       {number === 1 ? (
@@ -29,7 +32,7 @@ function AccountTable({
             <img
               src={img}
               alt="รูป"
-              className=" text-black bg-red-500 rounded-[100%] w-9 h-9 mr-6"
+              className=" text-black bg-red-500 rounded-[100%] h-9 w-9 object-cover object-center mr-6"
             />
             {name}
           </div>
@@ -45,46 +48,44 @@ function AccountTable({
           <div className=" text-black flex justify-start items-center col-span-3 p-[0rem_0.6rem]">
             {pass}
           </div>
-
           <div className=" text-black flex justify-start items-center col-span-2  pr-[1rem] ">
             {latest}
           </div>
         </div>
       ) : (
         <>
-        <div className=" text-black grid grid-cols-[repeat(16,minmax(0,1fr))] w-full h-[56px] my-2 rounded-md bg-stone01 ">
-          <div className=" text-black flex justify-start items-center col-span-1 p-[0rem_1rem]">
-            {number}
-          </div>
-          <div
-            className=" text-black flex justify-start items-center col-span-4 p-[0.4rem_0.6rem]
+          <div className=" text-black grid grid-cols-[repeat(16,minmax(0,1fr))] w-full h-[56px] my-2 rounded-md bg-stone01 ">
+            <div className=" text-black flex justify-start items-center col-span-1 p-[0rem_1rem]">
+              {number}
+            </div>
+            <div
+              className=" text-black flex justify-start items-center col-span-4 p-[0.4rem_0.6rem]
             leading-[2rem] overflow-y-scroll hide-scrollbar text-[16px]"
-          >
-            <img
-              src={img}
-              alt="รูป"
-              className=" text-black bg-red-500 rounded-[100%] w-9 h-9 mr-6"
-            />
-            {name}
-          </div>
-          <div
-            className=" text-black flex justify-start items-center col-span-3 p-[0.4rem_0.6rem]
+            >
+              <img
+                src={img}
+                alt="รูป"
+                className=" text-black bg-red-500 rounded-[100%] w-9 h-9 object-cover object-center mr-6 overflow-hidden"
+              />
+              {name}
+            </div>
+            <div
+              className=" text-black flex justify-start items-center col-span-3 p-[0.4rem_0.6rem]
             leading-[2rem] overflow-y-scroll hide-scrollbar"
-          >
-            {group}
+            >
+              {group}
+            </div>
+            <div className=" text-black flex justify-start items-center col-span-3 p-[0rem_0.6rem]">
+              {score}
+            </div>
+            <div className=" text-black flex justify-start items-center col-span-3 p-[0rem_0.6rem]">
+              {pass}
+            </div>
+            <div className=" text-black flex justify-start items-center col-span-2  pr-[1rem] ">
+              {latest}
+            </div>
           </div>
-          <div className=" text-black flex justify-start items-center col-span-3 p-[0rem_0.6rem]">
-            {score}
-          </div>
-          <div className=" text-black flex justify-start items-center col-span-3 p-[0rem_0.6rem]">
-            {pass}
-          </div>
-
-          <div className=" text-black flex justify-start items-center col-span-2  pr-[1rem] ">
-            {latest}
-          </div>
-        </div>
-        <hr />
+          <hr />
         </>
       )}
     </>

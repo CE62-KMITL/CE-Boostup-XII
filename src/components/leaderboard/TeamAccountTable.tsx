@@ -1,3 +1,5 @@
+import ProgressBar from "./ProgressBar";
+
 function TeamAccountTable({
   number,
   img,
@@ -31,13 +33,12 @@ function TeamAccountTable({
             />
             {group}
           </div>
-          <div className="flex justify-start items-center col-span-4 p-[0rem_0.6rem]">
+          <div className="flex justify-start items-center col-span-3 p-[0rem_0.6rem]">
             {score}
           </div>
-          <div className="flex justify-start items-center col-span-4 p-[0rem_0.6rem]">
-            {submit}
+          <div className="flex justify-start items-center col-span-5 p-[0rem_0.6rem]">
+            <ProgressBar progress={submit} />
           </div>
-
           <div className="flex justify-start items-center col-span-2  pr-[1rem] ">
             {latest}
           </div>
@@ -63,9 +64,8 @@ function TeamAccountTable({
             {score}
           </div>
           <div className="flex justify-start items-center col-span-4 p-[0rem_0.6rem]">
-            {submit}
+            <ProgressBar progress={submit} />
           </div>
-
           <div className="flex justify-start items-center col-span-2  pr-[1rem] ">
             {latest}
           </div>

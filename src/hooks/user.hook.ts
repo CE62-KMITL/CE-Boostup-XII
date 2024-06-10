@@ -23,7 +23,7 @@ export const useUser = () => {
 
     const getSelfQuery = useQuery(USER_QUERY_KEY, usersService.getSelf);
 
-    const getAvatar = `${import.meta.env.VITE_PUBLIC_ENV}/users/${user?.id}/avatar`;
+    const getAvatar = (userId?: string) => `${import.meta.env.VITE_PUBLIC_ENV}/users/${userId}/avatar`;
 
     const isOwner = user?.id === problem?.owner.id;
 

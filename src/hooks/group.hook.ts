@@ -27,8 +27,11 @@ export const useGroup = (options?: UseQueryOptions<GroupModelResponse>) => {
         }
     );
 
+    const getAvatar = (groupId?: string) => `${import.meta.env.VITE_PUBLIC_ENV}/groups/${groupId}/avatar`;
+
     return {
         group,
-        isLoading
+        isLoading,
+        getAvatar,
     };
 };

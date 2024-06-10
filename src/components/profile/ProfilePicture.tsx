@@ -3,7 +3,7 @@ import { useUser } from "../../hooks/user.hook";
 import { useNavigate } from "react-router-dom";
 
 export default function ProfilePicture() {
-    const { updateUserMutation, getAvatar } = useUser();
+    const { updateUserMutation, getAvatar, user } = useUser();
     const navigate = useNavigate();
 
     async function handleUpload(e: React.ChangeEvent<HTMLInputElement>) {
@@ -25,7 +25,7 @@ export default function ProfilePicture() {
 
     return (
         <div className="relative w-[200px] h-[200px]">
-            <img className="absolute w-[200px] h-[200px] rounded-full object-cover object-center" src={getAvatar} alt="ProfilePicture" />
+            <img className="absolute w-[200px] h-[200px] rounded-full object-cover object-center" src={getAvatar(user?.id)} alt="ProfilePicture" />
             <div className="absolute overflow-hidden bg-accent hover:bg-accent02 w-[40px] h-[40px] rounded-full top-[150px] left-[150px]">
                 <input type="file" onChange={handleUpload} accept="image/png, image/jpeg" className="absolute left-0 opacity-0 z-20 w-full" />
                 <img src={PicIcon} width="30px" height="30px" className="" />
