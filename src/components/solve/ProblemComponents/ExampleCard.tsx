@@ -19,7 +19,7 @@ export default function ExampleCard({ title, input, output, inputMode = false }:
                     {
                         inputMode ? (
                             <div className="bg-jenna w-5/6 rounded-[10px] p-3 font-semibold">
-                                <input type="text" className="w-full bg-jenna border-none" placeholder={input} onChange={(e) => setInput(e.target.value)} />
+                                <textarea className="w-full bg-jenna border-none" placeholder={input} onChange={(e) => setInput(e.target.value)} />
                             </div>
                         ) :
                             <div className="bg-jenna w-5/6 rounded-[10px] p-3 font-semibold">

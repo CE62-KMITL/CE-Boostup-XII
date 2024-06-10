@@ -20,14 +20,14 @@ export default function Playground({ problem }: PlaygroundProps) {
 
     async function handleCompileAndRun() {
         try {
-            if (!problem)
+            if (!problem || !code )
                 return;
             setOutput("Loading...")
             await compileAndRunMutation.mutateAsync({
                 language,
                 code,
                 optimizationLevel: problem?.optimizationLevel,
-                inputs: [input],
+                inputs: [input.replace(/\n/g, "\\n")],
                 allowedHeaders: problem?.allowedHeaders,
                 bannedFunctions: problem?.bannedFunctions,
                 timeLimit: problem?.timeLimit,
