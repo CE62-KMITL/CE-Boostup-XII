@@ -5,6 +5,8 @@ import ProfilePicture from "../ProfilePicture";
 import UserInfo from "../UserInfo";
 import { useGroup } from "../../../hooks/group.hook";
 import { useProblemsStore } from "../../../store/zustand/problems.zustand";
+import { useUsersStore } from "../../../store/zustand/users.zustand";
+import { useAppSelector } from "../../../store/hook";
 
 function ProfileCard({ username, email, house, ranking, point }: {
     username: string,
@@ -15,6 +17,8 @@ function ProfileCard({ username, email, house, ranking, point }: {
 }) {
     const { group } = useGroup();
     const { allProblems } = useProblemsStore();
+    const { roleUsers } = useUsersStore();
+    const userId = useAppSelector(state => state.auth.user?.id);
     
     return (
         <>
@@ -36,13 +40,13 @@ function ProfileCard({ username, email, house, ranking, point }: {
                         house={house}
                     />
                 </div>
-                {group && allProblems && (
+                {group && allProblems && roleUsers && (
                     <div className="flex items-center place-content-between absolute bottom-1/4 translate-y-[45%]
-                lg:w-[400px] xl:w-[450px] 2xl:w-[500px] h-fit">
+                    lg:w-[400px] xl:w-[450px] 2xl:w-[500px] h-fit">
                         <ProblemProgress problemProgress={(group?.uniqueProblemSolvedCount * 100 / allProblems.length).toString()} />
                         <div className='flex flex-col justify-center lg:w-[200px] xl:w-[220px] 2xl:w-[240px] h-full'>
                             <div className='lg:text-[20px] xl:text-[22px] 2xl:text-[24px] font-bold'>
-                                อันดับที่ {ranking}
+                                อันดับที่ {roleUsers.findIndex(user => user.id === userId) + 1}
                             </div>
                             <div className='lg:text-[12px] xl:text-[14px] 2xl:text-[16px] font-medium'>
                                 คะเเนนรวมทั้งหมด {point} คะเเนน <br />

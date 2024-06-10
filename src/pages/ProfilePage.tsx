@@ -4,6 +4,7 @@ import { useUser } from "../hooks/user.hook";
 import { useProblems } from "../hooks/problems.hook";
 import LoadingPage from "./LoadingPage";
 import { useProfileComponentsStore } from "../store/zustand/profile-components.zustand";
+import { useUsersStore } from "../store/zustand/users.zustand";
 
 export default function ProfilePage() {
     const { user } = useUser();

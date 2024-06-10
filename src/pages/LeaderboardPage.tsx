@@ -6,11 +6,11 @@ import { useProblems } from "../hooks/problems.hook";
 import LoadingPage from "./LoadingPage";
 
 function LeaderboardPage() {
-  const { isLoading: isLoadingUsers } = useUsers();
+  const { isLoading: isLoadingUsers, roleUserQuery } = useUsers();
   const { isLoading: isLoadingGroups } = useGroups();
   const { publishedProblemsQuery } = useProblems();
 
-  if (isLoadingUsers || isLoadingGroups || publishedProblemsQuery.isLoading)
+  if (isLoadingUsers || isLoadingGroups || publishedProblemsQuery.isLoading || roleUserQuery.isLoading)
     return <LoadingPage />;
 
   return (

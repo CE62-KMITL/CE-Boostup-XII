@@ -1,5 +1,6 @@
 import { CompletionStatus } from "../enum/problem.enum";
 import { PublicationStatus } from "../enum/problem.enum";
+import { Role } from "../enum/roles.enum";
 
 export type PaginationRequestDto = {
     page: number;
@@ -12,4 +13,5 @@ export type PaginationRequestDto = {
     problem?: string;
     completionStatus?: CompletionStatus;
     publicationStatus?: PublicationStatus;
+    roles?: Role;
 }

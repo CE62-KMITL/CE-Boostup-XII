@@ -3,7 +3,7 @@ import AccountTable from "./AccountTable";
 import TeamAccountTable from "./TeamAccountTable";
 import Topics from "./Topics";
 import { useUser } from "../../hooks/user.hook";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useUsersStore } from "../../store/zustand/users.zustand";
 import { useGroupsStore } from "../../store/zustand/groups.zustand";
 import { useProblems } from "../../hooks/problems.hook";
@@ -13,7 +13,7 @@ import { th } from 'date-fns/locale';
 import { useGroup } from "../../hooks/group.hook";
 
 function Leaderboard() {
-  const { users } = useUsersStore();
+  const { roleUsers } = useUsersStore();
   const { groups } = useGroupsStore();
   const { publishedProblemsQuery } = useProblems();
   const { getAvatar: userAvatar } = useUser();
@@ -30,17 +30,13 @@ function Leaderboard() {
     return `${datePart} | ${timePart}`;
   }
 
-  useEffect(() => {
-    console.log(publishedProblemsQuery.data?.data);
-  }, [publishedProblemsQuery.data?.data]);
-
   return (
     <div className="flex w-full flex-col pb-10 font-semibold">
       <OptionHeader setTopic={setTopic} topic={topic} />
       <div className="p-4 pt-8 rounded-b-lg rounded-r-lg bg-stone01 w-full h-full overflow-none">
         <Topics topic={topic} />
          {topic === "user" ?
-          users?.map((user, index) => (
+          roleUsers?.map((user, index) => (
             <AccountTable
               id={user.id}
               number={index + 1}
