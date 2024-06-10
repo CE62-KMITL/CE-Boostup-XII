@@ -42,7 +42,7 @@ function Leaderboard() {
          {topic === "user" ?
           users?.map((user, index) => (
             <AccountTable
-              key={user.id}
+              id={user.id}
               number={index + 1}
               img={userAvatar(user.id)}
               name={user.displayName}
@@ -55,7 +55,7 @@ function Leaderboard() {
           : 
           groups?.map((group, index) => (
             <TeamAccountTable
-              key={group.id}
+              id={group.id}
               number={index + 1}
               img={groupAvatar(group.id)}
               group={group.name}
