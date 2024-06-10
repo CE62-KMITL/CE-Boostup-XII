@@ -8,11 +8,10 @@ import { useProblemsStore } from "../../../store/zustand/problems.zustand";
 import { useUsersStore } from "../../../store/zustand/users.zustand";
 import { useAppSelector } from "../../../store/hook";
 
-function ProfileCard({ username, email, house, ranking, point }: {
+function ProfileCard({ username, email, house, point }: {
     username: string,
     email: string,
     house: string,
-    ranking: string,
     point: string,
 }) {
     const { group } = useGroup();

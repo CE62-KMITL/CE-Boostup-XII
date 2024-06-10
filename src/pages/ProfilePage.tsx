@@ -4,7 +4,6 @@ import { useUser } from "../hooks/user.hook";
 import { useProblems } from "../hooks/problems.hook";
 import LoadingPage from "./LoadingPage";
 import { useProfileComponentsStore } from "../store/zustand/profile-components.zustand";
-import { useUsersStore } from "../store/zustand/users.zustand";
 
 export default function ProfilePage() {
     const { user } = useUser();
@@ -23,7 +22,6 @@ export default function ProfilePage() {
                     username={user.displayName}
                     email={user.email}
                     house={user.group?.name as string}
-                    ranking={user.problemSolvedCount.toString()}
                     point={user.totalScore.toString()}
                 />
             </div>

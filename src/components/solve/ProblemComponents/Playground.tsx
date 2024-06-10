@@ -17,6 +17,10 @@ export default function Playground({ problem }: PlaygroundProps) {
     const { language, code, input } = useCompilerSettingStore();
     const [output, setOutput] = useState<string>(problem?.exampleTestcases[0].output as string);
     const { setPopUp } = usePopUp();
+    
+    const formattedText = (text?: string) => {
+        return text?.split(/\\n/g).join('<br />');
+    }
 
     async function handleCompileAndRun() {
         try {
@@ -54,7 +58,7 @@ export default function Playground({ problem }: PlaygroundProps) {
                 <img src={InfoIcon} alt="info" className="w-[20px] h-[20px] absolute top-[179px] left-[235px] hover:cursor-pointer" onClick={() => setPopUp(4)} />
             </div>
             <div className="divide-y-2 px-3">
-                <ExampleCard inputMode={true} title="1) Testcase" input={problem?.exampleTestcases[0].input as string} output={output} />
+                <ExampleCard inputMode={true} title="1) Testcase" input={formattedText(problem?.exampleTestcases[0].input) as string} output={formattedText(output) as string} />
             </div>
         </>
     );

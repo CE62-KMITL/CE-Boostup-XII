@@ -91,7 +91,7 @@ function SearchBar() {
             <Dropdown type={2} title="บทเรียน" values={tagList} onChange={(v) => setTag(v)} />
             <div className="flex items-center w-[277px] h-full rounded-[8px] px-[16px] bg-stone01">
                 <div className="flex items-center place-content-between w-full">
-                    <p>ความยาก</p>
+                    <p className="text-nowrap">ความยาก</p>
                     <div className="flex items-center space-x-[4px]">
                         {renderStars()}
                     </div>
