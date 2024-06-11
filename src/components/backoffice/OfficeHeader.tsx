@@ -5,6 +5,8 @@ import TrashIcon from "../../assets/trash.svg";
 import { useNavigate } from "react-router-dom";
 import { FormikProps } from "formik";
 import { CreateProblemValues } from "../../formik/create-problem.formilk";
+import { useProblem } from "../../hooks/problem.hook";
+import { ErrorModelResponse } from "../../types/response.type";
 
 type OfficeHeaderProps = {
   formik: FormikProps<CreateProblemValues>;
@@ -13,6 +15,17 @@ type OfficeHeaderProps = {
 
 function OfficeHeader({ formik, handleSaveProblem }: OfficeHeaderProps) {
   const navigate = useNavigate();
+  const { deleteProblemMutation } = useProblem();
+
+  async function handleDeleteProblem() {
+    try {
+      await deleteProblemMutation.mutateAsync();
+      navigate("/home/1");
+    } catch (error) {
+      console.error(error);
+      alert((error as ErrorModelResponse).message);
+    }
+  }
 
   return (
     <>
@@ -37,6 +50,7 @@ function OfficeHeader({ formik, handleSaveProblem }: OfficeHeaderProps) {
               validate={true}
               text="ทิ้งขยะ"
               img={TrashIcon}
+              ClickFunc={handleDeleteProblem}
             />
             <Button
               type={1}

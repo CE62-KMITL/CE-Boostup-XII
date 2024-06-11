@@ -37,10 +37,15 @@ export const useProblem = (options?: UseQueryOptions<ProblemModelResponse>) => {
         return await problemService.updateProblem(problemId as string, updateProblemRequest);
     });
 
+    const deleteProblemMutation = useMutation(async () => {
+        return await problemService.deleteProblem(problemId as string);
+    });
+
     return {
         problem,
         isLoading,
         error,
         updateProblemMutation,
+        deleteProblemMutation,
     };
 };

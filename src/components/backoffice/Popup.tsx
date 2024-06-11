@@ -1,12 +1,12 @@
 import Button from "../utils/Button";
 import DarkBackground from "../utils/DarkBackground";
 
-type PopupProps = {
+type PopUpProps = {
   setShowPopUp: React.Dispatch<React.SetStateAction<boolean>>;
   handleSubmit: () => void;
 };
 
-export default function Popup({ setShowPopUp, handleSubmit }: PopupProps) {
+export default function PopUp({ setShowPopUp, handleSubmit }: PopUpProps) {
   return (
     <div className="fixed top-0 z-40">
       <DarkBackground />

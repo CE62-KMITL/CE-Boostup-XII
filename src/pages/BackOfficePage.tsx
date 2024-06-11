@@ -13,7 +13,7 @@ import { useCreateProblemStore } from "../store/zustand/create-problem.zustand";
 import { useState, useEffect } from "react";
 import { ProgrammingLanguage } from "../enum/compile-and-run.enum";
 import { TestcaseType } from "../types/testcase.type";
-import Popup from "../components/backoffice/Popup";
+import PopUp from "../components/backoffice/PopUp";
 import SuccessCard from "../components/backoffice/cards/SuccessCard";
 import { ErrorModelResponse } from "../types/response.type";
 import { useProblemStore } from "../store/zustand/problem.zustand";
@@ -139,7 +139,7 @@ function BackOfficePage() {
   return (
     <>
       {show && <SuccessCard setShow={setShow} type={type} />}
-      {showPopup && <Popup setShowPopUp={setShowPopup} handleSubmit={handleSubmitProblem} />}
+      {showPopup && <PopUp setShowPopUp={setShowPopup} handleSubmit={handleSubmitProblem} />}
       <Background />
       <form onSubmit={formik.handleSubmit}>
         <OfficeHeader formik={formik} handleSaveProblem={handleSaveProblem} />
