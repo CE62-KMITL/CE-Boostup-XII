@@ -19,12 +19,10 @@ function NavBar() {
                         CE Boostup XII
                     </h2>
                 </Link>
-                <div className="flex items-center place-content-between xl:w-[600px] 2xl:w-[660px]">
+                <div className="flex items-center place-content-between xl:w-[400px] 2xl:w-[460px]">
                     <Link to="/home/1" className={`${linkStyle} ${page === "home" ? "text-accent" : "text-white"}`}>Home</Link>
-                    <Link to="/archive" className={`${linkStyle} ${page === "archive" ? "text-accent" : "text-white"}`}>Archive</Link>
                     <Link to="/learn" className={`${linkStyle} ${page === "learn" ? "text-accent" : "text-white"}`}>Learn</Link>
                     <Link to="/leaderboard" className={`${linkStyle} ${page === "leaderboard" ? "text-accent" : "text-white"}`}>Leaderboard</Link>
-                    <Link to="/compiler" className={`${linkStyle} ${page === "compiler" ? "text-accent" : "text-white"}`}>Compiler</Link>
                     <Link to="/profile" className={`${linkStyle} ${page === "profile" ? "text-accent" : "text-white"}`}>Profile</Link>
                 </div>
             </div>

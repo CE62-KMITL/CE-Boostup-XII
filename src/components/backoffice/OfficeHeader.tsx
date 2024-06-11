@@ -1,9 +1,12 @@
 import Background from "../utils/Background";
-import Button from "../utils/Button";
+import Button from "../utils/OldButton";
 import BackIcon from "../../assets/back.svg";
 import TrashIcon from "../../assets/trash.svg";
+import { useNavigate } from "react-router-dom";
 
 function OfficeHeader() {
+  const navigate = useNavigate();
+
   return (
     <>
       <Background />
@@ -18,7 +21,7 @@ function OfficeHeader() {
             validate={true}
             text="กลับ"
             img={BackIcon}
-            ClickFunc={() => (window.location.href = "https://www.google.com/")}
+            ClickFunc={() => navigate(-1)}
           />
           <div className="flex w-52 justify-between">
             <Button
@@ -27,19 +30,12 @@ function OfficeHeader() {
               validate={true}
               text="ทิ้งขยะ"
               img={TrashIcon}
-              ClickFunc={() =>
-                (window.location.href = "https://www.google.com/")
-              }
             />
             <Button
               type={1}
               mode={3}
               validate={true}
               text="บันทึก"
-              img=""
-              ClickFunc={() =>
-                (window.location.href = "https://www.google.com/")
-              }
             />
           </div>
         </div>

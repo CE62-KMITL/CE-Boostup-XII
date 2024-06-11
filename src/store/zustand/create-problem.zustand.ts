@@ -6,10 +6,12 @@ interface CreateProblemState {
     selectedTags: string[];
     testcases: TestcaseType[];
     hiddenTestcases: TestcaseType[];
+    file: File | null;
     setDifficulty: (difficulty: number) => void;
     setSelectedTags: (tags: string[]) => void;
     setTestcases: (testcases: TestcaseType[]) => void;
     setHiddenTestcases: (hiddenTestcases: TestcaseType[]) => void;
+    setFile: (file: File | null) => void;
 }
 
 export const useCreateProblemStore = create<CreateProblemState>((set) => ({
@@ -21,4 +23,6 @@ export const useCreateProblemStore = create<CreateProblemState>((set) => ({
     hiddenTestcases: Array(6).fill({ input: "", output: "" }),
     setTestcases: (testcases: TestcaseType[]) => set({ testcases: testcases }),
     setHiddenTestcases: (hiddenTestcases: TestcaseType[]) => set({ hiddenTestcases: hiddenTestcases }),
+    file: null,
+    setFile: (file: File | null) => set({ file: file }),
 }));
