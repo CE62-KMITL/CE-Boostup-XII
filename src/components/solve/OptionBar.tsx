@@ -1,4 +1,3 @@
-import SubmitIcon from "../../assets/submit.svg";
 import BackIcon from "../../assets/back.svg";
 import Button from "../utils/Button";
 import SendIcon from "../../assets/sendIcon.svg";

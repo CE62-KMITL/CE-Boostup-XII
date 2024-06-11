@@ -1,7 +1,6 @@
 import { useLocation, Navigate } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 import { useUser } from "../hooks/user.hook";
-import { useEffect } from "react";
 
 export default function VerifyProvider() {
     const location = useLocation();

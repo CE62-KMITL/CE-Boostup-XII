@@ -15,11 +15,13 @@ type PlaygroundProps = {
 export default function Playground({ problem }: PlaygroundProps) {
     const { compileAndRunMutation } = useCompileAndRun();
     const { language, code, input } = useCompilerSettingStore();
-    const [output, setOutput] = useState<string>(problem?.exampleTestcases[0].output as string);
+    const [output, setOutput] = useState<string | undefined>(problem?.exampleTestcases.length ? problem?.exampleTestcases[0].output : "");
     const { setPopUp } = usePopUp();
     
     const formattedText = (text?: string) => {
-        return text?.split(/\\n/g).join('<br />');
+        if (text)
+            return text?.split(/\\n/g).join('<br />');
+        return "";
     }
 
     async function handleCompileAndRun() {
@@ -31,7 +33,7 @@ export default function Playground({ problem }: PlaygroundProps) {
                 language,
                 code,
                 optimizationLevel: problem?.optimizationLevel,
-                inputs: [input.replace(/\n/g, "\\n")],
+                inputs: input ? [input.replace(/\n/g, "\\n")] : [],
                 allowedHeaders: problem?.allowedHeaders,
                 bannedFunctions: problem?.bannedFunctions,
                 timeLimit: problem?.timeLimit,
@@ -58,7 +60,7 @@ export default function Playground({ problem }: PlaygroundProps) {
                 <img src={InfoIcon} alt="info" className="w-[20px] h-[20px] absolute top-[179px] left-[235px] hover:cursor-pointer" onClick={() => setPopUp(4)} />
             </div>
             <div className="divide-y-2 px-3">
-                <ExampleCard inputMode={true} title="1) Testcase" input={formattedText(problem?.exampleTestcases[0].input) as string} output={formattedText(output) as string} />
+                <ExampleCard inputMode={true} title="1) Testcase" input={formattedText(problem?.exampleTestcases.length ? problem?.exampleTestcases[0].input : "")} output={formattedText(output) as string} />
             </div>
         </>
     );

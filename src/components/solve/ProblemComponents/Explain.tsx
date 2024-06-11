@@ -10,7 +10,7 @@ type ExplainProps = {
 
 export default function Explain({ problem }: ExplainProps) {
     const { setPopUp } = usePopUp();
-    
+
     const formattedText = (text?: string) => {
         return text?.split(/\\n/g).join('<br />');
     }
@@ -31,14 +31,17 @@ export default function Explain({ problem }: ExplainProps) {
                         <span key={index} dangerouslySetInnerHTML={{ __html: formattedText(func) as string }} />
                     ))
                 }</p>} />
-                <div className="relative">
-                    <img src={InfoIcon} alt="info" className="w-[20px] h-[20px] absolute top-[15px] left-[96px] hover:cursor-pointer" onClick={() => setPopUp(0)} />
-                    <div className="divide-y-2">
-                        {problem?.exampleTestcases.map((testcase, index) => {
-                            return <ExampleCard key={index} title={`ตัวอย่างที่ ${index + 1}`} input={formattedText(testcase.input) as string} output={formattedText(testcase.output) as string} />
-                        })}
+                {
+                    problem && problem.exampleTestcases.length > 0 &&
+                    <div className="relative">
+                        <img src={InfoIcon} alt="info" className="w-[20px] h-[20px] absolute top-[15px] left-[96px] hover:cursor-pointer" onClick={() => setPopUp(0)} />
+                        <div className="divide-y-2">
+                            {problem.exampleTestcases.map((testcase, index) => {
+                                return <ExampleCard key={index} title={`ตัวอย่างที่ ${index + 1}`} input={formattedText(testcase.input) as string} output={formattedText(testcase.output) as string} />
+                            })}
+                        </div>
                     </div>
-                </div>
+                }
             </div>
         </>
     );
