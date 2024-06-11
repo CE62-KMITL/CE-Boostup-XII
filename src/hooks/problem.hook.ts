@@ -11,18 +11,18 @@ import { useProblemStore } from "../store/zustand/problem.zustand";
 
 const PROBLEM_QUERY_KEY = "problem";
 
-export const useProblem = (problemId: string, options?: UseQueryOptions<ProblemModelResponse>) => {
-    const { setProblem } = useProblemStore();
+export const useProblem = (options?: UseQueryOptions<ProblemModelResponse>) => {
+    const { setProblem, problemId } = useProblemStore();
 
     const fetchProblem = async (): Promise<ProblemModelResponse> => {
-        return await problemService.getProblem(problemId);
+        return await problemService.getProblem(problemId as string);
     };
 
     const {
         data: problem,
         isLoading,
         error,
-    } = useQuery<ProblemModelResponse>(PROBLEM_QUERY_KEY, fetchProblem, {
+    } = useQuery<ProblemModelResponse>([PROBLEM_QUERY_KEY, problemId], fetchProblem, {
         ...options,
         enabled: !!problemId,
         refetchOnWindowFocus: false,
@@ -34,7 +34,7 @@ export const useProblem = (problemId: string, options?: UseQueryOptions<ProblemM
     }, [problem, setProblem]);
 
     const updateProblemMutation = useMutation(async (updateProblemRequest: UpdateProblemDto) => {
-        return await problemService.updateProblem(problemId, updateProblemRequest);
+        return await problemService.updateProblem(problemId as string, updateProblemRequest);
     });
 
     return {

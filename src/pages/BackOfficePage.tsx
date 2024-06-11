@@ -16,22 +16,31 @@ import { TestcaseType } from "../types/testcase.type";
 import Popup from "../components/backoffice/Popup";
 import SuccessCard from "../components/backoffice/cards/SuccessCard";
 import { ErrorModelResponse } from "../types/response.type";
+import { useProblemStore } from "../store/zustand/problem.zustand";
 
 function BackOfficePage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const { createProblemMutation } = useProblems();
   const { createAttachmentMutation } = useAttachment();
-  const { updateProblemMutation } = useProblem(searchParams.get("problemId") as string);
+  const { updateProblemMutation } = useProblem();
   const { testcases, difficulty, hiddenTestcases, selectedTags, file, setDifficulty, setSelectedTags, setTestcases, setHiddenTestcases, setFile } = useCreateProblemStore();
   const [show, setShow] = useState<boolean>(false);
   const [showPopup, setShowPopup] = useState<boolean>(false);
+  const [type, setType] = useState<"submit" | "save">("save");
+  const { setProblemId } = useProblemStore();
 
   function getValidTestcases(testcases: TestcaseType[]) {
     return testcases.filter((testcase) => testcase.input !== "" && testcase.output !== "");
   }
 
+  useEffect(() => {
+    if (searchParams.get("problemId") !== null) 
+      setProblemId(searchParams.get("problemId") as string);
+  }, [searchParams.get("problemId")]);
+
   async function handleSaveProblem() {
     try {
+      setType("save");
       let fileResponse;
       if (file) {
         fileResponse = await createAttachmentMutation.mutateAsync({
@@ -88,6 +97,7 @@ function BackOfficePage() {
 
   async function handleSubmitProblem() {
     try {
+      setType("submit");
       await updateProblemMutation.mutateAsync({
         publicationStatus: PublicationStatus.AwaitingApproval,
       });
@@ -97,6 +107,7 @@ function BackOfficePage() {
       setTestcases(Array(4).fill({ input: "", output: "" }));
       setHiddenTestcases(Array(6).fill({ input: "", output: "" }));
       setFile(null);
+      setShow(true);
     } catch (error) {
       alert("Failed to submit problem: " + (error as ErrorModelResponse).message);
     }
@@ -127,7 +138,7 @@ function BackOfficePage() {
 
   return (
     <>
-      {show && <SuccessCard setShow={setShow} />}
+      {show && <SuccessCard setShow={setShow} type={type} />}
       {showPopup && <Popup setShowPopUp={setShowPopup} handleSubmit={handleSubmitProblem} />}
       <Background />
       <form onSubmit={formik.handleSubmit}>

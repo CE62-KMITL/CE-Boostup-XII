@@ -43,8 +43,8 @@ export default function EditorFooter() {
 
     if (isOwner) return (
         <div className="flex justify-end gap-[16px] w-full h-[42px] pr-3 absolute bottom-3 font-medium">
-            <Button text="Archive" className="w-[90px] h-full rounded-[8px] bg-stone01 border-accent border-[1px] text-accent text-[16px]" />
-            <Button text="Publish" className="w-[90px] h-full rounded-[8px] bg-accent text-stone01 text-[18px]" />
+            <Button type="submit" ClickFunc={() => setPublicationStatus(PublicationStatus.Rejected)} text="Archive" className="w-[90px] h-full rounded-[8px] bg-stone01 border-accent border-[1px] text-accent text-[16px]" />
+            <Button type="submit" text="Publish" className="w-[90px] h-full rounded-[8px] bg-accent text-stone01 text-[18px]" />
         </div>
     )
 

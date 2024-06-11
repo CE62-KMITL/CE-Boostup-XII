@@ -13,16 +13,18 @@ import { usePermission } from "../hooks/permission.hook";
 import { Role } from "../enum/roles.enum";
 import AdminEditor from "../components/checkmode/Editor";
 import AdminProblem from "../components/checkmode/Problem";
+import { useProblemStore } from "../store/zustand/problem.zustand";
 
 function SolveProblemPage() {
   const permission = usePermission([Role.Admin, Role.Staff, Role.Reviewer]);
   const { problemId } = useParams();
   const navigate = useNavigate();
-  const { problem, isLoading: isLoadingProblem } = useProblem(problemId as string);
+  const { problem, isLoading: isLoadingProblem } = useProblem();
   const { popUp, popUpComponents, content } = usePopUp();
   const { savesQuery, updateSaveMutation, createSaveMutation } = useSaves(problemId as string);
   const boxRef = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState<number>(0);
+  const { setProblemId } = useProblemStore();
 
   useEffect(() => {
     const event = addEventListener('resize', () => {
@@ -34,6 +36,10 @@ function SolveProblemPage() {
   useEffect(() => {
     setHeight(boxRef.current?.clientHeight || 0);
   }, [boxRef.current, savesQuery.isSuccess]);
+
+  useEffect(() => {
+    setProblemId(problemId as string);
+  }, [problemId]);
   
   async function handleCreateSave() {
     try {
@@ -47,9 +53,8 @@ function SolveProblemPage() {
   }
   
   useEffect(() => {
-    if (savesQuery.error && (savesQuery.error as ErrorModelResponse).statusCode === 404 && !permission) {
+    if (savesQuery.error && (savesQuery.error as ErrorModelResponse).statusCode === 404 && !permission)
       handleCreateSave();
-    }
   }, [savesQuery.error]);
 
   if (isLoadingProblem) return <LoadingPage />;
