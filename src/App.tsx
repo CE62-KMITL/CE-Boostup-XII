@@ -30,7 +30,7 @@ export default function App() {
               <Route path="/register" element={<RegisterPage />} />
             </Route>
             <Route path="/reset-password" element={<ResetPasswordPage />} />
-            <Route element={<ProtectedProvider allowedRoles={[Role.User, Role.Admin, Role.Staff]} />}>
+            <Route element={<ProtectedProvider allowedRoles={[Role.User, Role.Admin, Role.Staff, Role.SuperAdmin, Role.Reviewer]} />}>
               <Route path="/solve/:problemId" element={<SolveProblemPage />} />
               <Route element={<InitLayout />}>
                 <Route path="/home/:page" element={<HomePage />} />

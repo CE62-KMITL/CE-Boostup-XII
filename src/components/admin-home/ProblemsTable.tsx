@@ -1,18 +1,22 @@
 import { Link } from "react-router-dom";
 import { PublicationStatus } from "../../enum/problem.enum";
+import { useAppSelector } from "../../store/hook";
 
-export default function ProblemsTable({title, lesson, level, status, id ,owner}: {
+type ProblemsTableProps = {
     title: string,
     lesson: { id: string, name: string }[],
     level: number,
-    status: PublicationStatus,
+    publicationStatus: PublicationStatus,
     id: string
     owner: { id: string, displayName: string }
-}) {
+}
+
+export default function ProblemsTable({ title, lesson, level, publicationStatus, id, owner }: ProblemsTableProps) {
+    const userId = useAppSelector((state) => state.auth.user?.id);
+
     return (
-        <Link to={`/solve/${id}`} className="grid grid-cols-[repeat(16,minmax(0,1fr))] w-full h-[45px] rounded-md bg-stone01 
+        <Link to={`/${(publicationStatus === PublicationStatus.Draft && owner.id === userId) ? "create-problem?problemId=" : "solve/"}${id}`} className="grid grid-cols-[repeat(16,minmax(0,1fr))] w-full h-[45px] rounded-md bg-stone01 
         cursor-pointer transition-all duration-300 ease-in-out hover:bg-cream">
-            
             <div className="flex justify-start items-start col-span-5 p-[0.4rem_0.6rem]
             leading-[2rem] overflow-y-scroll hide-scrollbar text-[18px] font-[700]">
                 {title}
@@ -39,11 +43,11 @@ export default function ProblemsTable({title, lesson, level, status, id ,owner}:
                     ))}
                 </div>
             </div>
-            
-           
+
+
             <div className={`flex justify-end items-center col-span-1 p-[0rem_1rem]`}>
-                {status === PublicationStatus.Approved ? 'Approved' : status === PublicationStatus.Archived ? 'Archived' : status === PublicationStatus.AwaitingApproval ? 'AwaitingApproval' :
-                 status === PublicationStatus.Draft ? 'Draft':status === PublicationStatus.Published ? 'Published':'Rejected'}
+                {publicationStatus === PublicationStatus.Approved ? 'Approved' : publicationStatus === PublicationStatus.Archived ? 'Archived' : publicationStatus === PublicationStatus.AwaitingApproval ? 'AwaitingApproval' :
+                    publicationStatus === PublicationStatus.Draft ? 'Draft' : publicationStatus === PublicationStatus.Published ? 'Published' : 'Rejected'}
             </div>
         </Link>
     );

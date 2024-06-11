@@ -9,7 +9,7 @@ import * as yup from "yup";
 import { useState } from "react";
 import { getFieldProps } from "../../../utils/getFieldProps";
 import PopUp from "../PopUp/PopUp";
-
+import SuccessCard from "../SuccessCard";
 
 export default function EditorFooter() {
     const { isOwner } = useUser();
@@ -17,6 +17,7 @@ export default function EditorFooter() {
     const { updateProblemMutation } = useProblem();
     const [publicationStatus, setPublicationStatus] = useState<PublicationStatus>(problemStore?.publicationStatus as PublicationStatus);
     const [isPopUp, setPopUp] = useState<number | undefined>();
+    const [show, setShow] = useState<boolean>(false);
 
     const formik = useFormik<{ reviewComment: string }>({
         initialValues: {
@@ -39,6 +40,7 @@ export default function EditorFooter() {
                 publicationStatus,
                 reviewComment: formik.values.reviewComment === "" ? undefined : formik.values.reviewComment,
             });
+            setShow(true);
         } catch (error) {
             console.error(error);
             alert("Failed to update problem: " + (error as Error).message);
@@ -53,6 +55,7 @@ export default function EditorFooter() {
 
     if (isOwner) return (
         <>
+            {show && <SuccessCard setShow={setShow} publicationStatus={publicationStatus} />}
             {isPopUp != undefined && components[isPopUp]}
             <div className="flex justify-end gap-[16px] w-full h-[42px] pr-3 absolute bottom-3 font-medium">
                 <Button type="button" ClickFunc={() => { setPublicationStatus(PublicationStatus.Archived); setPopUp(0) }} text="Archive" className="w-[90px] h-full rounded-[8px] bg-stone01 border-accent border-[1px] text-accent text-[16px]" />
@@ -65,6 +68,7 @@ export default function EditorFooter() {
 
     return (
         <>
+            {show && <SuccessCard setShow={setShow} publicationStatus={publicationStatus} />}
             <form onSubmit={formik.handleSubmit} className="flex flex-col place-content-between absolute bottom-0 left-0
                     w-full h-[230px] rounded-[10px] p-[16px] bg-jenna opacity-100">
                 <div className={`text-[16px] font-medium leading-[1.6rem] ${reviewCommentInputProps.error ? "text-red-600" : null}`}>ความคิดเห็น</div>

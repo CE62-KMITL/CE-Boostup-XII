@@ -22,7 +22,7 @@ function BackOfficePage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const { createProblemMutation } = useProblems();
   const { createAttachmentMutation } = useAttachment();
-  const { updateProblemMutation } = useProblem();
+  const { updateProblemMutation, problem, isLoading } = useProblem();
   const { testcases, difficulty, hiddenTestcases, selectedTags, file, setDifficulty, setSelectedTags, setTestcases, setHiddenTestcases, setFile } = useCreateProblemStore();
   const [show, setShow] = useState<boolean>(false);
   const [showPopup, setShowPopup] = useState<boolean>(false);
@@ -30,13 +30,31 @@ function BackOfficePage() {
   const { setProblemId } = useProblemStore();
 
   function getValidTestcases(testcases: TestcaseType[]) {
-    return testcases.filter((testcase) => testcase.input !== "" && testcase.output !== "");
+    const validTestcases = testcases.filter((testcase) => testcase.input !== "" && testcase.output !== "");
+    if (validTestcases.length === 0) return undefined;
+    return validTestcases;
   }
 
   useEffect(() => {
     if (searchParams.get("problemId") !== null) 
       setProblemId(searchParams.get("problemId") as string);
   }, [searchParams.get("problemId")]);
+
+  useEffect(() => {
+    if (searchParams.get("problemId") !== null && problem) {
+      formik.setValues({
+        title: problem.title.replace(/\\n/g, "\n"),
+        description: problem.description.replace(/\\n/g, "\n"),
+        input: problem.input.replace(/\\n/g, "\n"),
+        output: problem.output.replace(/\\n/g, "\n"),
+        hint: problem.hint.replace(/\\n/g, "\n"),
+        hintCost: problem.hintCost.toString(),
+        starterCode: problem.starterCode,
+        solution: problem.solution,
+        bannedFunctions: problem.bannedFunctions.join("\n"),
+      });
+    }
+  }, [problem]);
 
   async function handleSaveProblem() {
     try {
@@ -56,7 +74,7 @@ function BackOfficePage() {
           output: formik.values.output.replace(/\n/g, "\\n"),
           hint: formik.values.hint.replace(/\n/g, "\\n"),
           hintCost: parseInt(formik.values.hintCost),
-          exampleTestcases: getValidTestcases(testcases),
+          exampleTestcases: getValidTestcases(testcases) as TestcaseType[],
           starterCode: formik.values.starterCode,
           solution: formik.values.solution,
           bannedFunctions: [formik.values.bannedFunctions.replace(/\n/g, "\\n")],
@@ -92,6 +110,7 @@ function BackOfficePage() {
       setShow(true);
     } catch (error) {
       console.error(error);
+      alert("Failed to save problem: " + (error as ErrorModelResponse).message);
     }
   }
 
@@ -133,7 +152,7 @@ function BackOfficePage() {
     }
   }, [createProblemMutation.isSuccess]);
 
-  if (createProblemMutation.isLoading || createAttachmentMutation.isLoading || updateProblemMutation.isLoading)
+  if (createProblemMutation.isLoading || createAttachmentMutation.isLoading || updateProblemMutation.isLoading || isLoading)
     return <LoadingPage />;
 
   return (

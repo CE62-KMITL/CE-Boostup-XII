@@ -19,7 +19,7 @@ import { Role } from "../enum/roles.enum";
 import { usePermission } from "../hooks/permission.hook";
 
 export default function HomePage() {
-    const permission = usePermission([Role.Admin, Role.Staff]);
+    const permission = usePermission([Role.Admin, Role.Staff, Role.Reviewer, Role.Reviewer]);
     const { page } = useParams();
     const navigate = useNavigate();
     const { problems: problemsStore, isFetched, pages } = useProblemsStore();
@@ -76,7 +76,7 @@ export default function HomePage() {
                                             lesson={problem.tags as { id: string, name: string }[]}
                                             level={problem.difficulty}
                                             owner={problem.owner}
-                                            status={problem.publicationStatus}
+                                            publicationStatus={problem.publicationStatus}
                                         />
                                         :
                                         <ProblemsTable

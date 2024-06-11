@@ -16,7 +16,7 @@ import AdminProblem from "../components/checkmode/Problem";
 import { useProblemStore } from "../store/zustand/problem.zustand";
 
 function SolveProblemPage() {
-  const permission = usePermission([Role.Admin, Role.Staff, Role.Reviewer]);
+  const permission = usePermission([Role.Admin, Role.Staff, Role.Reviewer, Role.SuperAdmin]);
   const { problemId } = useParams();
   const navigate = useNavigate();
   const { problem, isLoading: isLoadingProblem } = useProblem();
@@ -57,7 +57,7 @@ function SolveProblemPage() {
       handleCreateSave();
   }, [savesQuery.error]);
 
-  if (isLoadingProblem) return <LoadingPage />;
+  if (isLoadingProblem || !problem) return <LoadingPage />;
   if (!permission && (savesQuery.isLoading || savesQuery.isError || createSaveMutation.isLoading)) return <LoadingPage />;
 
   if (permission) return (

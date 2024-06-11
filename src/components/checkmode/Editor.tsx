@@ -14,6 +14,7 @@ import { useAppSelector } from "../../store/hook";
 import PopUp from "./PopUp/PopUp";
 import { useProblem } from "../../hooks/problem.hook";
 import { PublicationStatus } from "../../enum/problem.enum";
+import SuccessCard from "./SuccessCard";
 
 type EditorProps = {
     height: number;
@@ -29,41 +30,44 @@ export default function Editor({ height }: EditorProps) {
     const isOwner = problem?.owner.id === userId;
     const [isPopup, setIsPopup] = useState<number | undefined>();
     const { updateProblemMutation } = useProblem();
-    
+    const [show, setShow] = useState<boolean>(false);
+
     useEffect(() => {
         if (mode === "solution")
             setCode(problem?.solution.replace(/\\n/g, "\n"));
         else
-        setCode(problem?.starterCode.replace(/\\n/g, "\n"));
-}, [mode, problem]);
+            setCode(problem?.starterCode.replace(/\\n/g, "\n"));
+    }, [mode, problem]);
 
     async function handleUpdateProblem() {
         try {
             await updateProblemMutation.mutateAsync({
                 publicationStatus: PublicationStatus.Draft,
             });
+            setShow(true);
         } catch (error) {
             console.error(error);
             alert("Failed to update problem: " + (error as Error).message);
         }
         setIsPopup(undefined);
     }
-    
+
     const components = [
         <PopUp handleSubmit={handleUpdateProblem} setPopup={setIsPopup} title="แก้แบบร่างใช่หรือไม่" description="หากกดยืนยันจะกลับไปหน้าแก้แบบร่าง และต้องได้รับ สถานะ Approved จึงจะสามารถกลับมาหน้านี้ใหม่ได้อีกครั้ง" />
     ]
 
     return (
         <>
+            {show && <SuccessCard publicationStatus={PublicationStatus.Draft} setShow={setShow} />}
             {isPopup != undefined && components[isPopup]}
             <div className="flex flex-col w-full h-full overflow-y-hidden">
                 <div className="flex place-content-between w-full h-[55px]">
                     <Button text="กลับ" img={BackIcon} className="flex items-center justify-evenly w-[96px] h-[40px] bg-jenna rounded-[8px] text-[16px] font-medium" imgClassName="w-[16px] h-[16px]" ClickFunc={() => navigate(-1)} />
                     <div className="flex gap-[16px] h-[40px]">
-                        <Button ClickFunc={() => setMode("solution")} text="Solution Code" className={`${mode === "solution" ? "bg-accent text-stone01 font-bold" : "bg-jenna text-black font-medium"} w-full h-full rounded-[8px]`} />
-                        <Button ClickFunc={() => setMode("starter")} text="Starter Code" className={`${mode === "starter" ? "bg-accent text-stone01 font-bold" : "bg-jenna text-black font-medium"} w-full h-full rounded-[8px]`} />
+                        <Button ClickFunc={() => setMode("solution")} text="Solution Code" className={`${mode === "solution" ? "bg-accent text-stone01 font-bold" : "bg-jenna text-black font-medium"} h-full px-[28px] text-nowrap rounded-[8px]`} />
+                        <Button ClickFunc={() => setMode("starter")} text="Starter Code" className={`${mode === "starter" ? "bg-accent text-stone01 font-bold" : "bg-jenna text-black font-medium"} h-full px-[28px] rounded-[8px]`} />
                         {
-                            isOwner && <Button ClickFunc={() => setIsPopup(0)} className="flex items-center justify-evenly w-[300px] h-[40px] bg-jenna rounded-[8px] text-[16px] font-medium" text="แก้แบบร่าง" />
+                            isOwner && <Button ClickFunc={() => setIsPopup(0)} className="flex items-center justify-evenly px-[28px] h-[40px] bg-jenna rounded-[8px] text-[16px] font-medium" text="แก้แบบร่าง" />
                         }
                     </div>
                 </div>
