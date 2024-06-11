@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { problemService } from "../services/problem.service";
 import { ProblemModelResponse } from "../types/response.type";
-import { CreateProblemDto } from "../dto/problem.dto";
+import { UpdateProblemDto } from "../dto/problem.dto";
 import {
     UseQueryOptions,
     useQuery,
@@ -33,9 +33,14 @@ export const useProblem = (problemId: string, options?: UseQueryOptions<ProblemM
             setProblem(problem);
     }, [problem, setProblem]);
 
+    const updateProblemMutation = useMutation(async (updateProblemRequest: UpdateProblemDto) => {
+        return await problemService.updateProblem(problemId, updateProblemRequest);
+    });
+
     return {
         problem,
         isLoading,
         error,
+        updateProblemMutation,
     };
 };

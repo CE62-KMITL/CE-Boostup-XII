@@ -16,7 +16,6 @@ type LoginFormProps = {
 }
 
 function LoginForm({ setShowForgotPassword, setShowCreateAccount, mutation }: LoginFormProps) {
-    // const [setSavePassword] = useState<boolean>(false);
     const cookies = new Cookies();
     const navigate = useNavigate();
 

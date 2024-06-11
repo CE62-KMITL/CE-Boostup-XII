@@ -24,9 +24,10 @@ export type CreateProblemDto = {
   credits?: string;
 }
 
-export type UpdateProblemDto = {
+export type UpdateProblemDto = Partial<CreateProblemDto> & {
     publicationStatus?: string;
     unlockHint?: boolean;
+    reviewComment?: string;
 }
 
 export type Testcase = {
