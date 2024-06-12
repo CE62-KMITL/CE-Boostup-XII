@@ -3,9 +3,9 @@ import { PublicationStatus } from "../enum/problem.enum";
 import { Role } from "../enum/roles.enum";
 
 export type PaginationRequestDto = {
-    page: number;
-    perPage: number;
-    sort: string;
+    page?: number;
+    perPage?: number;
+    sort?: string;
     search?: string;
     tags?: string;
     difficulties?: string;

@@ -20,17 +20,14 @@ export const useProblems = (options?: UseQueryOptions<PaginationModelResponse<Pr
     const fetchProblems = async (): Promise<PaginationModelResponse<ProblemModelResponse>> => {
         const response = await problemService.getProblems(paginationRequest);
         setTotalProblems(response.total);
-        console.log(paginationRequest.page)
         if (paginationRequest.page === 1)
             setProblems(response.data);
         else {
-            if (problemsStore && problemsStore.length < totalProblems) 
+            if (problemsStore && problemsStore.length < totalProblems)
                 setProblems([...problemsStore, ...response.data]);
         }
-        if (!isFetched) {
+        if (!isFetched)
             setIsFetched(true);
-            setAllProblems(response.data);
-        }
         return response;
     };
 
@@ -38,11 +35,22 @@ export const useProblems = (options?: UseQueryOptions<PaginationModelResponse<Pr
         return await problemService.getProblems({ ...paginationRequest, publicationStatus: PublicationStatus.Published, sort: "createdAt" });
     }
 
+    const fetchAllProblems = async (): Promise<PaginationModelResponse<ProblemModelResponse>> => {
+        const response = await problemService.getProblems({});
+        setAllProblems(response.data);
+        return response;
+    }
+
     const {
         data: problems,
         isLoading,
         error,
     } = useQuery<PaginationModelResponse<ProblemModelResponse>>([PROBLEM_QUERY_KEY, paginationRequest], fetchProblems, {
+        ...options,
+        refetchOnWindowFocus: false,
+    });
+
+    const allProblemsQuery = useQuery<PaginationModelResponse<ProblemModelResponse>>([PROBLEM_QUERY_KEY], fetchAllProblems, {
         ...options,
         refetchOnWindowFocus: false,
     });
@@ -62,7 +70,12 @@ export const useProblems = (options?: UseQueryOptions<PaginationModelResponse<Pr
     }, [publishedProblemsQuery.data]);
 
     useEffect(() => {
-        if (problems) 
+        if (allProblemsQuery.data)
+            setAllProblems(allProblemsQuery.data.data);
+    }, [allProblemsQuery.data]);
+
+    useEffect(() => {
+        if (problems && paginationRequest.perPage)
             setPages(Math.ceil(problems.total / paginationRequest.perPage));
     }, [problems]);
 
@@ -76,5 +89,6 @@ export const useProblems = (options?: UseQueryOptions<PaginationModelResponse<Pr
         error,
         publishedProblemsQuery,
         createProblemMutation,
+        allProblemsQuery,
     };
 };

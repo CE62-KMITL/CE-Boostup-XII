@@ -8,9 +8,9 @@ import { useProfileComponentsStore } from "../store/zustand/profile-components.z
 export default function ProfilePage() {
     const { user } = useUser();
     const { components, profileComponents } = useProfileComponentsStore();
-    const { isLoading } = useProblems();
+    const { allProblemsQuery } = useProblems();
 
-    if (isLoading || !user)
+    if (allProblemsQuery.isLoading || !user)
         return <LoadingPage />;
 
     return (

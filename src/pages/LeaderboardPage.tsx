@@ -24,7 +24,7 @@ function LeaderboardPage() {
   }, [page]);
 
   useEffect(() => {
-    if (isBottom && roleUserQuery.data && page < Math.ceil(roleUserQuery.data.total / paginationRequest.perPage)) 
+    if (isBottom && paginationRequest.perPage && roleUserQuery.data && page < Math.ceil(roleUserQuery.data.total / paginationRequest.perPage)) 
       setPage(page + 1);
   }, [isBottom]);
 
