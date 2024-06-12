@@ -20,7 +20,7 @@ import BackOfficePage from './pages/BackOfficePage'
 
 export default function App() {
   return (
-    <BrowserRouter basename='/grader'>
+    <BrowserRouter basename={import.meta.env.VITE_PREFIX_URL}>
       <QueryClientProvider client={new QueryClient()}>
         <Routes>
           <Route path='*' element={<Error404Page />} />
