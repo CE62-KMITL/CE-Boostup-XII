@@ -15,11 +15,15 @@ const PROBLEM_QUERY_KEY = "problems";
 
 export const useProblems = (options?: UseQueryOptions<PaginationModelResponse<ProblemModelResponse>>) => {
     const { paginationRequest } = usePaginationRequestStore();
-    const { setProblems, isFetched, setIsFetched, setAllProblems, setTotalProblems, setPages } = useProblemsStore();
+    const { setProblems, isFetched, setIsFetched, setAllProblems, setTotalProblems, setPages, problems: problemsStore, totalProblems, setPublishedProblems } = useProblemsStore();
 
     const fetchProblems = async (): Promise<PaginationModelResponse<ProblemModelResponse>> => {
         const response = await problemService.getProblems(paginationRequest);
-        setProblems(response.data);
+        console.log(paginationRequest)
+        if (problemsStore && problemsStore.length < totalProblems)
+            setProblems([...problemsStore, ...response.data]);
+        else
+            setProblems(response.data);
         setTotalProblems(response.total);
         if (!isFetched) {
             setIsFetched(true);
@@ -51,10 +55,18 @@ export const useProblems = (options?: UseQueryOptions<PaginationModelResponse<Pr
     });
 
     useEffect(() => {
-        if (problems){
+        if (publishedProblemsQuery.data)
+            setPublishedProblems(publishedProblemsQuery.data.data);
+    }, [publishedProblemsQuery.data]);
+
+    useEffect(() => {
+        if (problems)
             setPages(Math.ceil(problems.total / paginationRequest.perPage));
-        }
     }, [problems]);
+
+    useEffect(() => {
+        setProblems([]);
+    }, []);
 
     return {
         problems,

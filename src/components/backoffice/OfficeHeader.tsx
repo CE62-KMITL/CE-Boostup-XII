@@ -20,7 +20,7 @@ function OfficeHeader({ formik, handleSaveProblem }: OfficeHeaderProps) {
   async function handleDeleteProblem() {
     try {
       await deleteProblemMutation.mutateAsync();
-      navigate("/home/1");
+      navigate("/home");
     } catch (error) {
       console.error(error);
       alert((error as ErrorModelResponse).message);
@@ -41,7 +41,7 @@ function OfficeHeader({ formik, handleSaveProblem }: OfficeHeaderProps) {
             validate={true}
             text="กลับ"
             img={BackIcon}
-            ClickFunc={() => navigate("/home/1")}
+            ClickFunc={() => navigate("/home")}
           />
           <div className="flex w-52 justify-between">
             <Button

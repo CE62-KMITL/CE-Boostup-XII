@@ -26,7 +26,7 @@ function LoginForm({ setShowForgotPassword, setShowCreateAccount, mutation }: Lo
                 password: formik.values.password
             });
             cookies.set("token", response.token, { path: "/" });
-            navigate("/home/1");
+            navigate("/home");
         } catch (error) {
             console.error(error);
             alert((error as any).message);

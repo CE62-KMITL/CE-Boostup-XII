@@ -7,32 +7,37 @@ import { useProblems } from "../hooks/problems.hook";
 import LoadingPage from "./LoadingPage";
 import { useProblemsTags } from "../hooks/problem-tags.hook";
 import { useProblemsStore } from "../store/zustand/problems.zustand";
-import Dropdown from "../components/utils/Dropdown";
 import { useEffect, useState } from "react";
 import { DropdownType } from "../types/dropdown.type";
 import { usePaginationRequestStore } from "../store/zustand/pagination.zustand";
-import { useParams, useNavigate } from "react-router-dom";
 import AdminSearchBar from "../components/admin-home/SearchBar";
 import AdminProblemsTable from "../components/admin-home/ProblemsTable";
 import AdminProblemBar from "../components/admin-home/ProblemBar";
 import { Role } from "../enum/roles.enum";
 import { usePermission } from "../hooks/permission.hook";
+import { useScroll } from "../hooks/scroll.hook";
 
 export default function HomePage() {
     const permission = usePermission([Role.Admin, Role.Staff, Role.Reviewer, Role.Reviewer]);
-    const { page } = useParams();
-    const navigate = useNavigate();
+    const [page, setPage] = useState<number>(1);
     const { problems: problemsStore, isFetched, pages } = useProblemsStore();
     const [pagesList] = useState<DropdownType[]>([]);
     const { setPaginationRequest, paginationRequest } = usePaginationRequestStore();
+    const { isBottom } = useScroll();
 
     useEffect(() => {
         if (page)
             setPaginationRequest({
                 ...paginationRequest,
-                page: parseInt(page)
+                page: page,
+                sort: "createdAt",
             });
     }, [page]);
+
+    useEffect(() => {
+        if (pages && isBottom && page < pages)
+            setPage(page + 1);
+    }, [isBottom]);
 
     const { isLoading: isLoadingProblem, error } = useProblems();
     const { isLoading: isLoadingProblemTags } = useProblemsTags();
@@ -44,10 +49,6 @@ export default function HomePage() {
                 pagesList.push({ value: i.toString(), name: i.toString() });
         }
     }, [pages]);
-
-    function handelPageChange(selectedPage: string) {
-        navigate(`/home/${selectedPage}`);
-    }
 
     if (error) console.error(error);
 
@@ -91,9 +92,6 @@ export default function HomePage() {
                                         />
                                 ))
                         }
-                        <div className="self-end">
-                            <Dropdown type={1} selected={page} values={pagesList} onChange={(e) => handelPageChange(e as string)} />
-                        </div>
                     </div>
                 </div>
             </div>

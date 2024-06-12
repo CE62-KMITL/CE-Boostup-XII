@@ -6,16 +6,16 @@ import { useUser } from "../../hooks/user.hook";
 import { useState } from "react";
 import { useUsersStore } from "../../store/zustand/users.zustand";
 import { useGroupsStore } from "../../store/zustand/groups.zustand";
-import { useProblems } from "../../hooks/problems.hook";
 import { toZonedTime } from 'date-fns-tz';
 import { format as formatDate } from 'date-fns';
 import { th } from 'date-fns/locale';
 import { useGroup } from "../../hooks/group.hook";
+import { useProblemsStore } from "../../store/zustand/problems.zustand";
 
 function Leaderboard() {
   const { roleUsers } = useUsersStore();
   const { groups } = useGroupsStore();
-  const { publishedProblemsQuery } = useProblems();
+  const { publishedProblems } = useProblemsStore();
   const { getAvatar: userAvatar } = useUser();
   const { getAvatar: groupAvatar } = useGroup();
   const [topic, setTopic] = useState<"user" | "group">("user");
@@ -56,7 +56,7 @@ function Leaderboard() {
               img={groupAvatar(group.id)}
               group={group.name}
               score={group.totalScore}
-              submit={(group?.uniqueProblemSolvedCount * 100 / (publishedProblemsQuery.data?.data as []).length)}
+              submit={(group?.uniqueProblemSolvedCount * 100 / (publishedProblems as []).length)}
               latest={formatThaiDate(group.lastProblemSolvedAt)}
             />
           ))
