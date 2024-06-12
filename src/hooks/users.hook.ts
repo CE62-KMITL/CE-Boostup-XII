@@ -17,11 +17,11 @@ export const useUsers = (options?: UseQueryOptions<PaginationModelResponse<UserM
     const { setUsers, setRoleUsers, roleUsers } = useUsersStore();
 
     const fetchUsers = async (): Promise<PaginationModelResponse<UserModelResponse>> => {
-        return await usersService.getUsers({ page: 1, perPage: 25, sort: "totalScore" });
+        return await usersService.getUsers({ page: 1, perPage: 25, sort: "-totalScore" });
     }
 
     const fetchRoleUser = async (): Promise<PaginationModelResponse<UserModelResponse>> => {
-        const response = await usersService.getUsers({ ...paginationRequest, roles: Role.User, sort: "totalScore" });
+        const response = await usersService.getUsers({ ...paginationRequest, roles: Role.User });
         if (roleUsers && roleUsers.length < response.total)
             setRoleUsers([...roleUsers, ...response.data]);
         else
@@ -41,12 +41,12 @@ export const useUsers = (options?: UseQueryOptions<PaginationModelResponse<UserM
 
     useEffect(() => {
         if (users)
-            setUsers(users.data.reverse());
+            setUsers(users.data);
     }, [users]);
 
     useEffect(() => {
         if (roleUserQuery.data)
-            setRoleUsers(roleUserQuery.data.data.reverse());
+            setRoleUsers(roleUserQuery.data.data);
     }, [roleUserQuery.data]);
 
     useEffect(() => {

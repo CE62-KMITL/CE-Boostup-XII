@@ -7,6 +7,8 @@ import { useGroup } from "../../../hooks/group.hook";
 import { useProblemsStore } from "../../../store/zustand/problems.zustand";
 import { useUsersStore } from "../../../store/zustand/users.zustand";
 import { useAppSelector } from "../../../store/hook";
+import { usePermission } from "../../../hooks/permission.hook";
+import { Role } from "../../../enum/roles.enum";
 
 function ProfileCard({ username, email, house, point }: {
     username: string,
@@ -18,6 +20,7 @@ function ProfileCard({ username, email, house, point }: {
     const { allProblems } = useProblemsStore();
     const { roleUsers } = useUsersStore();
     const userId = useAppSelector(state => state.auth.user?.id);
+    const permission = usePermission([Role.User]);
     
     return (
         <>
@@ -39,7 +42,7 @@ function ProfileCard({ username, email, house, point }: {
                         house={house}
                     />
                 </div>
-                {group && allProblems && roleUsers && (
+                {permission && group && allProblems && roleUsers && (
                     <div className="flex items-center place-content-between absolute bottom-1/4 translate-y-[45%]
                     lg:w-[400px] xl:w-[450px] 2xl:w-[500px] h-fit">
                         <ProblemProgress problemProgress={(group?.uniqueProblemSolvedCount * 100 / allProblems.length).toString()} />

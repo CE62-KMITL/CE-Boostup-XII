@@ -19,7 +19,7 @@ function LeaderboardPage() {
       setPaginationRequest({
         ...paginationRequest,
         page: page,
-        sort: "totalScore",
+        sort: "-totalScore",
       });
   }, [page]);
 
