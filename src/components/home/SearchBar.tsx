@@ -22,7 +22,7 @@ type SearchBarProps = {
 function SearchBar({ resetPage }: SearchBarProps) {
     const { setPaginationRequest, paginationRequest } = usePaginationRequestStore();
     const problemTags = useAppSelector((state) => state.problemTags.problemTags);
-    const { problems, setProblems } = useProblemsStore();
+    const { problems } = useProblemsStore();
     const navigate = useNavigate();
     const [tagList] = useState<DropdownType[]>([]);
 
