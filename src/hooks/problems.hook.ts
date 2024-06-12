@@ -12,13 +12,15 @@ import { PublicationStatus } from "../enum/problem.enum";
 import { CreateProblemDto } from "../dto/problem.dto";
 
 const PROBLEM_QUERY_KEY = "problems";
+const PUBLISHED_PROBLEM_QUERY_KEY = "publishedProblems";
+const ALL_PROBLEM_QUERY_KEY = "allProblems";
 
 export const useProblems = (options?: UseQueryOptions<PaginationModelResponse<ProblemModelResponse>>) => {
     const { paginationRequest } = usePaginationRequestStore();
     const { setProblems, isFetched, setIsFetched, setAllProblems, setTotalProblems, setPages, problems: problemsStore, totalProblems, setPublishedProblems } = useProblemsStore();
 
     const fetchProblems = async (): Promise<PaginationModelResponse<ProblemModelResponse>> => {
-        const response = await problemService.getProblems(paginationRequest);
+        const response = await problemService.getProblems({ ...paginationRequest, sort: "createdAt" });
         setTotalProblems(response.total);
         if (paginationRequest.page === 1)
             setProblems(response.data);
@@ -32,7 +34,7 @@ export const useProblems = (options?: UseQueryOptions<PaginationModelResponse<Pr
     };
 
     const fetchPublishedProblems = async (): Promise<PaginationModelResponse<ProblemModelResponse>> => {
-        return await problemService.getProblems({ ...paginationRequest, publicationStatus: PublicationStatus.Published, sort: "createdAt" });
+        return await problemService.getProblems({ publicationStatus: PublicationStatus.Published });
     }
 
     const fetchAllProblems = async (): Promise<PaginationModelResponse<ProblemModelResponse>> => {
@@ -50,12 +52,12 @@ export const useProblems = (options?: UseQueryOptions<PaginationModelResponse<Pr
         refetchOnWindowFocus: false,
     });
 
-    const allProblemsQuery = useQuery<PaginationModelResponse<ProblemModelResponse>>([PROBLEM_QUERY_KEY], fetchAllProblems, {
+    const allProblemsQuery = useQuery<PaginationModelResponse<ProblemModelResponse>>([ALL_PROBLEM_QUERY_KEY], fetchAllProblems, {
         ...options,
         refetchOnWindowFocus: false,
     });
 
-    const publishedProblemsQuery = useQuery<PaginationModelResponse<ProblemModelResponse>>([PROBLEM_QUERY_KEY], fetchPublishedProblems, {
+    const publishedProblemsQuery = useQuery<PaginationModelResponse<ProblemModelResponse>>([PUBLISHED_PROBLEM_QUERY_KEY], fetchPublishedProblems, {
         ...options,
         refetchOnWindowFocus: false,
     });

@@ -17,7 +17,7 @@ function ProfileCard({ username, email, house, point }: {
     point: string,
 }) {
     const { group } = useGroup();
-    const { allProblems } = useProblemsStore();
+    const { publishedProblems } = useProblemsStore();
     const { roleUsers } = useUsersStore();
     const userId = useAppSelector(state => state.auth.user?.id);
     const permission = usePermission([Role.User]);
@@ -42,10 +42,10 @@ function ProfileCard({ username, email, house, point }: {
                         house={house}
                     />
                 </div>
-                {permission && group && allProblems && roleUsers && (
+                {permission && group && publishedProblems && roleUsers && (
                     <div className="flex items-center place-content-between absolute bottom-1/4 translate-y-[45%]
                     lg:w-[400px] xl:w-[450px] 2xl:w-[500px] h-fit">
-                        <ProblemProgress problemProgress={(group?.uniqueProblemSolvedCount * 100 / allProblems.length).toString()} />
+                        <ProblemProgress problemProgress={(group?.uniqueProblemSolvedCount * 100 / publishedProblems.length).toString()} />
                         <div className='flex flex-col justify-center lg:w-[200px] xl:w-[220px] 2xl:w-[240px] h-full'>
                             <div className='lg:text-[20px] xl:text-[22px] 2xl:text-[24px] font-bold'>
                                 อันดับที่ {roleUsers.findIndex(user => user.id === userId) + 1}
