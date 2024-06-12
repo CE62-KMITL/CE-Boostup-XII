@@ -13,7 +13,7 @@ import { useCreateProblemStore } from "../store/zustand/create-problem.zustand";
 import { useState, useEffect } from "react";
 import { ProgrammingLanguage } from "../enum/compile-and-run.enum";
 import { TestcaseType } from "../types/testcase.type";
-import PopUp from "../components/backoffice/PopUp";
+import PopUp from "../components/backoffice/Popup";
 import SuccessCard from "../components/backoffice/cards/SuccessCard";
 import { ErrorModelResponse } from "../types/response.type";
 import { useProblemStore } from "../store/zustand/problem.zustand";

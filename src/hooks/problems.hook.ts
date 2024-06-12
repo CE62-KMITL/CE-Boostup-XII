@@ -19,7 +19,6 @@ export const useProblems = (options?: UseQueryOptions<PaginationModelResponse<Pr
 
     const fetchProblems = async (): Promise<PaginationModelResponse<ProblemModelResponse>> => {
         const response = await problemService.getProblems(paginationRequest);
-        console.log(paginationRequest)
         if (problemsStore && problemsStore.length < totalProblems)
             setProblems([...problemsStore, ...response.data]);
         else
@@ -33,7 +32,7 @@ export const useProblems = (options?: UseQueryOptions<PaginationModelResponse<Pr
     };
 
     const fetchPublishedProblems = async (): Promise<PaginationModelResponse<ProblemModelResponse>> => {
-        return await problemService.getProblems({ ...paginationRequest, publicationStatus: PublicationStatus.Published });
+        return await problemService.getProblems({ ...paginationRequest, publicationStatus: PublicationStatus.Published, sort: "createdAt" });
     }
 
     const {
