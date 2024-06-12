@@ -6,5 +6,5 @@ export default function VerifyProvider() {
     const location = useLocation();
     const { user } = useUser();
 
-    return !user ? <Outlet /> : <Navigate to="/home/1" state={{ from: location }} replace />;
+    return !user ? <Outlet /> : <Navigate to="/home" state={{ from: location }} replace />;
 }

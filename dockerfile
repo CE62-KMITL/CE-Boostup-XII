@@ -18,7 +18,7 @@ FROM base
 COPY --from=prod-deps /app/node_modules /app/node_modules
 COPY --from=build /app/dist /app/dist
 
-RUN npm install vite
+RUN pnpm install vite
 
 EXPOSE 8080
 CMD [ "pnpm", "preview" ]

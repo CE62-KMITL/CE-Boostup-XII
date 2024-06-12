@@ -4,7 +4,7 @@ function SolveComponent() {
     const navigate = useNavigate();
 
     function handleSolve() {
-        navigate("/home/1");
+        navigate("/home");
     }
 
     return (

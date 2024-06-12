@@ -1,5 +1,5 @@
-import Button from "../utils/Button";
 import BackIcon from "../../assets/back.svg";
+import Button from "../utils/Button";
 import SendIcon from "../../assets/sendIcon.svg";
 import Dropdown from "../utils/Dropdown";
 import { useNavigate } from "react-router-dom";
@@ -25,35 +25,41 @@ export default function OptionBar() {
 
     async function handleSubmit() {
         try {
-            await createSubmissionMutation.mutateAsync({
-                code,
-                language: language,
-                problem: problem?.id as string
-            },{
-                onSuccess: (response) => {
-                    if (response.accepted)
-                        setPopUp(1);
-                    else {
-                        const content = response.outputCodes?.map((output, index) => {
-                            return `Testcase ${index + 1}: ${output}`;
-                        });
-                        setContent(content.join("\n"));
+            if (code)
+                await createSubmissionMutation.mutateAsync({
+                    code,
+                    language: language,
+                    problem: problem?.id as string
+                }, {
+                    onSuccess: (response) => {
+                        if (response.accepted)
+                            setPopUp(1);
+                        else {
+                            const content = response.outputCodes?.map((output, index) => {
+                                return `Testcase ${index + 1}: ${output}`;
+                            });
+                            setContent(content.join("\n"));
+                            setPopUp(3);
+                        }
+                    },
+                    onError: (error) => {
+                        const content = (error as any).statusCode === 500 ? "Internal Server Error" : "Something went wrong";
+                        setContent(content);
                         setPopUp(3);
                     }
-                }
-            });
+                });
         } catch (error) {
-            console.log(error);
+            console.error(error);
         }
     }
 
     return (
-        <div className="flex row justify-between w-full h-[42px] mb-[14px]">
-            <Button text="กลับ" img={BackIcon} className="flex items-center justify-evenly w-[118px] h-full bg-jenna rounded-[8px]" imgClassName="w-[16px] h-[16px]" ClickFunc={() => navigate("/home/1")} />
-            <div className="row flex justify-between w-[407px]">
-                <Button ClickFunc={() => { setPopUp(2); setContent(problem?.hint as string) }} text="คำใบ้" className="w-[90px] h-full bg-jenna rounded-[8px]" />
+        <div className="flex row justify-between w-full h-10 mb-[14px]">
+            <Button text="กลับ" img={BackIcon} className="flex items-center justify-evenly w-[118px] h-full bg-jenna rounded-[8px] text-[16px] font-medium" imgClassName="w-[16px] h-[16px]" ClickFunc={() => navigate(-1)} />
+            <div className="row flex justify-between w-[320px]">
+                <Button ClickFunc={() => { setPopUp(2); setContent(problem?.hint ? problem?.hint : "No hint for this problem 😊") }} text="คำใบ้" className="w-[90px] h-full bg-jenna rounded-[8px] text-[16px] font-medium" />
                 <Dropdown type={1} values={langList} onChange={(v) => setLanguage(v as ProgrammingLanguage)} />
-                <Button ClickFunc={handleSubmit} imgPosition="right" img={SendIcon} text="ส่ง" className="flex items-center justify-evenly w-[90px] h-full bg-jenna rounded-[8px]" imgClassName="w-[16px] h-[16px]" />
+                <Button ClickFunc={handleSubmit} imgPosition="right" img={SendIcon} text="ส่ง" className="flex items-center justify-evenly w-[90px] h-full bg-jenna rounded-[8px] text-[16px] font-medium" imgClassName="w-[16px] h-[16px]" />
             </div>
         </div>
     );

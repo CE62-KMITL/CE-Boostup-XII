@@ -1,10 +1,9 @@
-import { LoginDto, RegisterDto } from "../dto/auth.dto";
+import { LoginDto, RegisterDto, RequestPasswordResetDto, RequestAccountCreationDto, ResetPasswordDto } from "../dto/auth.dto";
 import { authService } from "../services/auth.service";
 import { usersService } from "../services/users.service";
-import { setAuthUser, setAuthAccessToken } from "../store/slices/auth.slice";
-import { useDispatch } from "react-redux";
+import { setAuthUser, setAuthAccessToken, deleteAuthState } from "../store/slices/auth.slice";
+import { useAppDispatch, useAppSelector } from "../store/hook";
 import { UserModelResponse } from "../types/response.type";
-import { store } from "../store/store";
 import {
     UseQueryOptions,
     useMutation,
@@ -15,16 +14,15 @@ import {
 const AUTH_USER_QUERY_KEY = "auth";
 
 export const useAuth = (options?: UseQueryOptions<UserModelResponse>) => {
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const queryClient = useQueryClient();
 
     const fetchAuthUser = async (): Promise<UserModelResponse> => {
-        return await usersService.getMe();
+        return await usersService.getSelf();
     };
 
     const registerMutation = useMutation(async (registerRequest: RegisterDto) => {
-        const response = await authService.register(registerRequest);
-        return response;
+        return await authService.register(registerRequest);
     });
 
     const {
@@ -33,7 +31,7 @@ export const useAuth = (options?: UseQueryOptions<UserModelResponse>) => {
         error,
     } = useQuery<UserModelResponse>(AUTH_USER_QUERY_KEY, fetchAuthUser, {
         ...options,
-        enabled: !!store.getState().auth.accessToken,
+        enabled: !!useAppSelector((state) => state.auth.accessToken),
     });
 
     const loginMutation = useMutation(async (loginRequest: LoginDto) => {
@@ -44,11 +42,31 @@ export const useAuth = (options?: UseQueryOptions<UserModelResponse>) => {
         return response;
     });
 
+    const requestResetPasswordMutation = useMutation(async (requestPasswordResetRequest: RequestPasswordResetDto) => {
+        return await authService.requestPasswordReset(requestPasswordResetRequest);
+    });
+
+    const createAccountMutation = useMutation(async (requestAccountCreationRequest: RequestAccountCreationDto) => {
+        return await authService.requestAccountCreation(requestAccountCreationRequest);
+    });
+
+    const resetPasswordMutation = useMutation(async (resetPasswordRequest: ResetPasswordDto) => {
+        return await authService.resetPassword(resetPasswordRequest);
+    });
+
+    const logout = () => {
+        dispatch(deleteAuthState());
+    }
+
     return {
         user,
         isLoading,
         error,
         loginMutation,
         registerMutation,
+        requestResetPasswordMutation,
+        createAccountMutation,
+        resetPasswordMutation,
+        logout,
     };
 };

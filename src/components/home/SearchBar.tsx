@@ -3,11 +3,11 @@ import Dropdown from "../utils/Dropdown";
 import Button from "../utils/OldButton";
 import { ProblemTagModelResponse } from "../../types/response.type";
 import { CompletionStatus } from "../../enum/problem.enum";
-import { store } from "../../store/store";
 import { useNavigate } from "react-router-dom";
 import { usePaginationRequestStore } from "../../store/zustand/pagination.zustand";
 import { DropdownType } from "../../types/dropdown.type";
 import { useProblemsStore } from "../../store/zustand/problems.zustand";
+import { useAppSelector } from "../../store/hook";
 
 const isComplete: DropdownType[] = [
     { value: CompletionStatus.Solved, name: "pass" },
@@ -17,7 +17,7 @@ const isComplete: DropdownType[] = [
 
 function SearchBar() {
     const { setPaginationRequest, paginationRequest } = usePaginationRequestStore();
-    const problemTags = store.getState().problemTags.problemTags;
+    const problemTags = useAppSelector((state) => state.problemTags.problemTags);
     const { problems } = useProblemsStore();
     const navigate = useNavigate();
     const [tagList] = useState<DropdownType[]>([]);
@@ -42,7 +42,7 @@ function SearchBar() {
             tags: tag,
             completionStatus: completionStatus as string != "" ? completionStatus : undefined
         });
-        navigate(`/home/1`);
+        navigate(`/home`);
     }, [level, tag, completionStatus]);
 
     function handelSearch() {
@@ -50,7 +50,7 @@ function SearchBar() {
             ...paginationRequest,
             search: search
         });
-        navigate(`/home/1`);
+        navigate(`/home`);
     }
 
     const recheckLevel = (selectedLevel: number) => {

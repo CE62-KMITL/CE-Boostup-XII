@@ -1,9 +1,8 @@
 import { problemTagsService } from "../services/problem-tags.service";
 import { setProblemTagState } from "../store/slices/problem-tags.slice";
 import { PaginationRequestDto } from "../dto/utils.dto";
-import { useDispatch } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../store/hook";
 import { ProblemTagModelResponse, PaginationModelResponse } from "../types/response.type";
-import { store } from "../store/store";
 import {
     UseQueryOptions,
     useQuery,
@@ -18,7 +17,7 @@ const initialPaginationRequest: PaginationRequestDto = {
 };
 
 export const useProblemsTags = (paginationRequest: PaginationRequestDto = initialPaginationRequest, options?: UseQueryOptions<PaginationModelResponse<ProblemTagModelResponse>>) => {
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const tagList = [["", "บทเรียน"]];
 
     const fetchProblemTags = async (): Promise<PaginationModelResponse<ProblemTagModelResponse>> => {
@@ -31,7 +30,7 @@ export const useProblemsTags = (paginationRequest: PaginationRequestDto = initia
         error,
     } = useQuery<PaginationModelResponse<ProblemTagModelResponse>>(PROBLEM_TAGS_QUERY_KEY, fetchProblemTags, {
         ...options,
-        enabled: !!store.getState().problemTags.problemTags,
+        enabled: !!useAppSelector((state) => state.problemTags.problemTags) === false,
         refetchOnWindowFocus: false,
     });
     

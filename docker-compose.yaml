@@ -2,6 +2,8 @@ version: '3.9'
 
 services:
   app:
+    env_file:
+      - .env
     container_name: ce-boostup-xii
     image: ce-boostup-xii
     build:

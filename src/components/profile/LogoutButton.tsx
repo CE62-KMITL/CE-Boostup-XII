@@ -1,13 +1,12 @@
-import { useDispatch } from "react-redux";
-import { deleteAuthState } from "../../store/slices/auth.slice";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../hooks/auth.hook";
 
 function LogOutButton() {
-    const dispatch = useDispatch();
+    const { logout } = useAuth();
     const navigate = useNavigate();
 
     function handleLogOut() {
-        dispatch(deleteAuthState());
+        logout();
         navigate("/");
     }
 

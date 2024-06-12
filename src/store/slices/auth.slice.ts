@@ -1,16 +1,18 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { UserModelResponse } from "../../types/response.type";
+import { UserModelResponse, GroupModelResponse } from "../../types/response.type";
 
 export interface AuthAppState {
   accessToken: string | null;
   user: UserModelResponse | null;
   avatar: string | null;
+  group: GroupModelResponse | null;
 }
 
 const initialState: AuthAppState = {
   accessToken: null,
   user: null,
   avatar: null,
+  group: null,
 };
 
 export const authSlice = createSlice({
@@ -30,9 +32,14 @@ export const authSlice = createSlice({
     setAuthUser: (state, action: PayloadAction<UserModelResponse>) => {
       state.user = action.payload;
     },
+    setGroup: (state, action: PayloadAction<GroupModelResponse>) => {
+      state.group = action.payload;
+    },
     deleteAuthState: (state) => {
       state.user = null;
       state.accessToken = null;
+      state.group = null;
+      state.avatar = null;
     },
   },
 });
@@ -43,4 +50,5 @@ export const {
   setAuthUser,
   deleteAuthState,
   setAvatar,
+  setGroup,
 } = authSlice.actions;

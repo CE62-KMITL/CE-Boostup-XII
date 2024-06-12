@@ -3,6 +3,7 @@ import { OptimizationLevel, ProgrammingLanguage, ResultCode } from "../enum/comp
 import { Role } from "../enum/roles.enum";
 import { AttachmentModel } from "./problem.type";
 import { CompileAndRunOutput } from "./compile-and-run.type";
+import { TestcaseType } from "./testcase.type";
 import { User } from "./user.type";
 
 export interface CompileAndRunModelResponse {
@@ -28,7 +29,7 @@ export interface SubmissionsModelResponse {
     compilationMemory: number;
     executionTime: number;
     executionMemory: number;
-    createdAt: Date;
+    createdAt: string;
 }
 
 export interface AuthModelResponse {
@@ -49,8 +50,8 @@ export interface ProblemModelResponse {
     output: string;
     hint: string;
     hintCost: number;
-    testcases: { input: string; output: string }[];
-    exampleTestcases: { input: string; output: string }[];
+    testcases: TestcaseType[];
+    exampleTestcases: TestcaseType[];
     starterCode: string;
     solution: string;
     solutionLanguage: ProgrammingLanguage;
@@ -68,8 +69,8 @@ export interface ProblemModelResponse {
     publicationStatus: PublicationStatus;
     completionStatus: CompletionStatus;
     userSolvedCount: number;
-    createdAt: Date;
-    updatedAt: Date;
+    createdAt: string;
+    updatedAt: string;
 }
 
 export interface ProblemTagModelResponse {
@@ -77,8 +78,8 @@ export interface ProblemTagModelResponse {
     name: string;
     description: string;
     owner: { id: string; displayName: string };
-    createdAt: Date;
-    updatedAt: Date;
+    createdAt: string;
+    updatedAt: string;
 }
 
 export interface SavesModelResponse {
@@ -86,8 +87,8 @@ export interface SavesModelResponse {
     owner: { id: string; displayName: string };
     problem: { id: string; title: string };
     code: string;
-    createdAt: Date;
-    updatedAt: Date;
+    createdAt: string;
+    updatedAt: string;
 }
 
 export interface GroupModelResponse {
@@ -100,9 +101,9 @@ export interface GroupModelResponse {
     uniqueTotalScore: number;
     problemSolvedCount: number;
     uniqueProblemSolvedCount: number;
-    lastProblemSolvedAt: Date;
-    createdAt: Date;
-    updatedAt: Date;
+    lastProblemSolvedAt: string;
+    createdAt: string;
+    updatedAt: string;
 }
 
 export interface UserModelResponse {
@@ -114,10 +115,10 @@ export interface UserModelResponse {
     group: { id: string; name: string } | null;
     totalScore: number;
     problemSolvedCount: number;
-    lastProblemSolvedAt: Date;
-    lastEmailRequestedAt: Date;
-    createdAt: Date;
-    updatedAt: Date;
+    lastProblemSolvedAt: string;
+    lastEmailRequestedAt: string;
+    createdAt: string;
+    updatedAt: string;
 }
 
 export interface AttachmentModelResponse {
@@ -130,7 +131,7 @@ export interface AttachmentModelResponse {
         id: string;
         displayName: string;
     };
-    createdAt: Date;
+    createdAt: string;
 }
 
 export interface ErrorModelResponse {
