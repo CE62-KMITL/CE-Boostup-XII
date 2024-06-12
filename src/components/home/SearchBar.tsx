@@ -15,10 +15,14 @@ const isComplete: DropdownType[] = [
     { value: CompletionStatus.Unattempted, name: "empty" },
 ]
 
-function SearchBar() {
+type SearchBarProps = {
+    resetPage: () => void;
+};
+
+function SearchBar({ resetPage }: SearchBarProps) {
     const { setPaginationRequest, paginationRequest } = usePaginationRequestStore();
     const problemTags = useAppSelector((state) => state.problemTags.problemTags);
-    const { problems } = useProblemsStore();
+    const { problems, setProblems } = useProblemsStore();
     const navigate = useNavigate();
     const [tagList] = useState<DropdownType[]>([]);
 
@@ -42,7 +46,7 @@ function SearchBar() {
             tags: tag,
             completionStatus: completionStatus as string != "" ? completionStatus : undefined
         });
-        navigate(`/home`);
+        resetPage();
     }, [level, tag, completionStatus]);
 
     function handelSearch() {
@@ -50,7 +54,7 @@ function SearchBar() {
             ...paginationRequest,
             search: search
         });
-        navigate(`/home`);
+        resetPage();
     }
 
     const recheckLevel = (selectedLevel: number) => {

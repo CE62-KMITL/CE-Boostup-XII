@@ -9,7 +9,7 @@ interface PaginationRequestState {
 export const usePaginationRequestStore = create<PaginationRequestState>((set) => ({
     paginationRequest: {
         page: 1,
-        perPage: 10,
+        perPage: 25,
         sort: "createdAt",
     },
     setPaginationRequest: (paginationRequest: PaginationRequestDto) => set({ paginationRequest }),

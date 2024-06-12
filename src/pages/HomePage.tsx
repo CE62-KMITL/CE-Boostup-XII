@@ -36,7 +36,7 @@ export default function HomePage() {
 
     useEffect(() => {
         if (pages && isBottom && page < pages)
-            setPage(page + 1);
+            setPage((prev) => prev + 1);
     }, [isBottom]);
 
     const { isLoading: isLoadingProblem, error } = useProblems();
@@ -44,10 +44,8 @@ export default function HomePage() {
 
     useEffect(() => {
         if (pagesList.length !== 0) pagesList.splice(0, pagesList.length);
-        if (pages) {
-            for (let i = 1; i <= pages; i++)
-                pagesList.push({ value: i.toString(), name: i.toString() });
-        }
+        if (pages)
+            Array.from({ length: pages }, (_, i) => pagesList.push({ value: (i + 1).toString(), name: (i + 1).toString() }));
     }, [pages]);
 
     if (error) console.error(error);
@@ -62,7 +60,7 @@ export default function HomePage() {
                     <div className="flex flex-col w-full h-fit">
                         <TitleText />
                         {
-                            permission ? <AdminSearchBar /> : <SearchBar />
+                            permission ? <AdminSearchBar resetPage={() => setPage(1)} /> : <SearchBar resetPage={() => setPage(1)} />
                         }
                         {problemsStore?.length !== 0 && permission ? <AdminProblemBar /> : <ProblemBar />}
                     </div>

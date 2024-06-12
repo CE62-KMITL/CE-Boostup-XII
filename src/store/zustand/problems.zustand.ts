@@ -18,7 +18,7 @@ interface ProblemsState {
 
 export const useProblemsStore = create<ProblemsState>((set) => ({
     problems: null,
-    setProblems: (problems: ProblemModelResponse[]) => set({ problems }),
+    setProblems: (problems: ProblemModelResponse[] | null) => set({ problems }),
     isFetched: false,
     setIsFetched: (isFetched: boolean) => set({ isFetched }),
     allProblems: null,

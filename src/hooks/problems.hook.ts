@@ -19,11 +19,14 @@ export const useProblems = (options?: UseQueryOptions<PaginationModelResponse<Pr
 
     const fetchProblems = async (): Promise<PaginationModelResponse<ProblemModelResponse>> => {
         const response = await problemService.getProblems(paginationRequest);
-        if (problemsStore && problemsStore.length < totalProblems)
-            setProblems([...problemsStore, ...response.data]);
-        else
-            setProblems(response.data);
         setTotalProblems(response.total);
+        console.log(paginationRequest.page)
+        if (paginationRequest.page === 1)
+            setProblems(response.data);
+        else {
+            if (problemsStore && problemsStore.length < totalProblems) 
+                setProblems([...problemsStore, ...response.data]);
+        }
         if (!isFetched) {
             setIsFetched(true);
             setAllProblems(response.data);
@@ -59,7 +62,7 @@ export const useProblems = (options?: UseQueryOptions<PaginationModelResponse<Pr
     }, [publishedProblemsQuery.data]);
 
     useEffect(() => {
-        if (problems)
+        if (problems) 
             setPages(Math.ceil(problems.total / paginationRequest.perPage));
     }, [problems]);
 

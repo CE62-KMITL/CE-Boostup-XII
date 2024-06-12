@@ -18,7 +18,11 @@ const isPublicate: DropdownType[] = [
     { value: PublicationStatus.Archived, name: "Archived" },
 ];
 
-function SearchBar() {
+type SearchBarProps = {
+    resetPage: () => void;
+};
+
+function SearchBar({ resetPage }: SearchBarProps) {
     const { setPaginationRequest, paginationRequest } = usePaginationRequestStore();
     const problemTags = useAppSelector((state) => state.problemTags.problemTags);
     const navigate = useNavigate();
@@ -47,7 +51,7 @@ function SearchBar() {
             publicationStatus: publicationStatus ? publicationStatus : undefined,
             owner: selfProblem ? user?.id : undefined,
         });
-        navigate(`/home`);
+        resetPage();
     }, [level, tag, publicationStatus, selfProblem]);
 
     function handelSearch() {
@@ -55,7 +59,7 @@ function SearchBar() {
             ...paginationRequest,
             search: search,
         });
-        navigate(`/home`);
+        resetPage();
     }
 
     const recheckLevel = (selectedLevel: number) => {

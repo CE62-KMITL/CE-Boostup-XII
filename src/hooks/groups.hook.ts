@@ -13,7 +13,7 @@ export const useGroups = (options?: UseQueryOptions<PaginationModelResponse<Grou
     const { setGroups } = useGroupsStore();
 
     const fetchGroups = async (): Promise<PaginationModelResponse<GroupModelResponse>> => {
-        return await groupsService.getGroups({ page: 1, perPage: 10, sort: "totalScore" });
+        return await groupsService.getGroups({ page: 1, perPage: 25, sort: "totalScore" });
     }
 
     const { data: groups, isLoading, error } = useQuery<PaginationModelResponse<GroupModelResponse>>(GROUPS_QUERY_KEY, fetchGroups, {

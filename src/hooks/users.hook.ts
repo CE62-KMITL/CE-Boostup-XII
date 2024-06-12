@@ -17,7 +17,7 @@ export const useUsers = (options?: UseQueryOptions<PaginationModelResponse<UserM
     const { setUsers, setRoleUsers, roleUsers } = useUsersStore();
 
     const fetchUsers = async (): Promise<PaginationModelResponse<UserModelResponse>> => {
-        return await usersService.getUsers({ page: 1, perPage: 10, sort: "totalScore" });
+        return await usersService.getUsers({ page: 1, perPage: 25, sort: "totalScore" });
     }
 
     const fetchRoleUser = async (): Promise<PaginationModelResponse<UserModelResponse>> => {

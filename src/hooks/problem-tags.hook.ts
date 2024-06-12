@@ -12,7 +12,7 @@ import { useEffect } from "react";
 const PROBLEM_TAGS_QUERY_KEY = "problemTags";
 const initialPaginationRequest: PaginationRequestDto = {
     page: 1,
-    perPage: 10,
+    perPage: 25,
     sort: "name",
 };
 
