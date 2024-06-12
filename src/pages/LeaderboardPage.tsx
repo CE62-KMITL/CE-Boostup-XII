@@ -8,7 +8,7 @@ import { usePaginationRequestStore } from "../store/zustand/pagination.zustand";
 import { useScroll } from "../hooks/scroll.hook";
 
 function LeaderboardPage() {
-  const { isLoading: isLoadingUsers, roleUserQuery } = useUsers();
+  const { roleUserQuery } = useUsers();
   const { isLoading: isLoadingGroups } = useGroups();
   const { setPaginationRequest, paginationRequest } = usePaginationRequestStore();
   const [page, setPage] = useState<number>(1);
@@ -28,7 +28,7 @@ function LeaderboardPage() {
       setPage(page + 1);
   }, [isBottom]);
 
-  if (isLoadingUsers || isLoadingGroups || roleUserQuery.isLoading)
+  if (isLoadingGroups || roleUserQuery.isLoading)
     return <LoadingPage />;
 
   return (
