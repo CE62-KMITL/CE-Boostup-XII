@@ -9,6 +9,7 @@ import { useUsersStore } from "../../../store/zustand/users.zustand";
 import { useAppSelector } from "../../../store/hook";
 import { usePermission } from "../../../hooks/permission.hook";
 import { Role } from "../../../enum/roles.enum";
+import { useEffect } from "react";
 
 function ProfileCard({ username, email, house, point }: {
     username: string,
@@ -21,47 +22,49 @@ function ProfileCard({ username, email, house, point }: {
     const { roleUsers } = useUsersStore();
     const userId = useAppSelector(state => state.auth.user?.id);
     const permission = usePermission([Role.User]);
-    
+
+    useEffect(() => {
+        console.log(permission, group, publishedProblems, roleUsers)
+    }, [permission && group && publishedProblems && roleUsers]);
+
     return (
-        <>
-            <div className="relative flex flex-col mt-[9.7vh] w-[1353px] h-[84.8vh] min-h-[600px] max-h-[900px] bg-stone01 rounded-b-[10px] items-center">
-                <div id="profile-background" className="w-full h-[40%] min-h-[250px] max-h-[325px]"
-                    style={{
-                        backgroundImage: `url(${ProfileBackground})`,
-                        backgroundPosition: "center",
-                        backgroundRepeat: "no-repeat",
-                        backgroundSize: "cover"
-                    }}>
-                </div>
-                <div className="-translate-y-1/2 flex items-end place-content-between 
+        <div className="relative flex flex-col mt-[9.7vh] w-[1353px] h-[84.8vh] min-h-[600px] max-h-[900px] bg-stone01 rounded-b-[10px] items-center">
+            <div id="profile-background" className="w-full h-[40%] min-h-[250px] max-h-[325px]"
+                style={{
+                    backgroundImage: `url(${ProfileBackground})`,
+                    backgroundPosition: "center",
+                    backgroundRepeat: "no-repeat",
+                    backgroundSize: "cover"
+                }}>
+            </div>
+            <div className="-translate-y-1/2 flex items-end place-content-between 
                 lg:w-[72.5%] xl:w-[70%] 2xl:w-[67.5%] h-[100%] min-h-[120px] max-h-[200px]">
-                    <ProfilePicture />
-                    <UserInfo
-                        username={username}
-                        email={email}
-                        house={house}
-                    />
-                </div>
-                {permission && group && publishedProblems && roleUsers && (
-                    <div className="flex items-center place-content-between absolute bottom-1/4 translate-y-[45%]
+                <ProfilePicture />
+                <UserInfo
+                    username={username}
+                    email={email}
+                    house={house}
+                />
+            </div>
+            {permission && group && publishedProblems && roleUsers && (
+                <div className="flex items-center place-content-between absolute bottom-1/4 translate-y-[45%]
                     lg:w-[400px] xl:w-[450px] 2xl:w-[500px] h-fit">
-                        <ProblemProgress problemProgress={(group?.uniqueProblemSolvedCount * 100 / publishedProblems.length).toString()} />
-                        <div className='flex flex-col justify-center lg:w-[200px] xl:w-[220px] 2xl:w-[240px] h-full'>
-                            <div className='lg:text-[20px] xl:text-[22px] 2xl:text-[24px] font-bold'>
-                                อันดับที่ {roleUsers.findIndex(user => user.id === userId) + 1}
-                            </div>
-                            <div className='lg:text-[12px] xl:text-[14px] 2xl:text-[16px] font-medium'>
-                                คะเเนนรวมทั้งหมด {point} คะเเนน <br />
-                                ทำผ่านไปเเล้วทั้งหมด {group?.uniqueProblemSolvedCount} ข้อ
-                            </div>
+                    <ProblemProgress problemProgress={(group?.uniqueProblemSolvedCount * 100 / publishedProblems.length).toString()} />
+                    <div className='flex flex-col justify-center lg:w-[200px] xl:w-[220px] 2xl:w-[240px] h-full'>
+                        <div className='lg:text-[20px] xl:text-[22px] 2xl:text-[24px] font-bold'>
+                            อันดับที่ {roleUsers.findIndex(user => user.id === userId) + 1}
+                        </div>
+                        <div className='lg:text-[12px] xl:text-[14px] 2xl:text-[16px] font-medium'>
+                            คะเเนนรวมทั้งหมด {point} คะเเนน <br />
+                            ทำผ่านไปเเล้วทั้งหมด {group?.uniqueProblemSolvedCount} ข้อ
                         </div>
                     </div>
-                )}
-                <div className='absolute -translate-y-1/2 top-[93%]'>
-                    <LogOutButton />
                 </div>
+            )}
+            <div className='absolute -translate-y-1/2 top-[93%]'>
+                <LogOutButton />
             </div>
-        </>
+        </div>
     );
 }
 

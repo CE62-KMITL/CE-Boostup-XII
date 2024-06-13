@@ -21,7 +21,7 @@ export const useUsers = (options?: UseQueryOptions<PaginationModelResponse<UserM
     }
 
     const fetchRoleUser = async (): Promise<PaginationModelResponse<UserModelResponse>> => {
-        const response = await usersService.getUsers({ ...paginationRequest, roles: Role.User });
+        const response = await usersService.getUsers({ ...paginationRequest, roles: Role.User, sort: undefined });
         if (roleUsers && roleUsers.length < response.total)
             setRoleUsers([...roleUsers, ...response.data]);
         else

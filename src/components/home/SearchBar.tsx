@@ -10,9 +10,9 @@ import { useProblemsStore } from "../../store/zustand/problems.zustand";
 import { useAppSelector } from "../../store/hook";
 
 const isComplete: DropdownType[] = [
-    { value: CompletionStatus.Solved, name: "pass" },
-    { value: CompletionStatus.Attempted, name: "unpass" },
-    { value: CompletionStatus.Unattempted, name: "empty" },
+    { value: CompletionStatus.Solved, name: "ผ่าน" },
+    { value: CompletionStatus.Attempted, name: "ไม่ผ่าน" },
+    { value: CompletionStatus.Unattempted, name: "ทำเลย" },
 ]
 
 type SearchBarProps = {
