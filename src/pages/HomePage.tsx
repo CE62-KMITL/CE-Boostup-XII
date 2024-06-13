@@ -35,6 +35,22 @@ export default function HomePage() {
     }, [page]);
 
     useEffect(() => {
+        setPaginationRequest({
+            ...paginationRequest,
+            page: page,
+            sort: "createdAt",
+            owner: undefined,
+            tags: undefined,
+            search: undefined,
+            difficulties: undefined,
+            completionStatus: undefined,
+            publicationStatus: undefined,
+            problem: undefined,
+            roles: undefined,
+        });
+    }, []);
+
+    useEffect(() => {
         if (pages && isBottom && page < pages)
             setPage((prev) => prev + 1);
     }, [isBottom]);
