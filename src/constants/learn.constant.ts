@@ -1,36 +1,32 @@
 import { LearnType } from "../types/learn.type"
-import Thumbnail1 from "../assets/test1-learn-thumbnail.png"
-import Thumbnail2 from "../assets/test2-learn-thumbnail.png"
+import Thumbnail1 from "../assets/day-1.png"
+import Thumbnail2 from "../assets/day-2.png"
+import Thumbnail3 from "../assets/day-3.png"
+import Thumbnail4 from "../assets/day-4.png"
 
 export const learnConstant: LearnType[] = [
     {
-        title: 'Array',
-        description: 'Array is a data structure that contains a group of elements. Typically these elements are all of the same data type, such as an integer or string.',
+        title: 'day-1',
+        description: 'variable and data type, basic input-output, logical and mathematical arithmetic, flow control(if-else)',
         img: Thumbnail1,
-        url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array'
+        url: 'https://drive.google.com/file/d/1Z4T0af7e8dfD88ZTbO91BwNotToUpqrm/view?usp=sharing'
     },
     {
-        title: 'Function',
-        description: 'Function is a block of code that performs a specific task. The main advantage of functions is that they allow you to break your program into smaller and modular pieces.',
+        title: 'day-2',
+        description: 'loop, array and string',
         img: Thumbnail2,
-        url: 'https://www.programiz.com/c-programming/c-functions'
+        url: 'https://drive.google.com/file/d/1d8MC4KQuy51wXVtRURVvx-mjOAgqzsvt/view?usp=sharing'
     },
     {
-        title: 'Function',
-        description: 'Function is a block of code that performs a specific task. The main advantage of functions is that they allow you to break your program into smaller and modular pieces.',
-        img: Thumbnail2,
-        url: 'https://www.programiz.com/c-programming/c-functions'
+        title: 'day-3',
+        description: 'Function',
+        img: Thumbnail3,
+        url: 'https://drive.google.com/file/d/1-vHrr73wBI3-wY_oFZmvgGzzWnwy_Ir_/view?usp=sharing'
     },
     {
-        title: 'Function',
-        description: 'Function is a block of code that performs a specific task. The main advantage of functions is that they allow you to break your program into smaller and modular pieces.',
-        img: Thumbnail2,
-        url: 'https://www.programiz.com/c-programming/c-functions'
-    },
-    {
-        title: 'Function',
-        description: 'Function is a block of code that performs a specific task. The main advantage of functions is that they allow you to break your program into smaller and modular pieces.',
-        img: Thumbnail2,
-        url: 'https://www.programiz.com/c-programming/c-functions'
+        title: 'day-4',
+        description: 'electricity, tinkercad and arduino',
+        img: Thumbnail4,
+        url: 'https://drive.google.com/file/d/1_aQc_PHpQAzbT-Gx56gXBy7Z1dZm6AWP/view?usp=sharing'
     }
 ]
