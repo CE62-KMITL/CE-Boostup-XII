@@ -36,7 +36,8 @@ export default function Editor({ height }: EditorProps) {
         if (mode === "solution")
             setCode(problem?.solution.replace(/\\n/g, "\n"));
         else
-            setCode(problem?.starterCode.replace(/\\n/g, "\n"));
+            setCode(problem?.starterCode.replace(/\\n/g, "\n"))
+        console.log(problem);
     }, [mode, problem]);
 
     async function handleUpdateProblem() {

@@ -31,7 +31,7 @@ function OfficeContent({ formik }: OfficeContentProps) {
           <p className={`text-[18px] font-bold ${solutionInputProps.error ? "text-red-600" : "text-stone05"}`}>Solution Code (Source Code)</p>
           <div className="rounded-[8px] overflow-hidden -z-50">
             <CodeMirror
-              value={formik.values.solution}
+              value={formik.values.solution.replace(/\\n/g, "\n")}
               height={`385px`}
               extensions={[StreamLanguage.define(cpp)]}
               onChange={(v) => formik.setFieldValue("solution", v)}
@@ -43,7 +43,7 @@ function OfficeContent({ formik }: OfficeContentProps) {
           <p className={`text-[18px] font-bold ${starterCodeInputProps.error ? "text-red-600" : "text-stone05"}`}>Starter Code (Skeleton Code)</p>
           <div className="rounded-[8px] overflow-hidden">
             <CodeMirror
-              value={formik.values.starterCode}
+              value={formik.values.starterCode.replace(/\\n/g, "\n")}
               height={`385px`}
               extensions={[StreamLanguage.define(cpp)]}
               onChange={(v) => formik.setFieldValue("starterCode", v)}

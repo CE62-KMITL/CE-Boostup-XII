@@ -21,25 +21,25 @@ function Leaderboard() {
   const [topic, setTopic] = useState<"user" | "group">("user");
 
   function formatThaiDate(dateString: string): string {
-    const date = new Date(dateString);
-    const zonedDate = toZonedTime(date, 'Asia/Bangkok');
+    try {
+      const date = new Date(dateString);
+      const zonedDate = toZonedTime(date, 'Asia/Bangkok');
 
-    const datePart = formatDate(zonedDate, 'dd MMM', { locale: th });
-    const timePart = formatDate(zonedDate, 'HH.mm.ss');
+      const datePart = formatDate(zonedDate, 'dd MMM', { locale: th });
+      const timePart = formatDate(zonedDate, 'HH.mm.ss');
 
-    return `${datePart} | ${timePart}`;
+      return `${datePart} | ${timePart}`;
+    } catch (error) {
+      return '-';
+    }
   }
-
-  useEffect(() => {
-    console.log(publishedProblems);
-  }, [publishedProblems]);
 
   return (
     <div className="flex w-full flex-col pb-10 font-semibold">
       <OptionHeader setTopic={setTopic} topic={topic} />
       <div className="p-4 pt-8 rounded-b-lg rounded-r-lg bg-stone01 w-full h-full overflow-none">
         <Topics topic={topic} />
-         {topic === "user" ?
+        {topic === "user" ?
           roleUsers?.map((user, index) => (
             <AccountTable
               id={user.id}
@@ -52,7 +52,7 @@ function Leaderboard() {
               latest={formatThaiDate(user.lastProblemSolvedAt)}
             />
           ))
-          : 
+          :
           groups?.map((group, index) => (
             <TeamAccountTable
               id={group.id}
@@ -60,11 +60,11 @@ function Leaderboard() {
               img={groupAvatar(group.id)}
               group={group.name}
               score={group.totalScore}
-              submit={(group?.uniqueProblemSolvedCount * 100 / (publishedProblems as []).length)}
+              submit={Math.ceil(group?.uniqueProblemSolvedCount * 100 / (publishedProblems as []).length)}
               latest={formatThaiDate(group.lastProblemSolvedAt)}
             />
           ))
-         }
+        }
       </div>
     </div>
   );

@@ -76,12 +76,12 @@ function Editor({ height, problemId, updateSaveMutation, createSaveMutation, sav
         try {
             if (!problemId) return navigate("/home");
             if (savesQuery.data) {
+                setCode(v);
                 await updateSaveMutation.mutateAsync({
                     saveId: savesQuery.data.id,
-                    updateSaveRequest: { code: v.replace(/\n/g, "\\n") }
+                    updateSaveRequest: { code: v }
                 });
             }
-            setCode(v);
         } catch (error) {
             console.error(error);
         }
@@ -93,7 +93,7 @@ function Editor({ height, problemId, updateSaveMutation, createSaveMutation, sav
             <div
                 ref={editorHeightRef}
                 id="editor-height"
-                className="relative rounded-[10px] bg-stone01 border-red-500 overflow-hidden"
+                className="relative rounded-[10px] bg-stone01 overflow-hidden"
                 style={{ height: `${height - 66 - 55}px` }}
             >
                 <CodeMirror

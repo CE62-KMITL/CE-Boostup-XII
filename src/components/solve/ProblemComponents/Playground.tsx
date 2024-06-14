@@ -33,7 +33,7 @@ export default function Playground({ problem }: PlaygroundProps) {
                 language,
                 code,
                 optimizationLevel: problem?.optimizationLevel,
-                inputs: input ? [input.replace(/\n/g, "\\n")] : [],
+                inputs: input ? [input.replace(/\n/g, "\\n")] : [""],
                 allowedHeaders: problem?.allowedHeaders,
                 bannedFunctions: problem?.bannedFunctions,
                 timeLimit: problem?.timeLimit,
