@@ -30,7 +30,7 @@ function BackOfficePage() {
   const { setProblemId } = useProblemStore();
 
   function getValidTestcases(testcases: TestcaseType[]) {
-    const validTestcases = testcases.filter((testcase) => testcase.input !== "" && testcase.output !== "");
+    const validTestcases = testcases.filter((testcase) => testcase.input !== "" || testcase.output !== "");
     if (validTestcases.length === 0) return undefined;
     return validTestcases;
   }
