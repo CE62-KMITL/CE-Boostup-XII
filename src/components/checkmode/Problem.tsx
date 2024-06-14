@@ -50,12 +50,11 @@ export default function Problem({ problem }: ProblemProps) {
                         content={
                             <p>
                                 {problem?.bannedFunctions.map((func, index) => (
-                                    <span dangerouslySetInnerHTML={{ __html: formattedText(func) as string }} key={index} />
+                                    <textarea className="bg-transparent" key={index}>{formattedText(func)}</textarea>
                                 ))}
                             </p>
                         }
                     />
-
                     <div className="relative">
                         <div className="divide-y-2">
                             {problem?.exampleTestcases.map((testcase, index) => (

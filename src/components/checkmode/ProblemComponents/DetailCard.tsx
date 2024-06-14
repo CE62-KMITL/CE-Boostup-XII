@@ -12,7 +12,7 @@ export default function DetailCard({ title, content }: DetailCardProps) {
             <h2 dangerouslySetInnerHTML={{ __html: title }} className="text-[18px] font-bold" />
             {
                 typeof content === 'string' ?
-                    <p dangerouslySetInnerHTML={{ __html: content }} className="ml-10 py-2 text-[16px] font-medium" />
+                    <textarea className="py-2 ml-10 text-[16px] font-medium bg-transparent" disabled>{content}</textarea>
                     :
                     <p className="ml-10 py-2 text-[16px] font-medium">{content}</p>
             }

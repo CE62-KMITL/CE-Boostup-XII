@@ -24,13 +24,13 @@ export default function Explain({ problem }: ExplainProps) {
                 <p className="self-end font-light text-[14px]">โดย พี่{problem?.owner.displayName}</p>
             </div>
             <div className="divide-y-2 px-3">
-                <DetailCard title="รูปแบบ input" content={<p>{problem?.input}</p>} />
-                <DetailCard title="รูปแบบ output" content={<p>{problem?.output}</p>} />
-                <DetailCard title="ข้อจำกัด" content={<p>{
-                    problem?.bannedFunctions.map((func, index) => (
-                        <span key={index} dangerouslySetInnerHTML={{ __html: formattedText(func) as string }} />
-                    ))
-                }</p>} />
+                <DetailCard title="รูปแบบ input" content={problem?.input} />
+                <DetailCard title="รูปแบบ output" content={problem?.output} />
+                <DetailCard title="ข้อจำกัด" content={
+                    problem?.bannedFunctions.map((func) => {
+                        return func
+                    }).join('/n')
+                } />
                 {
                     problem && problem.exampleTestcases.length > 0 &&
                     <div className="relative">

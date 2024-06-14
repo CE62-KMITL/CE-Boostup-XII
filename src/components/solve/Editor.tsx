@@ -55,7 +55,7 @@ function Editor({ height, problemId, updateSaveMutation, createSaveMutation, sav
             if (savesQuery.data && code) {
                 await updateSaveMutation.mutateAsync({
                     saveId: savesQuery.data.id,
-                    updateSaveRequest: { code: code.replace(/\n/g, "\\n") }
+                    updateSaveRequest: { code: code }
                 });
             }
         } catch (error) {

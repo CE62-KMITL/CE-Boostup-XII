@@ -43,16 +43,16 @@ function BackOfficePage() {
   useEffect(() => {
     if (searchParams.get("problemId") !== null && problem) {
       formik.setValues({
-        title: problem.title.replace(/\\n/g, "\n"),
-        description: problem.description.replace(/\\n/g, "\n"),
-        input: problem.input.replace(/\\n/g, "\n"),
-        output: problem.output.replace(/\\n/g, "\n"),
-        hint: problem.hint.replace(/\\n/g, "\n"),
+        title: problem.title,
+        description: problem.description,
+        input: problem.input,
+        output: problem.output,
+        hint: problem.hint,
         hintCost: problem.hintCost.toString(),
         starterCode: problem.starterCode,
         solution: problem.solution,
         bannedFunctions: problem.bannedFunctions.join("\n"),
-      });
+      }); 
     }
   }, [problem]);
 
@@ -68,16 +68,16 @@ function BackOfficePage() {
       }
       if (searchParams.get("problemId") === null) {
         const response = await createProblemMutation.mutateAsync({
-          title: formik.values.title.replace(/\n/g, "\\n"),
-          description: formik.values.description.replace(/\n/g, "\\n"),
-          input: formik.values.input.replace(/\n/g, "\\n"),
-          output: formik.values.output.replace(/\n/g, "\\n"),
-          hint: formik.values.hint.replace(/\n/g, "\\n"),
+          title: formik.values.title,
+          description: formik.values.description,
+          input: formik.values.input,
+          output: formik.values.output,
+          hint: formik.values.hint,
           hintCost: parseInt(formik.values.hintCost),
           exampleTestcases: getValidTestcases(testcases) as TestcaseType[],
           starterCode: formik.values.starterCode,
           solution: formik.values.solution,
-          bannedFunctions: [formik.values.bannedFunctions.replace(/\n/g, "\\n")],
+          bannedFunctions: [formik.values.bannedFunctions],
           difficulty: difficulty,
           testcases: getValidTestcases(hiddenTestcases),
           tags: selectedTags,
@@ -89,16 +89,16 @@ function BackOfficePage() {
         setSearchParams({ problemId: response.id });
       } else {
         await updateProblemMutation.mutateAsync({
-          title: formik.values.title.replace(/\n/g, "\\n"),
-          description: formik.values.description.replace(/\n/g, "\\n"),
-          input: formik.values.input.replace(/\n/g, "\\n"),
-          output: formik.values.output.replace(/\n/g, "\\n"),
-          hint: formik.values.hint.replace(/\n/g, "\\n"),
+          title: formik.values.title,
+          description: formik.values.description,
+          input: formik.values.input,
+          output: formik.values.output,
+          hint: formik.values.hint,
           hintCost: parseInt(formik.values.hintCost),
           exampleTestcases: getValidTestcases(testcases),
           starterCode: formik.values.starterCode,
           solution: formik.values.solution,
-          bannedFunctions: [formik.values.bannedFunctions.replace(/\n/g, "\\n")],
+          bannedFunctions: [formik.values.bannedFunctions],
           difficulty: difficulty,
           testcases: getValidTestcases(hiddenTestcases),
           tags: selectedTags,
@@ -147,9 +147,8 @@ function BackOfficePage() {
   });
 
   useEffect(() => {
-    if (createProblemMutation.isSuccess) {
+    if (createProblemMutation.isSuccess) 
       setShow(true);
-    }
   }, [createProblemMutation.isSuccess]);
 
   if (createProblemMutation.isLoading || createAttachmentMutation.isLoading || updateProblemMutation.isLoading || isLoading)

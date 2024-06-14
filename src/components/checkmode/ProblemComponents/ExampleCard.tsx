@@ -1,6 +1,7 @@
 import { usePopUp } from "../../../hooks/pop-up.hook";
 import { useCompilerSettingStore } from "../../../store/zustand/compiler-setting.zustand"
 import InfoIcon from "../../../assets/InfoIcon.svg"
+import { useEffect } from "react";
 
 type ExampleCardProps = {
     title: string;
@@ -12,6 +13,10 @@ type ExampleCardProps = {
 export default function ExampleCard({ title, input, output, inputMode = false }: ExampleCardProps) {
     const { setInput } = useCompilerSettingStore();
     const { setPopUp } = usePopUp();
+
+    useEffect(() => {
+        console.log("input", input);
+    }, [input])
 
     return (
         <div className="py-2">
@@ -33,12 +38,12 @@ export default function ExampleCard({ title, input, output, inputMode = false }:
                                 <input type="text" className="w-full bg-jenna border-none" placeholder={input} onChange={(e) => setInput(e.target.value)} />
                             </div>
                         ) :
-                            <div dangerouslySetInnerHTML={{ __html: input }} className="bg-stone02 w-full rounded-[10px] p-2 text-[16px] font-medium" />
+                            <textarea className="bg-stone02 w-full rounded-[10px] p-2 text-[16px] font-medium" disabled>{input}</textarea>
                     }
                 </div>
                 <div className="flex flex-col w-full py-2">
                     <p className="mb-[4px] text-[14px] font-medium">output :</p>
-                    <div dangerouslySetInnerHTML={{ __html: output }} className="bg-stone02 w-full rounded-[10px] p-2 text-[16px] font-medium" />
+                    <textarea className="bg-stone02 w-full rounded-[10px] p-2 text-[16px] font-medium">{output}</textarea>
                 </div>
             </div>
         </div>
