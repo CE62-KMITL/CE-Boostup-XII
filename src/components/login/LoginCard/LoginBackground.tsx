@@ -1,7 +1,7 @@
 function LoginBackground() {
   return (
     <div className="absolute w-full h-full">
-      <div className="flex justify-center relative w-full h-full ">
+      <div className="flex justify-center relative w-full h-full">
         <div
           className="absolute left-0 w-[25%] min-w-[130px] h-full 
           rounded-[2rem] rounded-tr-[1.24rem] bg-stone01"
