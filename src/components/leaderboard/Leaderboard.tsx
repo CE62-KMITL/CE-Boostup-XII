@@ -3,7 +3,7 @@ import AccountTable from "./AccountTable";
 import TeamAccountTable from "./TeamAccountTable";
 import Topics from "./Topics";
 import { useUser } from "../../hooks/user.hook";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useUsersStore } from "../../store/zustand/users.zustand";
 import { useGroupsStore } from "../../store/zustand/groups.zustand";
 import { toZonedTime } from 'date-fns-tz';

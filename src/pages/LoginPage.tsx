@@ -15,7 +15,7 @@ export default function LoginPage() {
     const [isCreateAccountPopUp, setIsCreateAccountPopUp] = useState<boolean>(false);
     const { loginMutation } = useAuth();
 
-    if (loginMutation.isLoading) 
+    if (loginMutation.isLoading)
         return <LoadingPage />;
 
     return (
@@ -25,12 +25,14 @@ export default function LoginPage() {
             {isCreateAccountPopUp && <CreateAccountPopUp setShowCreateAccount={setIsCreateAccountPopUp} />}
             <Background />
             <div className="flex justify-center items-center w-screen h-screen">
-                <div className="border-none
-                lg:border-yellow-500 lg:scale-[0.8]
-                xl:border-red-500 xl:scale-[0.9]
-                2xl:border-lime-500 2xl:scale-[1.0] 
+                <div className="
+                sm:scale-[0.5]
+               md:scale-[0.6]
+               lg:scale-[0.7]
+               xl:scale-[0.85]
+              2xl:scale-[1.0] 
                 flex flex-col items-center place-content-between relative
-                w-full h-full min-w-[400px] max-w-[482px] min-h-[600px] max-h-[700px]">
+                w-full h-full min-w-[400px] max-w-[482px] min-h-[700px] max-h-[700px]">
                     <LogoIcon />
                     <div className="absolute -translate-x-1/2 left-1/2 bottom-0 w-full h-full max-h-[525px]">
                         <LoginBackground />
