@@ -8,6 +8,7 @@ export default {
       extend: {
         fontFamily: {
           'main': ['IBM Plex Sans Thai', 'sans-serif'],
+          "editor": ["Space Mono", "monospace"],
         },
         colors: {
           'primary01': '#0B384B',
