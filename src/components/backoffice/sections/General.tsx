@@ -164,7 +164,7 @@ export default function General({ formik }: GeneralProps) {
             <div className="flex justify-between w-[95%]">
               <InputPlain
                 {...hintCostInputProps}
-                label="ราคาคำใบ้ *"
+                label="ราคาคำใบ้"
                 subtext="คะแนนที่เสียในการเปิดคำใบ้"
                 type="number"
                 value={formik.values.hintCost}
@@ -178,7 +178,7 @@ export default function General({ formik }: GeneralProps) {
               <div className="flex flex-col">
                 <InputPlain
                   label="ระดับความยากของโจทย์ *"
-                  subtext="คะแนนที่เสียในการเปิดคำใบ้"
+                  subtext="หากระดับความยากไม่เหมาะสมจะมีการแก้ไขให้ทันที"
                   type="text"
                   placeholder=" "
                   required={true}

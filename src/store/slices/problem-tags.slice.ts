@@ -16,9 +16,13 @@ export const problemTagSlice = createSlice({
     setProblemTagState: (state, action: PayloadAction<ProblemTagModelResponse[]>) => {
         state.problemTags = action.payload;
     },
+    deleteProblemTagState: (state) => {
+        state.problemTags = null;
+    }
   },
 });
 
 export const {
   setProblemTagState,
+  deleteProblemTagState,
 } = problemTagSlice.actions;

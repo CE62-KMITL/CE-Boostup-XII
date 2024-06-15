@@ -12,7 +12,7 @@ export default function TestcaseInput({ index, type }: TestcaseInputProps) {
     return (
         <div className="flex">
             <InputPlain
-                label={`ตัวอย่างที่ ${index} *`}
+                label={`ตัวอย่างที่ ${index}`}
                 subtext="Input :"
                 type="textarea"
                 placeholder=" "

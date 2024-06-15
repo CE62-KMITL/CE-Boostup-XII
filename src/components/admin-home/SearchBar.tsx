@@ -55,6 +55,7 @@ function SearchBar({ resetPage }: SearchBarProps) {
     }, [level, tag, publicationStatus, selfProblem]);
 
     function handelSearch() {
+        console.log(search);
         setPaginationRequest({
             ...paginationRequest,
             search: search,
@@ -89,7 +90,7 @@ function SearchBar({ resetPage }: SearchBarProps) {
         <div className="flex space-x-4 w-full h-[40px] mb-[1.6rem]">
             <div className="relative w-[calc(100%-630px)] h-full flex">
                 <input type="text" className="search-box h-full w-full rounded-lg px-[16px] text-stone04 focus:outline-none"
-                    placeholder="พิมพ์ชื่อโจทย์ หรือเลขข้อ" onChange={(e) => setSearch(e.target.value)} />
+                    placeholder="พิมพ์ชื่อโจทย์" onChange={(e) => setSearch(e.target.value)} />
                 <Button type={1} mode={4} validate={true} text="ค้นหา" img="" ClickFunc={handelSearch} />
             </div>
             <Dropdown type={2} title="บทเรียน" values={tagList} onChange={(v) => setTag(v)} />

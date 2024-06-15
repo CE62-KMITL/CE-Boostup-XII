@@ -3,7 +3,7 @@ import TestcaseInput from "../TestcaseInput";
 function HiddenTestcase() {
   return (
     <>
-      <p className="mt-16 text-[24px] text-stone05 font-bold">Hidden Test Case</p>
+      <p className="mt-16 text-[24px] text-stone05 font-bold">Hidden Test Case *</p>
       <p className="text-stone05">
         คือ Test Case ที่จะถูกซ่อนไว้ น้องจะไม่เห็นถึง Test Case เหล่านี้
       </p>

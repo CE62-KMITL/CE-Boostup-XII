@@ -30,11 +30,8 @@ export const emptyCreateProblemValues: CreateProblemValues = {
 export const CreateProblemValidationSchema = yup.object({
     title: requiredValidator,
     description: requiredValidator,
-    hint: requiredValidator,
-    hintCost: requiredValidator,
     input: requiredValidator,
     output: requiredValidator,
     solution: requiredValidator,
-    bannedFunctions: requiredValidator,
     difficulty: requiredValidator,
 });

@@ -51,7 +51,7 @@ function BackOfficePage() {
         hintCost: problem.hintCost.toString(),
         starterCode: problem.starterCode,
         solution: problem.solution,
-        bannedFunctions: problem.bannedFunctions.join("\n"),
+        bannedFunctions: problem.bannedFunctions.join(","),
         difficulty: problem.difficulty.toString(),
       });
     }
@@ -78,7 +78,7 @@ function BackOfficePage() {
           exampleTestcases: getValidTestcases(testcases) as TestcaseType[],
           starterCode: formik.values.starterCode,
           solution: formik.values.solution,
-          bannedFunctions: [formik.values.bannedFunctions],
+          bannedFunctions: formik.values.bannedFunctions.split(","),
           difficulty: parseInt(formik.values.difficulty),
           testcases: getValidTestcases(hiddenTestcases),
           tags: selectedTags,
