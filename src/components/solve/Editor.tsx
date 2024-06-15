@@ -101,7 +101,7 @@ function Editor({ height, problemId, updateSaveMutation, createSaveMutation, sav
                     height={`${editorHeight - 50}px`}
                     extensions={[StreamLanguage.define(language === ProgrammingLanguage.CPP17 ? cpp : c)]}
                     onChange={handleChange}
-                    theme={githubLight}
+                    // theme={githubLight}
                 />
                 <EditorFooter status={updateSaveMutation.status} handleSave={handleSave} />
             </div>
