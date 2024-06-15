@@ -55,7 +55,6 @@ function SearchBar({ resetPage }: SearchBarProps) {
     }, [level, tag, publicationStatus, selfProblem]);
 
     function handelSearch() {
-        console.log(search);
         setPaginationRequest({
             ...paginationRequest,
             search: search,

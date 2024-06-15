@@ -27,7 +27,7 @@ export default function ExampleCard({ title, input, output, inputMode = false }:
                 </div>
                 <div className="flex flex-col w-1/2">
                     <p>output :</p>
-                    <div className="bg-stone02 w-5/6 rounded-[10px] p-3 font-semibold" dangerouslySetInnerHTML={{ __html: output }} />
+                    <textarea className="bg-stone02 w-5/6 rounded-[10px] p-3 font-semibold overflow-x-scroll text-nowrap" value={output} disabled />
                 </div>
             </div>
         </div>

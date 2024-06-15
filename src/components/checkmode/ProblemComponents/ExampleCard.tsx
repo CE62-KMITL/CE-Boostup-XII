@@ -43,7 +43,7 @@ export default function ExampleCard({ title, input, output, inputMode = false }:
                 </div>
                 <div className="flex flex-col w-full py-2">
                     <p className="mb-[4px] text-[14px] font-medium">output :</p>
-                    <textarea className="bg-stone02 w-full rounded-[10px] p-2 text-[16px] font-medium">{output}</textarea>
+                    <textarea disabled className="bg-stone02 w-full rounded-[10px] p-3 font-semibold overflow-x-scroll text-nowrap">{output}</textarea>
                 </div>
             </div>
         </div>
