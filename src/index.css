@@ -18,6 +18,10 @@
     color: #495057;
   }
 
+  textarea {
+    font-family: "Space Mono", monospace;
+  }
+
   .gradient-background {
      background: linear-gradient(180deg, #0b384b 29%, #10516c 62%, #097275 100%);
   }

@@ -102,7 +102,6 @@ function Editor({ height, problemId, updateSaveMutation, createSaveMutation, sav
                     extensions={[StreamLanguage.define(language === ProgrammingLanguage.CPP17 ? cpp : c)]}
                     onChange={handleChange}
                     theme={githubLight}
-                    className="font-editor"
                 />
                 <EditorFooter status={updateSaveMutation.status} handleSave={handleSave} />
             </div>

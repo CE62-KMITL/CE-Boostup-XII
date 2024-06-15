@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { useSearchParams } from 'react-router-dom';
 import { UseMutationResult } from "react-query";
 import { RegisterDto } from "../../dto/auth.dto";
+import { useEffect } from "react";
 
 type RegisterFormCardProps = {
   mutation: UseMutationResult<{ massage: string; }, unknown, RegisterDto, unknown>
@@ -16,6 +17,12 @@ type RegisterFormCardProps = {
 function RegisterFormCard({ mutation }: RegisterFormCardProps) {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
+
+  useEffect(() => {
+    const token = searchParams.get('token');
+    if (!token)
+      navigate("/");
+  }, [searchParams]);
 
   async function handleRegister() {
     try {
