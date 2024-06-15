@@ -1,7 +1,7 @@
 import Button from "../utils/Button";
 import Explain from "./ProblemComponents/Explain";
 import Playground from "./ProblemComponents/Playground";
-import { useState, ReactElement } from "react";
+import { useState, ReactElement, useEffect } from "react";
 import { ProblemModelResponse } from "../../types/response.type";
 import TitleCard from "./ProblemComponents/TitleCard";
 
@@ -14,6 +14,14 @@ function Problem({ height, problem }: ProblemProps) {
     const clickedStyle = "bg-white w-1/2 h-[60px] rounded-t-[10px] self-end font-bold";
     const unclickedStyle = "bg-primary04 w-1/2 h-[60px] rounded-t-[10px] self-end text-white font-bold";
     const [select, setSelect] = useState<number>(0);
+
+    useEffect(() => {
+        if (problem && problem.attachments.length > 0) {
+            problem.attachments.map((attachment) => {
+                window.open(`${window.location.origin}${attachment.url}`, "_blank");
+            });
+        }
+    }, [problem]);
 
     const components: ReactElement[] = [
         <Explain problem={problem} />,
