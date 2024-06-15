@@ -34,7 +34,7 @@ export default function Playground({ problem }: PlaygroundProps) {
                 formattedDiagnostic: false
             }, {
                 onSuccess: (response) => {
-                    setOutput(`${response.outputs[0].runtimeOutput ? "" : response.outputs[0].runtimeOutput} ${response.compilerOutput === "" ? "" : response.compilerOutput}`)
+                    setOutput(response.outputs[0].runtimeOutput ? response.outputs[0].runtimeOutput : "null")
                 },
                 onError: (error) => {
                     console.error(error);

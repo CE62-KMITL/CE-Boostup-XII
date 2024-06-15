@@ -1,7 +1,6 @@
 import { usePopUp } from "../../../hooks/pop-up.hook";
 import { useCompilerSettingStore } from "../../../store/zustand/compiler-setting.zustand"
 import InfoIcon from "../../../assets/InfoIcon.svg"
-import { useEffect } from "react";
 
 type ExampleCardProps = {
     title: string;
@@ -13,10 +12,6 @@ type ExampleCardProps = {
 export default function ExampleCard({ title, input, output, inputMode = false }: ExampleCardProps) {
     const { setInput } = useCompilerSettingStore();
     const { setPopUp } = usePopUp();
-
-    useEffect(() => {
-        console.log("input", input);
-    }, [input])
 
     return (
         <div className="py-2">

@@ -40,7 +40,6 @@ export default function Editor({ height }: EditorProps) {
             setCode(problem?.solution);
         else
             setCode(problem?.starterCode ? problem.starterCode : "");
-        console.log(problem);
     }, [mode, problem]);
 
     async function handleUpdateProblem() {

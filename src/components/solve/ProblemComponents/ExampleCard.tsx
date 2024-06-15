@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useCompilerSettingStore } from "../../../store/zustand/compiler-setting.zustand"
 
 type ExampleCardProps = {
@@ -9,6 +10,10 @@ type ExampleCardProps = {
 
 export default function ExampleCard({ title, input, output, inputMode = false }: ExampleCardProps) {
     const { setInput } = useCompilerSettingStore();
+
+    useEffect(() => {
+        setInput("");
+    }, []);
 
     return (
         <div className="py-3">
