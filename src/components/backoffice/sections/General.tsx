@@ -12,7 +12,8 @@ type GeneralProps = {
 
 export default function General({ formik }: GeneralProps) {
   const problemTags = useAppSelector((state) => state.problemTags.problemTags);
-  const { setDifficulty, difficulty, selectedTags, setSelectedTags } = useCreateProblemStore();
+  const { selectedTags, setSelectedTags } = useCreateProblemStore();
+  const difficulty = parseInt(formik.values.difficulty);
 
   const renderStars = () => {
     const stars = [];
@@ -61,7 +62,7 @@ export default function General({ formik }: GeneralProps) {
   };
 
   const recheckDifficulty = (selectedDifficulty: number) => {
-    setDifficulty(selectedDifficulty);
+    formik.setFieldValue("difficulty", selectedDifficulty.toString());
   };
 
   const titleInputProps = getFieldProps(formik, "title");

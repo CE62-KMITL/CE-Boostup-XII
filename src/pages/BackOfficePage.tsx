@@ -36,7 +36,7 @@ function BackOfficePage() {
   }
 
   useEffect(() => {
-    if (searchParams.get("problemId") !== null) 
+    if (searchParams.get("problemId") !== null)
       setProblemId(searchParams.get("problemId") as string);
   }, [searchParams.get("problemId")]);
 
@@ -52,7 +52,8 @@ function BackOfficePage() {
         starterCode: problem.starterCode,
         solution: problem.solution,
         bannedFunctions: problem.bannedFunctions.join("\n"),
-      }); 
+        difficulty: problem.difficulty.toString(),
+      });
     }
   }, [problem]);
 
@@ -78,11 +79,11 @@ function BackOfficePage() {
           starterCode: formik.values.starterCode,
           solution: formik.values.solution,
           bannedFunctions: [formik.values.bannedFunctions],
-          difficulty: difficulty,
+          difficulty: parseInt(formik.values.difficulty),
           testcases: getValidTestcases(hiddenTestcases),
           tags: selectedTags,
           solutionLanguage: ProgrammingLanguage.CPP17,
-          score: 100 * difficulty,
+          score: 100 * parseInt(formik.values.difficulty),
           attachments: fileResponse ? [fileResponse.id] : undefined,
           allowedHeaders: ["stdio.h"],
         });
@@ -99,11 +100,11 @@ function BackOfficePage() {
           starterCode: formik.values.starterCode,
           solution: formik.values.solution,
           bannedFunctions: [formik.values.bannedFunctions],
-          difficulty: difficulty,
+          difficulty: parseInt(formik.values.difficulty),
           testcases: getValidTestcases(hiddenTestcases),
           tags: selectedTags,
           solutionLanguage: ProgrammingLanguage.CPP17,
-          score: 100 * difficulty,
+          score: 100 * parseInt(formik.values.difficulty),
           attachments: fileResponse ? [fileResponse.id] : undefined,
         });
       }
@@ -121,7 +122,7 @@ function BackOfficePage() {
         publicationStatus: PublicationStatus.AwaitingApproval,
       });
       formik.resetForm();
-      setDifficulty(1);
+      formik.setFieldValue("difficulty", "1");
       setSelectedTags([]);
       setTestcases(Array(4).fill({ input: "", output: "" }));
       setHiddenTestcases(Array(6).fill({ input: "", output: "" }));
@@ -147,7 +148,7 @@ function BackOfficePage() {
   });
 
   useEffect(() => {
-    if (createProblemMutation.isSuccess) 
+    if (createProblemMutation.isSuccess)
       setShow(true);
   }, [createProblemMutation.isSuccess]);
 
