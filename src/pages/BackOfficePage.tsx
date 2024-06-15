@@ -23,7 +23,7 @@ function BackOfficePage() {
   const { createProblemMutation } = useProblems();
   const { createAttachmentMutation } = useAttachment();
   const { updateProblemMutation, problem, isLoading } = useProblem();
-  const { testcases, difficulty, hiddenTestcases, selectedTags, file, setDifficulty, setSelectedTags, setTestcases, setHiddenTestcases, setFile } = useCreateProblemStore();
+  const { testcases, hiddenTestcases, selectedTags, file, setSelectedTags, setTestcases, setHiddenTestcases, setFile } = useCreateProblemStore();
   const [show, setShow] = useState<boolean>(false);
   const [showPopup, setShowPopup] = useState<boolean>(false);
   const [type, setType] = useState<"submit" | "save">("save");

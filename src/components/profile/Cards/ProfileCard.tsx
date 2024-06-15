@@ -3,13 +3,11 @@ import LogOutButton from "../LogoutButton";
 import ProblemProgress from "../ProblemProgress";
 import ProfilePicture from "../ProfilePicture";
 import UserInfo from "../UserInfo";
-import { useGroup } from "../../../hooks/group.hook";
 import { useProblemsStore } from "../../../store/zustand/problems.zustand";
 import { useUsersStore } from "../../../store/zustand/users.zustand";
 import { useAppSelector } from "../../../store/hook";
 import { usePermission } from "../../../hooks/permission.hook";
 import { Role } from "../../../enum/roles.enum";
-import { useEffect } from "react";
 
 function ProfileCard({ username, email, house, point }: {
     username: string,
@@ -17,7 +15,6 @@ function ProfileCard({ username, email, house, point }: {
     house: string,
     point: string,
 }) {
-    const { group } = useGroup();
     const { publishedProblems } = useProblemsStore();
     const { roleUsers } = useUsersStore();
     const userStore = useAppSelector(state => state.auth.user);
