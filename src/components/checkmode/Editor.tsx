@@ -39,7 +39,7 @@ export default function Editor({ height }: EditorProps) {
         if (mode === "solution" && permission)
             setCode(problem?.solution.replace(/\\n/g, "\n"));
         else
-            setCode(problem?.starterCode.replace(/\\n/g, "\n"))
+            setCode(problem?.starterCode ? problem.starterCode.replace(/\\n/g, "\n") : "");
         console.log(problem);
     }, [mode, problem]);
 

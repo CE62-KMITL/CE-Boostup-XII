@@ -42,7 +42,7 @@ function OfficeContent({ formik }: OfficeContentProps) {
           <p className={`text-[18px] font-bold text-stone05`}>Starter Code (Skeleton Code)</p>
           <div className="rounded-[8px] overflow-hidden">
             <CodeMirror
-              value={formik.values.starterCode.replace(/\\n/g, "\n")}
+              value={formik.values.starterCode ? formik.values.starterCode.replace(/\\n/g, "\n") : ""}
               height={`385px`}
               extensions={[StreamLanguage.define(cpp)]}
               onChange={(v) => formik.setFieldValue("starterCode", v)}
