@@ -27,7 +27,7 @@ export default function Problem({ problem }: ProblemProps) {
     }, [problem]);
 
     return (
-        <div className="flex flex-col justify-end max-w-[500px] h-full">
+        <div className="flex flex-col justify-end max-w-[500px] min-w-[500px] h-full">
             <div id="problem-background" className="bg-stone01 w-full h-[calc(100%-55px)] rounded-[10px] p-[16px]" style={{ paddingRight: scrollPadding }}>
                 <div id="problem-box" className="flex flex-col space-y-[16px] w-full h-full overflow-y-auto">
                     <div className="w-full h-fit">
@@ -40,7 +40,7 @@ export default function Problem({ problem }: ProblemProps) {
                     <div className="bg-jenna w-full h-fit flex flex-col items-center rounded-[10px] p-[16px] text-[18px] font-medium">
                         <h4 className="text-[18px] font-bold">คำอธิบายโจทย์</h4>
                         <p className="underline">เรื่องเล่าจากโจทย์</p>
-                        <p className="w-full" dangerouslySetInnerHTML={{__html: formattedText(problem?.description) as string}} />
+                        <p className="w-full break-words">{problem?.description}</p>
                         <p className="self-end text-[14px]">โดย พี่{problem?.owner.displayName}</p>
                     </div>
                     <DetailCard title="รูปแบบ input" content={formattedText(problem?.input)} />

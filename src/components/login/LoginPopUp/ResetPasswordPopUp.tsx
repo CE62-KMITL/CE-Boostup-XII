@@ -17,6 +17,7 @@ function ResetPasswordPopUp() {
             if (!token)
                 return navigate("/");
             await resetPasswordMutation.mutateAsync({ token, password: formik.values.password });
+            alert("รีเซ็ตรหัสผ่านสำเร็จ");
             navigate("/");
         } catch (error) {
             console.error(error);

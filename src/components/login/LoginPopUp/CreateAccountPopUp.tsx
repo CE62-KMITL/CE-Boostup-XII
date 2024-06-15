@@ -17,6 +17,7 @@ function CreateAccountPopUp({ setShowCreateAccount }: CreateAccountPopUpProps) {
     async function handleCreateAccount() {
         try {
             await createAccountMutation.mutateAsync({ email: formik.values.email, siteUrl: window.location.origin });
+            alert("กรุณาตรวจสอบอีเมลของคุณเพื่อดำเนินการต่อ");
             setShowCreateAccount(false);
         } catch (error) {
             console.error(error);
