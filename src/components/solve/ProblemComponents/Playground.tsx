@@ -17,12 +17,6 @@ export default function Playground({ problem }: PlaygroundProps) {
     const { language, code, input } = useCompilerSettingStore();
     const [output, setOutput] = useState<string | undefined>("Output จะแสดงผลลัพธ์ของโค้ดที่คุณเขียนที่นี่");
     const { setPopUp } = usePopUp();
-    
-    const formattedText = (text?: string) => {
-        if (text)
-            return text?.replace(" ", "k");
-        return "";
-    }
 
     async function handleCompileAndRun() {
         try {
