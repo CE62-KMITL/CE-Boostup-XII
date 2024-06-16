@@ -8,12 +8,10 @@ import { useUsersStore } from "../../../store/zustand/users.zustand";
 import { useAppSelector } from "../../../store/hook";
 import { usePermission } from "../../../hooks/permission.hook";
 import { Role } from "../../../enum/roles.enum";
+import { UserModelResponse } from "../../../types/response.type";
 
-function ProfileCard({ username, email, house, point }: {
-    username: string,
-    email: string,
-    house: string,
-    point: string,
+function ProfileCard({ data }: {
+    data?: UserModelResponse
 }) {
     const { publishedProblems } = useProblemsStore();
     const { roleUsers } = useUsersStore();
@@ -35,22 +33,22 @@ function ProfileCard({ username, email, house, point }: {
                 lg:w-[72.5%] xl:w-[70%] 2xl:w-[67.5%] h-[100%] min-h-[120px] max-h-[200px]">
                 <ProfilePicture />
                 <UserInfo
-                    username={username}
-                    email={email}
-                    house={house}
+                    username={data?.displayName}
+                    email={data?.email}
+                    house={data?.group?.name}
                 />
             </div>
-            {permission && userStore && publishedProblems && roleUsers && (
+            {permission && data && publishedProblems && roleUsers && (
                 <div className="flex items-center place-content-between absolute bottom-1/4 translate-y-[45%]
                     lg:w-[400px] xl:w-[450px] 2xl:w-[500px] h-fit">
-                    <ProblemProgress problemProgress={Math.ceil(userStore?.problemSolvedCount * 100 / publishedProblems.length).toString()} />
+                    <ProblemProgress problemProgress={Math.ceil(data.problemSolvedCount * 100 / publishedProblems.length).toString()} />
                     <div className='flex flex-col justify-center lg:w-[200px] xl:w-[220px] 2xl:w-[240px] h-full'>
                         <div className='lg:text-[20px] xl:text-[22px] 2xl:text-[24px] font-bold'>
                             อันดับที่ {roleUsers.findIndex(user => user.id === userId) + 1}
                         </div>
                         <div className='lg:text-[12px] xl:text-[14px] 2xl:text-[16px] font-medium'>
-                            คะเเนนรวมทั้งหมด {point} คะเเนน <br />
-                            ทำผ่านไปเเล้วทั้งหมด {userStore?.problemSolvedCount} ข้อ
+                            คะเเนนรวมทั้งหมด {data.totalScore} คะเเนน <br />
+                            ทำผ่านไปเเล้วทั้งหมด {data?.problemSolvedCount} ข้อ
                         </div>
                     </div>
                 </div>

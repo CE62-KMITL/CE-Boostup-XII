@@ -11,16 +11,12 @@ type ExplainProps = {
 export default function Explain({ problem }: ExplainProps) {
     const { setPopUp } = usePopUp();
 
-    const formattedText = (text?: string) => {
-        return text?.split(/\\n/g).join('<br />');
-    }
-
     return (
         <>
             <div className="bg-jenna w-full flex flex-col items-center rounded-xl p-3">
                 <h3 className="text-lg font-bold">คำอธิบายโจทย์</h3>
                 <p className="underline font-semibold">เรื่องเล่าจากโจทย์</p>
-                <p className="font-medium" dangerouslySetInnerHTML={{ __html: formattedText(problem?.description) as string }} />
+                <p className="font-medium break-words w-full text-center">{problem?.description}</p>
                 <p className="self-end font-light text-[14px]">โดย พี่{problem?.owner.displayName}</p>
             </div>
             <div className="divide-y-2 px-3">
@@ -37,7 +33,7 @@ export default function Explain({ problem }: ExplainProps) {
                         <img src={InfoIcon} alt="info" className="w-[20px] h-[20px] absolute top-[15px] left-[96px] hover:cursor-pointer" onClick={() => setPopUp(0)} />
                         <div className="divide-y-2">
                             {problem.exampleTestcases.map((testcase, index) => {
-                                return <ExampleCard key={index} title={`ตัวอย่างที่ ${index + 1}`} input={formattedText(testcase.input) as string} output={formattedText(testcase.output) as string} />
+                                return <ExampleCard key={index} title={`ตัวอย่างที่ ${index + 1}`} input={testcase.input} output={testcase.output} />
                             })}
                         </div>
                     </div>

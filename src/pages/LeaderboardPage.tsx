@@ -3,32 +3,14 @@ import Leaderboard from "../components/leaderboard/Leaderboard";
 import { useUsers } from "../hooks/users.hook";
 import { useGroups } from "../hooks/groups.hook";
 import LoadingPage from "./LoadingPage";
-import { useEffect, useState } from "react";
-import { usePaginationRequestStore } from "../store/zustand/pagination.zustand";
-import { useScroll } from "../hooks/scroll.hook";
+import { useProblems } from "../hooks/problems.hook";
 
 function LeaderboardPage() {
   const { roleUserQuery } = useUsers();
   const { isLoading: isLoadingGroups } = useGroups();
-  const { setPaginationRequest, paginationRequest } = usePaginationRequestStore();
-  const [page, setPage] = useState<number>(1);
-  const { isBottom } = useScroll();
+  const { publishedProblemsQuery } = useProblems();
 
-  useEffect(() => {
-    if (page)
-      setPaginationRequest({
-        ...paginationRequest,
-        page: page,
-        sort: "-totalScore",
-      });
-  }, [page]);
-
-  useEffect(() => {
-    if (isBottom && paginationRequest.perPage && roleUserQuery.data && page < Math.ceil(roleUserQuery.data.total / paginationRequest.perPage)) 
-      setPage(page + 1);
-  }, [isBottom]);
-
-  if (isLoadingGroups || roleUserQuery.isLoading)
+  if (isLoadingGroups || roleUserQuery.isLoading || publishedProblemsQuery.isLoading)
     return <LoadingPage />;
 
   return (

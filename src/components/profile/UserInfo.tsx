@@ -2,9 +2,9 @@ import { isEmpty } from "lodash";
 import { useProfileComponentsStore } from "../../store/zustand/profile-components.zustand";
 
 function UserInfo({ username, email, house }: {
-    username: string,
-    email: string,
-    house: string,
+    username?: string,
+    email?: string,
+    house?: string,
 }) {
     const { setComponents } = useProfileComponentsStore();
     

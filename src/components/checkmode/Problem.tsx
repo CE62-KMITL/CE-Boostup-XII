@@ -12,10 +12,6 @@ type ProblemProps = {
 export default function Problem({ problem }: ProblemProps) {
     const [scrollPadding, setScrollPadding] = useState<number>(0);
 
-    const formattedText = (text?: string) => {
-        return text?.split(/\\n/g).join('<br />');
-    }
-
     useEffect(() => {
         const problemDom = document.getElementById("problem-box");
         const backgroundDom = document.getElementById("problem-background");
@@ -43,14 +39,14 @@ export default function Problem({ problem }: ProblemProps) {
                         <p className="w-full break-words">{problem?.description}</p>
                         <p className="self-end text-[14px]">โดย พี่{problem?.owner.displayName}</p>
                     </div>
-                    <DetailCard title="รูปแบบ input" content={formattedText(problem?.input)} />
-                    <DetailCard title="รูปแบบ output" content={formattedText(problem?.output)} />
+                    <DetailCard title="รูปแบบ input" content={problem?.input} />
+                    <DetailCard title="รูปแบบ output" content={problem?.output} />
                     <DetailCard
                         title="ข้อจำกัด"
                         content={
                             <p>
                                 {problem?.bannedFunctions.map((func, index) => (
-                                    <textarea className="bg-transparent" key={index}>{formattedText(func)}</textarea>
+                                    <textarea className="bg-transparent" key={index}>{func}</textarea>
                                 ))}
                             </p>
                         }
@@ -58,7 +54,7 @@ export default function Problem({ problem }: ProblemProps) {
                     <div className="relative">
                         <div className="divide-y-2">
                             {problem?.exampleTestcases.map((testcase, index) => (
-                                <ExampleCard key={index} title={`ตัวอย่างที่ ${index + 1}`} input={formattedText(testcase.input) as string} output={formattedText(testcase.output) as string} />
+                                <ExampleCard key={index} title={`ตัวอย่างที่ ${index + 1}`} input={testcase.input as string} output={testcase.output as string} />
                             ))}
                         </div>
                     </div>
