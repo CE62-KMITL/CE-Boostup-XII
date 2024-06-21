@@ -5,11 +5,18 @@ import { useFormik } from "formik";
 import { getFieldProps } from "../../../utils/getFieldProps";
 import Input from "../../utils/Input";
 import { useAuth } from "../../../hooks/auth.hook";
+import { useEffect } from "react";
 
 function ResetPasswordPopUp() {
     const { resetPasswordMutation } = useAuth();
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
+
+    useEffect(() => {
+        const token = searchParams.get('token');
+        if (!token)
+            navigate("/");
+    }, [searchParams]);
 
     async function handleResetPassword() {
         try {
@@ -17,6 +24,7 @@ function ResetPasswordPopUp() {
             if (!token)
                 return navigate("/");
             await resetPasswordMutation.mutateAsync({ token, password: formik.values.password });
+            alert("รีเซ็ตรหัสผ่านสำเร็จ");
             navigate("/");
         } catch (error) {
             console.error(error);

@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
 import { CompletionStatus } from "../../enum/problem.enum";
+import { useNavigate } from "react-router-dom";
 
 export default function ProblemsTable({ number, title, lesson, level, attempters, score, status, id }: {
     number: string,
@@ -9,11 +9,17 @@ export default function ProblemsTable({ number, title, lesson, level, attempters
     attempters: number,
     score: number,
     status: CompletionStatus,
-    id: string
+    id: string,
 }) {
+    const navigate = useNavigate();
+
+    function handleRedirect() {
+        navigate(`/solve/${id}`);
+    }
+
     return (
-        <Link to={`/solve/${id}`} className="grid grid-cols-[repeat(16,minmax(0,1fr))] w-full h-[45px] rounded-md bg-stone01 
-        cursor-pointer transition-all duration-300 ease-in-out hover:bg-cream">
+        <button onClick={handleRedirect} className="grid grid-cols-[repeat(16,minmax(0,1fr))] w-full h-[45px] rounded-md bg-stone01 
+        cursor-pointer transition-all duration-300 ease-in-out hover:bg-cream items-center">
             <div className="flex justify-start items-center col-span-1 p-[0rem_1rem]">
                 {number}
             </div>
@@ -48,6 +54,6 @@ export default function ProblemsTable({ number, title, lesson, level, attempters
             <div className={`flex justify-end items-center col-span-1 p-[0rem_1rem] ${status === CompletionStatus.Solved ? 'text-pass' : status === CompletionStatus.Attempted ? 'text-unpass' : 'text-empty'}`}>
                 {status === CompletionStatus.Solved ? 'ผ่าน' : status === CompletionStatus.Attempted ? 'ไม่ผ่าน' : 'ทำเลย'}
             </div>
-        </Link>
+        </button>
     );
 }

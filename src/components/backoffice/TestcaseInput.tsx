@@ -12,7 +12,7 @@ export default function TestcaseInput({ index, type }: TestcaseInputProps) {
     return (
         <div className="flex">
             <InputPlain
-                label={`ตัวอย่างที่ ${index} *`}
+                label={`ตัวอย่างที่ ${index}`}
                 subtext="Input :"
                 type="textarea"
                 placeholder=" "
@@ -23,11 +23,11 @@ export default function TestcaseInput({ index, type }: TestcaseInputProps) {
                 func={(e) => {
                     if (type === "testcases") {
                         const newTestcases = [...testcases];
-                        newTestcases[index - 1] = { input: e.target.value.replace(/\n/g, "\\n"), output: newTestcases[index - 1]?.output || "" };
+                        newTestcases[index - 1] = { input: e.target.value, output: newTestcases[index - 1]?.output || "" };
                         setTestcases(newTestcases);
                     } else {
                         const newHiddenTestcases = [...hiddenTestcases];
-                        newHiddenTestcases[index - 1] = { input: e.target.value.replace(/\n/g, "\\n"), output: newHiddenTestcases[index - 1]?.output || "" };
+                        newHiddenTestcases[index - 1] = { input: e.target.value, output: newHiddenTestcases[index - 1]?.output || "" };
                         setHiddenTestcases(newHiddenTestcases);
                     }
                 }
@@ -45,11 +45,11 @@ export default function TestcaseInput({ index, type }: TestcaseInputProps) {
                 func={(e) => {
                     if (type === "testcases") {
                         const newTestcases = [...testcases];
-                        newTestcases[index - 1] = { input: newTestcases[index - 1]?.input || "", output: e.target.value.replace(/\n/g, "\\n") };
+                        newTestcases[index - 1] = { input: newTestcases[index - 1]?.input || "", output: e.target.value };
                         setTestcases(newTestcases);
                     } else {
                         const newHiddenTestcases = [...hiddenTestcases];
-                        newHiddenTestcases[index - 1] = { input: newHiddenTestcases[index - 1]?.input || "", output: e.target.value.replace(/\n/g, "\\n") };
+                        newHiddenTestcases[index - 1] = { input: newHiddenTestcases[index - 1]?.input || "", output: e.target.value };
                         setHiddenTestcases(newHiddenTestcases);
                     }
                 }

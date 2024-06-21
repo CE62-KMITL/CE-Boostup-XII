@@ -4,6 +4,7 @@ import { usersService } from "../services/users.service";
 import { setAuthUser, setAuthAccessToken, deleteAuthState } from "../store/slices/auth.slice";
 import { useAppDispatch, useAppSelector } from "../store/hook";
 import { UserModelResponse } from "../types/response.type";
+import { deleteProblemTagState } from "../store/slices/problem-tags.slice";
 import {
     UseQueryOptions,
     useMutation,
@@ -56,6 +57,7 @@ export const useAuth = (options?: UseQueryOptions<UserModelResponse>) => {
 
     const logout = () => {
         dispatch(deleteAuthState());
+        dispatch(deleteProblemTagState());
     }
 
     return {

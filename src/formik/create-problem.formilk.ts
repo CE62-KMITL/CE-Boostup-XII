@@ -11,6 +11,7 @@ export type CreateProblemValues = {
     solution: string;
     starterCode: string;
     bannedFunctions: string;
+    difficulty: string;
 };
 
 export const emptyCreateProblemValues: CreateProblemValues = {
@@ -23,16 +24,14 @@ export const emptyCreateProblemValues: CreateProblemValues = {
     solution: "",
     starterCode: "",
     bannedFunctions: "",
+    difficulty: "1",
 };
 
 export const CreateProblemValidationSchema = yup.object({
     title: requiredValidator,
     description: requiredValidator,
-    hint: requiredValidator,
-    hintCost: requiredValidator,
     input: requiredValidator,
     output: requiredValidator,
     solution: requiredValidator,
-    starterCode: requiredValidator,
-    bannedFunctions: requiredValidator,
+    difficulty: requiredValidator,
 });

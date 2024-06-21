@@ -15,14 +15,8 @@ type PlaygroundProps = {
 export default function Playground({ problem }: PlaygroundProps) {
     const { compileAndRunMutation } = useCompileAndRun();
     const { language, code, input } = useCompilerSettingStore();
-    const [output, setOutput] = useState<string | undefined>(problem?.exampleTestcases.length ? problem?.exampleTestcases[0].output : "");
+    const [output, setOutput] = useState<string | undefined>("Output จะแสดงผลลัพธ์ของโค้ดที่คุณเขียนที่นี่");
     const { setPopUp } = usePopUp();
-    
-    const formattedText = (text?: string) => {
-        if (text)
-            return text?.split(/\\n/g).join('<br />');
-        return "";
-    }
 
     async function handleCompileAndRun() {
         try {
@@ -40,7 +34,7 @@ export default function Playground({ problem }: PlaygroundProps) {
                 formattedDiagnostic: false
             }, {
                 onSuccess: (response) => {
-                    setOutput(response.outputs[0].runtimeOutput === "" ? "null" : response.outputs[0].runtimeOutput);
+                    setOutput(response.outputs[0].runtimeOutput ? response.outputs[0].runtimeOutput : "null")
                 },
                 onError: (error) => {
                     console.error(error);
@@ -60,7 +54,7 @@ export default function Playground({ problem }: PlaygroundProps) {
                 <img src={InfoIcon} alt="info" className="w-[20px] h-[20px] absolute top-[179px] left-[235px] hover:cursor-pointer" onClick={() => setPopUp(4)} />
             </div>
             <div className="divide-y-2 px-3">
-                <ExampleCard inputMode={true} title="1) Testcase" input={formattedText(problem?.exampleTestcases.length ? problem?.exampleTestcases[0].input : "")} output={formattedText(output) as string} />
+                <ExampleCard inputMode={true} title="Testcase ของคุณ" input={"กรอกข้อมูล Input ของ Testcase ที่คุณต้องการทดสอบ"} output={output as string} />
             </div>
         </>
     );

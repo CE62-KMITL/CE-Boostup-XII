@@ -18,7 +18,7 @@ import { usePermission } from "../hooks/permission.hook";
 import { useScroll } from "../hooks/scroll.hook";
 
 export default function HomePage() {
-    const permission = usePermission([Role.Admin, Role.Staff, Role.Reviewer, Role.Reviewer]);
+    const permission = usePermission([Role.Admin, Role.Staff, Role.Reviewer, Role.SuperAdmin]);
     const [page, setPage] = useState<number>(1);
     const { problems: problemsStore, isFetched, pages } = useProblemsStore();
     const [pagesList] = useState<DropdownType[]>([]);

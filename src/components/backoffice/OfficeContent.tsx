@@ -17,7 +17,6 @@ type OfficeContentProps = {
 };
 
 function OfficeContent({ formik }: OfficeContentProps) {
-  const starterCodeInputProps = getFieldProps(formik, "starterCode");
   const solutionInputProps = getFieldProps(formik, "solution");
   const [searchParams] = useSearchParams();
 
@@ -31,7 +30,7 @@ function OfficeContent({ formik }: OfficeContentProps) {
           <p className={`text-[18px] font-bold ${solutionInputProps.error ? "text-red-600" : "text-stone05"}`}>Solution Code (Source Code)</p>
           <div className="rounded-[8px] overflow-hidden -z-50">
             <CodeMirror
-              value={formik.values.solution.replace(/\\n/g, "\n")}
+              value={formik.values.solution}
               height={`385px`}
               extensions={[StreamLanguage.define(cpp)]}
               onChange={(v) => formik.setFieldValue("solution", v)}
@@ -40,10 +39,10 @@ function OfficeContent({ formik }: OfficeContentProps) {
           </div>
         </div>
         <div className="space-y-[36px] w-full">
-          <p className={`text-[18px] font-bold ${starterCodeInputProps.error ? "text-red-600" : "text-stone05"}`}>Starter Code (Skeleton Code)</p>
+          <p className={`text-[18px] font-bold text-stone05`}>Starter Code (Skeleton Code)</p>
           <div className="rounded-[8px] overflow-hidden">
             <CodeMirror
-              value={formik.values.starterCode.replace(/\\n/g, "\n")}
+              value={formik.values.starterCode ? formik.values.starterCode : ""}
               height={`385px`}
               extensions={[StreamLanguage.define(cpp)]}
               onChange={(v) => formik.setFieldValue("starterCode", v)}

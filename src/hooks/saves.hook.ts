@@ -28,7 +28,7 @@ export const useSaves = (problemId: string, options?: UseQueryOptions<SavesModel
     useEffect(() => {
         if (savesQuery.data) {
             const saveCode = savesQuery.data.code;
-            setCode(saveCode.replace(/\\n/g, "\n"));
+            setCode(saveCode);
         } else
             setCode(problem?.starterCode as string);
     }, [savesQuery.data]);

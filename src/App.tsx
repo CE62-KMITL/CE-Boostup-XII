@@ -27,9 +27,9 @@ export default function App() {
           <Route element={<StoreProvider />}>
             <Route element={<VerifyProvider />}>
               <Route path="/" element={<LoginPage />} />
-              <Route path="/register" element={<RegisterPage />} />
+              <Route path="/auth/create-account" element={<RegisterPage />} />
             </Route>
-            <Route path="/reset-password" element={<ResetPasswordPage />} />
+            <Route path="/auth/reset-password" element={<ResetPasswordPage />} />
             <Route element={<ProtectedProvider allowedRoles={[Role.User, Role.Admin, Role.Staff, Role.SuperAdmin, Role.Reviewer]} />}>
               <Route path="/solve/:problemId" element={<SolveProblemPage />} />
               <Route element={<InitLayout />}>

@@ -33,12 +33,12 @@ export default function ExampleCard({ title, input, output, inputMode = false }:
                                 <input type="text" className="w-full bg-jenna border-none" placeholder={input} onChange={(e) => setInput(e.target.value)} />
                             </div>
                         ) :
-                            <div dangerouslySetInnerHTML={{ __html: input }} className="bg-stone02 w-full rounded-[10px] p-2 text-[16px] font-medium" />
+                            <textarea className="bg-stone02 w-full rounded-[10px] p-2 text-[16px] font-medium" disabled>{input}</textarea>
                     }
                 </div>
                 <div className="flex flex-col w-full py-2">
                     <p className="mb-[4px] text-[14px] font-medium">output :</p>
-                    <div dangerouslySetInnerHTML={{ __html: output }} className="bg-stone02 w-full rounded-[10px] p-2 text-[16px] font-medium" />
+                    <textarea disabled className="bg-stone02 w-full rounded-[10px] p-3 font-semibold overflow-x-scroll text-nowrap">{output}</textarea>
                 </div>
             </div>
         </div>

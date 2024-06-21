@@ -15,6 +15,8 @@ import PopUp from "./PopUp/PopUp";
 import { useProblem } from "../../hooks/problem.hook";
 import { PublicationStatus } from "../../enum/problem.enum";
 import SuccessCard from "./SuccessCard";
+import { usePermission } from "../../hooks/permission.hook";
+import { Role } from "../../enum/roles.enum";
 
 type EditorProps = {
     height: number;
@@ -24,20 +26,20 @@ type EditorProps = {
 export default function Editor({ height }: EditorProps) {
     const navigate = useNavigate();
     const { code, setCode } = useCompilerSettingStore();
-    const [mode, setMode] = useState<"solution" | "starter">("solution");
+    const [mode, setMode] = useState<"solution" | "starter">("starter");
     const { problem } = useProblemStore();
     const userId = useAppSelector(state => state.auth.user?.id);
     const isOwner = problem?.owner.id === userId;
     const [isPopup, setIsPopup] = useState<number | undefined>();
     const { updateProblemMutation } = useProblem();
     const [show, setShow] = useState<boolean>(false);
+    const permission = usePermission([Role.Reviewer, Role.Admin, Role.SuperAdmin]);
 
     useEffect(() => {
-        if (mode === "solution")
-            setCode(problem?.solution.replace(/\\n/g, "\n"));
+        if (mode === "solution" && permission)
+            setCode(problem?.solution);
         else
-            setCode(problem?.starterCode.replace(/\\n/g, "\n"))
-        console.log(problem);
+            setCode(problem?.starterCode ? problem.starterCode : "");
     }, [mode, problem]);
 
     async function handleUpdateProblem() {
@@ -65,7 +67,7 @@ export default function Editor({ height }: EditorProps) {
                 <div className="flex place-content-between w-full h-[55px]">
                     <Button text="กลับ" img={BackIcon} className="flex items-center justify-evenly w-[96px] h-[40px] bg-jenna rounded-[8px] text-[16px] font-medium" imgClassName="w-[16px] h-[16px]" ClickFunc={() => navigate(-1)} />
                     <div className="flex gap-[16px] h-[40px]">
-                        <Button ClickFunc={() => setMode("solution")} text="Solution Code" className={`${mode === "solution" ? "bg-accent text-stone01 font-bold" : "bg-jenna text-black font-medium"} h-full px-[28px] text-nowrap rounded-[8px]`} />
+                        {permission && <Button ClickFunc={() => setMode("solution")} text="Solution Code" className={`${mode === "solution" ? "bg-accent text-stone01 font-bold" : "bg-jenna text-black font-medium"} h-full px-[28px] text-nowrap rounded-[8px]`} />}
                         <Button ClickFunc={() => setMode("starter")} text="Starter Code" className={`${mode === "starter" ? "bg-accent text-stone01 font-bold" : "bg-jenna text-black font-medium"} h-full px-[28px] rounded-[8px]`} />
                         {
                             isOwner && <Button ClickFunc={() => setIsPopup(0)} className="flex items-center justify-evenly px-[28px] h-[40px] bg-jenna rounded-[8px] text-[16px] font-medium" text="แก้แบบร่าง" />

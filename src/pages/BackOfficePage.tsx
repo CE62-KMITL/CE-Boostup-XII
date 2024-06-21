@@ -23,35 +23,36 @@ function BackOfficePage() {
   const { createProblemMutation } = useProblems();
   const { createAttachmentMutation } = useAttachment();
   const { updateProblemMutation, problem, isLoading } = useProblem();
-  const { testcases, difficulty, hiddenTestcases, selectedTags, file, setDifficulty, setSelectedTags, setTestcases, setHiddenTestcases, setFile } = useCreateProblemStore();
+  const { testcases, hiddenTestcases, selectedTags, file, setSelectedTags, setTestcases, setHiddenTestcases, setFile } = useCreateProblemStore();
   const [show, setShow] = useState<boolean>(false);
   const [showPopup, setShowPopup] = useState<boolean>(false);
   const [type, setType] = useState<"submit" | "save">("save");
   const { setProblemId } = useProblemStore();
 
   function getValidTestcases(testcases: TestcaseType[]) {
-    const validTestcases = testcases.filter((testcase) => testcase.input !== "" && testcase.output !== "");
+    const validTestcases = testcases.filter((testcase) => testcase.input !== "" || testcase.output !== "");
     if (validTestcases.length === 0) return undefined;
     return validTestcases;
   }
 
   useEffect(() => {
-    if (searchParams.get("problemId") !== null) 
+    if (searchParams.get("problemId") !== null)
       setProblemId(searchParams.get("problemId") as string);
   }, [searchParams.get("problemId")]);
 
   useEffect(() => {
     if (searchParams.get("problemId") !== null && problem) {
       formik.setValues({
-        title: problem.title.replace(/\\n/g, "\n"),
-        description: problem.description.replace(/\\n/g, "\n"),
-        input: problem.input.replace(/\\n/g, "\n"),
-        output: problem.output.replace(/\\n/g, "\n"),
-        hint: problem.hint.replace(/\\n/g, "\n"),
+        title: problem.title,
+        description: problem.description,
+        input: problem.input,
+        output: problem.output,
+        hint: problem.hint,
         hintCost: problem.hintCost.toString(),
         starterCode: problem.starterCode,
         solution: problem.solution,
-        bannedFunctions: problem.bannedFunctions.join("\n"),
+        bannedFunctions: problem.bannedFunctions.join(","),
+        difficulty: problem.difficulty.toString(),
       });
     }
   }, [problem]);
@@ -68,42 +69,42 @@ function BackOfficePage() {
       }
       if (searchParams.get("problemId") === null) {
         const response = await createProblemMutation.mutateAsync({
-          title: formik.values.title.replace(/\n/g, "\\n"),
-          description: formik.values.description.replace(/\n/g, "\\n"),
-          input: formik.values.input.replace(/\n/g, "\\n"),
-          output: formik.values.output.replace(/\n/g, "\\n"),
-          hint: formik.values.hint.replace(/\n/g, "\\n"),
+          title: formik.values.title,
+          description: formik.values.description,
+          input: formik.values.input,
+          output: formik.values.output,
+          hint: formik.values.hint,
           hintCost: parseInt(formik.values.hintCost),
           exampleTestcases: getValidTestcases(testcases) as TestcaseType[],
           starterCode: formik.values.starterCode,
           solution: formik.values.solution,
-          bannedFunctions: [formik.values.bannedFunctions.replace(/\n/g, "\\n")],
-          difficulty: difficulty,
+          bannedFunctions: formik.values.bannedFunctions.split(","),
+          difficulty: parseInt(formik.values.difficulty),
           testcases: getValidTestcases(hiddenTestcases),
           tags: selectedTags,
           solutionLanguage: ProgrammingLanguage.CPP17,
-          score: 100 * difficulty,
+          score: 100 * parseInt(formik.values.difficulty),
           attachments: fileResponse ? [fileResponse.id] : undefined,
           allowedHeaders: ["stdio.h"],
         });
         setSearchParams({ problemId: response.id });
       } else {
         await updateProblemMutation.mutateAsync({
-          title: formik.values.title.replace(/\n/g, "\\n"),
-          description: formik.values.description.replace(/\n/g, "\\n"),
-          input: formik.values.input.replace(/\n/g, "\\n"),
-          output: formik.values.output.replace(/\n/g, "\\n"),
-          hint: formik.values.hint.replace(/\n/g, "\\n"),
+          title: formik.values.title,
+          description: formik.values.description,
+          input: formik.values.input,
+          output: formik.values.output,
+          hint: formik.values.hint,
           hintCost: parseInt(formik.values.hintCost),
           exampleTestcases: getValidTestcases(testcases),
           starterCode: formik.values.starterCode,
           solution: formik.values.solution,
-          bannedFunctions: [formik.values.bannedFunctions.replace(/\n/g, "\\n")],
-          difficulty: difficulty,
+          bannedFunctions: [formik.values.bannedFunctions],
+          difficulty: parseInt(formik.values.difficulty),
           testcases: getValidTestcases(hiddenTestcases),
           tags: selectedTags,
           solutionLanguage: ProgrammingLanguage.CPP17,
-          score: 100 * difficulty,
+          score: 100 * parseInt(formik.values.difficulty),
           attachments: fileResponse ? [fileResponse.id] : undefined,
         });
       }
@@ -121,7 +122,7 @@ function BackOfficePage() {
         publicationStatus: PublicationStatus.AwaitingApproval,
       });
       formik.resetForm();
-      setDifficulty(1);
+      formik.setFieldValue("difficulty", "1");
       setSelectedTags([]);
       setTestcases(Array(4).fill({ input: "", output: "" }));
       setHiddenTestcases(Array(6).fill({ input: "", output: "" }));
@@ -147,9 +148,8 @@ function BackOfficePage() {
   });
 
   useEffect(() => {
-    if (createProblemMutation.isSuccess) {
+    if (createProblemMutation.isSuccess)
       setShow(true);
-    }
   }, [createProblemMutation.isSuccess]);
 
   if (createProblemMutation.isLoading || createAttachmentMutation.isLoading || updateProblemMutation.isLoading || isLoading)

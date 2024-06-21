@@ -14,18 +14,15 @@ const ROLE_USERS_QUERY_KEY = "roleUsers";
 
 export const useUsers = (options?: UseQueryOptions<PaginationModelResponse<UserModelResponse>>) => {
     const { paginationRequest } = usePaginationRequestStore();
-    const { setUsers, setRoleUsers, roleUsers } = useUsersStore();
+    const { setUsers, setRoleUsers } = useUsersStore();
 
     const fetchUsers = async (): Promise<PaginationModelResponse<UserModelResponse>> => {
         return await usersService.getUsers({ page: 1, perPage: 25, sort: "-totalScore" });
     }
 
     const fetchRoleUser = async (): Promise<PaginationModelResponse<UserModelResponse>> => {
-        const response = await usersService.getUsers({ ...paginationRequest, roles: Role.User, sort: undefined });
-        if (roleUsers && roleUsers.length < response.total)
-            setRoleUsers([...roleUsers, ...response.data]);
-        else
-            setRoleUsers(response.data);
+        const response = await usersService.getUsers({ page: 1, perPage: 100, roles: Role.User, sort: "-totalScore" });
+        setRoleUsers(response.data);
         return response;
     }
 

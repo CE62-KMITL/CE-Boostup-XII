@@ -8,11 +8,11 @@ import { useUsers } from "../hooks/users.hook";
 
 export default function ProfilePage() {
     const { roleUserQuery } = useUsers();
-    const { user } = useUser();
+    const { getSelfQuery } = useUser();
     const { components, profileComponents } = useProfileComponentsStore();
-    const { allProblemsQuery } = useProblems();
+    const { publishedProblemsQuery } = useProblems();
 
-    if (allProblemsQuery.isLoading || !user || roleUserQuery.isLoading)
+    if (publishedProblemsQuery.isLoading || getSelfQuery.isLoading || roleUserQuery.isLoading)
         return <LoadingPage />;
 
     return (
@@ -21,10 +21,7 @@ export default function ProfilePage() {
             <Background />
             <div className="flex justify-center">
                 <ProfileCard
-                    username={user.displayName}
-                    email={user.email}
-                    house={user.group?.name as string}
-                    point={user.totalScore.toString()}
+                    data={getSelfQuery.data}
                 />
             </div>
         </>
